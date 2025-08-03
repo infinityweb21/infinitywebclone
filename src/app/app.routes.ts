@@ -391,6 +391,56 @@ export const routes: Routes = [
       (m) => m.TorontoComponent
     ),
 },
+{
+  path: 'top-destinations/istanbul',
+  loadComponent: () =>
+    import('./pages/top-destinations/istanbul/istanbul.component').then(
+      (m) => m.IstanbulComponent
+    ),
+},
+{
+  path: 'top-destinations/maldives',
+  loadComponent: () =>
+    import('./pages/top-destinations/maldives/maldives.component').then(
+      (m) => m.MaldivesComponent
+    ),
+},
+{
+  path: 'top-destinations/ottawa',
+  loadComponent: () =>
+    import('./pages/top-destinations/ottawa/ottawa.component').then(
+      (m) => m.OttawaComponent
+    ),
+},
+{
+  path: 'top-destinations/philadelphia',
+  loadComponent: () =>
+    import('./pages/top-destinations/philadelphia/philadelphia.component').then(
+      (m) => m.PhiladelphiaComponent
+    ),
+},
+
+{
+  path: 'top-destinations/portland-maine',
+  loadComponent: () =>
+    import('./pages/top-destinations/portland-maine/portland-maine.component').then(
+      (m) => m.PortlandMaineComponent
+    ),
+},
+{
+  path: 'top-destinations/san-francisco',
+  loadComponent: () =>
+    import('./pages/top-destinations/san-francisco/san-francisco.component').then(
+      (m) => m.SanFranciscoComponent
+    ),
+},
+{
+  path: 'top-destinations/singapore',
+  loadComponent: () =>
+    import('./pages/top-destinations/singapore/singapore.component').then(
+      (m) => m.SingaporeComponent
+    ),
+},
       
     ],
   },
