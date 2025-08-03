@@ -348,7 +348,50 @@ export const routes: Routes = [
           import('./pages/top-routes/top-routes.component').then(
             (m) => m.TopRoutesComponent
           ),
-      }
+      },
+     {
+  path: 'top-destinations/london',
+  loadComponent: () =>
+    import('./pages/top-destinations/london/london.component').then(
+      (m) => m.LondonComponent
+    ),
+},
+ {
+  path: 'top-destinations/madrid',
+  loadComponent: () =>
+    import('./pages/top-destinations/madrid/madrid.component').then(
+      (m) => m.MadridComponent
+    ),
+},
+{
+  path: 'top-destinations/new-york',
+  loadComponent: () =>
+    import('./pages/top-destinations/new-york/new-york.component').then(
+      (m) => m.NewYorkComponent
+    ),
+},
+{
+  path: 'top-destinations/paris',
+  loadComponent: () =>
+    import('./pages/top-destinations/paris/paris.component').then(
+      (m) => m.ParisComponent
+    ),
+},
+{
+  path: 'top-destinations/rome',
+  loadComponent: () =>
+    import('./pages/top-destinations/rome/rome.component').then(
+      (m) => m.RomeComponent
+    ),
+},
+{
+  path: 'top-destinations/toronto',
+  loadComponent: () =>
+    import('./pages/top-destinations/toronto/toronto.component').then(
+      (m) => m.TorontoComponent
+    ),
+},
+      
     ],
   },
 
