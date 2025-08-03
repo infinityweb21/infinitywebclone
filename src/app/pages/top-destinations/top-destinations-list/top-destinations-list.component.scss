@@ -1,5 +1,5 @@
 .top-destination-wrapper {
-  background-color: #f4f2f9;
+  // background-color: #f4f2f9;
   padding: 2rem;
 
   .title {
@@ -19,11 +19,11 @@
 
     td {
       text-align: center;
-      padding: 0.8rem 1rem;
+      padding: 0.6rem 0.8rem;
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: 0.75rem;
       min-width: 140px;
-      border-radius: 6px;
+      border-radius: 4px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     &:nth-child(odd) {
       background-color: #eaeaea; 
