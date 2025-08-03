@@ -1,1 +1,15 @@
-<p>top-destinations-list works!</p>
+<div class="top-destination-wrapper">
+  <h2 class="title">
+    <strong>Top</strong> <span class="highlight">Destinations</span>
+  </h2>
+
+  <table class="destination-table">
+    <tbody>
+      <tr *ngFor="let row of destinationRows">
+        <td *ngFor="let destination of row">
+          {{ destination }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
