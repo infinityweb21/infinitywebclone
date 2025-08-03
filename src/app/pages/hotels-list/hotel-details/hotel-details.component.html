@@ -1,0 +1,1242 @@
+<!-- === List details  Start == -->
+<!-- @if(!loading){ -->
+<div class="content">
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Hotel Details -->
+      <div class="col-xl-12">
+
+        <!-- Slider -->
+        <div class="d-flex align-items-center justify-content-between flex-wrap mb-2">
+          <div class="mb-2">
+            <h4 class="mb-1 d-flex align-items-center flex-wrap" style="gap:5px;">{{hotelDetails?.hotelName}}<span
+                class="badge badge-xs bg-success rounded-pill ms-2"><i
+                  class="isax isax-ticket-star me-1"></i>Verified</span></h4>
+            <div class="d-flex align-items-center flex-wrap" style="gap:5px;">
+              <p class="fs-14 mb-2 me-3 pe-3 border-end"><i class="fa-solid fa-hotel"
+                  style="margin-right:8px;"></i>Hotel</p>
+              <p class="fs-14 mb-2 me-3 pe-3 border-end"><i class="fa-solid fa-location-dot"
+                  style="margin-right:8px;"></i>{{hotelDetails?.address?.line1}} <a  (click)="scrollToLocation()"
+                  class="link-primary text-decoration-underline fw-medium ms-2" style="margin-left:8px; cursor: pointer;">View
+                  Location</a></p>
+              <div class="d-flex align-items-center mb-2">
+                <span
+                  class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-2">{{hotelDetails?.starRating}}</span>
+                <p class="fs-14"><a>(500 Reviews)</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+          <div class="d-flex align-items-center flex-wrap">
+            <!-- <p class="fs-14 me-2 mb-2"><i class="fa-solid fa-circle-check me-2 text-success"></i>Fully
+              refundable</p> -->
+            <p class="fs-14 me-2 mb-2"><i class="fa-solid fa-circle-check me-2 text-success"></i>Express
+              check-in/out available</p>
+            <p class="fs-14 mb-2"><i class="fa-solid fa-circle-check me-2 text-success"></i>Minimum check-in
+              age: 18</p>
+          </div>
+        </div>
+        <div class="border-bottom pb-4 mb-4">
+          <div class="service-wrap mb-4">
+            <div class="slider-wrap">
+
+              <p-galleria [value]="hotelDetails?.images" [responsiveOptions]="responsiveOptions" [numVisible]="5">
+                <ng-template #item let-item>
+                  <img [src]="item.href" style="width:100%" />
+                </ng-template>
+                <ng-template #thumbnail let-item>
+                  <img [src]="item.href" />
+                </ng-template>
+              </p-galleria>
+            </div>
+
+          </div>
+          <h5 class="mb-3 fs-18">Description</h5>
+          <div class="common-para">
+            <p *ngIf="firstDescription">
+              {{ firstDescription }}
+
+            </p>
+          </div>
+        </div>
+        <!-- /Slider -->
+
+        <!-- Highlights -->
+        <div class="border-bottom pb-4 mb-4">
+          <h5 class="mb-3 fs-18">Highlights</h5>
+          @if(hotelDetails){
+          <div class="highlight-box" *ngFor="let entry of entries">
+            <p class="d-flex align-items-center">
+              <i class="fa-brands fa-slack text-orange"></i>
+              <strong class="me-1">{{ entry[0] | titlecase }}:</strong>
+              <span [innerHTML]="entry[1]"></span>
+            </p>
+          </div>
+          }
+
+        </div>
+        <!-- /Highlights -->
+
+        <!-- Popular Amenities -->
+        <div class="border-bottom pb-2 mb-4">
+          <h5 class="mb-3 fs-18">Popular Amenities</h5>
+          <div class="row">
+            <div class="col-sm-6 col-lg-4" *ngFor="let column of amenityChunks">
+              <div class="d-flex align-items-center mb-3" *ngFor="let amenity of column">
+                <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                  <i class="fa-regular fa-chess-queen fs-16"></i>
+                </span>
+                <p>{{ amenity }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Popular Amenities -->
+
+        <!-- Room types -->
+        <div class="border-bottom pb-2 mb-4 ">
+          <h5 class="mb-3 fs-18">Room types</h5>
+          <div class="row">
+            <div class="col-sm-6 col-lg-4">
+              <div class="d-flex align-items-center mb-3">
+                <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                  <i class="fa-regular fa-chess-queen fs-16"></i>
+                </span>
+                <p>Smoking rooms</p>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                  <i class="fa-regular fa-chess-queen fs-16"></i>
+                </span>
+                <p>City View</p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <div class="d-flex align-items-center mb-3">
+                <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                  <i class="fa-regular fa-chess-queen fs-16"></i>
+                </span>
+                <p>Suite</p>
+              </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+              <div class="d-flex align-items-center mb-3">
+                <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                  <i class="fa-regular fa-chess-queen fs-16"></i>
+                </span>
+                <p>Connecting Rooms</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /Room types -->
+
+        <!-- new add  -->
+        @for(room of rooms; track room.id){
+        <div class="rmSelect__card--wrapRowDtlNew mb-3">
+          <div class="rmSelect__card--leftDtlNew">
+            <div class="rmTypeDtlNew ">
+              <div class="makeRelative">
+                <div class="rmPhotos appendBottom16 ">
+                  <div class="slick-slider slick-initialized" dir="ltr">
+                    <div class="img-slider image-slide owl-carousel nav-center">
+                      <p-galleria [value]="room?.roomImages" [responsiveOptions]="responsiveOptions">
+                        <ng-template #item let-item>
+                          <img [src]="item.imageUrl" style="width:100%" />
+                        </ng-template>
+                        <ng-template #thumbnail let-item>
+                          <img [src]="item.imageUrl" />
+                        </ng-template>
+                      </p-galleria>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h2 class="rmType__roomName rmType__roomNameDtlNew" data-testid="rmType__roomName">{{room?.roomName}}
+              </h2>
+              <div class="font16 lineHight20 formTypeListDtlNew appendTop3 appendBottom3">
+                <ul class="rmTypeList vertical appendTop10 ">
+                  @if(room?.roomSize){
+                  <li class="rmTypeList__item"><span class="rmTypeList__item--icon appendRight10"><img
+                        src="https://promos.makemytrip.com/Hotels_product/Hotel_SR/Android/drawable-hdpi/size.png"
+                        alt="250 sq.ft (23 sq.mt)"></span><span class="makeFlex column column-text"><span
+                        class="rmTypeList__item--text">{{room?.roomSize}}
+                        sq.ft (23 sq.mt)</span></span></li>
+                  }
+
+                  @if(room?.view){
+                  <li class="rmTypeList__item"><span class="rmTypeList__item--icon appendRight10"><img
+                        src="https://promos.makemytrip.com/Hotels_product/Hotel_SR/Android/drawable-hdpi/view.png"
+                        alt="City View"></span><span class="makeFlex column column-text"><span
+                        class="rmTypeList__item--text">{{room?.view}}</span></span></li>
+                  }
+                  @if(room?.bedType){
+                  <li class="rmTypeList__item"><span class="rmTypeList__item--icon appendRight10"><img
+                        src="https://promos.makemytrip.com/Hotels_product/Hotel_SR/Android/drawable-hdpi/bed.png"
+                        alt="1 single bed"></span><span class="makeFlex column column-text"><span
+                        class="rmTypeList__item--text">{{room?.bedType}} bed</span></span></li>
+                  }
+
+                  <!-- <li class="rmTypeList__item"><span class="rmTypeList__item--icon appendRight10"><img
+                        src="https://promos.makemytrip.com/images/CDN_upload/blacktick_with_circle.png"
+                        alt="Bathtub"></span><span class="makeFlex column column-text"><span
+                        class="rmTypeList__item--text">Bathtub</span></span></li> -->
+                </ul>
+              </div>
+
+              <p class="appendTop16"><a class="font14 latoBold lineHight18" type="button" data-bs-toggle="modal"
+                  data-bs-target="#moredetailsModal" (click)="selectedRoom = room">More Details</a></p>
+            </div>
+          </div>
+          <div class="rmSelect__card--rightDtlNew">
+            @for(rate of room?.rateList;track rate.id){
+            <div class="rmSelect__card--rowDtlNew rmSelect__card--rowNew">
+              <div class="rmSelect__card--rightDtlNew_container">
+                <div class="rmSelect__card--rowLeftDtlNew">
+                  <div class="rmRatePlan ">
+                    <div class="rmRatePlan__persuasion_container"></div>
+                    <h5 class="rmRatePlan__heading newDtls">{{rate?.breakfastIncluded?'Breakfast':'Room Only'}} {{rate?.freeCancellation?' | Free Cancellation':''}}</h5>
+                    <ul class="rmRatePlan__list newDtls">
+                      @if(rate?.payLater){
+                        <li class=" rmRatePlan__list--item"><span class="rmRatePlan__list--itemImgIcon"><img
+                            src="https://promos.makemytrip.com/Hotels_product/Persuasion_Icons/Dot.png"
+                            alt="Book with $ 0 Payment&ZeroWidthSpace;"></span>
+                        <div><span class="rmRatePlan__list--text">Book with $ 0
+                            Payment&ZeroWidthSpace;</span> &nbsp;</div>
+                      </li>
+                      }
+                      
+                      @if(rate?.breakfastIncluded){
+                      <li class=" rmRatePlan__list--item"><span class="rmRatePlan__list--itemImgIcon"><img
+                            src="https://promos.makemytrip.com/Hotels_product/Persuasion_Icons/Dot.png"
+                            alt="Break fast included"></span>
+                        <div><span class="rmRatePlan__list--text">Breakfast included</span></div>
+                      </li>
+                      }
+                      @if(rate?.parkingIncluded){
+                      <li class=" rmRatePlan__list--item"><span class="rmRatePlan__list--itemImgIcon"><img
+                            src="https://promos.makemytrip.com/Hotels_product/Persuasion_Icons/Dot.png"
+                            alt="Parking included"></span>
+                        <div><span class="rmRatePlan__list--text">Parking included</span></div>
+                      </li>
+                      }
+
+                      <li class=" rmRatePlan__list--item"><span class="rmRatePlan__list--itemImgIcon"><img
+                            src="https://promos.makemytrip.com/Hotels_product/Inclusions/Icons/Default_DefaultDot.png"
+                            alt="No meals included"></span>
+
+                        <div><span class="rmRatePlan__list--text">{{rate?.mealsIncluded? 'Meals':'No meals'}}
+                            included</span>
+                          &nbsp;
+                        </div>
+                      </li>
+                      @if(rate?.freeCancellation){
+                      <div class="rmRatePlan__list--item" id="rmRatePlan__fc"><span
+                          class="rmRatePlan__list--itemImgIcon"><img
+                            src="https://promos.makemytrip.com/Hotels_product/Inclusions/Icons/Inclusions_greentick.png"
+                            alt="Free Cancellation before &#x202A;19 Aug 05:59 PM&#x202C;"></span>
+                        <div class="flexOne rmRatePlan__list--dtl">
+
+                          <div class="fctooltip__parent position-relative">
+
+                            <span class="fctooltip__parent-text latoBold">Free Cancellation
+                            </span>
+
+
+                            <div class="fctooltip__card">
+                              <div class="cancel-policy-card">
+                                <h3 class="cancel-policy-card-title">Cancellation Policy
+                                </h3>
+                                <ul class="cancel-policy-card-list">
+                                  @if(rate?.cancellationPolicy){
+                                  <li>{{rate?.cancellationPolicy}}</li>
+                                  }
+
+
+                                </ul>
+
+                              </div>
+                            </div>
+
+                          </div>
+
+                        </div>
+                      </div>
+                      }
+                    </ul>
+                    <p class="appendTop10"><a class="latoBold font14" type="button" data-bs-toggle="modal"
+                        data-bs-target="#cancellationPolicyModal" (click)="selectedRate=rate">More
+                        Details</a></p>
+                  </div>
+                </div>
+                <div class="rmSelect__card--rowRightDtlNew">
+                  <div class="rmPayable ">
+                    <div class="rmPayable__NewDtls">
+                      <div class="rmPayable__newDtl--left">
+                        <p class="font14">
+                          <!-- <del>15,263</del></p> -->
+                        <div class="makeFlex hrtlCenter flexWrap">
+                          <div class="appendTop5 cstmTooltipHover">
+                            <p class="latoBlack font26 blackText nowrap appendBottom8 appendRight10">
+                              {{rate?.perNightBaseFare | currency:rate?.currencyCode:'symbol':'1.0-0'}}</p>
+                          </div>
+                        </div>
+                        <div class="appendTop5">
+                          <p class="font16 latoRegular lineHight25 titText"> <span
+                              dir="ltr">{{rate?.perNightTaxesAndFees |
+                              currency:rate?.currencyCode:'symbol':'1.0-0'}}</span>
+                            <!-- --> taxes
+                            &amp; fees<span class="lowText"> <!-- -->Per Night</span></p>
+                        </div>
+                      </div>
+                      <div class="rmPayable__newDtl--right newDtlsSelectRoom appendTop10"><a
+                          class="rmPayable__dtl--cta primaryBtn newDtlsFilled "
+                          data-testid="1877489979746232955-selectRoom" (click)="navigateToBooking(rate,room)"> 
+                          <p >SELECT ROOM</p>
+                        </a></div>
+                    </div>
+                    <!-- <p class="font14 latoRegular appendTop15" id="loginPersuasion"><a href="#"
+                        class="latoBold titleText"> Login Now</a> and get this for
+                      <b>$14,766</b> or less
+                    </p> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            }
+
+
+          </div>
+        </div>
+        }
+        <!-- dialog show -->
+        <!-- <p-dialog header="Header" [modal]="true" [(visible)]="roomRateDetails" [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [maximizable]="true">
+  
+</p-dialog> -->
+        <div class="modal fade cmodal" id="cancellationPolicyModal" tabindex="-1"
+          (hidden.bs.modal)="selectedRate = null" aria-labelledby="cancellationPolicyModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg cmodal__dialog">
+            <div class="modal-content cmodal__content p-3 p-md-4">
+              <div class="modal-header border-0 cmodal__header">
+                <h5 class="modal-title fw-bold cmodal__title" id="cancellationPolicyModalLabel">{{selectedRate?.breakfastIncluded?'Breakfast':'Room Only'}} {{selectedRate?.freeCancellation?' | Free Cancellation':''}}</h5>
+                <a type="button" class="btn-close cmodal__close" data-bs-dismiss="modal" aria-label="Close"
+                  style="font-size:22px;"><i class="fa-solid fa-circle-xmark"></i></a>
+              </div>
+              <div class="modal-body cmodal__body">
+              @if(selectedRate?.cancellationPolicy){
+                 <h6 class="fw-bold cmodal__subtitle mb-3">Cancellation Policy :</h6>
+                <ul class="list-unstyled cmodal__policy-list mb-4">
+                  <li class="mb-1">{{selectedRate?.cancellationPolicy}}</li>
+                  <!-- <li class="mb-1">✅ Pay before 16 Aug, 11:59 PM IST to avoid auto-cancellation</li>
+                  <li class="mb-1">✅ Payment can only be done on MakeMyTrip</li> -->
+                </ul>
+              }
+               
+            
+                
+
+                <!-- Timeline -->
+                <!-- <div class="cmodal__timeline bg-light p-3 rounded mb-4">
+                  <div class="d-flex justify-content-between small text-center cmodal__timeline-steps">
+                    <div>NOW<br><span class="fw-bold">Pay $0</span></div>
+                    <div>16 Aug 11:59 PM<br><span class="fw-bold">Pay remaining</span></div>
+                    <div>19 Aug 05:59 PM<br><span class="fw-bold">100% Refund</span></div>
+                    <div>21 Aug 10:59 AM<br><span class="fw-bold">87% Refund</span></div>
+                  </div>
+                </div> -->
+                @if(selectedRate?.freeCancellation){
+                   <p class="mb-2 small"> <b>• Free Cancellation </b></p>
+                }
+               
+                <p class="fw-bold small mb-2"> <strong>Cancellations post that will be subject to a fee as
+                    follows:</strong></p>
+
+                <div class="table-responsive rooms-table">
+                  <table class="table table-bordered table-sm cmodal__table">
+                    <thead class="table-ligh" style="background:#eee;">
+                      <tr>
+                        <th scope="col">From Date</th>
+                         <th scope="col">To Date</th>
+                        <th scope="col">Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for(row of selectedRate?.cancelationDetails;track row.fromDate){
+                         <tr>
+                        <td>{{row?.fromDate | date: "dd/MM/yyyy"}}</td>
+                        <td>{{row?.toDate | date:"dd/MM/yyyy"}}</td>
+                        <td>{{row?.amount}}</td>
+                      </tr>
+                      }
+                     
+                     
+                    </tbody>
+                  </table>
+                </div>
+
+                <p class="small mb-0">• Cancellations are only allowed before the Check-In Time. All time mentioned
+                  above is in Destination Time.</p>
+                <hr class="m-1">
+                @if(selectedRate?.payLater){
+                   <p class="small mb-0">• Book with $ 0 Payment</p>
+                }
+               
+                <hr class="m-1">
+
+                <p class="small">• {{selectedRate?.mealsIncluded?"Meals included":"No meals included"}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade moremodal" id="moredetailsModal" tabindex="-1" aria-labelledby="moredetailsModalLabel"
+         (hidden.bs.modal)="selectedRoom = null"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg moreodal__dialog">
+            <div class="modal-content cmodal__content p-3 p-md-4">
+              <div class="modal-header border-0 cmodal__header">
+                <h5 class="modal-title fw-bold cmodal__title" id="cancellationPolicyModalLabel">
+                  {{selectedRoom?.roomName}}</h5>
+                <a type="button" class="btn-close cmodal__close" data-bs-dismiss="modal" aria-label="Close"
+                  style="font-size:22px;"><i class="fa-solid fa-circle-xmark"></i></a>
+              </div>
+              <div class="modal-body cmodal__body">
+                <div id="carouselModalSlider" class="carousel slide mb-4" data-bs-ride="carousel">
+                  <div class="carousel-inner newcrouselmodal">
+                    @for(img of selectedRoom?.roomImages;track img.imageUrl;let i=$index){
+                    <div class="carousel-item " [class.active]="i === 0">
+                      <img [src]="img?.imageUrl" class="d-block w-100" alt="img">
+                    </div>
+                    }
+
+
+                  </div>
+                  <button class="carousel-control-prev newcarousel-control-prev" type="button"
+                    data-bs-target="#carouselModalSlider" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  </button>
+                  <button class="carousel-control-next newcarousel-control-next" type="button"
+                    data-bs-target="#carouselModalSlider" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  </button>
+                </div>
+
+                <ul class="rmTypeList vertical appendTop10 mb-4 mt-4" style="flex-direction:row;">
+                  @if(selectedRoom?.roomSize){
+                  <li class="rmTypeList__item"><span class="rmTypeList__item--icon appendRight10"><img
+                        src="https://promos.makemytrip.com/Hotels_product/Hotel_SR/Android/drawable-hdpi/size.png"
+                        alt="250 sq.ft (23 sq.mt)"></span><span class="makeFlex column column-text"><span
+                        class="rmTypeList__item--text">{{selectedRoom?.roomSize}}
+                        sq.ft (23 sq.mt)</span></span></li>
+                  }
+                  @if(selectedRoom?.view){
+                  <li class="rmTypeList__item"><span class="rmTypeList__item--icon appendRight10"><img
+                        src="https://promos.makemytrip.com/Hotels_product/Hotel_SR/Android/drawable-hdpi/view.png"
+                        alt="City View"></span><span class="makeFlex column column-text"><span
+                        class="rmTypeList__item--text">{{selectedRoom?.view}}</span></span></li>
+                  }
+
+                  @if(selectedRoom?.bedCount){
+                  <li class="rmTypeList__item"><span class="rmTypeList__item--icon appendRight10"><img
+                        src="https://promos.makemytrip.com/Hotels_product/Hotel_SR/Android/drawable-hdpi/bed.png"
+                        alt="1 single bed"></span><span class="makeFlex column column-text"><span
+                        class="rmTypeList__item--text">{{selectedRoom?.bedCount}} {{selectedRoom?.bedType}}
+                        bed</span></span></li>
+                  }
+
+                  <!-- <li class="rmTypeList__item"><span class="rmTypeList__item--icon appendRight10"><img
+                        src="https://promos.makemytrip.com/images/CDN_upload/blacktick_with_circle.png"
+                        alt="Bathtub"></span><span class="makeFlex column column-text"><span
+                        class="rmTypeList__item--text">Bathtub</span></span></li> -->
+                </ul>
+
+
+                <!-- Timeline -->
+                <div class="border-bottom pb-2 mb-4 popular-amenities" *ngIf="selectedRoom?.amenities?.length">
+                  <h5 class="mb-3 fs-18">Room Amenities</h5>
+                  <div class="row">
+                    <div class="col-sm-6 col-lg-4" *ngFor="let group of chunkArray(selectedRoom.amenities||[],5)">
+                      <div class="d-flex align-items-center mb-3" *ngFor="let amenity of group">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <img [src]="amenity.icon" alt="icon" width="20" height="20" />
+                        </span>
+                        <p class="mb-0">{{ amenity.name }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- <div class="border-bottom pb-2 mb-4 popular-amenities">
+                  <h5 class="mb-3 fs-18">Room Features</h5>
+                  <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>Pool</p>
+                      </div>
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>Coffee</p>
+                      </div>
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>Laundry Facilities</p>
+                      </div>
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>In-Room Safe</p>
+                      </div>
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>Airport Transfer</p>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>Bar</p>
+                      </div>
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>Fitness Facility</p>
+                      </div>
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>Gym</p>
+                      </div>
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>24/7 Front Desk</p>
+                      </div>
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>Free Breakfast</p>
+                      </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>Connecting Rooms</p>
+                      </div>
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>Free Parking</p>
+                      </div>
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>Television</p>
+                      </div>
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>Air Conditioning</p>
+                      </div>
+                      <div class="d-flex align-items-center mb-3">
+                        <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                          <i class="fa-regular fa-chess-queen fs-16"></i>
+                        </span>
+                        <p>Spa</p>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+
+
+                <!-- <div class=" rooms-table">
+                    <h5>Rate plans</h5>
+                    <table class="table table-bordered crateplans__table">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Options</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="rooms-table-txt">
+                                        <strong>Room Only | Free Cancellation</strong>
+                                    <ul class="mb-1">
+                                        <li>Book with $ 0 Payment</li>
+                                        <li>No meals included</li>
+                                        <li class="text-success">✔ Free Cancellation before 19 Aug 05:59 PM</li>
+                                    </ul>
+                                    <a href="#" class="text-primary small">More details</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="rooms-table-txt-right">
+                                        <div class="bg-light p-2 mb-2 small text-success">Deal Applied: MMTSPECIAL. Get INR
+                                        2413 Off</div>
+                                    <div>
+                                        <small class="text-muted text-decoration-line-through">$ 15,263</small><br>
+                                        <span class="fw-bold fs-5">$ 14,918</span><br>
+                                        <small class="text-muted">+$ 2,722 taxes & fees</small>
+                                    </div>
+                                    <a href="#" class="btn btn-primary btn-sm mt-2">Select Room</a><br>
+                                    <a href="#" class="text-primary small">Login now to unlock best deals and offers</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="rooms-table-txt">
+                                    <strong>Breakfast | Free Cancellation</strong>
+                                    <ul class="mb-1">
+                                        <li>Book with $ 0 Payment</li>
+                                        <li>Breakfast for 2</li>
+                                        <li class="text-success">✔ Free Cancellation before 19 Aug 05:59 PM</li>
+                                    </ul>
+                                    <a href="#" class="text-primary small">More details</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="rooms-table-txt-right">
+                                    <div class="bg-light p-2 mb-2 small text-success">Deal Applied: MMTSPECIAL. Get INR
+                                        2505 Off</div>
+                                    <div>
+                                        <small class="text-muted text-decoration-line-through">$ 15,776</small><br>
+                                        <span class="fw-bold fs-5">$ 15,418</span><br>
+                                        <small class="text-muted">+$ 2,797 taxes & fees</small>
+                                    </div>
+                                    <a href="#" class="btn btn-primary btn-sm mt-2">Select Room</a><br>
+                                    <a href="#" class="text-primary small">Login now to unlock best deals and offers</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="small mb-0">• Cancellations are only allowed before the Check-In Time. All time mentioned
+                    above is in Destination Time.</p>
+                <hr class="m-1">
+                <p class="small mb-0">• Book with $ 0 Payment</p>
+                <hr class="m-1">
+                <p class="small">• No meals included</p> -->
+
+
+
+
+                <div class="rmDtlPopup__rateplan ">
+                  <h3 class="font20 latoBlack blackText appendBottom20">Rate plans</h3>
+                  <div class="rmDtlPopup__hdr ">
+                    <div class="rmHeader ">
+                      <div class="rmHeader__item"><span class="font14 latoBlack capText">Options</span></div>
+                      <div class="rmHeader__item"><span class="font14 latoBlack capText">Price</span></div>
+                    </div>
+                  </div>
+                  <div class="rmDtlPopup">
+                    <div class="rmSelect__card  ">
+                      <div class="rmSelect__card--wrap">
+                        @for(rate of selectedRoom?.rateList;track rate.id){
+                        <div class="rmSelect__card--row">
+                          <div class="rmSelect__card--rowLeft">
+                            <div class="rmRatePlan ">
+                              <h5 class="rmRatePlan__heading ">{{rate?.breakfastIncluded?'Breakfast':'Room Only'}} {{rate?.freeCancellation?' | Free Cancellation':''}}</h5>
+                              <ul class="rmRatePlan__list  ">
+                                @if(rate?.payLater){
+                                <li class=" rmRatePlan__list--item">
+                                  <span class="rmRatePlan__list--itemImgIcon"><img
+                                      src="https://promos.makemytrip.com/Hotels_product/Persuasion_Icons/Dot.png"
+                                      alt="Book with $ 0 Payment​"></span>
+
+                                  <div><span class="rmRatePlan__list--text">Book with $ 0 Payment​</span> &nbsp;</div>
+
+
+                                </li>
+                                }
+                                @if(rate?.breakfastIncluded){
+                                <li class=" rmRatePlan__list--item">
+                                  <span class="rmRatePlan__list--itemImgIcon"><img
+                                      src="https://promos.makemytrip.com/Hotels_product/Inclusions/Icons/Default_DefaultDot.png"
+                                      alt="No meals included"></span>
+                                  <div><span class="rmRatePlan__list--text">Breakfast included</span> &nbsp;</div>
+                                </li>
+                                }
+
+                                <li class=" rmRatePlan__list--item">
+                                  <span class="rmRatePlan__list--itemImgIcon"><img
+                                      src="https://promos.makemytrip.com/Hotels_product/Inclusions/Icons/Default_DefaultDot.png"
+                                      alt="No meals included"></span>
+                                  <div><span class="rmRatePlan__list--text">{{rate?.mealsIncluded ?'Meals':'No meals'}}
+                                      included</span> &nbsp;</div>
+                                </li>
+                                @if(rate?.parkingIncluded){
+                                  <li class=" rmRatePlan__list--item">
+                                  <span class="rmRatePlan__list--itemImgIcon"><img
+                                      src="https://promos.makemytrip.com/Hotels_product/Inclusions/Icons/Default_DefaultDot.png"
+                                      alt="No meals included"></span>
+                                  <div><span class="rmRatePlan__list--text">Parking included</span> &nbsp;</div>
+                                </li>
+                                }
+                                  @if(rate?.petFriendly){
+                                  <li class=" rmRatePlan__list--item">
+                                  <span class="rmRatePlan__list--itemImgIcon"><img
+                                      src="https://promos.makemytrip.com/Hotels_product/Inclusions/Icons/Default_DefaultDot.png"
+                                      alt="No meals included"></span>
+                                  <div><span class="rmRatePlan__list--text">Pet friendly</span> &nbsp;</div>
+                                </li>
+                                }
+                                @if(rate?.freeCancellation){
+                                <div class="rmRatePlan__list--item" id="rmRatePlan__fc">
+                                  <span class="rmRatePlan__list--itemImgIcon"><img
+                                      src="https://promos.makemytrip.com/Hotels_product/Inclusions/Icons/Inclusions_greentick.png"
+                                      alt="Free Cancellation before 19 Aug 05:59 PM"></span>
+                                  <div class="flexOne rmRatePlan__list--dtl">
+                                    <div class="fctooltip__parent position-relative">
+
+                                      <span class="fctooltip__parent-text latoBold">Free Cancellation</span>
+                                      <div class="fctooltip__card">
+                                        <div class="cancel-policy-card">
+                                          <h3 class="cancel-policy-card-title">Cancellation Policy
+                                          </h3>
+                                          <ul class="cancel-policy-card-list">
+                                            @if(rate?.cancellationPolicy){
+                                            <li>{{rate?.cancellationPolicy}}</li>
+                                            }
+
+
+                                          </ul>
+
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                }
+
+                              </ul>
+                              <!-- <p class="rmRatePlan__link appendTop15"><a class="capText latoBlack font12" type="button"
+                                  data-bs-toggle="modal" data-bs-target="#modalCancellationPolicyModal">More Details</a>
+                              </p> -->
+                            </div>
+                          </div>
+                          <div class="rmSelect__card--rowRight ">
+                            <div class="rmPayable ">
+                              <!-- <div class="rmPayable__offer " id="dealApplied">
+                                <p>Deal Applied: <span class="latoBold">MMTSPECIAL</span><span>. Get INR 11676
+                                    Off</span></p>
+                              </div> -->
+                              <div class="rmPayable__dtl">
+                                <div class="rmPayable__dtl--left">
+                                  <p class="grayText appendBottom5" id="priceDisplayMessage">Per Night</p>
+                                  <!-- <p class="font16 latoBold grayText appendBottom3 lineThrough">$ 24,381</p> -->
+                                  <div class="appendTop5 cstmTooltipHover">
+                                    <p class="font22 latoBlack">{{rate?.perNightBaseFare | currency:rate?.currencyCode:'symbol':'1.0-0'  }}</p>
+                                  </div>
+                                  <div class="appendTop5">
+                                    <p class="font14 latoBold"><span dir="ltr">+ {{rate?.perNightTaxesAndFees | currency:rate?.currencyCode:'symbol':'1.0-1'}}</span> taxes &amp; fees</p>
+                                  </div>
+                                </div>
+                                <div class="rmPayable__dtl--right">
+                                  <a class="primaryBtn rmPayable__dtl--cta "
+                                    data-testid="7766124896845948743-selectRoom" (click)="navigateToBooking(rate,selectedRoom)">
+                                    <p >SELECT ROOM</p>
+                                  </a>
+                                </div>
+                              </div>
+                              <!-- <p class="font12 latoBold appendTop15" id="loginPersuasion"><a class="latoBlack capText">
+                                  Login Now</a> to unlock the best deals and offers</p> -->
+                            </div>
+                          </div>
+                        </div>
+                        }
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="modal fade cmodal" id="modalCancellationPolicyModal" tabindex="-1"
+          aria-labelledby="cancellationPolicyModalLabel" style="display: none;" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg cmodal__dialog">
+            <div class="modal-content cmodal__content p-3 p-md-4">
+              <div class="modal-header border-0 cmodal__header">
+                <h5 class="modal-title fw-bold cmodal__title" id="cancellationPolicyModalLabel">Room Only | Free
+                  Cancellation</h5>
+                <a type="button" class="btn-close cmodal__close" data-bs-dismiss="modal" aria-label="Close"
+                  style="font-size:22px;"><i class="fa-solid fa-circle-xmark"></i></a>
+              </div>
+              <div class="modal-body cmodal__body">
+                <h6 class="fw-bold cmodal__subtitle mb-3">Cancellation Policy :</h6>
+                <ul class="list-unstyled cmodal__policy-list mb-4">
+                  <li class="mb-1">✅ Book with $ 0 Payment</li>
+                  <li class="mb-1">✅ Pay before 16 Aug, 11:59 PM IST to avoid auto-cancellation</li>
+                  <li class="mb-1">✅ Payment can only be done on MakeMyTrip</li>
+                </ul>
+
+                <!-- Timeline -->
+                <div class="cmodal__timeline bg-light p-3 rounded mb-4">
+                  <div class="d-flex justify-content-between small text-center cmodal__timeline-steps">
+                    <div>NOW<br><span class="fw-bold">Pay $0</span></div>
+                    <div>16 Aug 11:59 PM<br><span class="fw-bold">Pay remaining</span></div>
+                    <div>19 Aug 05:59 PM<br><span class="fw-bold">100% Refund</span></div>
+                    <div>21 Aug 10:59 AM<br><span class="fw-bold">87% Refund</span></div>
+                  </div>
+                </div>
+
+                <p class="mb-2 small"> <b>• Free Cancellation (100% refund) if you cancel this booking before 19 Aug,
+                    5:59
+                    PM</b></p>
+                <p class="fw-bold small mb-2"> <strong>Cancellations post that will be subject to a fee as
+                    follows:</strong></p>
+
+                <div class="table-responsive rooms-table">
+                  <table class="table table-bordered table-sm cmodal__table">
+                    <thead class="table-ligh" style="background:#eee;">
+                      <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Fee</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Before 19 Aug, 5:59 PM</td>
+                        <td>0.0% of booking amount</td>
+                      </tr>
+                      <tr>
+                        <td>19 Aug, 6:00 PM to 21 Aug, 10:59 AM</td>
+                        <td>12.7% of booking amount</td>
+                      </tr>
+                      <tr>
+                        <td>After 21 Aug, 11:00 AM</td>
+                        <td>100% of booking amount</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <p class="small mb-0">• Cancellations are only allowed before the Check-In Time. All time mentioned
+                  above is in Destination Time.</p>
+                <hr class="m-1">
+                <p class="small mb-0">• Book with $ 0 Payment</p>
+                <hr class="m-1">
+                <p class="small">• No meals included</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- new add  -->
+        <!-- Services -->
+        <div class="border-bottom pb-2 mb-4">
+          <h5 class="mb-3 fs-18">Services</h5>
+          <div class="row">
+            <div class="col-sm-6 col-lg-4" *ngFor="let column of amenityChunks">
+              <div class="d-flex align-items-center mb-3" *ngFor="let amenity of column">
+                <span class="avatar avatar-md bg-primary-transparent rounded-circle me-2">
+                  <i class="fa-regular fa-chess-queen fs-16"></i>
+                </span>
+                <p>{{ amenity }}</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- /Services -->
+
+
+
+        <!-- Hotel Rules -->
+        <div class="border-bottom pb-2 mb-4">
+          <h5 class="mb-3 fs-18">Hotel Rules</h5>
+          <div class="card shadow-none mb-3">
+            <div class="card-body policy-wrap p-3 pb-0">
+              <h6 class="fw-medium mb-3">Check-In / Check-Out Policy</h6>
+              <div class="d-flex align-items-center" style="gap:10px;">
+                <div class="d-flex align-items-center me-4 mb-3">
+                  <i class="fa-regular fa-clock fs-24 text-gray-9"></i>
+                  <div class="ms-2">
+                    <p class="mb-1">Check In</p>
+                    <h6>{{hotelDetails?.checkin}} ({{hotelDetails?.checkinUTC}} UTC)</h6>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center mb-3">
+                  <i class="fa-regular fa-clock fs-24 text-gray-9"></i>
+                  <div class="ms-2">
+                    <p class="mb-1">Check Out</p>
+                    <h6>{{hotelDetails?.checkout}} ({{hotelDetails?.checkoutUTC}} UTC)</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="policy-wrap p-3 pb-2 mb-3">
+            <!-- <div class="d-flex align-items-center justify-content-between flex-wrap">
+              <h6 class="fw-medium mb-2">Guarantee Policy</h6>
+              <a href="javascript:void(0);" class="fs-14 fw-medium text-decoration-underline toggle-btn mb-2">Show
+                Less</a>
+            </div>
+            <div class="policy-info pb-2">
+              <p class="mb-0">- A valid credit card will be required upon booking;</p>
+              <p class="mb-0">- For credit card reservations, the same card(s) must be presented upon
+                check in at the respective hotels;</p>
+              <p class="mb-0">- Management reserves the right to cancel any reservations without notice if
+                we are notified of any fraud or illegal activities associated with the full payments
+                received.</p>
+            </div> -->
+            <p-accordion value="0">
+              <p-accordion-panel value="0">
+                <p-accordion-header>Hotel Policy</p-accordion-header>
+                <p-accordion-content>
+                  <p class="m-0" [innerHTML]="hotelDetails?.hotelPolicies?.know_before_you_go">
+
+                  </p>
+                </p-accordion-content>
+              </p-accordion-panel>
+
+
+            </p-accordion>
+          </div>
+          <!-- <div class="policy-wrap p-3 pb-2 mb-3 expanded">
+            <div class="d-flex align-items-center justify-content-between flex-wrap">
+              <h6 class="fw-medium mb-2">Children Policy</h6>
+              <a href="javascript:void(0);" class="fs-14 fw-medium text-decoration-underline toggle-btn mb-2">Show
+                More</a>
+            </div>
+            <div class="policy-info pb-2 hide">
+              <p class="mb-0">- A valid credit card will be required upon booking;</p>
+              <p class="mb-0">- For credit card reservations, the same card(s) must be presented upon
+                check in at the respective hotels;</p>
+              <p class="mb-0">- Management reserves the right to cancel any reservations without notice if
+                we are notified of any fraud or illegal activities associated with the full payments
+                received.</p>
+            </div>
+          </div>
+          <div class="policy-wrap p-3 pb-2 mb-3 expanded">
+            <div class="d-flex align-items-center justify-content-between flex-wrap">
+              <h6 class="fw-medium mb-2">Cancellation/Amendment Policy</h6>
+              <a href="javascript:void(0);" class="fs-14 fw-medium text-decoration-underline toggle-btn mb-2">Show
+                More</a>
+            </div>
+            <div class="policy-info pb-2 hide">
+              <p class="mb-0">- A valid credit card will be required upon booking;</p>
+              <p class="mb-0">- For credit card reservations, the same card(s) must be presented upon
+                check in at the respective hotels;</p>
+              <p class="mb-0">- Management reserves the right to cancel any reservations without notice if
+                we are notified of any fraud or illegal activities associated with the full payments
+                received.</p>
+            </div>
+          </div>
+          <div class="policy-wrap p-3 pb-2 mb-3 expanded">
+            <div class="d-flex align-items-center justify-content-between flex-wrap">
+              <h6 class="fw-medium mb-2">Late check-out Policy</h6>
+              <a href="javascript:void(0);" class="fs-14 fw-medium text-decoration-underline toggle-btn mb-2">Show
+                More</a>
+            </div>
+            <div class="policy-info pb-2 hide">
+              <p class="mb-0">- A valid credit card will be required upon booking;</p>
+              <p class="mb-0">- For credit card reservations, the same card(s) must be presented upon
+                check in at the respective hotels;</p>
+              <p class="mb-0">- Management reserves the right to cancel any reservations without notice if
+                we are notified of any fraud or illegal activities associated with the full payments
+                received.</p>
+            </div>
+          </div> -->
+        </div>
+        <!-- /Hotel Rules -->
+
+        <!-- Services -->
+        <div class="border-bottom pb-2 mb-4">
+          <h5 class="mb-3 fs-18">Services</h5>
+          <div class="row">
+            <div class="col-md-6">
+              <p class="d-flex align-items-center mb-3"><i class="fa-regular fa-circle-dot fs-14 me-2"></i>Wheelchair
+                accessible</p>
+              <p class="d-flex align-items-center mb-3"><i class="fa-regular fa-circle-dot fs-14 me-2"></i>Visual alarms
+                in hallways</p>
+              <p class="d-flex align-items-center mb-3"><i
+                  class="fa-regular fa-circle-dot fs-14 me-2"></i>Wheelchair-accessible gym</p>
+              <p class="d-flex align-items-center mb-3"><i class="fa-regular fa-circle-dot fs-14 me-2"></i>Elevator</p>
+            </div>
+            <div class="col-md-6">
+              <p class="d-flex align-items-center mb-3"><i
+                  class="fa-regular fa-circle-dot fs-14 me-2"></i>Braille/raised signage</p>
+              <p class="d-flex align-items-center mb-3"><i
+                  class="fa-regular fa-circle-dot fs-14 me-2"></i>Wheelchair-accessible business
+                center
+              </p>
+              <p class="d-flex align-items-center mb-3"><i
+                  class="fa-regular fa-circle-dot fs-14 me-2"></i>Wheelchair-accessible lounge</p>
+              <p class="d-flex align-items-center mb-3"><i
+                  class="fa-regular fa-circle-dot fs-14 me-2"></i>Wheelchair-accessible concierge desk
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- /Services -->
+
+        <!-- Frequently Asked Questions -->
+        <div class="pb-3 mb-4">
+          <h5 class="mb-3 fs-18">Frequently Asked Questions</h5>
+          <div class="accordion faq-accordion" id="accordionFaq">
+            <div class="accordion-item show mb-2">
+              <h2 class="accordion-header">
+                <button class="accordion-button fw-medium" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#faq-collapseOne" aria-expanded="false" aria-controls="faq-collapseOne">
+                  Does offer free cancellation for a full refund?
+                </button>
+              </h2>
+              <div id="faq-collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFaq">
+                <div class="accordion-body">
+                  <p class="mb-0">Does have fully refundable room rates available to book on our site.
+                    If you’ve booked a fully refundable room rate, this can be cancelled up to a few
+                    days before check-in depending on the property's cancellation policy. Just make
+                    sure to check this property's cancellation policy for the exact terms and
+                    conditions.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item mb-2">
+              <h2 class="accordion-header">
+                <button class="accordion-button fw-medium collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#faq-two" aria-expanded="false" aria-controls="faq-two">
+                  Is there a pool?
+                </button>
+              </h2>
+              <div id="faq-two" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
+                <div class="accordion-body">
+                  <p class="mb-0">Does have fully refundable room rates available to book on our site.
+                    If you’ve booked a fully refundable room rate, this can be cancelled up to a few
+                    days before check-in depending on the property's cancellation policy. Just make
+                    sure to check this property's cancellation policy for the exact terms and
+                    conditions.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item mb-2">
+              <h2 class="accordion-header">
+                <button class="accordion-button fw-medium collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#faq-three" aria-expanded="false" aria-controls="faq-three">
+                  Are pets allowed?
+                </button>
+              </h2>
+              <div id="faq-three" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
+                <div class="accordion-body">
+                  <p class="mb-0">Does have fully refundable room rates available to book on our site.
+                    If you’ve booked a fully refundable room rate, this can be cancelled up to a few
+                    days before check-in depending on the property's cancellation policy. Just make
+                    sure to check this property's cancellation policy for the exact terms and
+                    conditions.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item mb-2">
+              <h2 class="accordion-header">
+                <button class="accordion-button fw-medium collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#faq-four" aria-expanded="false" aria-controls="faq-four">
+                  Is airport shuttle service offered?
+                </button>
+              </h2>
+              <div id="faq-four" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
+                <div class="accordion-body">
+                  <p class="mb-0">Does have fully refundable room rates available to book on our site.
+                    If you’ve booked a fully refundable room rate, this can be cancelled up to a few
+                    days before check-in depending on the property's cancellation policy. Just make
+                    sure to check this property's cancellation policy for the exact terms and
+                    conditions.</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item mb-2">
+              <h2 class="accordion-header">
+                <button class="accordion-button fw-medium collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#faq-five" aria-expanded="false" aria-controls="faq-five">
+                  What are the check-in and check-out times?
+                </button>
+              </h2>
+              <div id="faq-five" class="accordion-collapse collapse" data-bs-parent="#accordionFaq">
+                <div class="accordion-body">
+                  <p class="mb-0">Does have fully refundable room rates available to book on our site.
+                    If you’ve booked a fully refundable room rate, this can be cancelled up to a few
+                    days before check-in depending on the property's cancellation policy. Just make
+                    sure to check this property's cancellation policy for the exact terms and
+                    conditions.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+      <!-- /Hotel Details -->
+
+      <!-- Sidebar Details -->
+      <div class="col-xl-6 theiaStickySidebar" #location>
+        <div class="contactWidget">
+
+          <!-- Map + Address + Landmarks -->
+          <div class="contactWidget__mapBox" >
+            <!-- <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093525!2d144.95373531590492!3d-37.816279742021655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577e7b7e2d8e1cf!2sVictoria!5e0!3m2!1sen!2sin!4v1614841964512!5m2!1sen!2sin"
+              width="100%" height="180" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
+             <agm-map [latitude]="hotelDetails?.geo?.latitude" [longitude]="hotelDetails?.geo?.longitude"
+            style="height: 100%">
+            <agm-marker [latitude]="hotelDetails?.geo?.latitude"
+              [longitude]="hotelDetails?.geo?.longitude"></agm-marker>
+          </agm-map>
+
+
+            <div class="contactWidget__location">
+              <p><i class="fa-solid fa-location-dot"></i> {{hotelDetails?.address?.line1}}</p>
+            </div>
+
+            <!-- <div class="contactWidget__landmarks">
+              <h4>Nearby Landmarks & Visits</h4>
+              <ul>
+                <li>Near By Statue of Liberty</li>
+                <li>The Metropolitan Museum of Art</li>
+                <li>Yellowstone National Park</li>
+                <li>Near By Statue of Liberty</li>
+                <li>The Metropolitan Museum of Art</li>
+                <li>Yellowstone National Park</li>
+                <li>Near By Statue of Liberty</li>
+                <li>The Metropolitan Museum of Art</li>
+                <li>Yellowstone National Park</li>
+              </ul>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-6 theiaStickySidebar">
+        <div class="sp-main-card">
+          <!-- Benefits Section -->
+          <div class="sp-benefits-wrapper">
+            <h2 class="sp-title-main">Why Book With Us</h2>
+            <ul class="sp-benefits-container">
+              <li class="sp-benefit-row">
+                <div class="sp-icon-wrapper sp-icon-red">
+                  <i class="fas fa-certificate"></i>
+                </div>
+                <span class="sp-benefit-label">Expertise and Experience</span>
+              </li>
+              <li class="sp-benefit-row">
+                <div class="sp-icon-wrapper sp-icon-orange">
+                  <i class="fas fa-puzzle-piece"></i>
+                </div>
+                <span class="sp-benefit-label">Tailored Services</span>
+              </li>
+              <li class="sp-benefit-row">
+                <div class="sp-icon-wrapper sp-icon-green">
+                  <i class="fas fa-list-alt"></i>
+                </div>
+                <span class="sp-benefit-label">Comprehensive Planning</span>
+              </li>
+              <li class="sp-benefit-row">
+                <div class="sp-icon-wrapper sp-icon-blue">
+                  <i class="fas fa-trophy"></i>
+                </div>
+                <span class="sp-benefit-label">Client Satisfaction</span>
+              </li>
+              <li class="sp-benefit-row">
+                <div class="sp-icon-wrapper sp-icon-purple">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <span class="sp-benefit-label">24/7 Support</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Provider Details Section -->
+          <div class="sp-provider-wrapper">
+            <h3 class="sp-provider-title">Provider Details</h3>
+
+            <div class="sp-profile-section">
+              <div class="sp-avatar-container">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&crop=face"
+                  alt="Adrian Hendriques" class="sp-user-avatar">
+              </div>
+              <div class="sp-user-info">
+                <h4>Adrian Hendriques</h4>
+                <p>Member Since : 14 May 2024</p>
+              </div>
+            </div>
+
+            <div class="sp-contact-section">
+              <div class="sp-contact-row">
+                <div class="sp-contact-icon-bg sp-phone-bg">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <div class="sp-contact-details">
+                  Call Us : <a href="tel:+1125454548">{{hotelDetails?.phoneNumber}}</a>
+                </div>
+              </div>
+              <div class="sp-contact-row">
+                <div class="sp-contact-icon-bg sp-email-bg">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div class="sp-contact-details">
+                  Email : <a href="mailto:info@example.com">{{hotelDetails?.email}}</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="sp-buttons-section">
+              <a href="#" class="sp-btn sp-whatsapp-button">
+                <i class="fab fa-whatsapp"></i>
+                Whatsapp Us
+              </a>
+              <a href="#" class="sp-btn sp-chat-button">
+                <i class="fas fa-comment"></i>
+                Chat Now
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /Sidebar Details -->
+
+    </div>
+  </div>
+</div>
+
+
+<!-- } @else {
+<div class="full-screen-loader">
+  <app-hotel-search-loader />
+</div>
+} -->
+<!-- === List all  End == -->

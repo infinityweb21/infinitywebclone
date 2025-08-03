@@ -1,0 +1,270 @@
+<!--=========== Banner Section Start  ==============-->
+<app-main-filter />
+<!--=========== Banner Section End  ==============-->
+<!--=========== Cruise Type Section End  ==============-->
+<section class="unique-experiences pb-0 cmn-gap">
+    <div class="container container-xxl">
+        <div class="cmn-heading">
+            <div class="heading-cmn-flex">
+                <h2>Select Your Perfect Cruise Adventure</h2>
+            </div>
+            <div class="common-slider-container">
+                <swiper-container #cruiseTypesSwiperRef>
+                    <div class="swiper-slide" *ngFor="let cruise of cruiseTypes">
+                        <swiper-slide>
+                            <div class="cruise-type-card">
+                                <div class="cruise-type-card-image">
+                                    <img [src]="cruise.image" alt="Cruise Image">
+                                </div>
+                                <div class="cruise-type-card-body">
+                                    <h4 class="cruise-type-card-title">{{ cruise.title }}</h4>
+                                    <p class="cruise-type-card-description">{{ cruise.description }}</p>
+                                </div>
+                            </div>
+                        </swiper-slide>
+                    </div>
+                </swiper-container>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=========== Cruise Type Section End  ==============-->
+<!--=========== Unique Experiences Start  ==============-->
+<section class="unique-experiences pb-0 cmn-gap">
+    <div class="container container-xxl">
+        <div class="cmn-heading">
+            <div class="heading-cmn-flex">
+                <h2>Beyond the Deck — Unique Experiences at Sea</h2>
+            </div>
+
+            <div class="common-slider-container">
+                <swiper-container #cruisesSwiperRef>
+                    @for (cruise of cruises; track $index) {
+                    <swiper-slide>
+                        <div class="swiper-slide">
+                            <div class="c-card">
+                                <div class="c-card-image-box">
+                                    <img [src]="cruise.image" alt="Cruise Thumb" />
+                                    <span class="c-sticker">{{ cruise.sticker }}</span>
+                                    <button class="like-btn c-card-like-btn" aria-label="Like this package">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 14 14">
+                                            <g fill="none">
+                                                <path class="heart-bg" fill=""
+                                                    d="M7.004 12.36L1.53 7.402c-2.976-2.976 1.398-8.688 5.474-4.067c4.076-4.621 8.43 1.111 5.474 4.067z">
+                                                </path>
+                                                <path class="heart-border" stroke="" stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M7.004 12.36L1.53 7.402c-2.976-2.976 1.398-8.688 5.474-4.067c4.076-4.621 8.43 1.111 5.474 4.067z"
+                                                    stroke-width="1"></path>
+                                            </g>
+                                        </svg>
+                                    </button>
+                                    <div class="cruise-card-rating">
+                                        <div class="c-rating-section">
+                                            <div class="c-rating-badge">
+                                                <span class="c-star-icon">
+                                                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path
+                                                            d="M11.2052 4.69253L8.19799 4.25549L6.85369 1.53016C6.81697 1.45555 6.75657 1.39514 6.68195 1.35843C6.49481 1.26604 6.2674 1.34303 6.17384 1.53016L4.82953 4.25549L1.82232 4.69253C1.73941 4.70438 1.66361 4.74346 1.60557 4.80268C1.53541 4.8748 1.49675 4.97182 1.49808 5.07242C1.49941 5.17303 1.54063 5.26899 1.61268 5.33922L3.78844 7.4605L3.2744 10.4559C3.26235 10.5255 3.27006 10.5972 3.29666 10.6627C3.32326 10.7282 3.36769 10.785 3.42491 10.8266C3.48212 10.8681 3.54983 10.8928 3.62037 10.8978C3.6909 10.9029 3.76144 10.888 3.82397 10.855L6.51376 9.44083L9.20355 10.855C9.27699 10.8941 9.36226 10.9071 9.44399 10.8929C9.65007 10.8574 9.78865 10.662 9.75312 10.4559L9.23909 7.4605L11.4148 5.33922C11.4741 5.28119 11.5131 5.20538 11.525 5.12247C11.557 4.9152 11.4125 4.72333 11.2052 4.69253Z"
+                                                            fill="#fff"></path>
+                                                    </svg>
+            
+                                                </span>
+                                                {{ cruise.rating }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="c-card-title-details">
+                                    <h2 class="c-card-title m-0">{{ cruise.title }}</h2>
+                                </div>
+                                <div class="c-card-info">
+                                    <div class="c-card-location-content-wrap">
+                                        <span class="c-card-location-icon">
+                                            <svg width="11" height="14" viewBox="0 0 11 14" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M9.97481 5.5C9.97481 4.30653 9.5019 3.16193 8.66011 2.31802C7.81832 1.47411 6.67661 1 5.48615 1C4.29568 1 3.15397 1.47411 2.31218 2.31802C1.47039 3.16193 0.997481 4.30653 0.997481 5.5C0.997481 7.346 2.47076 9.752 5.48615 12.634C8.50153 9.752 9.97481 7.346 9.97481 5.5ZM5.48615 14C1.82838 10.667 -1.17458e-07 7.833 -8.24741e-08 5.5C-6.06006e-08 4.04131 0.578003 2.64236 1.60686 1.61091C2.63571 0.579463 4.03113 6.0448e-08 5.48615 8.22664e-08C6.94116 1.04085e-07 8.33659 0.579463 9.36544 1.61091C10.3943 2.64236 10.9723 4.04131 10.9723 5.5C10.9723 7.833 9.14391 10.667 5.48615 14Z"
+                                                    fill="#7D7D7D" />
+                                                <path
+                                                    d="M5.48589 7C5.88271 7 6.26328 6.84197 6.54388 6.56066C6.82448 6.27936 6.98211 5.89782 6.98211 5.5C6.98211 5.10218 6.82448 4.72064 6.54388 4.43934C6.26328 4.15804 5.88271 4 5.48589 4C5.08907 4 4.7085 4.15804 4.4279 4.43934C4.14731 4.72064 3.98967 5.10218 3.98967 5.5C3.98967 5.89782 4.14731 6.27936 4.4279 6.56066C4.7085 6.84196 5.08907 7 5.48589 7ZM5.48589 8C4.82452 8 4.19024 7.73661 3.72258 7.26777C3.25492 6.79893 2.99219 6.16304 2.99219 5.5C2.99219 4.83696 3.25492 4.20107 3.72258 3.73223C4.19024 3.26339 4.82452 3 5.48589 3C6.14726 3 6.78154 3.26339 7.24921 3.73223C7.71687 4.20107 7.97959 4.83696 7.97959 5.5C7.97959 6.16304 7.71687 6.79893 7.24921 7.26777C6.78154 7.73661 6.14726 8 5.48589 8Z"
+                                                    fill="#7D7D7D" />
+                                            </svg>
+                                        </span>
+                                        <h3 class="c-card-location-title">{{ cruise.location }}</h3>
+                                    </div>
+                                    <div class="card-cruise-details">
+                                        <div class="card-cruise-info-item">
+                                            <span class="card-cruise-info-icon">
+                                                <svg width="11" height="11" viewBox="0 0 11 11" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <g clip-path="url(#clip0_299_8526)">
+                                                        <path
+                                                            d="M1.375 10.3125C1.19266 10.3125 1.0178 10.2401 0.888864 10.1111C0.759933 9.9822 0.6875 9.80734 0.6875 9.625C0.6875 9.44266 0.759933 9.2678 0.888864 9.13886C1.0178 9.00993 1.19266 8.9375 1.375 8.9375H9.625C9.80734 8.9375 9.9822 9.00993 10.1111 9.13886C10.2401 9.2678 10.3125 9.44266 10.3125 9.625C10.3125 9.80734 10.2401 9.9822 10.1111 10.1111C9.9822 10.2401 9.80734 10.3125 9.625 10.3125H1.375ZM9.625 3.4375H1.375C1.19266 3.4375 1.0178 3.50993 0.888864 3.63886C0.759933 3.7678 0.6875 3.94266 0.6875 4.125V6.875C0.6875 7.05734 0.759933 7.2322 0.888864 7.36114C1.0178 7.49007 1.19266 7.5625 1.375 7.5625H9.625C9.80734 7.5625 9.9822 7.49007 10.1111 7.36114C10.2401 7.2322 10.3125 7.05734 10.3125 6.875V4.125C10.3125 3.94266 10.2401 3.7678 10.1111 3.63886C9.9822 3.50993 9.80734 3.4375 9.625 3.4375ZM1.375 2.0625C1.19266 2.0625 1.0178 1.99007 0.888864 1.86114C0.759933 1.7322 0.6875 1.55734 0.6875 1.375C0.6875 1.19266 0.759933 1.0178 0.888864 0.888864C1.0178 0.759933 1.19266 0.6875 1.375 0.6875H9.625C9.80734 0.6875 9.9822 0.759933 10.1111 0.888864C10.2401 1.0178 10.3125 1.19266 10.3125 1.375C10.3125 1.55734 10.2401 1.7322 10.1111 1.86114C9.9822 1.99007 9.80734 2.0625 9.625 2.0625H1.375Z"
+                                                            fill="#7D7D7D" />
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_299_8526">
+                                                            <rect width="11" height="11" fill="white" />
+                                                        </clipPath>
+                                                    </defs>
+                                                </svg>
+                                            </span>
+                                            <p class="card-cruise-info-description">
+                                                width: <span class="card-cruise-info-description-highlight">{{ cruise.width
+                                                    }}</span>
+                                            </p>
+                                        </div>
+                                        <div class="card-cruise-info-item">
+                                            <span class="card-cruise-info-icon">
+                                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M8.58594 0H4.00195L1.08203 5H4.00195L1.50195 10L8.16797 3.75H4.83398L8.58594 0Z"
+                                                        fill="#7D7D7D" />
+                                                </svg>
+                                            </span>
+                                            <p class="card-cruise-info-description">
+                                                Speed: <span class="card-cruise-info-description-highlight">{{ cruise.speed
+                                                    }}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="c-card-price-section">
+                                    <div class="c-ard-price-left">
+                                        <h2 class="c-card-actual-price m-0">From <span class="c-card-actual-price-highlight">${{
+                                                cruise.price }}</span></h2>
+                                        <span class="c-card-reamain-seat">{{ cruise.seats }} Seats Left</span>
+                                    </div>
+                                    <div class="c-card-price-right-wrap">
+                                        <a href="javascript:void(0);" class="c-card-btn-view-nore">View Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </swiper-slide>}
+                </swiper-container>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=========== Unique Experiences End  ==============-->
+<!--=========== Planing Section Start  ==============-->
+<section class="planing cmn-gap cruise-plan-sec pb-0">
+    <div class="container container-xxl">
+        <div class="planing-box" style="background-image: url('./assets/images/planing-img-background.png')">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row align-items-xl-center">
+                        <div class="col-7 col-lg-8">
+                            <div class="planning-image-box-content">
+                                <h5 class="planning-title">Plan More. Dream Bigger.</h5>
+                                <p class="planning-desc">Discover, Dine & Dream - Your Trip Starts Here</p>
+                                <a href="#" class="btn-see-all">See All</a>
+                            </div>
+                        </div>
+                        <div class="col-5 col-lg-4">
+                            <div class="planning-image-box">
+                                <img src="assets/images/cruise/planing-img.webp" alt="Planning Image" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=========== Planing Section End  ==============-->
+<!--=========== Travel Section Start  ==============-->
+<section class="travel-best cmn-gap">
+    <div class="container container-xxl">
+        <div class="cmn-heading">
+            <div class="heading-cmn-flex">
+                <h2>Why Infinity Travels Should Be Your Go-To</h2>
+            </div>
+        </div>
+
+        <div class="common-slider-container">
+            <swiper-container #travelFeaturesSwiperRef>
+                @for (travelFeature of travelFeatures; track $index) {
+                <swiper-slide>
+                    <div class="swiper-slide">
+                        <div class="travel-feature-card">
+                            <div class="travel-feature-card-wrap">
+                                <div class="travel-feature-card-icon-box travel-feature-card-orange-icon"
+                                    [innerHTML]="travelFeature.icon"></div>
+                                <div class="travel-feature-card-content-box">
+                                    <h4 class="travel-feature-card-title">{{ travelFeature.title }}</h4>
+                                    <p class="travel-feature-card-desc">{{ travelFeature.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </swiper-slide>}
+            </swiper-container>
+        </div>
+    </div>
+</section>
+<!--=========== Travel Section End  ==============-->
+<!--=========== Popular Section Start  ==============-->
+<section class="popular popular-sec pt-0">
+    <div class="container container-xxl">
+        <div class="row align-items-center">
+            <div class="col-lg-4">
+                <div class="popular-package-left-content-wrap">
+                    <div class="popular-left-text">
+                        <h2>Popular things to do</h2>
+                        <p>
+                            There are many variations of passages of Lorem Ipsum
+                            available, but the majority have suffered alteration in
+                        </p>
+                        <a href="#" class="btn-save-all">See All</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="common-slider-container">
+                    <swiper-container #popularTripsRef>
+                        @for (popularTrip of popularTrips; track $index) {
+                        <swiper-slide>
+                            <div class="swiper-slide">
+                                <div class="popular-package-card">
+                                    <div class="popular-package-card-img-box">
+                                        <img [src]="popularTrip.image" alt="Popular Card" />
+                                        <div class="card-img-box-badge">
+                                            <span class="card-img-box-badge-text"> 7 Days</span>
+                                        </div>
+                                    </div>
+                                    <div class="popular-package-card-info">
+                                        <div class="popular-package-card-info-top-rating">
+                                            <h4 class="popular-package-card-info-title">
+                                                <!-- Miami <span class="popular-package-card-info-text-span"> > </span>
+                                                Nassau <span class="popular-package-card-info-text-span"> > </span>
+                                                Labadee <span class="popular-package-card-info-text-span"> > </span>
+                                                Miami Island Hopping
+                                                Adventure -->
+                                                {{ popularTrip.description }}
+                                            </h4>
+                                            <div class="popular-package-card-rating-box">
+                                                <span class="popular-package-card-rating-icon" [innerHTML]="icons.ratingIcon"></span>
+                                                <span class="popular-package-card-rating-text">
+                                                    {{ popularTrip.rating }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="popular-package-card-price-btn-box">
+                                            <h4 class="popular-package-card-price-value">${{ popularTrip.price}}</h4>
+                                            <a [href]="popularTrip.link" class="package-card-btn">View Now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </swiper-slide>}
+                    </swiper-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=========== Popular Section End  ==============-->

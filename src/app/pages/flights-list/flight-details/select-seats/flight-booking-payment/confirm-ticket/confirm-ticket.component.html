@@ -1,0 +1,225 @@
+<section
+  class="common-section flightdetails-section flightdetails-section-wrap"
+>
+  <div class="container container-xxl">
+    <div class="row mobrow g-3">
+      <div class="col-xxl-12 col-xl-12 col-xl-12 order-2 order-xl-0">
+        <!-- == === -->
+        <div class="u-side-card">
+          <div class="u-side-card-body">
+            <!-- Success Title -->
+            <div
+              class="flight-booked-success-title-wrap card-title-wrap card-title-wrap-payment-confirm"
+            >
+              <span class="flight-booked-success-title-icon">
+                <!-- SVG stays the same -->
+              </span>
+              <div class="card-title-text-box">
+                <h1 class="card-title-text flight-booked-success-title">
+                  Your flight is booked successfully!
+                </h1>
+                <p class="flight-booked-success-sub-title">
+                 You can download your ticket from the link provided below.
+                </p>
+              </div>
+            </div>
+
+            <!-- Loop over flight tickets -->
+          
+              <div class="flight-ticket-box">
+                <div class="flight-ticket-box-left-section">
+                  <div class="o-flight-ticket-booking-details-top">
+                    <div class="o-flight-ticket-booking-details-element">
+                      <div class="o-flight-logo-content">
+                        <div class="o-flight-logo">
+                          <img
+                            src="assets/images/flag-icons/flight-icon-1.png"
+                            alt="logo1"
+                          />
+                        </div>
+                        <div class="o-flight-class-brand">
+                          <span class="o-flight-class">{{
+                            repriceData?.ValidatingCarrierName
+                          }}</span>
+                          <span class="o-flight-brand">{{
+                             repriceData?.CabinClass
+                          }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="o-flight-ticket-booking-details-element">
+                      <div class="o-flight-route-details">
+                        <span class="o-flight-route">{{ departureCode?.code }}-{{arrivalCode?.code}}</span>
+                        <span class="o-flight-travel-titme">{{
+                          repriceData?.Citypairs[0]?.Duration
+                        }}</span>
+                      </div>
+                    </div>
+                    <div class="o-flight-ticket-booking-details-element">
+                      <div class="o-flight-stop-details">
+                        <span class="o-flight-stop">{{ repriceData?.Citypairs[0]?.NoOfStops }} Stop</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="o-flight-ticket-booking-details-bottom">
+                    <div class="flight-timeline">
+                      <div class="flight-timeline-event">
+                        <div class="flight-timeline-marker"></div>
+                        <div class="flight-timeline-details">
+                          <span class="flight-timeline-time">{{
+                            ticket.departure.date
+                          }}</span>
+                          <span class="flight-timeline-airport">
+                            <span class="d-none d-lg-flex">{{
+                              ticket.departure.airport
+                            }}</span
+                            >({{ ticket.departure.code }})
+                          </span>
+                        </div>
+                      </div>
+                      <div class="flight-timeline-duration-wrapper">
+                        <div class="flight-timeline-line"></div>
+                        <div class="flight-timeline-duration">
+                          <span class="flight-timeline-duration-label"
+                            >Duration:</span
+                          >
+                          <span class="flight-timeline-duration-value">{{
+                            ticket.duration
+                          }}</span>
+                        </div>
+                      </div>
+                      <div class="flight-timeline-event">
+                        <div class="flight-timeline-marker"></div>
+                        <div class="flight-timeline-details">
+                          <span class="flight-timeline-time">{{
+                            ticket.arrival.date
+                          }}</span>
+                          <span class="flight-timeline-airport">
+                            <span class="d-none d-lg-flex">{{
+                              ticket.arrival.airport
+                            }}</span
+                            >({{ ticket.arrival.code }})
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+
+                <div class="flight-ticket-box-right-section">
+                  <div class="flight-ticket-info">
+                    <div class="flight-ticket-header">
+                      <span
+                        class="flight-ticket-icon"
+                        [innerHTML]="icons.whiteFlightIcon"
+                      ></span>
+                      <span class="flight-ticket-type">E-Flight</span>
+                    </div>
+                    <div
+                      class="flight-ticket-details justify-content-center justify-content-lg-start d-flex flex-lg-column"
+                    >
+                      <div class="d-flex flex-row flex-lg-column gap-1">
+                        <span class="flight-ticket-label-text">Booking ID</span>
+                        <span class="flight-ticket-value">{{
+                          bookingId
+                        }}</span>
+                      </div>
+                      <!-- <div class="d-flex flex-row flex-lg-column gap-1">
+                        <span class="flight-ticket-label-text">PNR</span>
+                        <span class="flight-ticket-value">{{
+                          ticket.pnr
+                        }}</span>
+                      </div> -->
+                    </div>
+                    <div class="flight-ticket-qr-section">
+                      <div
+                        class="flight-ticket-qr-box"
+                        [innerHTML]="icons.qrCodeIcon"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flight-ticket-download-btn-wrap">
+                <button type="button" class="flight-ticket-download-btn" (click)="downloadTicket()">
+                  <span [innerHTML]="icons.DownloadIcon"></span>
+                  download ticket
+                </button>
+              </div>
+            
+
+            <hr class="card-devider-line" />
+
+            <!-- Traveler details -->
+            <div class="card-title-wrap">
+              <h3 class="card-title-text">Traveler details</h3>
+            </div>
+
+            @for (traveler of getTravelData; track $index; let i = $index) {
+              <h4 class="card-smal-title-text">Traveler {{ i + 1 }}:</h4>
+              <div class="traveler-details-view-card">
+                <div class="traveler-card-left-section">
+                  <div class="traveler-card-item">
+                    <div class="traveler-icon-box-wrap">
+                      <div class="traveler-icon-box">
+                        <img src="assets/images/user-icon.png" alt="User" />
+                      </div>
+                    </div>
+                    <span class="traveler-name">{{ traveler?.firstName }}&nbsp;{{ traveler?.lastName }}</span>
+                  </div>
+                  <div class="traveler-card-item">
+                    <span class="traveler-dob">Date of birth:</span>
+                    <span class="traveler-dob-value">{{ traveler?.dateOfBirth }}</span>
+                  </div>
+                  <div class="traveler-card-item">
+                    <span class="traveler-gender">Gender:</span>
+                    <span class="traveler-gender-value">{{
+                      traveler?.gender|titlecase
+                    }}</span>
+                  </div>
+                  <div class="traveler-card-item">
+                    <span class="traveler-gender">Age group:</span>
+                    <span class="traveler-gender-value">{{
+                      traveler?.PaxType
+                    }}</span>
+                  </div>
+                  <!-- <div class="traveler-card-item">
+                    <span class="traveler-gender">Seat:</span>
+                    <span class="traveler-gender-value">{{
+                      traveler.seat
+                    }}</span>
+                  </div> -->
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- == === -->
+        <!-- == === -->
+        <div class="u-side-card">
+          <div class="u-side-card-body">
+            <div class="card-title-wrap">
+              <h3 class="card-title-text u-space-bottom">
+                Log in to know more
+              </h3>
+            </div>
+            <h6 class="card-md-title-text">
+              Discover more: visit our website or download from the app store
+            </h6>
+            <p class="u-card-info-text">
+              Vivamus est neque, fermentum vitae sagittis ac, ullamcorper nec
+              justo. Quisque convallis tristique pellentesque. Nunc ultrices
+              metus in gravida vestibulum. Sed dui quam, pretium et orci sit
+              amet, convallis pellentesque felis.
+            </p>
+          </div>
+        </div>
+        <!-- == === -->
+      </div>
+
+
+    </div>
+  </div>
+</section>

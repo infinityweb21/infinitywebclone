@@ -1,0 +1,64 @@
+<!--=========== Banner Section Start  ==============-->
+<app-main-filter/>
+<!--=========== Banner Section End  ==============-->
+
+<!--=========== Banner Bottom Section Start  ==============-->
+<section class="destinations pb-0 cmn-gap">
+  <div class="container container-xxl">
+    <div class="cmn-heading">
+      <div class="heading-cmn-flex">
+        <h2>Global Vacation Hotspots</h2>
+        <a href="#">See all</a>
+      </div>
+    </div>
+    <swiper-container #swiperRef >
+      <swiper-slide *ngFor="let destination of destinations">
+        <div class="destination-slider mx-2">
+          <div class="destination-item">
+            <img [src]="destination.image" [alt]="destination.name" class="w-100" />
+            <div class="destination-info text-center">
+              <div class="destination-content">
+                <h5 class="mb-1 text-white">{{ destination.name }}</h5>
+              </div>
+              <div class="destination-overlay bg-white mt-2">
+                <div class="d-flex">
+                  <div class="col border-end">
+                    <div class="count-info text-center">
+                      <span class="d-block mb-1">
+                        <i class="fa-solid fa-plane-up"></i>
+                      </span>
+                      <h6 class="fs-13 fw-medium">
+                        {{ destination.flights }} Flights
+                      </h6>
+                    </div>
+                  </div>
+                  <div class="col border-end">
+                    <div class="count-info text-center">
+                      <span class="d-block mb-1">
+                        <i class="fa-solid fa-building"></i>
+                      </span>
+                      <h6 class="fs-13 fw-medium">
+                        {{ destination.hotels }} Hotels
+                      </h6>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="count-info text-center">
+                      <span class="d-block mb-1">
+                        <i class="fa-solid fa-ship"></i>
+                      </span>
+                      <h6 class="fs-13 fw-medium">
+                        {{ destination.cruises }} Cruises
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</section>
+<!--=========== Banner Bottom Section End  ==============-->

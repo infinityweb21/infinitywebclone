@@ -1,0 +1,304 @@
+<!--=========== Banner Section Start  ==============-->
+<app-main-filter />
+<!--=========== Banner Section End  ==============-->
+<!--=========== Banner Bottom Section Start  ==============-->
+<section class="destinations pb-0 cmn-gap">
+    <div class="container container-xxl">
+        <div class="cmn-heading">
+            <div class="section-title-wrap">
+                <h2 class="section-title">Pick Your Travel Mood</h2>
+            </div>
+        </div>
+        <div class="common-slider-container">
+            <swiper-container #hotelRoomsSwiperRef>
+                @for (hotelRoom of hotelRooms; track $index) {
+                <swiper-slide>
+                    <div class="swiper-slide">
+                        <div class="hotel-preference-card">
+                            <div class="hotel-preference-card-image-box">
+                                <img [src]="hotelRoom.image" alt="Deluxe Room">
+                            </div>
+                            <div class="hotel-preference-card-content-box">
+                                <h3 class="hotel-preference-card-title">{{ hotelRoom.title }}</h3>
+                                <p class="hotel-preference-card-desc">{{ hotelRoom.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </swiper-slide>}
+            </swiper-container>
+        </div>
+    </div>
+</section>
+<!--=========== Banner Bottom Section End  ==============-->
+<!--=========== Package Section Start  ==============-->
+<section class="recoend cmn-gap pb-0">
+    <div class="container container-xxl">
+        <div class="cmn-heading">
+            <div class="section-title-wrap">
+                <h2 class="section-title">Explore Stays Across Top Destinations</h2>
+                <a href="#" class="link-text-small">See all</a>
+            </div>
+        </div>
+        <div class="common-slider-container">
+            <swiper-container #recoendSwiperRef>
+                @for (recommendedProduct of recommendedProducts; track $index) {
+                <swiper-slide>
+                    <div class="swiper-slide">
+                        <div class="package-card">
+                            <div class="package-card-img">
+                                <img [src]="recommendedProduct.image" alt="" class="img-fluid w-100" />
+                                <button class="like-btn" aria-label="Like this package" [innerHTML]="icon.likeIcon">
+
+                                </button>
+                            </div>
+                            <div class="package-img-bottom-txt">
+                                <div class="package-card-rating-txt">
+                                    <h2 class="package-destination-title">{{ recommendedProduct.title }}</h2>
+                                    <span class="package-destination-duration">{{ recommendedProduct.duration }}</span>
+                                </div>
+                                <div class="package-card-rating d-flex align-items-center">
+                                    <span class="package-card-star-icon me-2" [innerHTML]="icon.starIcon"></span>
+                                    <span class="package-card-star-rating">{{ recommendedProduct.rating }}</span>
+                                </div>
+                            </div>
+                            <div class="package-rating-bottom-txt package-facility-itel-list-wrap">
+                                <ul class="package-facility-itel-list">
+                                    <li>
+                                        <span class="package-card-facility-icon" [innerHTML]="icon.flightIcon">
+                                        </span>
+                                        {{ recommendedProduct.details.flights }}
+                                    </li>
+                                    <li>
+                                        <span class="package-card-facility-icon" [innerHTML]="icon.hotelIcon"></span>
+                                        {{ recommendedProduct.details.hotels }}
+                                    </li>
+                                    <li>
+                                        <span class="package-card-facility-icon" [innerHTML]="icon.carIcon"></span>
+                                        {{ recommendedProduct.details.transfers }}
+                                    </li>
+                                    <li>
+                                        <span class="package-card-facility-icon"
+                                            [innerHTML]="icon.activitieIcon"></span>
+                                        {{ recommendedProduct.details.activities }}
+                                    </li>
+                                </ul>
+                            </div>
+                            <ul class="package-rating-txt-list package-facility-list-feature">
+                                @for (item of recommendedProduct.description; track $index) {
+                                <li>{{ item }}</li>}
+                            </ul>
+                            <div class="package-price">
+                                <div class="package-price-left">
+                                    <h2 class="package-price-value"> ${{ recommendedProduct.price }}<span
+                                            class="package-price-text">Per person</span></h2>
+                                    <span class="package-price-value-strike">${{ recommendedProduct.originalPrice
+                                        }}</span>
+                                </div>
+                                <div class="package-price-right">
+                                    <a [href]="recommendedProduct.link" class="cmn-btn">Book Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </swiper-slide>}
+            </swiper-container>
+        </div>
+    </div>
+</section>
+<!--=========== Accomodatio Airlines Section End  ==============-->
+<section class="recoend cmn-gap pb-0">
+    <div class="container container-xxl">
+        <div class="cmn-heading">
+            <div class="section-title-wrap">
+                <h2 class="section-title">Experience Comfortable Stays</h2>
+            </div>
+        </div>
+        <div class="common-slider-container">
+            <swiper-container #accomodationSliderRef>
+                @for (accommodation of accommodations; track $index) {
+                <swiper-slide>
+                    <div class="swiper-slide">
+                        <div class="accomodation-card">
+                            <div class="accomodation-card-content-wrap d-flex align-items-center justify-content-start">
+                                <div class="accomodation-card-image-box">
+                                    <img [src]="accommodation.image" alt="Flight">
+                                </div>
+                                <div class="accomodation-card-body">
+                                    <div class="accomodation-card-title">{{ accommodation.title }}</div>
+                                    <div class="etd-rating-section d-flex justify-content-start">
+                                        <div class="etd-rating-badge">
+                                            <span class="etd-star-icon" [innerHTML]="icon.ratingIcon"></span>
+                                            {{ accommodation.rating }}
+                                        </div>
+                                        <p class="etd-review-count">{{ accommodation.rating }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="accomodation-card-devider">
+                            <div class="accomodation-card-footer d-flex align-items-center justify-content-between">
+                                <div class="accomodation-card-footer-left-part d-flex align-items-center">
+                                    <p class="accomodation-card-footer-left-part-text">{{ accommodation.type }}</p>
+                                    <span class="accomodation-card-footer-left-part-circle"></span>
+                                    <p class="accomodation-card-footer-left-part-text">{{ accommodation.country }}</p>
+                                </div>
+                                <div class="accomodation-card-footer-right-part d-flex align-items-center">
+                                    <p class="accomodation-card-footer-right-part-text">{{ accommodation.seatsLeft }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </swiper-slide>}
+            </swiper-container>
+        </div>
+    </div>
+</section>
+<!--=========== Accomodatio Airlines Section End  ==============-->
+
+<!--=========== Package Section End  ==============-->
+<!--=========== Booking Section Start  ==============-->
+<section class="booking cmn-gap">
+    <div class="container container-xxl">
+        <div class="booking-parent" style="background: url('./assets/images/booking-background.png')">
+            <div class="booking-left">
+                <h2 class="banner-add-caption">Get Great Stays at Low Prices</h2>
+                <p class="banner-add-subtext">Find comfort, class, and the best hotel deals</p>
+            </div>
+            <div class="booking-right">
+                <a href="#" class="cmn-btn btn-orange fs-20 fw-semibold cta-add-btn">Call Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--=========== Booking Section End  ==============-->
+<!-- === Testimonial Section Start ==== -->
+<section class="testimonial-section testimOnialSection">
+    <div class="container container-xxl container-responsive">
+        <div class="testimonial-content-wrap traveler-box position-relative testimonial-content-wrapnewsec">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <div class="testimonial-left-content-box">
+                        <div class="testimonial-content-left-title">
+                            <h5>What Our Guests Are Saying About Us!</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12 col-lg-6 order order-lg-0">
+                            <div class="testimonial-left-content-box">
+                                <div class="testimonial-rating-content d-flex align-items-start">
+                                    <div class="rating-content-wrap d-flex flex-column order-2 order-lg-0">
+                                        <div class="rating">4.9+</div>
+                                        <p class="rating-text">
+                                          Trusted by reviewers on {{companyName}}
+                                        </p>
+                                    </div>
+                                    <div class="customer-content-wrap">
+                                        <div class="customer-number-text">10 M+</div>
+                                        <p class="customer-desc-text">Memorable journeys delivered</p>
+                                    </div>
+                                </div>
+                                <div class="rating-org-logo-wrap">
+                                    <div class="trustpilot-logo">
+                                        <img src="assets/images/trustpilot-image.png" alt="Trustpilot Logo">
+                                    </div>
+                                    <div class="bbb-logo">
+                                        <img src="assets/images/bbb-image.png" alt="BBB Logo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <div class="testimonial-right-content-box">
+                                <swiper-container #testimonialsRef effect="cards" grab-cursor="true" loop="false"
+                                    shadow="false" slide-hadows="false" autoplay="true" autoplay-delay="2000"
+                                    autoplay-disable-on-interaction="false">
+                                    @for (testimonial of testimonials; track $index) {
+                                    <swiper-slide style="width: min-content;">
+                                        <div class="testimonial-slider-wrap">
+                                            <div class="swiper testimonialSlider">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide">
+                                                        <div class="testimonial-card-content-wrap ">
+                                                            <div
+                                                                class="testimonial-card-header-content d-flex align-items-center justify-content-between">
+                                                                <h6 class="testimonial-card-title">Great Work</h6>
+                                                                <span class="testimonial-card-quote-icon"
+                                                                    [innerHTML]="icon.quoteIcon"></span>
+                                                            </div>
+                                                            <div class="testimonial-card-body">
+                                                                <p class="testimonial-desc">
+                                                                   "{{ testimonial.description }}"
+                                                                </p>
+
+                                                            </div>
+                                                            <div
+                                                                class="testimonial-card-footer-content d-flex align-items-center justify-content-start">
+                                                                <div
+                                                                    class="testimonial-card-footer-avatar-box c-avatar">
+                                                                    <img src="https://i.pravatar.cc/40"
+                                                                        alt="Testimonial Client">
+                                                                </div>
+                                                                <div class="testimonial-card-footer-client-details d-flex flex-wrap flex-column">
+                                                                    <span class="testimonial-card-footer-client-name">
+                                                                        {{ testimonial.clientName }}
+                                                                    </span>
+                                                                    <!-- <span class="testimonial-card-footer-client-designation">
+                                                                       {{ testimonial.clientDesignation }}
+                                                                    </span> -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </swiper-slide>}
+                                </swiper-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- === Testimonial Section End ==== -->
+<!--=========== Blog Section Start  ==============-->
+<section class="blog-section cmn-gap pb-0">
+    <div class="container container-xxl">
+        <div class="cmn-heading">
+            <div class="heading-cmn-flex">
+                <h2>Travel Articles</h2>
+                <a href="#">See all</a>
+            </div>
+        </div>
+        <div class="travel-card-list-wrap">
+            <swiper-container #travelArticlesRef>
+                @for (travelArticle of travelArticles; track $index) {
+                <swiper-slide>
+                    <div class="swiper-slide">
+                        <div class="travel-articles-card">
+                            <div class="travel-articles-card-image">
+                                <img [src]="travelArticle.image" alt="Travel Image">
+                                <div class="travel-articles-card-badge">{{ travelArticle.badge}}</div>
+                            </div>
+                            <div class="travel-articles-card-body">
+                                <div class="travel-articles-card-meta">
+                                    <span>{{ travelArticle.date }}</span>
+                                    <span class="travel-articles-card-divider"></span>
+                                    <span>By {{ travelArticle.author }}</span>
+                                </div>
+                                <div class="travel-articles-card-title">
+                                    {{ travelArticle.title }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </swiper-slide>}
+            </swiper-container>
+        </div>
+    </div>
+</section>
+<!--=========== Blog Section End  ==============-->

@@ -1,0 +1,211 @@
+<form class="tab-pane fade active show" id="hotels-tab" [formGroup]="hotelForm" (ngSubmit)="submitForm()">
+    <div class="common-tab-form-content-wrap">
+        <div class="common-form-content">
+            <div class="row g-3 gy-lg-0 gx-lg-0">
+                <div class="col-lg-3">
+                    <div class="common-text-iput-wrap">
+                        <!-- <input type="text" class="form-control" placeholder="Destination" formControlName="destination"
+                            name="destination" > -->
+                        <!-- <p-autocomplete formControlName="destination" [suggestions]="departureAirports"
+                            (completeMethod)="filterCountry($event)" class="form-control" placeholder="Add Departure"
+                            field="displayName" [class.is-invalid]="
+                      hotelForm.get('destination')?.touched && hotelForm.get('destination')?.hasError('required')
+                    " /> -->
+
+                        <p-autoComplete formControlName="destination" [suggestions]="departureAirports"
+                            (completeMethod)="filterCountry($event)" field="displayName"
+                            [panelStyleClass]="'airport-autocomplete-panel'" placeholder="Add Departure"
+                            class="form-control" [class.is-invalid]="
+                 hotelForm.get('destination')?.touched && hotelForm.get('destination')?.hasError('required')
+              ">
+                            <ng-template let-airport pTemplate="item">
+                                <div class="airport-item">
+                                    <!-- Icon -->
+                                    <div class="airport-icon">
+                                        <i class="pi pi-map-marker"></i>
+                                    </div>
+
+                                    <!-- Info -->
+                                    <div class="airport-text">
+                                        <div class="city-country">
+                                            {{ airport.displayName }}
+                                        </div>
+                                        <div class="airport-name">
+                                            {{ airport.displayName }}
+                                        </div>
+                                    </div>
+
+                                    <!-- Code -->
+                                    <div class="airport-code">
+                                        {{ airport.cityid }}
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </p-autoComplete>
+                        <div class="text-danger"
+                            *ngIf="hotelForm.get('destination')?.touched && hotelForm.get('destination')?.hasError('required')">
+                            Destination is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="common-date-input-wrap position-relative">
+                        <input type="text" id="" class="form-control calender-icon commonDatePicker"
+                            placeholder="Check In" formControlName="checkInDate" name="checkInDate" readonly
+                            [appFlatpickr]="'basic'">
+                        <div class="text-danger"
+                            *ngIf="hotelForm.get('checkInDate')?.touched && hotelForm.get('checkInDate')?.hasError('required')">
+                            Check In date is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="common-date-input-wrap position-relative">
+                        <input type="text" id="" class="form-control calender-icon commonDatePicker"
+                            placeholder="Check Out" formControlName="checkOutDate" name="checkOutDate" readonly
+                            [appFlatpickr]="'basic'">
+                        <div class="text-danger"
+                            *ngIf="hotelForm.get('checkOutDate')?.touched && hotelForm.get('checkOutDate')?.hasError('required')">
+                            Check Out date is required.
+                        </div>
+                        <div class="text-danger" *ngIf="hotelForm.hasError('checkOutBeforeCheckIn') && hotelForm.touched">
+                            Check-out date must be after check-in date.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="hotel-guest-dropdown-wrap" (clickOutside)="closeGuestDropdown()">
+                        <input type="text" class="hotel-guest-input form-control hotelGuestDropdownTrigger"
+                            (click)="toggleGuestDropdown()" [placeholder]="guestSummary" readonly>
+                        <div class="hotel-guest-dropdown hotelGuestDropdownPanel" [class.show]="showGuestDropdown">
+                            <div class="hotel-guest-rooms-container hotelGuestRoomContainer">
+                                <div class="room-section" *ngFor="let roomCtrl of rooms.controls; let i = index">
+                                    <div class="room-header">
+                                        <div class="d-flex justify-content-between">
+                                            <h6 class="room-title roomTitleChange">Room {{ i + 1 }}</h6>
+                                            <span class="room-action-btn removeRoomContainer" (click)="removeRoom(i)"
+                                                *ngIf="hotelForm.value.rooms.length > 1"><i
+                                                    class="fa-duotone fa-light fa-circle-xmark"></i></span>
+                                        </div>
+                                    </div>
+                                    <div class="room-details guestDetailsContainer">
+                                        <div class="details-inner">
+                                            <div class="details-content">
+                                                <!-- Adults -->
+                                                <div
+                                                    class="adult-content-wrap d-flex justify-content-between align-items-center mb-2">
+                                                    <div class="adult-content-column">
+                                                        <div class="guest-label"> Adults <small>12+ years</small></div>
+                                                    </div>
+                                                    <div class="adult-content-column">
+                                                        <div class="guest-control d-flex align-items-center">
+                                                            <div class="guest-btn-wrap">
+                                                                <button type="button"
+                                                                    class="guest-decrease-btn guestCountDecrease"
+                                                                    (click)="changeAdults(i, -1)"><i
+                                                                        class="fa fa-minus"></i></button>
+                                                            </div>
+                                                            <span class="guest-count-field guestCount">{{
+                                                                roomCtrl.get('adults')?.value }}</span>
+                                                            <div class="guest-btn-wrap">
+                                                                <button type="button"
+                                                                    class="guest-increase-btn guestCountIncrease"
+                                                                    (click)="changeAdults(i, 1)"><i
+                                                                        class="fa fa-plus"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Children -->
+                                                <div
+                                                    class="children-content-wrap d-flex justify-content-between align-items-center mb-2">
+                                                    <div class="children-content-column">
+                                                        <div class="guest-child-label"> Children <small>1 - 11
+                                                                years</small></div>
+                                                    </div>
+                                                    <div class="children-content-column">
+                                                        <div class="guest-control d-flex align-items-center">
+                                                            <div class="child-guest-btn-wrap">
+                                                                <button type="button"
+                                                                    class="child-guest-decrease-btn totalChildGuestCountDecrease"
+                                                                    (click)="changeChildren(i, -1)"><i
+                                                                        class="fa fa-minus"></i></button>
+                                                            </div>
+                                                            <span class="guest-count-field totalChildguestCount">{{
+                                                                roomCtrl.get('childrens')?.value }}</span>
+                                                            <div class="child-guest-btn-wrap">
+                                                                <button type="button"
+                                                                    class="child-guest-increase-btn totalChildGuestCountIncrease"
+                                                                    (click)="changeChildren(i, 1)"><i
+                                                                        class="fa fa-plus"></i></button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Child Age -->
+                                                <div class="individual-child-age-wrapper individualChildAgeWrapper active"
+                                                    *ngIf="childAges[i]?.length">
+                                                    <div class="individual-child-age-content-wrap d-flex justify-content-between align-items-center"
+                                                        *ngFor="let ageCtrl of childAges[i].controls; let j = index">
+                                                        <div class="individual-child-age-content-column">
+                                                            <div class="individual-child-age-label">Child <span
+                                                                    class="individual-child-no individualChildNo">{{ j +
+                                                                    1 }}</span>
+                                                                age</div>
+                                                        </div>
+                                                        <div class="individual-child-age-content-column">
+                                                            <div class="child-age-control d-flex align-items-center">
+                                                                <div class="child-age-btn-wrap">
+                                                                    <button type="button"
+                                                                        class="age-decrease-btn SingleChildAgeDecrease"
+                                                                        (click)="updateChildAge(i, j, -1)"><i
+                                                                            class="fa fa-minus"></i></button>
+                                                                </div>
+                                                                <span
+                                                                    class="child-age-display-field IndividualChildAgeCount">
+                                                                    {{ childAges[i].at(j).value }}</span>
+                                                                <div class="child-age-btn-wrap">
+                                                                    <button type="button"
+                                                                        class="age-increase-btn SingleChildAgeIncrease"
+                                                                        (click)="updateChildAge(i, j, 1)"><i
+                                                                            class="fa fa-plus"></i></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="hotel-guest-add-room guestAddRoom" (click)="addRoom()"><span
+                                    class="add-room-icon"><i class="fa fa-plus"></i></span>Add another room</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-1 order-3 order-lg-0">
+                    <button type="submit" class="form-submit-btn">
+                        <span class="d-lg-none">Search Hotels</span>
+                        <span class="d-none d-lg-flex">
+                            <svg width="36" height="32" viewBox="0 0 36 32" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_299_6500)">
+                                    <path
+                                        d="M28.892 32.5747L19.5124 23.1951C18.768 23.7907 17.9119 24.2621 16.9442 24.6095C15.9764 24.9569 14.9467 25.1306 13.8549 25.1306C11.1502 25.1306 8.86133 24.1936 6.98839 22.3197C5.11545 20.4458 4.17848 18.1569 4.17749 15.4532C4.1765 12.7495 5.11347 10.4607 6.98839 8.58678C8.86332 6.71285 11.1521 5.77588 13.8549 5.77588C16.5576 5.77588 18.8469 6.71285 20.7228 8.58678C22.5987 10.4607 23.5352 12.7495 23.5322 15.4532C23.5322 16.545 23.3585 17.5748 23.0111 18.5426C22.6637 19.5103 22.1923 20.3664 21.5967 21.1108L30.9763 30.4904L28.892 32.5747ZM13.8549 22.153C15.7159 22.153 17.298 21.5018 18.6012 20.1996C19.9044 18.8974 20.5556 17.3153 20.5546 15.4532C20.5536 13.5912 19.9025 12.0096 18.6012 10.7084C17.3 9.40712 15.7179 8.75551 13.8549 8.75353C11.9918 8.75154 10.4102 9.40315 9.10997 10.7084C7.80973 12.0136 7.15812 13.5952 7.15514 15.4532C7.15216 17.3113 7.80377 18.8934 9.10997 20.1996C10.4162 21.5058 11.9978 22.1569 13.8549 22.153Z"
+                                        fill="#fff" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_299_6500">
+                                        <rect width="35.7318" height="31.2024" fill="white"
+                                            transform="translate(0.0545654 0.0078125)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

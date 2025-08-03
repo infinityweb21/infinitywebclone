@@ -1,0 +1,46 @@
+<form class="tab-pane fade active show" id="cruises-tab" [formGroup]="cruisesForm" (ngSubmit)="submitForm()">
+    <div class="common-tab-form-content-wrap">
+        <div class="common-form-content">
+            <div class="row g-3 gy-lg-0 gx-lg-0">
+                <div class="col-lg-4">
+                    <div class="common-text-iput-wrap">
+                        <input type="text" class="form-control" placeholder="Add Departure" formControlName="departureCruises">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="common-date-input-wrap position-relative">
+                        <input type="text" id="" class="form-control calender-icon commonDatePicker"
+                            placeholder="Start Date" readonly [appFlatpickr]="'basic'" formControlName="startDate">
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="common-date-input-wrap position-relative">
+                        <input type="text" id="" class="form-control calender-icon commonDatePicker"
+                            placeholder="End Date" readonly [appFlatpickr]="'basic'" formControlName="endDate">
+                    </div>
+                </div>
+                <div class="col-lg-1 order-3 order-lg-0">
+                    <button type="submit" class="form-submit-btn">
+                        <span class="d-lg-none">Search Cruise</span>
+                        <span class="d-none d-lg-flex">
+                            <svg width="36" height="32" viewBox="0 0 36 32" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_299_6500)">
+                                    <path
+                                        d="M28.892 32.5747L19.5124 23.1951C18.768 23.7907 17.9119 24.2621 16.9442 24.6095C15.9764 24.9569 14.9467 25.1306 13.8549 25.1306C11.1502 25.1306 8.86133 24.1936 6.98839 22.3197C5.11545 20.4458 4.17848 18.1569 4.17749 15.4532C4.1765 12.7495 5.11347 10.4607 6.98839 8.58678C8.86332 6.71285 11.1521 5.77588 13.8549 5.77588C16.5576 5.77588 18.8469 6.71285 20.7228 8.58678C22.5987 10.4607 23.5352 12.7495 23.5322 15.4532C23.5322 16.545 23.3585 17.5748 23.0111 18.5426C22.6637 19.5103 22.1923 20.3664 21.5967 21.1108L30.9763 30.4904L28.892 32.5747ZM13.8549 22.153C15.7159 22.153 17.298 21.5018 18.6012 20.1996C19.9044 18.8974 20.5556 17.3153 20.5546 15.4532C20.5536 13.5912 19.9025 12.0096 18.6012 10.7084C17.3 9.40712 15.7179 8.75551 13.8549 8.75353C11.9918 8.75154 10.4102 9.40315 9.10997 10.7084C7.80973 12.0136 7.15812 13.5952 7.15514 15.4532C7.15216 17.3113 7.80377 18.8934 9.10997 20.1996C10.4162 21.5058 11.9978 22.1569 13.8549 22.153Z"
+                                        fill="#fff" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_299_6500">
+                                        <rect width="35.7318" height="31.2024" fill="white"
+                                            transform="translate(0.0545654 0.0078125)" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,429 @@
+/* General Footer Styling */
+.footer {
+  background: linear-gradient(180deg, #01032b 0%, #1a1c4a 100%);
+  /* color: #d1d1d1; */
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  margin-top: 60px;
+}
+
+/* Footer Top Section */
+.footer-top {
+  padding: 60px 0;
+}
+
+.footer-top-content {
+  display: flex;
+  justify-content: center;
+}
+
+.footer-column {
+  float: none;
+}
+
+/* Footer Links */
+.footer-links .footer-title {
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+  position: relative;
+}
+
+.footer-links .footer-title::after {
+  content: "";
+  position: absolute;
+  /* bottom: -8px;
+  left: 0; */
+  margin-top: 6px;
+  margin-left: 10px;
+  height: 3px;
+  width: 40px;
+  background: #ffc107;
+  transition: width 0.3s ease;
+}
+
+.footer-links .footer-title:hover::after {
+  width: 60px;
+}
+
+.links-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.links-list li a {
+  /* color: #d1d1d1; */
+  color: #ffffff;
+  font-size: 13px;
+  padding: 5px 15px;
+  display: block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.links-list li a::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background: #ffc107;
+  transition: background 0.3s ease;
+}
+
+.links-list li a:hover {
+  color: #2db2ff;
+  padding-left: 20px;
+}
+
+.links-list li a:hover::before {
+  background: #2db2ff;
+}
+
+/* Contact List */
+.contact-list {
+  padding: 0 1rem;
+  list-style: none;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px 0;
+  font-size: 13px;
+}
+
+.contact-list li i {
+  font-size: 22px;
+  margin-right: 15px;
+  /* color: #ffc107; */
+  color: #fff;
+  line-height: 24px;
+}
+
+.contact-list li span,
+.contact-list li a {
+  color: #fff;
+  line-height: 24px;
+  transition: color 0.3s ease;
+}
+
+.contact-list li a:hover {
+  color: #2db2ff;
+}
+
+.contact-list li i.fa-envelope {
+  font-size: 20px;
+}
+
+.contact-list li i.fa-mobile {
+  font-size: 26px;
+}
+
+/* Social Links */
+.social-links ul.social-links-list {
+  display: flex;
+  gap: 10px;
+  padding: 0px 0px 0px 11px;
+  margin-top: 15px;
+}
+
+.social-links ul.social-links-list li {
+  list-style: none;
+}
+
+.social-links ul.social-links-list li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  padding: 7px;
+  height: 32px;
+  border-radius: 50%;
+  background: #2db2ff;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.social-links ul.d-flex li a:hover {
+  background: #d3d3d3;
+  color: #03052e;
+  transform: scale(1.1);
+}
+
+.social-links ul.d-flex li a svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Footer Middle */
+.footer-middle {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 30px 0;
+}
+
+.footer-middle .links-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.footer-middle .footer-subtitle {
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.payment-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.payment-list li img {
+  max-height: 52px;
+  transition: transform 0.3s ease;
+}
+
+.payment-list li img:hover {
+  transform: scale(1.1);
+}
+
+.member-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  align-items: center;
+}
+
+.member-list li img {
+  transition: transform 0.3s ease;
+}
+
+.member-list li img:hover {
+  transform: scale(1.1);
+}
+
+/* Reviews Section */
+.footer-reviews .footer-subtitle {
+  text-align: right;
+}
+
+.reviews-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+
+/* Footer Bottom */
+.footer-bottom {
+  padding: 20px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer-bottom p,
+.footer-bottom a {
+  /* color: #d1d1d1; */
+  color: #fff;
+  font-size: 13px;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+  color: #2db2ff;
+}
+
+.footer-copyright {
+  font-size: 13px;
+}
+
+.footer-logo img {
+  max-width: 194px;
+}
+
+
+.footer-bottom a{
+  color: #2db2ff;
+}
+.seller-info{
+  text-align: right;
+}
+.seller-info h3{
+  font-size: 1rem;
+  font-weight: 500;
+}
+.seller-info h3 span{
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffc107;
+}
+.bbb-review{
+  display: flex;
+  margin-top: 16px;
+}
+.bbb-review img{
+  width: 200px;
+}
+
+
+/* Accessibility */
+.footer a:focus {
+  outline: 2px solid #ffc107;
+  outline-offset: 2px;
+}
+
+.footer .links-list li a:focus::before,
+.footer .social-links ul.d-flex li a:focus {
+  outline: none;
+}
+.footer-bottom p{
+  margin-bottom: 0px;
+ }
+/* Responsive Design */
+
+@media (min-width:768px) and (max-width: 991px) {
+  .footer-links .footer-title::after {
+    bottom: -8px;
+    left: -9px;
+    
+  }
+  .footer-links .footer-title {
+    margin-bottom: 18px;
+  }
+}
+@media (max-width: 991px) {
+  .footer-top {
+    padding: 40px 0 20px;
+}
+
+.footer-links .footer-title {
+    font-size: 16px;
+}
+
+.links-list li a,
+.contact-list li {
+    font-size: 12px;
+}
+
+.reviews-wrapper {
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+  .footer-middle,
+  .footer-bottom {
+      padding: 15px 0;
+  }
+
+  .footer-copyright,
+  .footer-logo {
+      text-align: center;
+  }
+
+  .footer-logo {
+      margin-bottom: 10px;
+  }
+
+  .trustpilot-widget img {
+    width: 150px;
+  }
+  .bbb-review img {
+    width: 139px;
+}
+.bbb-review {
+  margin-top: 25px;
+}
+.footer-reviews .footer-subtitle{
+  text-align: left;
+}
+.seller-info h3{
+  text-align: left;
+  margin-bottom: 0px;
+}
+.footer-middle .links-list {
+  gap: 6px;
+}
+.product-offering-list li a {
+  font-size: 12px;
+  padding: 2px 9px;
+}
+.seller-info h3{
+  font-size: 13px;
+}
+.footer-links .footer-title{
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.footer-bottom p, .footer-bottom a{
+  font-size: 12px;
+}
+.member-list li img {
+  transition: transform 0.3s ease;
+  width: 65px;
+}
+.footer-middle .footer-subtitle{
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+.footer-links-col{
+  margin-bottom: 12px;
+}
+
+.contact-list{
+  margin-bottom: 0px;
+
+}
+.reviews-wrapper{
+  margin-top: 0px;
+}
+  .footer-middle .payment-list{
+    margin-bottom: 4px;
+  }
+  .footer-middle .footer-reviews{
+    margin-bottom: 14px;
+  }
+  .contact-list li:first-child{
+    padding-bottom: 0px;
+  }
+  .social-links ul.social-links-list{
+    margin-bottom: 0px;
+  }
+}
+
+
+.bbb-review, .trustpilot-widget{
+  width: 170px;
+  display: flex;
+}
+
+
+.fixed-cta-btn{
+  display: none !important;
+}
+
+@media (min-width: 992px) and (max-width:1400px) {
+  .footer-links .footer-title{
+    font-size: 15px;
+  }
+
+}

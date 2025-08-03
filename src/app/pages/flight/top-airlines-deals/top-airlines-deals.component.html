@@ -1,0 +1,840 @@
+<section class="banner banner-content-wrap">
+  <div class="container container-xxl">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <div class="banner-txt">
+          <h1>Exclusive Flight Offers </h1>
+          <p class="banner-sub-text d-none d-md-flex">
+            Save More When You Call 
+            <a href="tel:+(000)000-0000">(000)000-0000</a> Now
+          </p>
+          <div class="banner-form banner-form-content mb-0">
+            <form
+              class="inner-banner-form tab-pane fade active show"
+              id="flights-tab"
+              [formGroup]="flightForm"
+            >
+              <div
+                class="banner--radio-btn-group-wrap d-flex align-items-center flex-wrap"
+              >
+                <div
+                  class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2"
+                >
+                  <input
+                    type="radio"
+                    id="roundtrip"
+                    class="roundTripInput"
+                    name="tripType"
+                    value="roundtrip"
+                    formControlName="tripType"
+                    checked
+                  />
+                  <label for="roundtrip"
+                    ><span class="radio-label-inner-text"
+                      >Round Trip</span
+                    ></label
+                  >
+                </div>
+                <div
+                  class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2"
+                >
+                  <input
+                    type="radio"
+                    id="oneway"
+                    class="oneWayInput"
+                    name="tripType"
+                    formControlName="tripType"
+                    value="oneway"
+                  />
+                  <label for="oneway"
+                    ><span class="radio-label-inner-text">Oneway</span></label
+                  >
+                </div>
+                <div
+                  class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2"
+                >
+                  <input
+                    type="radio"
+                    id="multicity"
+                    class="multiCityInput"
+                    name="tripType"
+                    formControlName="tripType"
+                    value="multicity"
+                  />
+                  <label for="multicity"
+                    ><span class="radio-label-inner-text"
+                      >Multi City</span
+                    ></label
+                  >
+                </div>
+              </div>
+              <div class="flight-tab-form-content-wrap">
+                <div class="common-form-content">
+                  <div class="row g-3 gy-lg-0 gx-lg-3">
+                    <div class="col-lg-2 add-departure-col">
+                      <div class="add-departure-content-wrap">
+                        <p-autoComplete
+                          formControlName="departureAirport"
+                          [suggestions]="departureAirports"
+                          (completeMethod)="filterCountry($event)"
+                          field="displayName"
+                          [panelStyleClass]="'airport-autocomplete-panel'"
+                          placeholder="Add Departure"
+                          class="form-control"
+                          [class.is-invalid]="
+                            (f['departureAirport'].touched || submitted) &&
+                            f['departureAirport'].invalid
+                          "
+                        >
+                          <ng-template let-airport pTemplate="item">
+                            <div class="airport-item">
+                              <!-- Icon -->
+                              <div class="airport-icon">
+                                <i class="pi pi-map-marker"></i>
+                              </div>
+
+                              <!-- Info -->
+                              <div class="airport-text">
+                                <div class="city-country">
+                                  {{ airport.city }}, {{ airport.country }}
+                                </div>
+                                <div class="airport-name">
+                                  {{ airport.airport_name }}
+                                </div>
+                              </div>
+
+                              <!-- Code -->
+                              <div class="airport-code">
+                                {{ airport.code }}
+                              </div>
+                            </div>
+                          </ng-template>
+                        </p-autoComplete>
+
+                        <div class="both-way-icon" (click)="switchAirports()">
+                          <svg
+                            width="28"
+                            height="27"
+                            viewBox="0 0 28 27"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <rect
+                              x="0.838867"
+                              width="26.9725"
+                              height="27"
+                              rx="6"
+                              fill="#FEFEFE"
+                            />
+                            <path
+                              d="M18.8205 12L22.8164 8M22.8164 8L18.8205 4M22.8164 8L6.8327 8M10.8286 14L6.8327 18M6.8327 18L10.8286 22M6.8327 18H22.8164"
+                              stroke="black"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 add-arrival-col">
+                      <div class="add-arrival-content-wrap">
+                        <p-autoComplete
+                          formControlName="arrivalAirport"
+                          [suggestions]="departureAirports"
+                          (completeMethod)="filterCountry($event)"
+                          field="displayName"
+                          [panelStyleClass]="'airport-autocomplete-panel'"
+                          placeholder="Add Arrival"
+                          class="form-control"
+                          [class.is-invalid]="
+                            (f['arrivalAirport'].touched || submitted) &&
+                            f['arrivalAirport'].invalid
+                          "
+                        >
+                          <ng-template let-airport pTemplate="item">
+                            <div class="airport-item">
+                              <!-- Icon -->
+                              <div class="airport-icon">
+                                <i class="pi pi-map-marker"></i>
+                              </div>
+
+                              <!-- Info -->
+                              <div class="airport-text">
+                                <div class="city-country">
+                                  {{ airport.city }}, {{ airport.country }}
+                                </div>
+                                <div class="airport-name">
+                                  {{ airport.airport_name }}
+                                </div>
+                              </div>
+
+                              <!-- Code -->
+                              <div class="airport-code">
+                                {{ airport.code }}
+                              </div>
+                            </div>
+                          </ng-template>
+                        </p-autoComplete>
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="row g-3 gy-lg-0 gx-lg-3">
+                        <!-- Departure -->
+                        <div class="col depart-date-col">
+                          <div
+                            class="depart-date-content-wrap position-relative"
+                          >
+                            <input
+                              type="text"
+                              class="form-control calender-icon departureDate"
+                              placeholder="Departure Date"
+                              readonly
+                              [appFlatpickr]="
+                                flightForm.get('tripType')?.value ===
+                                'roundtrip'
+                                  ? 'range'
+                                  : 'single'
+                              "
+                              (dateSelected)="onDatesSelected($event)"
+                              formControlName="departureDate"
+                              [class.is-invalid]="
+                                (f['departureDate'].touched || submitted) &&
+                                f['departureDate'].invalid
+                              "
+                            />
+                          </div>
+                        </div>
+
+                        <!-- Arrival -->
+                        <div
+                          class="col arrival-date-col"
+                          *ngIf="
+                            flightForm.get('tripType')?.value === 'roundtrip'
+                          "
+                        >
+                          <div
+                            class="arrival-date-content-wrap position-relative"
+                          >
+                            <input
+                              type="text"
+                              class="form-control calender-icon arrivalDate"
+                              placeholder="Arrival Date"
+                              readonly
+                              formControlName="arrivalDate"
+                              [class.is-invalid]="
+                                (f['arrivalDate'].touched || submitted) &&
+                                f['arrivalDate'].invalid
+                              "
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3 guest-col">
+                      <div
+                        class="passenger-dropdown-container position-relative"
+                        [formGroup]="passengersGroup"
+                      >
+                        <input
+                          type="text"
+                          class="form-control ps-input psDropDownTrigger"
+                          [value]="inputValue"
+                          readonly
+                          (click)="toggleDropdown($event)"
+                        />
+                        <div
+                          class="ps-dropdown psDropDownPanel"
+                          [class.show]="showDropdown"
+                          (clickOutside)="closeDropdown()"
+                        >
+                          <div class="ps-adult-box">
+                            <h5>Adult(s)</h5>
+                            <ul class="ps-adults-list">
+                              <li
+                                *ngFor="let count of adultsList"
+                                [class.active]="selectedAdults === count"
+                                (click)="
+                                  selectPassenger('adult', count, $event)
+                                "
+                              >
+                                {{ count }}
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div class="ps-child-box">
+                            <h5>Children (2-11 yrs)</h5>
+                            <ul class="ps-child-list">
+                              <li
+                                *ngFor="let count of childrenList"
+                                [class.active]="selectedChildren === count"
+                                (click)="
+                                  selectPassenger('child', count, $event)
+                                "
+                              >
+                                {{ count }}
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div class="ps-infant-box">
+                            <h5>Infant (on lap)</h5>
+                            <ul class="ps-infant-list">
+                              <li
+                                *ngFor="let count of infantsList"
+                                [class.active]="selectedInfants === count"
+                                (click)="
+                                  selectPassenger('infant', count, $event)
+                                "
+                              >
+                                {{ count }}
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div class="ps-cabin-select-submit-bt-wrap">
+                            <div class="ps-economy-box">
+                              <h5>Cabin</h5>
+                              <div
+                                class="d-flex align-items-center justify-content-between"
+                              >
+                                <select
+                                  class="form-select cabin-select w-100"
+                                  formControlName="cabin"
+                                  name="cabin"
+                                  (change)="updateInput()"
+                                  [compareWith]="compareCabins"
+                                >
+                                  <option
+                                    *ngFor="let cabin of cabinOptions"
+                                    [ngValue]="cabin.value"
+                                    aria-checked="true"
+                                  >
+                                    {{ cabin.name }}
+                                  </option>
+                                </select>
+                                <button
+                                  type="button"
+                                  class="ps-apply-btn applyBtn"
+                                  (click)="closeDropdown()"
+                                >
+                                  Apply
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-1 order-3 order-lg-0">
+                      <button
+                        type="submit"
+                        class="form-submit-btn"
+                        (click)="searchFlights()"
+                      >
+                        <span class="d-lg-none">Search Flights</span>
+                        <span class="d-none d-lg-flex">
+                          <svg
+                            width="36"
+                            height="32"
+                            viewBox="0 0 36 32"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g clip-path="url(#clip0_299_6500)">
+                              <path
+                                d="M28.892 32.5747L19.5124 23.1951C18.768 23.7907 17.9119 24.2621 16.9442 24.6095C15.9764 24.9569 14.9467 25.1306 13.8549 25.1306C11.1502 25.1306 8.86133 24.1936 6.98839 22.3197C5.11545 20.4458 4.17848 18.1569 4.17749 15.4532C4.1765 12.7495 5.11347 10.4607 6.98839 8.58678C8.86332 6.71285 11.1521 5.77588 13.8549 5.77588C16.5576 5.77588 18.8469 6.71285 20.7228 8.58678C22.5987 10.4607 23.5352 12.7495 23.5322 15.4532C23.5322 16.545 23.3585 17.5748 23.0111 18.5426C22.6637 19.5103 22.1923 20.3664 21.5967 21.1108L30.9763 30.4904L28.892 32.5747ZM13.8549 22.153C15.7159 22.153 17.298 21.5018 18.6012 20.1996C19.9044 18.8974 20.5556 17.3153 20.5546 15.4532C20.5536 13.5912 19.9025 12.0096 18.6012 10.7084C17.3 9.40712 15.7179 8.75551 13.8549 8.75353C11.9918 8.75154 10.4102 9.40315 9.10997 10.7084C7.80973 12.0136 7.15812 13.5952 7.15514 15.4532C7.15216 17.3113 7.80377 18.8934 9.10997 20.1996C10.4162 21.5058 11.9978 22.1569 13.8549 22.153Z"
+                                fill="#fff"
+                              />
+                            </g>
+                            <defs>
+                              <clipPath id="clip0_299_6500">
+                                <rect
+                                  width="35.7318"
+                                  height="31.2024"
+                                  fill="white"
+                                  transform="translate(0.0545654 0.0078125)"
+                                />
+                              </clipPath>
+                            </defs>
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
+                    <div
+                      class="multicity-input-fields-group"
+                      *ngIf="flightForm.get('tripType')?.value === 'multicity'"
+                    >
+                      <div formArrayName="multiCitySegments">
+                        <div
+                          *ngFor="
+                            let segment of multiCitySegments.controls;
+                            let i = index
+                          "
+                          [formGroupName]="i"
+                          class="row g-3 gy-lg-0 gx-lg-3 align-items-center"
+                        >
+                          <div class="col-lg-2">
+                            <div class="add-departure-content-wrap">
+                              <p-autoComplete
+                                formControlName="departure"
+                                [suggestions]="departureAirports"
+                                (completeMethod)="filterCountry($event)"
+                                field="displayName"
+                                [panelStyleClass]="'airport-autocomplete-panel'"
+                                placeholder="Add Departure"
+                                class="form-control"
+                              >
+                                <ng-template let-airport pTemplate="item">
+                                  <div class="airport-item">
+                                    <!-- Icon -->
+                                    <div class="airport-icon">
+                                      <i class="pi pi-map-marker"></i>
+                                    </div>
+
+                                    <!-- Info -->
+                                    <div class="airport-text">
+                                      <div class="city-country">
+                                        {{ airport.city }},
+                                        {{ airport.country }}
+                                      </div>
+                                      <div class="airport-name">
+                                        {{ airport.airport_name }}
+                                      </div>
+                                    </div>
+
+                                    <!-- Code -->
+                                    <div class="airport-code">
+                                      {{ airport.code }}
+                                    </div>
+                                  </div>
+                                </ng-template>
+                              </p-autoComplete>
+                              <div class="both-way-icon">
+                                <svg
+                                  width="28"
+                                  height="27"
+                                  viewBox="0 0 28 27"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <rect
+                                    x="0.838867"
+                                    width="26.9725"
+                                    height="27"
+                                    rx="6"
+                                    fill="#FEFEFE"
+                                  />
+                                  <path
+                                    d="M18.8205 12L22.8164 8M22.8164 8L18.8205 4M22.8164 8L6.8327 8M10.8286 14L6.8327 18M6.8327 18L10.8286 22M6.8327 18H22.8164"
+                                    stroke="black"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-lg-2">
+                            <div class="add-arrival-content-wrap">
+                              <!-- <input type="text" class="form-control" placeholder="Add Arrival" formControlName="arrival" /> -->
+
+                              <p-autoComplete
+                                formControlName="arrival"
+                                [suggestions]="departureAirports"
+                                (completeMethod)="filterCountry($event)"
+                                field="displayName"
+                                [panelStyleClass]="'airport-autocomplete-panel'"
+                                placeholder="Add Arrival"
+                                class="form-control"
+                              >
+                                <ng-template let-airport pTemplate="item">
+                                  <div class="airport-item">
+                                    <!-- Icon -->
+                                    <div class="airport-icon">
+                                      <i class="pi pi-map-marker"></i>
+                                    </div>
+
+                                    <!-- Info -->
+                                    <div class="airport-text">
+                                      <div class="city-country">
+                                        {{ airport.city }},
+                                        {{ airport.country }}
+                                      </div>
+                                      <div class="airport-name">
+                                        {{ airport.airport_name }}
+                                      </div>
+                                    </div>
+
+                                    <!-- Code -->
+                                    <div class="airport-code">
+                                      {{ airport.code }}
+                                    </div>
+                                  </div>
+                                </ng-template>
+                              </p-autoComplete>
+                            </div>
+                          </div>
+                          <div class="col-lg-4">
+                            <div
+                              class="depart-date-content-wrap position-relative"
+                            >
+                              <input
+                                type="text"
+                                id=""
+                                class="form-control calender-icon departureDate"
+                                placeholder="Departure Date"
+                                readonly
+                                formControlName="departureDate"
+                                [appFlatpickr]="'single'"
+                                [class.is-invalid]="
+                                  (f['departureDate'].touched || submitted) &&
+                                  f['departureDate'].invalid
+                                "
+                                (dateSelected)="
+                                  onMultiCityDateSelected($event, i)
+                                "
+                              />
+                            </div>
+                          </div>
+                          <div class="col-lg-1">
+                            <div
+                              class="delete-multicity-btn-wrap mx-auto mx-lg-0"
+                            >
+                              <button
+                                type="button"
+                                class="delete-multicity-btn mx-auto mx-lg-0"
+                                (click)="removeSegment(i)"
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 16 16"
+                                >
+                                  <path
+                                    fill="currentColor"
+                                    d="M7 3h2a1 1 0 0 0-2 0M6 3a2 2 0 1 1 4 0h4a.5.5 0 0 1 0 1h-.564l-1.205 8.838A2.5 2.5 0 0 1 9.754 15H6.246a2.5 2.5 0 0 1-2.477-2.162L2.564 4H2a.5.5 0 0 1 0-1zm1 3.5a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0zM9.5 6a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0v-5a.5.5 0 0 1 .5-.5m-4.74 6.703A1.5 1.5 0 0 0 6.246 14h3.508a1.5 1.5 0 0 0 1.487-1.297L12.427 4H3.573z"
+                                  ></path>
+                                </svg>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Actions -->
+                        <div class="col-lg-12">
+                          <div
+                            class="d-flex align-items-center multicity-add--delete-btn-wrap justify-content-center justify-content-lg-start"
+                          >
+                            <button
+                              type="button"
+                              class="btn btn-link add-multicity-btn"
+                              (click)="addSegment()"
+                            >
+                              <span
+                                class="me-1"
+                                [innerHTML]="icons.plusIcon"
+                              ></span>
+                              Add Flight
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-link remove-multicity-btn text-danger"
+                              (click)="clearSegments()"
+                            >
+                              <span class="me-1" [innerHTML]="icons.minusIcon">
+                              </span>
+                              Clear All
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="quick-select-direct-flight-content-wrap d-none d-lg-block"
+                >
+                  <div class="row g-3 gy-lg-0 gx-lg-3">
+                    <div class="col-md-12">
+                      <label class="custom-checkbox">
+                        <input
+                          type="checkbox"
+                          formControlName="directFlightsOnly"
+                        />
+                        <span class="custom-checkmark"></span>
+                        Direct flights only
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 d-none d-lg-flex">
+        <div class="banner-right-image-box">
+          <div class="banner-right-image-box-content">
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img
+                  src="assets/images/flight/top-airlines/thumb-1.webp"
+                  alt="Banner Thumb"
+                />
+              </div>
+            </div>
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img
+                     src="assets/images/flight/top-airlines/thumb-2.webp"
+                  alt="Banner Thumb"
+                />
+              </div>
+              <div class="right-img-box">
+                <img
+                     src="assets/images/flight/top-airlines/thumb-3.webp"
+                  alt="Banner Thumb"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === === -->
+<section class="cmn-gap pb-0 business-class-section">
+  <div class="container container-xxl">
+    <div class="section-header mb-3 mb-lg-4">
+      <h2 class="section-title mb-2">Exclusive Flight Offers </h2>
+      <p class="section-subtitle">
+        Save More When You Call <a href="tel:+(000)000-0000" class="link-highlight">(000)000-0000</a>
+      </p>
+    </div>
+    <!-- == === -->
+    <div class="row g-2 g-lg-4">
+      <!-- Card 1 -->
+      <div class="col-6 col-lg-3 d-flex">
+        <div class="card amenity-card">
+          <div class="card-body text-start">
+            <div class="card-icon mb-3">
+              <i class="fa-light fa-plane-circle-check"></i>
+            </div>
+            <h5 class="card-title">Redefine the Way You Fly</h5>
+            <p class="card-text">
+              Travel isn’t just about the destination — it’s about arriving in luxury
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="col-6 col-lg-3 d-flex">
+        <div class="card amenity-card">
+          <div class="card-body text-start">
+            <div class="card-icon mb-3">
+              <i class="fa-light fa-plane-circle-check"></i>
+            </div>
+            <h5 class="card-title">In-Flight Connectivity</h5>
+            <p class="card-text">
+              Browse, stream, and work effortlessly with high-speed Wi-Fi that keeps you in touch above the clouds
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-6 col-lg-3 d-flex">
+        <div class="card amenity-card">
+          <div class="card-body text-start">
+            <div class="card-icon mb-3">
+              <i class="fa-light fa-plane-circle-check"></i>
+            </div>
+            <h5 class="card-title">Dedicated Cabin Crew</h5>
+            <p class="card-text">
+              Our attentive team delivers hospitality with every detail planned for your comfort
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col-6 col-lg-3 d-flex">
+        <div class="card amenity-card">
+          <div class="card-body text-start">
+            <div class="card-icon mb-3">
+              <i class="fa-light fa-plane-circle-check"></i>
+            </div>
+            <h5 class="card-title">Exclusive Airport Transfers</h5>
+            <p class="card-text">
+              Enjoy wide, open spaces, thoughtful lighting, and quiet zones for a calm and restful flight
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- == === -->
+  </div>
+</section>
+<!-- === === -->
+<section class="cmn-gap pb-0 spl-airline-deals-section">
+  <div class="container container-xxl">
+    <div class="section-header mb-3 mb-lg-4">
+      <h2 class="section-title mb-2">Exclusive Airline Offers</h2>
+    </div>
+    <!-- == === -->
+    <div class="row g-2 g-lg-4">
+      <div
+        class="col-6 col-md-4 col-lg-3 deals-card-col d-flex flex-1"
+        *ngFor="let deal of deals.slice(0, visibleCount)"
+      >
+        <a href="javascript:void(0);" class="spl-airline-deals-card w-100">
+          <div class="spl-airline-deals-logo-container w-100">
+            <img
+              src="{{ deal.logo }}"
+              [alt]="deal.name"
+              class="spl-airline-deals-logo"
+            />
+          </div>
+          <div class="spl-airline-deals-info-container">
+            <h3 class="spl-airline-name">{{ deal.name }}</h3>
+            <p
+              class="spl-airline-deals-description"
+              [innerHTML]="deal.description"
+            ></p>
+            <div class="spl-airline-deals-button">Browse Offers</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="load-more-link-wrap loadMoreTrigger">
+        <a
+          href="javascript:void(0);"
+          class="load-more-link"
+          (click)="toggleShow()"
+        >
+          {{ visibleCount < deals.length ? "Show More" : "Show Less" }}
+        </a>
+      </div>
+    </div>
+    <!-- == === -->
+  </div>
+</section>
+<!-- === === -->
+<section class="fly-section py-0">
+  <div class="fly-container container container-xxl">
+    <div class="fly-row row">
+      <article class="fly-article fly-padding">
+        <div class="fly-flex">
+          <section class="fly-main">
+            <h2 class="fly-title">Find Budget-Friendly Flights with Ease</h2>
+            <div class="fly-text">
+              <p>
+                Whether it’s for business, fun, or reuniting with family, we’re here to make your travel plans simple and affordable.
+              </p>
+              <p>
+               Wherever your journey takes you, we’ll help you score the best deals. Need to book in a hurry? Call us anytime for quick, hassle-free support.
+              </p>
+              <p>
+                Always on the move? Our user-friendly mobile app lets you book flights in minutes - on both Android and iOS. Whether it's a surprise trip or a well-planned escape, booking has never been easier. 
+              </p>
+
+              <div class="fly-faq">
+                <!-- FAQ 1 -->
+                <div class="fly-faq-item">
+                  <h3 class="fly-faq-question">
+                    Flight-Saving Hacks You Need
+                  </h3>
+                  <div class="fly-faq-answer">
+                    <ul class="fly-tip-list">
+                      <li>
+                        <strong>1. Book in advance:</strong> Reserving tickets 3–4 weeks ahead often results in lower prices.
+                      </li>
+                      <li>
+                        <strong>2.  Fly budget airlines:</strong> Low-cost carriers can cut your travel expenses significantly.
+                      </li>
+                      <li>
+                        <strong>3. Redeem rewards:</strong> Use points from credit cards or airline programs to save on fares.
+                      </li>
+                      <li>
+                        <strong>4. Talk to an agent:</strong> Travel agents may offer special discounts and lower booking fees.
+                      </li>
+                      <li>
+                        <strong>5. Stay flexible:</strong> Changing your dates or destination could unlock better flight deals.
+                      </li>
+                      <li>
+                        <strong>6. Join loyalty programs: </strong> These are free and let you earn rewards toward future flights.
+                      </li>
+                      <li>
+                        <strong>7. Set fare alerts:</strong> Sign up for notifications to track discounts and price changes fast.
+                      </li>
+                      <li>
+                        <strong>8. Try different currencies:</strong> Booking in foreign currency can sometimes offer lower prices.
+                      </li>
+                      <li>
+                        <strong>9.  Combine carriers:</strong>One-way tickets with multiple airlines may be cheaper than round trips.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="fly-faq-item">
+                  <h3 class="fly-faq-question">
+                    Your Guide to Low-Fare Days
+                  </h3>
+                  <div class="fly-faq-answer">
+                    <p>
+                     Though it depends on your route, midweek flights, especially between Monday and Thursday, are typically cheaper. Fridays and weekends often cost more because of increased demand. Steering clear of holiday periods and peak travel seasons can also help you snag better deals.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="fly-faq-item">
+                  <h3 class="fly-faq-question">
+                    Best Budget Destinations for 2025
+                  </h3>
+                  <div class="fly-faq-answer">
+                    <ul class="fly-dest-list">
+                      <li>Lisbon</li>
+                      <li>Medellín</li>
+                      <li>Zagreb</li>
+                      <li>La Paz</li>
+                      <li>New Orleans</li>
+                      <li>San Antonio</li>
+                      <li>Albuquerque</li>
+                      <li>Lima</li>
+                      <li>Hanoi</li>
+                      <li>Bali</li>
+                      <li>Puerto Rico</li>
+                      <li>Kuala Lumpur</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="fly-faq-item">
+                  <h3 class="fly-faq-question">
+                   Looking for a Last-Minute Flight?
+                  </h3>
+                  <div class="fly-faq-answer">
+                    <p>
+                      Got an urgent trip? Discover affordable last-minute airfare to top global spots. Use our site to search instantly, or speak with our round-the-clock support team to grab the best deals fast—no hassle, just smooth travel planning.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+<!-- === === -->

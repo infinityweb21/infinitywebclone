@@ -1,0 +1,710 @@
+<!-- === List Page Top Form Start == -->
+<section
+  class="banner-content-wrap hotel-list-sec"
+  style="background-color: rgba(248, 248, 248, 67%); padding-bottom: 2rem"
+>
+  <div class="container container-xxl">
+    <div class="row justify-content-center">
+      <!-- === === -->
+      <div class="col-md-12">
+        <div class="common-tab-form-content-wrap">
+          <form
+            class="tab-pane fade active show"
+            id="cruises-tab"
+            [formGroup]="cruisesForm"
+            (ngSubmit)="submitForm()"
+          >
+            <div class="common-tab-form-content-wrap">
+              <div class="common-form-content">
+                <div class="row g-3 gy-lg-0 gx-lg-0">
+                  <div class="col-lg-4">
+                    <div class="common-text-iput-wrap">
+                      <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Add Departure"
+                        formControlName="departureCruises"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="common-date-input-wrap position-relative">
+                      <input
+                        type="text"
+                        id=""
+                        class="form-control calender-icon commonDatePicker"
+                        placeholder="Start Date"
+                        readonly
+                        [appFlatpickr]="'basic'"
+                        formControlName="startDate"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="common-date-input-wrap position-relative">
+                      <input
+                        type="text"
+                        id=""
+                        class="form-control calender-icon commonDatePicker"
+                        placeholder="End Date"
+                        readonly
+                        [appFlatpickr]="'basic'"
+                        formControlName="endDate"
+                      />
+                    </div>
+                  </div>
+                  <div class="col-lg-1 order-3 order-lg-0">
+                    <button type="submit" class="form-submit-btn">
+                      <span class="d-lg-none">Search Cruise</span>
+                      <span class="d-none d-lg-flex">
+                        <svg
+                          width="36"
+                          height="32"
+                          viewBox="0 0 36 32"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <g clip-path="url(#clip0_299_6500)">
+                            <path
+                              d="M28.892 32.5747L19.5124 23.1951C18.768 23.7907 17.9119 24.2621 16.9442 24.6095C15.9764 24.9569 14.9467 25.1306 13.8549 25.1306C11.1502 25.1306 8.86133 24.1936 6.98839 22.3197C5.11545 20.4458 4.17848 18.1569 4.17749 15.4532C4.1765 12.7495 5.11347 10.4607 6.98839 8.58678C8.86332 6.71285 11.1521 5.77588 13.8549 5.77588C16.5576 5.77588 18.8469 6.71285 20.7228 8.58678C22.5987 10.4607 23.5352 12.7495 23.5322 15.4532C23.5322 16.545 23.3585 17.5748 23.0111 18.5426C22.6637 19.5103 22.1923 20.3664 21.5967 21.1108L30.9763 30.4904L28.892 32.5747ZM13.8549 22.153C15.7159 22.153 17.298 21.5018 18.6012 20.1996C19.9044 18.8974 20.5556 17.3153 20.5546 15.4532C20.5536 13.5912 19.9025 12.0096 18.6012 10.7084C17.3 9.40712 15.7179 8.75551 13.8549 8.75353C11.9918 8.75154 10.4102 9.40315 9.10997 10.7084C7.80973 12.0136 7.15812 13.5952 7.15514 15.4532C7.15216 17.3113 7.80377 18.8934 9.10997 20.1996C10.4162 21.5058 11.9978 22.1569 13.8549 22.153Z"
+                              fill="black"
+                            />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_299_6500">
+                              <rect
+                                width="35.7318"
+                                height="31.2024"
+                                fill="white"
+                                transform="translate(0.0545654 0.0078125)"
+                              />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- === === -->
+    </div>
+  </div>
+</section>
+<!-- === List Page Top Form End == -->
+
+<!-- === List all  Start == -->
+
+<section class="listhotelsection pt-4">
+  <div class="container container-xxl">
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-12 deskshowonly">
+        <div class="filterstickybox">
+          <div class="map-card-container">
+            <div class="iframe-map-wrapper">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.009529291052!2d28.98426737590151!3d41.03517791738545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab76f10817b13%3A0xa57b1b63f7eeb1ab!2sTaksim%20Square!5e0!3m2!1sen!2str!4v1718963463734!5m2!1sen!2str"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <div class="map-card-footer">
+              <a href="#" target="_blank">View in a map</a>
+            </div>
+          </div>
+          <div class="filter-container" [formGroup]="filterForm">
+            <!-- Filter By -->
+            <div class="filter-section">
+              <h3 class="filter-title">Filter by</h3>
+              <p class="filter-subtitle">458 results found</p>
+            </div>
+
+            <!-- Price Range -->
+            <div class="filter-section">
+              <h4 class="filter-title">Price Range</h4>
+              <div class="price-range-container">
+                <div class="price-slider-wrapper">
+                  <p-slider
+                    formControlName="priceRange"
+                    [range]="true"
+                    [min]="500"
+                    [max]="20000"
+                    styleClass="w-56 price-range-input"
+                  ></p-slider>
+                </div>
+                <div class="price-display">
+                  <span class="price-label">Between</span>
+                  <input
+                    type="text"
+                    [value]="'$ ' + filterForm.get('priceRange')?.value[0]"
+                    readonly
+                  />
+                  <span>-</span>
+                  <input
+                    type="text"
+                    [value]="'$ ' + filterForm.get('priceRange')?.value[1]"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Star Rating -->
+            <div class="filter-section">
+              <h4 class="filter-title">Star rating</h4>
+              <div class="star-rating">
+                @for (star of [1,2,3,4,5]; track $index) {
+                <span
+                  class="star"
+                  [class.active]="filterForm.get('starRating')?.value === star"
+                  (click)="filterForm.get('starRating')?.setValue(star)"
+                >
+                  {{ star }} <small>★</small> </span
+                >}
+              </div>
+            </div>
+
+            <!-- Cancellation Policy -->
+            <div class="filter-section" formGroupName="cancellationPolicy">
+              <h4 class="filter-title">Cancellation Policy</h4>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="refundable" />
+                <label>Refundable</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="bookNow" />
+                <label>Book Now, Pay Later</label>
+              </div>
+            </div>
+
+            <!-- Amenities -->
+            <div class="filter-section" formGroupName="amenities">
+              <h4 class="filter-title">Amenities</h4>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="breakfast" />
+                <label>Breakfast Included</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="parking" />
+                <label>Parking</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="gym" />
+                <label>Gym</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="wifi" />
+                <label>WiFi</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="pets" />
+                <label>Pets Allowed</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="pool" />
+                <label>Swimming Pool</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="bar" />
+                <label>Bar</label>
+              </div>
+              <a href="#" class="show-more">
+                Show More <i class="fa-solid fa-angle-down"></i>
+              </a>
+            </div>
+
+            <!-- Clear Button -->
+            <button type="button" (click)="clearFilters()" class="clear-btn">
+              Clear All Filters
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 col-md-9 col-12">
+        <!-- Tab Buttons -->
+        <div class="mobsecnew">
+          <div class="mobhowonly">
+            <div class="filterbtn" (click)="filtervisible = true">
+              <a
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasLeft"
+                aria-controls="offcanvasLeft"
+              >
+                <img src="assets/images/filter.png" alt="" />
+              </a>
+            </div>
+          </div>
+          <div class="custom-tab-wrapper">
+            <div
+              class="custom-tab-button"
+              [class.active]="selectedTab === 'recommended'"
+              data-tab="tab1"
+              (click)="selectTab('recommended')"
+            >
+              Recommended
+            </div>
+            <div
+              class="custom-tab-button"
+              data-tab="tab2"
+              [class.active]="selectedTab === 'cheapest'"
+              (click)="selectTab('cheapest')"
+            >
+              Cheapest
+            </div>
+            <div
+              class="custom-tab-button"
+              data-tab="tab3"
+              [class.active]="selectedTab === 'bestseller'"
+              (click)="selectTab('bestseller')"
+            >
+              Bestseller
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Contents -->
+        @if(selectedTab === 'recommended'){
+        <div
+          id="tab1"
+          class="tab-content-box"
+          [class.active]="selectedTab === 'recommended'"
+        >
+          <div class="promo-card">
+            <img
+              src="https://img.freepik.com/free-photo/hotel-building-night-time_1127-3210.jpg"
+              alt="Hotel Kolkata"
+              class="promo-img"
+            />
+            <div class="promo-content">
+              <p class="promo-title">Sign In, save up to 50%!</p>
+              <p class="promo-text">
+                Enjoy exclusive rates in Kolkata just for you.
+              </p>
+            </div>
+            <button class="promo-btn">Log in</button>
+          </div>
+          @for (hotel of hotels; track $index) {
+          <div class="hotel-card">
+            <div class="hotel-img-container">
+              <img
+                [src]="hotel.imageUrl"
+                alt="Hotel View"
+              />
+            </div>
+
+            <div class="hotel-details">
+              <div class="d-flex justify-content-between flex-wrap pb-1">
+                <div class="hotelnamebox">
+                  <div>
+                    <h5 class="hotel-title">{{ hotel.title }}</h5>
+                    <div class="locatbox">
+                      <p class="hotel-location d-block">
+                        {{ hotel.ship }}
+                        <br />
+                        <strong>Departing from:</strong>
+                        <small>{{ hotel.departure }}</small>
+                        <br />
+                        <strong>Sailing Dates:</strong>
+                        <small>{{ hotel.sailingDates }}</small>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="hotel-price">
+                    <span>starting from</span><br />
+                    <span class="amount">$ {{ hotel.price }}/night</span><br />
+                    <small>excl. tax</small>
+                  </div>
+                </div>
+              </div>
+              <hr class="m-0" />
+              <div class="hotel-metamain-box">
+                <div class="hotel-metasub-box">
+                  <strong>Rewards & Bonus Offers:</strong>
+                  <ul class="listsecnewcruise">
+                    @for (offer of hotel.offers; track $index) {
+                    <li >{{ offer }}</li>}
+                  </ul>
+                </div>
+              </div>
+              <div class="hotel-footer">
+                <button class="hotel-wishlist-btn">
+                  <i class="fa-solid fa-heart"></i>
+                </button>
+                <button class="hotel-action-btn" (click)="navigateToDetails()">
+                  View Itinerary
+                </button>
+              </div>
+            </div>
+          </div>}
+          <div class="offer-box shadow rounded">
+            <div class="offer-image">
+              <img
+                src="assets/images/flight-details/export.png"
+                alt="Santorini"
+              />
+            </div>
+            <div class="offer-content">
+              <h5>
+                Summer travel savings. Save up to $3,416.40* on our fees on
+                flights.
+              </h5>
+              <div class="input-group mb-2">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email Address"
+                />
+                <button class="btn btn-primary">Send</button>
+              </div>
+              <div class="small-text">Lorem Ipsum has been</div>
+            </div>
+          </div>
+          @for (hotel of hotels; track $index) {
+          <div class="hotel-card">
+            <div class="hotel-img-container">
+              <img
+                [src]="hotel.imageUrl"
+                alt="Hotel View"
+              />
+            </div>
+
+            <div class="hotel-details">
+              <div class="d-flex justify-content-between flex-wrap pb-1">
+                <div class="hotelnamebox">
+                  <div>
+                    <h5 class="hotel-title">{{ hotel.title }}</h5>
+                    <div class="locatbox">
+                      <p class="hotel-location d-block">
+                        {{ hotel.ship }}
+                        <br />
+                        <strong>Departing from:</strong>
+                        <small>{{ hotel.departure }}</small>
+                        <br />
+                        <strong>Sailing Dates:</strong>
+                        <small>{{ hotel.sailingDates }}</small>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="hotel-price">
+                    <span>starting from</span><br />
+                    <span class="amount">$ {{ hotel.price }}/night</span><br />
+                    <small>excl. tax</small>
+                  </div>
+                </div>
+              </div>
+              <hr class="m-0" />
+              <div class="hotel-metamain-box">
+                <div class="hotel-metasub-box">
+                  <strong>Rewards & Bonus Offers:</strong>
+                  <ul class="listsecnewcruise">
+                    @for (offer of hotel.offers; track $index) {
+                    <li >{{ offer }}</li>}
+                  </ul>
+                </div>
+              </div>
+              <div class="hotel-footer">
+                <button class="hotel-wishlist-btn">
+                  <i class="fa-solid fa-heart"></i>
+                </button>
+                <button class="hotel-action-btn" (click)="navigateToDetails()">
+                  View Itinerary
+                </button>
+              </div>
+            </div>
+          </div>}
+          <div class="card-custom-bottom-details">
+            <div class="card-custom d-flex flex-row">
+              <div class="col-md-4">
+                <img
+                  src="assets/images/flight-details/export2.png"
+                  alt="Hotel Image"
+                />
+              </div>
+              <div class="col-md-8 d-flex align-items-center">
+                <div class="card-body-custom">
+                  <h5 class="fw-semibold mb-2">
+                    Lorem Ipsum has been the industry's standard
+                  </h5>
+                  <p class="mb-3">
+                    Lorem Ipsum has been the industry's standard
+                  </p>
+                  <a href="#" class="btn btn-primary-custom"
+                    >Search Flight + Hotel</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="hotel-card">
+            <div class="hotel-img-container">
+              <img
+                src="https://img.freepik.com/free-photo/luxury-architecture-exterior-design_23-2151920970.jpg?t=st=1750490385~exp=1750493985~hmac=3f2dcdbb76dad2a569929d79ba200129f1afd3f179f52b105201a52656bae85f&w=1380"
+                alt="Hotel View"
+              />
+            </div>
+
+            <div class="hotel-details">
+              <div class="d-flex justify-content-between flex-wrap pb-1">
+                <div class="hotelnamebox">
+                  <div>
+                    <h5 class="hotel-title">3 Night Penang</h5>
+                    <div class="locatbox">
+                      <p class="hotel-location d-block">
+                        Navigator of the Seas
+                        <br />
+                        <strong>Departing from:</strong>
+                        <small>Singapore, Republic Of Singapore</small>
+                        <br />
+                        <strong>Sailing Dates:</strong>
+                        <small> November 2026 • March 2027</small>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="hotel-price">
+                    <span>starting from</span><br />
+                    <span class="amount">$ 2349/night</span><br />
+                    <small>excl. tax</small>
+                  </div>
+                </div>
+              </div>
+              <hr class="m-0" />
+              <div class="hotel-metamain-box">
+                <div class="hotel-metasub-box">
+                  <strong>Rewards & Bonus Offers:</strong>
+                  <ul class="listsecnewcruise">
+                    <li>
+                      Cruises.com Rewards = Free Cash! Double points: Earn 20
+                      points per $1 spent - 3 days left!
+                    </li>
+                    <li>Up to $50 Bonus Savings - Call</li>
+                    <li>60% Off Second Guest</li>
+                    <li>
+                      48-Hour Flash Sale: Up to $325 Instant Savings - Ends
+                      tomorrow!
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <hr />
+              <div class="hotel-footer">
+                <button class="hotel-wishlist-btn">
+                  <i class="fa-solid fa-heart"></i>
+                </button>
+                <button class="hotel-action-btn">View Itinerary</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        } @if(selectedTab === 'cheapest'){
+        <div
+          id="tab2"
+          class="tab-content-box"
+          [class.active]="selectedTab === 'cheapest'"
+        >
+          <h5>Cheapest</h5>
+          <p>These are the most affordable options available.</p>
+        </div>
+        } @if(selectedTab === 'bestseller'){
+        <div
+          id="tab3"
+          class="tab-content-box"
+          [class.active]="selectedTab === 'bestseller'"
+        >
+          <h5>Bestseller</h5>
+          <p>Top-selling items loved by many users.</p>
+        </div>
+        }
+      </div>
+      <div class="col-lg-2 col-md-3 col-12">
+        <div class="filterstickybox">
+          <div
+            class="hotel-booking-card-container"
+            style="
+              background: linear-gradient(
+                  rgba(0, 0, 0, 0.5),
+                  rgba(0, 0, 0, 0.7)
+                ),
+                url('assets/images/back2.png');
+            "
+          >
+            <div class="main-content-wrapper">
+              <div class="title-section-area">
+                <h1 class="primary-heading-text">Lorem Ipsum<br />is simply</h1>
+                <p class="description-subtitle-text">
+                  Lorem Ipsum is simply Lorem Ipsum is simply
+                </p>
+              </div>
+
+              <div class="agent-contact-section">
+                <div
+                  class="profile-image-circle"
+                  style="background: url(assets/images/person.png)"
+                ></div>
+                <div class="phone-number-display">(000)000-0000</div>
+                <div class="availability-text-info">Available 24/7</div>
+              </div>
+
+              <button class="search-button-cta">Search for Cruise</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === List all  End == -->
+
+<!-- === Filter modal  start == -->
+<p-drawer #drawerRef [(visible)]="filtervisible" header="Drawer">
+  <ng-template #headless>
+    <div
+      class="offcanvas show offcanvas-start filtercanvas"
+      tabindex="-1"
+      id="offcanvasLeft"
+      aria-labelledby="offcanvasLeftLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Filter by</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+          (click)="closeCallback($event)"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="row justify-content-center p-2">
+          <!-- === === -->
+          <div class="map-card-container">
+            <div class="iframe-map-wrapper">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.009529291052!2d28.98426737590151!3d41.03517791738545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab76f10817b13%3A0xa57b1b63f7eeb1ab!2sTaksim%20Square!5e0!3m2!1sen!2str!4v1718963463734!5m2!1sen!2str"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <div class="map-card-footer">
+              <a href="#" target="_blank">View in a map</a>
+            </div>
+          </div>
+          <div class="filter-container" [formGroup]="filterForm">
+            <!-- Filter By -->
+            <div class="filter-section">
+              <h3 class="filter-title">Filter by</h3>
+              <p class="filter-subtitle">458 results found</p>
+            </div>
+
+            <!-- Price Range -->
+            <div class="filter-section">
+              <h4 class="filter-title">Price Range</h4>
+              <div class="price-range-container">
+                <div class="price-slider-wrapper">
+                  <p-slider
+                    formControlName="priceRange"
+                    [range]="true"
+                    [min]="500"
+                    [max]="20000"
+                    styleClass="w-56 price-range-input"
+                  ></p-slider>
+                </div>
+                <div class="price-display">
+                  <span class="price-label">Between</span>
+                  <input
+                    type="text"
+                    [value]="'$ ' + filterForm.get('priceRange')?.value[0]"
+                    readonly
+                  />
+                  <span>-</span>
+                  <input
+                    type="text"
+                    [value]="'$ ' + filterForm.get('priceRange')?.value[1]"
+                    readonly
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Star Rating -->
+            <div class="filter-section">
+              <h4 class="filter-title">Star rating</h4>
+              <div class="star-rating">
+                @for (star of [1,2,3,4,5]; track $index) {
+                <span
+                  class="star"
+                  [class.active]="filterForm.get('starRating')?.value === star"
+                  (click)="filterForm.get('starRating')?.setValue(star)"
+                >
+                  {{ star }} <small>★</small> </span
+                >}
+              </div>
+            </div>
+
+            <!-- Cancellation Policy -->
+            <div class="filter-section" formGroupName="cancellationPolicy">
+              <h4 class="filter-title">Cancellation Policy</h4>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="refundable" />
+                <label>Refundable</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="bookNow" />
+                <label>Book Now, Pay Later</label>
+              </div>
+            </div>
+
+            <!-- Amenities -->
+            <div class="filter-section" formGroupName="amenities">
+              <h4 class="filter-title">Amenities</h4>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="breakfast" />
+                <label>Breakfast Included</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="parking" />
+                <label>Parking</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="gym" />
+                <label>Gym</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="wifi" />
+                <label>WiFi</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="pets" />
+                <label>Pets Allowed</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="pool" />
+                <label>Swimming Pool</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" formControlName="bar" />
+                <label>Bar</label>
+              </div>
+              <a href="#" class="show-more">
+                Show More <i class="fa-solid fa-angle-down"></i>
+              </a>
+            </div>
+
+            <!-- Clear Button -->
+            <button type="button" (click)="clearFilters()" class="clear-btn">
+              Clear All Filters
+            </button>
+          </div>
+          <!-- === === -->
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-drawer>
+<!-- === Filter modal   End == -->

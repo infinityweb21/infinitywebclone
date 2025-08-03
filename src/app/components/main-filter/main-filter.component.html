@@ -1,0 +1,217 @@
+<!--=========== Banner Section Start  ==============-->
+<section class="banner banner-content-wrap">
+  <div class="container container-xxl">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="banner-txt">
+          <h1>
+            @if (!showHome) { @switch (activeTab) { @case ('flights-tab') {
+            {{ companyName }} - Your Gateway to Various Flight Options } @case
+            ('hotels-tab') { Stay in Comfort with Best Hotel Rates Across the
+            World } @case ('cruises-tab') { {{ companyName }}: Where Your Dream
+            Cruise Begins } @case ('packages-tab') { Test Package } @default {
+            Your Perfect Travel Companion for Flights, Cruises, & Stays } } }
+            @else { Your Perfect Travel Companion for Flights, Cruises, & Stays
+            }
+          </h1>
+          <!-- <p class="banner-sub-text d-none d-md-flex">
+            Call <a href="tel:+910000000000">&nbsp;{{phoneNumber}}&nbsp;</a> Today to Get the Best Deals
+          </p> -->
+          <p class="banner-sub-text d-none d-md-flex">
+            @if (!showHomeCta) { @switch (activeTab) { @case ('flights-tab') {
+            Call to Book & Save More Today } @case ('home-tab') { Call
+            <a [attr.href]="'tel:' + phoneNumber"
+              >&nbsp;{{ phoneNumber }}&nbsp;</a
+            >
+            Today to Get the Best Deals } @case ('hotels-tab') { Call Now at
+            <a [attr.href]="'tel:' + phoneNumber"
+              >&nbsp;{{ phoneNumber }}&nbsp;</a
+            >
+            to Save More } @case ('cruises-tab') { Get Exclusive Cruise Deals -
+            Just Call
+            <a [attr.href]="'tel:' + phoneNumber"
+              >&nbsp;{{ phoneNumber }}&nbsp;</a
+            >
+            Now } @case ('packages-tab') { Test Package CTA } @default { Your
+            Perfect Travel Companion for Flights, Cruises, & Stays } } } @else {
+            Call
+            <a [attr.href]="'tel:' + phoneNumber"
+              >&nbsp;{{ phoneNumber }}&nbsp;</a
+            >
+            Today to Get the Best Deals }
+          </p>
+
+          <div class="banner-form banner-form-content mb-0">
+            <div class="card-header">
+              <ul class="nav">
+                <!-- Flight Tab -->
+                <li>
+                  <a
+                    (click)="toggleTab('flights-tab')"
+                    class="nav-link"
+                    [class.active]="
+                      activeTab === 'flights-tab' || activeTab === 'home-tab'
+                    "
+                    data-bs-toggle="tab"
+                    data-bs-target="#flights-tab"
+                  >
+                    <img src="assets/icons/plane.png" alt="Flight Tab" />
+                  </a>
+                  <span class="tab-menu">Flights</span>
+                </li>
+                <!-- Hotel Tab -->
+                <li>
+                  <a
+                    (click)="toggleTab('hotels-tab')"
+                    class="nav-link"
+                    [class.active]="activeTab === 'hotels-tab'"
+                    data-bs-toggle="tab"
+                    data-bs-target="#hotels-tab"
+                  >
+                    <img src="assets/icons/hotel.png" alt="Hotel Tab" />
+                  </a>
+                  <span class="tab-menu">Hotels</span>
+                </li>
+                <!-- Cruise Tab -->
+                <li>
+                  <a
+                    (click)="toggleTab('cruises-tab')"
+                    class="nav-link"
+                    [class.active]="activeTab === 'cruises-tab'"
+                    data-bs-toggle="tab"
+                    data-bs-target="#cruises-tab"
+                  >
+                    <img src="assets/icons/cruise.png" alt="Cruise tab" />
+                  </a>
+                  <span class="tab-menu">Cruises</span>
+                </li>
+                <!-- Packages Tab -->
+                <li>
+                  <a
+                    (click)="toggleTab('packages-tab')"
+                    class="nav-link"
+                    [class.active]="activeTab === 'packages-tab'"
+                    data-bs-toggle="tab"
+                    data-bs-target="#packages-tab"
+                  >
+                    <img src="assets/icons/packages.png" alt="" />
+                  </a>
+                  <span class="tab-menu">Packages</span>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <div>
+                <div class="tab-content">
+                  @if(activeTab === 'flights-tab' ){
+                  <app-flights-tab />
+                  } @if(activeTab === 'hotels-tab' ){
+                  <app-hotels-tab />
+                  } @if(activeTab === 'cruises-tab' ){
+                  <app-cruises-tab />
+                  } @if(activeTab === 'packages-tab' ){
+                  <app-packages-tab />
+                  } @if(activeTab === 'home-tab' ){
+                  <app-flights-tab />
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 d-none d-lg-flex">
+        <div class="banner-right-image-box">
+          <div class="banner-right-image-box-content">
+            @if (!showHome) { @switch (activeTab) { @case ('flights-tab') {
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img src="assets/images/flight/flightbanner/thumb-1.webp" alt="Banner Thumb" />
+              </div>
+            </div>
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img src="assets/images/flight/flightbanner/thumb-2.webp" alt="Banner Thumb" />
+              </div>
+              <div class="right-img-box">
+                <img src="assets/images/flight/flightbanner/thumb-3.webp" alt="Banner Thumb" />
+              </div>
+            </div>
+            } @case ('hotels-tab') {
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img src="assets/images/hotel/hotelbanner/thumb-2.webp" alt="Banner Thumb" />
+              </div>
+            </div>
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img src="assets/images/hotel/hotelbanner/thumb-2.webp" alt="Banner Thumb" />
+              </div>
+              <div class="right-img-box">
+                <img src="assets/images/hotel/hotelbanner/thumb-3.webp" alt="Banner Thumb" />
+              </div>
+            </div>
+            } @case ('cruises-tab') {
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img src="assets/images/cruise/cruisebanner/thumb-1.webp" alt="Banner Thumb" />
+              </div>
+            </div>
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img src="assets/images/cruise/cruisebanner/thumb-2.webp" alt="Banner Thumb" />
+              </div>
+              <div class="right-img-box">
+                <img src="assets/images/cruise/cruisebanner/thumb-3.webp" alt="Banner Thumb" />
+              </div>
+            </div>
+            } @case ('packages-tab') {
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img src="assets/images/flight/flightbanner/thumb-1.webp" alt="Banner Thumb" />
+              </div>
+            </div>
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img src="assets/images/cruise/cruisebanner/thumb-2.webp" alt="Banner Thumb" />
+              </div>
+              <div class="right-img-box">
+                 <img src="assets/images/hotel/hotelbanner/thumb-3.webp" alt="Banner Thumb" />
+              </div>
+            </div>
+            } @default {
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                 <img src="assets/images/home/thumb-1.webp" alt="Banner Thumb">
+              </div>
+            </div>
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img src="assets/images/home/thumb-2.webp" alt="Banner Thumb">
+              </div>
+              <div class="right-img-box">
+                <img src="assets/images/home/thumb-3.webp" alt="Banner Thumb">
+              </div>
+            </div>
+            } } } @else {
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                 <img src="assets/images/home/thumb-1.webp" alt="Banner Thumb">
+              </div>
+            </div>
+            <div class="right-img-content-col">
+              <div class="right-img-box">
+                <img src="assets/images/home/thumb-2.webp" alt="Banner Thumb">
+              </div>
+              <div class="right-img-box">
+                <img src="assets/images/home/thumb-3.webp" alt="Banner Thumb">
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--=========== Banner Section End  ==============-->

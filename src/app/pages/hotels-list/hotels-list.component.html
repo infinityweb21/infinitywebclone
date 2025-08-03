@@ -1,0 +1,772 @@
+<!-- === List Page Top Form Start == -->
+<section class="banner-content-wrap hotel-list-sec"
+  style="background-color: rgba(248, 248, 248, 67%); padding-bottom: 2rem">
+  <div class="container container-xxl">
+    <div class="row justify-content-center">
+      <!-- === === -->
+      <div class="col-md-12">
+        <div class="common-tab-form-content-wrap">
+          <form class="common-form-content" [formGroup]="hotelForm" (ngSubmit)="submitForm()">
+            <div class="row g-3 gy-lg-0 gx-lg-0">
+              <div class="col-lg-3">
+                <div class="common-text-iput-wrap">
+                  <!-- <p-autocomplete formControlName="destination" [suggestions]="departureAirports"
+                    (completeMethod)="filterCountry($event)" class="form-control" placeholder="Add Departure"
+                    field="displayName" [class.is-invalid]="
+                      hotelForm.get('destination')?.touched && hotelForm.get('destination')?.hasError('required')
+                    " /> -->
+                  <p-autoComplete formControlName="destination" [suggestions]="departureAirports"
+                    (completeMethod)="filterCountry($event)" field="displayName"
+                    [panelStyleClass]="'airport-autocomplete-panel'" placeholder="Add Departure" class="form-control"
+                    [class.is-invalid]="
+                 hotelForm.get('destination')?.touched && hotelForm.get('destination')?.hasError('required')
+              ">
+                    <ng-template let-airport pTemplate="item">
+                      <div class="airport-item">
+                        <!-- Icon -->
+                        <div class="airport-icon">
+                          <i class="pi pi-map-marker"></i>
+                        </div>
+
+                        <!-- Info -->
+                        <div class="airport-text">
+                          <div class="city-country">
+                            {{ airport.displayName }}
+                          </div>
+                          <div class="airport-name">
+                            {{ airport.displayName }}
+                          </div>
+                        </div>
+
+                        <!-- Code -->
+                        <div class="airport-code">
+                          {{ airport.cityid }}
+                        </div>
+                      </div>
+                    </ng-template>
+                  </p-autoComplete>
+                  <div class="text-danger"
+                    *ngIf="hotelForm.get('destination')?.touched && hotelForm.get('destination')?.hasError('required')">
+                    Destination is required.
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="common-date-input-wrap position-relative">
+                  <input type="text" id="" class="form-control calender-icon commonDatePicker" placeholder="Check In"
+                    formControlName="checkInDate" name="checkInDate" readonly [appFlatpickr]="'basic'" />
+                  <div class="text-danger"
+                    *ngIf="hotelForm.get('checkInDate')?.touched && hotelForm.get('checkInDate')?.hasError('required')">
+                    Check In date is required.
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <div class="common-date-input-wrap position-relative">
+                  <input type="text" id="" class="form-control calender-icon commonDatePicker"
+                            placeholder="Check Out" formControlName="checkOutDate" name="checkOutDate" readonly
+                            [appFlatpickr]="'basic'">
+                        <div class="text-danger"
+                            *ngIf="hotelForm.get('checkOutDate')?.touched && hotelForm.get('checkOutDate')?.hasError('required')">
+                            Check Out date is required.
+                        </div>
+                        <div class="text-danger" *ngIf="hotelForm.hasError('checkOutBeforeCheckIn') && hotelForm.touched">
+                            Check-out date must be after check-in date.
+                        </div>
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <div class="hotel-guest-dropdown-wrap" (clickOutside)="closeGuestDropdown()">
+                  <input type="text" class="hotel-guest-input form-control hotelGuestDropdownTrigger"
+                    (click)="toggleGuestDropdown()"   [placeholder]="guestSummary" readonly />
+                  <div class="hotel-guest-dropdown hotelGuestDropdownPanel" [class.show]="showGuestDropdown">
+                    <div class="hotel-guest-rooms-container hotelGuestRoomContainer">
+                      <div class="room-section" *ngFor="let roomCtrl of rooms.controls; let i = index">
+                        <div class="room-header">
+                          <div class="d-flex justify-content-between">
+                            <h6 class="room-title roomTitleChange">
+                              Room {{ i + 1 }}
+                            </h6>
+                            <span class="room-action-btn removeRoomContainer" (click)="removeRoom(i)"
+                              *ngIf="hotelForm.value.rooms.length > 1"><i
+                                class="fa-duotone fa-light fa-circle-xmark"></i></span>
+                          </div>
+                        </div>
+                        <div class="room-details guestDetailsContainer">
+                          <div class="details-inner">
+                            <div class="details-content">
+                              <!-- Adults -->
+                              <div class="adult-content-wrap d-flex justify-content-between align-items-center mb-2">
+                                <div class="adult-content-column">
+                                  <div class="guest-label">
+                                    Adults <small>12+ years</small>
+                                  </div>
+                                </div>
+                                <div class="adult-content-column">
+                                  <div class="guest-control d-flex align-items-center">
+                                    <div class="guest-btn-wrap">
+                                      <button type="button" class="guest-decrease-btn guestCountDecrease"
+                                        (click)="changeAdults(i, -1)">
+                                        <i class="fa fa-minus"></i>
+                                      </button>
+                                    </div>
+                                    <span class="guest-count-field guestCount">{{ roomCtrl.get("adults")?.value
+                                      }}</span>
+                                    <div class="guest-btn-wrap">
+                                      <button type="button" class="guest-increase-btn guestCountIncrease"
+                                        (click)="changeAdults(i, 1)">
+                                        <i class="fa fa-plus"></i>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- Children -->
+                              <div class="children-content-wrap d-flex justify-content-between align-items-center mb-2">
+                                <div class="children-content-column">
+                                  <div class="guest-child-label">
+                                    Children <small>1 - 11 years</small>
+                                  </div>
+                                </div>
+                                <div class="children-content-column">
+                                  <div class="guest-control d-flex align-items-center">
+                                    <div class="child-guest-btn-wrap">
+                                      <button type="button"
+                                        class="child-guest-decrease-btn totalChildGuestCountDecrease"
+                                        (click)="changeChildren(i, -1)">
+                                        <i class="fa fa-minus"></i>
+                                      </button>
+                                    </div>
+                                    <span class="guest-count-field totalChildguestCount">{{
+                                      roomCtrl.get("childrens")?.value
+                                      }}</span>
+                                    <div class="child-guest-btn-wrap">
+                                      <button type="button"
+                                        class="child-guest-increase-btn totalChildGuestCountIncrease"
+                                        (click)="changeChildren(i, 1)">
+                                        <i class="fa fa-plus"></i>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <!-- Child Age -->
+                              <div class="individual-child-age-wrapper individualChildAgeWrapper active"
+                                *ngIf="childAges[i]?.length">
+                                <div
+                                  class="individual-child-age-content-wrap d-flex justify-content-between align-items-center"
+                                  *ngFor="
+                                    let ageCtrl of childAges[i].controls;
+                                    let j = index
+                                  ">
+                                  <div class="individual-child-age-content-column">
+                                    <div class="individual-child-age-label">
+                                      Child
+                                      <span class="individual-child-no individualChildNo">{{ j + 1 }}</span>
+                                      age
+                                    </div>
+                                  </div>
+                                  <div class="individual-child-age-content-column">
+                                    <div class="child-age-control d-flex align-items-center">
+                                      <div class="child-age-btn-wrap">
+                                        <button type="button" class="age-decrease-btn SingleChildAgeDecrease"
+                                          (click)="updateChildAge(i, j, -1)">
+                                          <i class="fa fa-minus"></i>
+                                        </button>
+                                      </div>
+                                      <span class="child-age-display-field IndividualChildAgeCount">
+                                        {{ childAges[i].at(j).value }}</span>
+                                      <div class="child-age-btn-wrap">
+                                        <button type="button" class="age-increase-btn SingleChildAgeIncrease"
+                                          (click)="updateChildAge(i, j, 1)">
+                                          <i class="fa fa-plus"></i>
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button type="button" class="hotel-guest-add-room guestAddRoom" (click)="addRoom()">
+                      <span class="add-room-icon"><i class="fa fa-plus"></i></span>Add another room
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-2">
+                <button type="submit" class="form-submit-btn">
+                  <span class="d-lg-flex">Modify Search</span>
+                  <span class="d-none">
+                    <svg width="36" height="32" viewBox="0 0 36 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g clip-path="url(#clip0_299_6500)">
+                        <path
+                          d="M28.892 32.5747L19.5124 23.1951C18.768 23.7907 17.9119 24.2621 16.9442 24.6095C15.9764 24.9569 14.9467 25.1306 13.8549 25.1306C11.1502 25.1306 8.86133 24.1936 6.98839 22.3197C5.11545 20.4458 4.17848 18.1569 4.17749 15.4532C4.1765 12.7495 5.11347 10.4607 6.98839 8.58678C8.86332 6.71285 11.1521 5.77588 13.8549 5.77588C16.5576 5.77588 18.8469 6.71285 20.7228 8.58678C22.5987 10.4607 23.5352 12.7495 23.5322 15.4532C23.5322 16.545 23.3585 17.5748 23.0111 18.5426C22.6637 19.5103 22.1923 20.3664 21.5967 21.1108L30.9763 30.4904L28.892 32.5747ZM13.8549 22.153C15.7159 22.153 17.298 21.5018 18.6012 20.1996C19.9044 18.8974 20.5556 17.3153 20.5546 15.4532C20.5536 13.5912 19.9025 12.0096 18.6012 10.7084C17.3 9.40712 15.7179 8.75551 13.8549 8.75353C11.9918 8.75154 10.4102 9.40315 9.10997 10.7084C7.80973 12.0136 7.15812 13.5952 7.15514 15.4532C7.15216 17.3113 7.80377 18.8934 9.10997 20.1996C10.4162 21.5058 11.9978 22.1569 13.8549 22.153Z"
+                          fill="black" />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_299_6500">
+                          <rect width="35.7318" height="31.2024" fill="white"
+                            transform="translate(0.0545654 0.0078125)" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- === === -->
+    </div>
+  </div>
+</section>
+<!-- === List Page Top Form End == -->
+
+<!-- === List all  Start == -->
+
+<section class="listhotelsection pt-4">
+  <div class="container container-xxl">
+    <div class="row">
+      <div class="col-lg-3 col-md-4 col-12 deskshowonly">
+        <div class="filterstickybox">
+          <div class="map-card-container">
+            <div class="iframe-map-wrapper">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.009529291052!2d28.98426737590151!3d41.03517791738545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab76f10817b13%3A0xa57b1b63f7eeb1ab!2sTaksim%20Square!5e0!3m2!1sen!2str!4v1718963463734!5m2!1sen!2str"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="map-card-footer">
+              <a target="_blank">View in a map</a>
+            </div>
+          </div>
+          <div class="filter-container">
+            <!-- Search Section -->
+            <h3 class="filter-title">Search by property names</h3>
+            <div class="search-input-group">
+              <input type="text" class="search-input" placeholder="e.g. Marriott" [(ngModel)]="filters.propertySearch"
+                (input)="applyFilters()" />
+              <button class="search-btn">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+
+            <!-- Filter By -->
+            <div class="filter-section">
+              <h3 class="filter-title">Filter by</h3>
+              <p class="filter-subtitle">{{filteredProperties.length || 0}} results found</p>
+            </div>
+
+            <!-- Popular Filters -->
+            <div class="filter-section">
+              <h4 class="filter-title">Popular Filters</h4>
+              <div class="checkbox-item">
+                <input type="checkbox" id="refundable" [(ngModel)]="filters.freeCancelation"
+                  (ngModelChange)="applyFilters()" />
+                <label for="refundable">Free cancelation</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="book-now" [(ngModel)]="filters.petFriendly"
+                  (ngModelChange)="applyFilters()" />
+                <label for="book-now">Pet Friendly</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="book-now" [(ngModel)]="filters.mealsIncluded"
+                  (ngModelChange)="applyFilters()" />
+                <label for="book-now">Meals Included</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="book-now" [(ngModel)]="filters.parkingIncluded"
+                  (ngModelChange)="applyFilters()" />
+                <label for="book-now">Parking Included</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="breakfast" [(ngModel)]="filters.breakfast"
+                  (ngModelChange)="applyFilters()" />
+                <label for="breakfast">Breakfast Included</label>
+              </div>
+              <!-- <a class="show-more">Show More <i class="fa-solid fa-angle-down"></i></a> -->
+            </div>
+
+            <!-- Stay Options -->
+            <div class="filter-section">
+              <h4 class="filter-title">Stay options</h4>
+              <div class="checkbox-item">
+                <input type="checkbox" id="any" [(ngModel)]="filters.anyType" (ngModelChange)="applyFilters()" />
+                <label for="any">Any</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="hotels" [(ngModel)]="filters.hotels" (ngModelChange)="applyFilters()" />
+                <label for="hotels">Hotels</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="homes" [(ngModel)]="filters.house" (ngModelChange)="applyFilters()" />
+                <label for="homes">Homes</label>
+              </div>
+            </div>
+
+            <!-- Neighbourhood -->
+            <!-- <div class="filter-section">
+              <h4 class="filter-title">Neighbourhood</h4>
+              <div class="checkbox-item">
+                <input type="checkbox" id="delhi" />
+                <label for="delhi">Delhi (And Vicinity)</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="aerocity" />
+                <label for="aerocity">Aerocity</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="connaught" />
+                <label for="connaught">Connaught Place</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="noida" />
+                <label for="noida">Noida</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="paharganj" />
+                <label for="paharganj">Paharganj</label>
+              </div>
+            </div> -->
+
+            <!-- Price Range -->
+            <div class="filter-section">
+              <h4 class="filter-title">Price Range</h4>
+              <div class="price-range-container">
+                <div class="price-slider-wrapper">
+                  <!-- <input type="range" class="price-range-input" min="500" max="20000" value="500" id="priceSlider" /> -->
+                  <p-slider [(ngModel)]="filters.rangeValues" [range]="true" styleClass="w-56" [min]="minBaseFare"
+                    [max]="maxBaseFare" (onSlideEnd)="applyFilters()" />
+                </div>
+
+                <div class="price-display">
+                  <span class="price-label">Between</span>
+                  <input type="text" id="minPrice" [value]="filters.rangeValues[0]" readonly />
+                  <span>-</span>
+                  <input type="text" id="maxPrice" [value]="filters.rangeValues[1]" readonly />
+                </div>
+              </div>
+            </div>
+
+
+            <div class="filter-section">
+              <h4 class="filter-title">Star rating</h4>
+              <div class="star-rating">
+                <button type="button" *ngFor="let rating of [1, 2, 3, 4, 5]" class="star-button"
+                  [class.selected]="selectedRatings.includes(rating)" (click)="toggleRating(rating)">
+                  {{ rating }} <span class="star" [class.filled]="selectedRatings.includes(rating)">★</span>
+                </button>
+              </div>
+            </div>
+
+
+            <!-- Cancellation Policy -->
+            <div class="filter-section">
+              <h4 class="filter-title">Cancellation Policy</h4>
+              <!-- <div class="checkbox-item">
+                <input type="checkbox" id="refundable-cancel" [(ngModel)]="filters.refundable"
+                  (ngModelChange)="applyFilters()" />
+                <label for="refundable-cancel">Refundable</label>
+              </div> -->
+              <div class="checkbox-item">
+                <input type="checkbox" id="book-now-cancel" [(ngModel)]="filters.paylater"
+                  (ngModelChange)="applyFilters()" />
+                <label for="book-now-cancel">Book Now, Pay Later</label>
+              </div>
+            </div>
+
+            <!-- Amenities -->
+            @if(uniqueRateAmenities.length>0){
+            <div class="filter-section">
+              <h4 class="filter-title">Amenities</h4>
+              @for(amenity of uniqueRateAmenities;track amenity.name; let i=$index){
+              <div class="checkbox-item">
+                <input type="checkbox" id="breakfast-amenity" [(ngModel)]="filters.amenities[i]"
+                  (ngModelChange)="applyFilters()" />
+                <label for="breakfast-amenity">{{amenity?.name}}</label>
+              </div>
+              }
+
+
+            </div>
+            }
+
+
+            <!-- Clear Button -->
+            <button class="clear-btn" (click)="clearFilter()">Clear All Filters</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 col-md-9 col-12">
+        <!-- Tab Buttons -->
+        <div class="mobsecnew">
+          <div class="mobhowonly">
+            <div class="filterbtn">
+              <a type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+                <img src="assets/images/filter.png" alt="" />
+              </a>
+            </div>
+          </div>
+         <div class="custom-tab-wrapper">
+  <div class="custom-tab-button" [class.active]="selectedTab === 'recommended'"
+       (click)="selectTab('recommended')">
+    Recommended
+  </div>
+  <div class="custom-tab-button" [class.active]="selectedTab === 'cheapest'"
+       (click)="selectTab('cheapest')">
+    Cheapest
+  </div>
+  <div class="custom-tab-button" [class.active]="selectedTab === 'bestseller'"
+       (click)="selectTab('bestseller')">
+    All
+  </div>
+</div>
+        </div>
+
+        <!-- Tab Contents -->
+        <!-- @if(selectedTab === 'recommended'){ -->
+        <div  class="tab-content-box active" >
+          <div class="promo-card">
+            <img src="https://img.freepik.com/free-photo/hotel-building-night-time_1127-3210.jpg" alt="Hotel Kolkata"
+              class="promo-img" />
+            <div class="promo-content">
+              <p class="promo-title">Sign In, save up to 50%!</p>
+              <p class="promo-text">
+                Enjoy exclusive rates in Kolkata just for you.
+              </p>
+            </div>
+            <button class="promo-btn">Log in</button>
+          </div>
+          @for(property of paginatedProperties;track property.id){
+          <div class="hotel-card">
+            <div class="hotel-img-container">
+              <img [src]="property.image" alt="Hotel View" />
+              <div class="hotel-img-badge">9 images</div>
+            </div>
+
+            <div class="hotel-details">
+              <div class="d-flex justify-content-between flex-wrap">
+                <div class="hotelnamebox">
+                  <h5 class="hotel-title">{{property?.name}}</h5>
+                  <div class="locatbox">
+                    <p class="hotel-location">
+                      <i class="fa-solid fa-location-dot"></i>{{property.line1}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="hotel-metamain-box">
+                <div class="hotel-metasub-box">
+                  <div class="hotel-meta">
+                    <span class="starclass" style="color: #0071e9"> <p-rating [readonly]="true"
+                        [ngModel]="property.rating" /> </span>
+                    {{property.rating}} Star Hotel
+                    <span class="Aminitiesbox"><svg width="15" height="13" viewBox="0 0 15 13" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M13.3583 0.290527H2.38329C2.24468 0.290527 2.11175 0.345589 2.01374 0.443599C1.91573 0.541609 1.86067 0.674539 1.86067 0.813146V7.08457C1.86162 7.91593 2.19229 8.71295 2.78015 9.30081C3.368 9.88866 4.16503 10.2193 4.99638 10.2203H8.65471C9.48607 10.2193 10.2831 9.88866 10.8709 9.30081C11.4588 8.71295 11.7895 7.91593 11.7904 7.08457V4.47148H12.3784C12.9153 4.47087 13.43 4.25732 13.8097 3.87766C14.1894 3.498 14.4029 2.98325 14.4035 2.44633V1.33577C14.4035 1.05855 14.2934 0.792691 14.0974 0.59667C13.9014 0.40065 13.6355 0.290527 13.3583 0.290527V0.290527ZM13.3583 2.44633C13.3583 2.70622 13.255 2.95546 13.0713 3.13923C12.8875 3.323 12.6383 3.42624 12.3784 3.42624H11.7904V1.33577H13.3583V2.44633ZM12.313 11.2655H1.33805C1.19944 11.2655 1.06651 11.3206 0.968501 11.4186C0.870491 11.5166 0.81543 11.6495 0.81543 11.7881C0.81543 11.9268 0.870491 12.0597 0.968501 12.1577C1.06651 12.2557 1.19944 12.3108 1.33805 12.3108H12.313C12.4517 12.3108 12.5846 12.2557 12.6826 12.1577C12.7806 12.0597 12.8357 11.9268 12.8357 11.7881C12.8357 11.6495 12.7806 11.5166 12.6826 11.4186C12.5846 11.3206 12.4517 11.2655 12.313 11.2655Z"
+                          fill="#112211" />
+                      </svg>
+                      <strong>{{property?.fare?.amenities?.length}}</strong> Amenities</span>
+                  </div>
+
+                  <div class="hotel-meta">
+                    <span class="hotel-rating">{{property?.review?.score || 0}}</span>
+                    <span class="hotel-review-text">{{property?.review?.description}}</span>
+                    <span>{{property?.review?.count || 0}} reviews</span>
+                  </div>
+                </div>
+                <div class="hotel-price">
+                  <span>starting from</span><br />
+                  <span class="amount"> {{property?.fare?.base | currency:property?.fare?.currency:'symbol':'1.0-0'
+                    }}/night</span><br />
+                  <small>excl. tax</small>
+                </div>
+              </div>
+              <hr />
+              <div class="hotel-footer">
+                <button class="hotel-wishlist-btn">
+                  <i class="fa-solid fa-heart"></i>
+                </button>
+                <button class="hotel-action-btn" (click)="navigateToDetails(property)">
+                  View Place
+                </button>
+              </div>
+            </div>
+          </div>
+          }
+
+          <!-- <p-paginator 
+  [rows]="itemsPerPage" 
+  [totalRecords]="filteredProperties.length" 
+  [(first)]="first" 
+  (onPageChange)="onPageChange($event)">
+</p-paginator> -->
+          <p-paginator (onPageChange)="onPageChange($event)" [first]="first" [rows]="itemsPerPage"
+            [totalRecords]="filteredProperties.length" />
+
+
+          <div class="offer-box shadow rounded">
+            <div class="offer-image">
+              <img src="assets/images/flight-details/export.png" alt="Santorini" />
+            </div>
+            <div class="offer-content">
+              <h5>
+                Summer travel savings. Save up to $3,416.40* on our fees on
+                flights.
+              </h5>
+              <div class="input-group mb-2">
+                <input type="email" class="form-control" placeholder="Email Address" />
+                <button class="btn btn-primary">Send</button>
+              </div>
+              <div class="small-text">Lorem Ipsum has been</div>
+            </div>
+          </div>
+
+          <div class="card-custom-bottom-details">
+            <div class="card-custom d-flex flex-row">
+              <div class="col-md-4">
+                <img src="assets/images/flight-details/export2.png" alt="Hotel Image" />
+              </div>
+              <div class="col-md-8 d-flex align-items-center">
+                <div class="card-body-custom">
+                  <h5 class="fw-semibold mb-2">
+                    Lorem Ipsum has been the industry's standard
+                  </h5>
+                  <p class="mb-3">
+                    Lorem Ipsum has been the industry's standard
+                  </p>
+                  <a class="btn btn-primary-custom">Search Flight + Hotel</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      <!-- } -->
+      
+      </div>
+      <div class="col-lg-2 col-md-3 col-12">
+        <div class="filterstickybox">
+          <div class="hotel-booking-card-container" style="
+              background: linear-gradient(
+                  rgba(0, 0, 0, 0.5),
+                  rgba(0, 0, 0, 0.7)
+                ),
+                url('assets/images/back2.png');
+            ">
+            <div class="main-content-wrapper">
+              <div class="title-section-area">
+                <h1 class="primary-heading-text">Lorem Ipsum<br />is simply</h1>
+                <p class="description-subtitle-text">
+                  Lorem Ipsum is simply Lorem Ipsum is simply
+                </p>
+              </div>
+
+              <div class="agent-contact-section">
+                <div class="profile-image-circle" style="background: url(assets/images/person.png)"></div>
+                <div class="phone-number-display">(000)000-0000</div>
+                <div class="availability-text-info">Available 24/7</div>
+              </div>
+
+              <button class="search-button-cta">Search for Cruise</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- === List all  End == -->
+
+<!-- === Filter modal  start == -->
+<p-drawer #drawerRef [(visible)]="visible" header="Drawer">
+  <ng-template #headless>
+    <div class="offcanvas show offcanvas-start filtercanvas" tabindex="-1" id="offcanvasLeft"
+      aria-labelledby="offcanvasLeftLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Filter by</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"
+          (click)="closeCallback($event)"></button>
+      </div>
+      <div class="offcanvas-body">
+        <div class="row justify-content-center p-2">
+          <!-- === === -->
+          <div class="map-card-container">
+            <div class="iframe-map-wrapper">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.009529291052!2d28.98426737590151!3d41.03517791738545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab76f10817b13%3A0xa57b1b63f7eeb1ab!2sTaksim%20Square!5e0!3m2!1sen!2str!4v1718963463734!5m2!1sen!2str"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="map-card-footer">
+              <a target="_blank">View in a map</a>
+            </div>
+          </div>
+          <div class="filter-container">
+            <!-- Search Section -->
+            <h3 class="filter-title">Search by property names</h3>
+            <div class="search-input-group">
+              <input type="text" class="search-input" placeholder="e.g. Marriott" />
+              <button class="search-btn">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+
+            <!-- Filter By -->
+            <div class="filter-section">
+              <h3 class="filter-title">Filter by</h3>
+              <p class="filter-subtitle">458 results found</p>
+            </div>
+
+            <!-- Popular Filters -->
+            <div class="filter-section">
+              <h4 class="filter-title">Popular Filters</h4>
+              <div class="checkbox-item">
+                <input type="checkbox" id="refundable" />
+                <label for="refundable">Refundable</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="book-now" />
+                <label for="book-now">Book Now, Pay Later</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="breakfast" />
+                <label for="breakfast">Breakfast Included</label>
+              </div>
+              <a class="show-more">Show More <i class="fa-solid fa-angle-down"></i></a>
+            </div>
+
+            <!-- Stay Options -->
+            <div class="filter-section">
+              <h4 class="filter-title">Stay options</h4>
+              <div class="checkbox-item">
+                <input type="checkbox" id="any" />
+                <label for="any">Any</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="hotels" />
+                <label for="hotels">Hotels</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="homes" />
+                <label for="homes">House</label>
+              </div>
+            </div>
+
+            <!-- Neighbourhood -->
+            <!-- <div class="filter-section">
+              <h4 class="filter-title">Neighbourhood</h4>
+              <div class="checkbox-item">
+                <input type="checkbox" id="delhi" />
+                <label for="delhi">Delhi (And Vicinity)</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="aerocity" />
+                <label for="aerocity">Aerocity</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="connaught" />
+                <label for="connaught">Connaught Place</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="noida" />
+                <label for="noida">Noida</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="paharganj" />
+                <label for="paharganj">Paharganj</label>
+              </div>
+            </div> -->
+
+            <!-- Price Range -->
+            <div class="filter-section">
+              <h4 class="filter-title">Price Range</h4>
+              <div class="price-range-container">
+                <div class="price-slider-wrapper">
+                  <input type="range" class="price-range-input" min="500" max="20000" value="500" id="priceSlider" />
+                </div>
+
+                <div class="price-display">
+                  <span class="price-label">Between</span>
+                  <input type="text" id="minPrice" value="$ 500" readonly />
+                  <span>-</span>
+                  <input type="text" id="maxPrice" value="$ 20000" readonly />
+                </div>
+              </div>
+            </div>
+
+            <!-- Star Rating -->
+            <div class="filter-section">
+              <h4 class="filter-title">Star rating</h4>
+              <div class="star-rating">
+                <span class="star active"> 1 <small>★</small> </span>
+                <span class="star">2<small>★</small></span>
+                <span class="star">3<small>★</small></span>
+                <span class="star">4<small>★</small></span>
+                <span class="star">5<small>★</small></span>
+              </div>
+            </div>
+
+            <!-- Cancellation Policy -->
+            <div class="filter-section">
+              <h4 class="filter-title">Cancellation Policy</h4>
+              <div class="checkbox-item">
+                <input type="checkbox" id="refundable-cancel" />
+                <label for="refundable-cancel">Refundable</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="book-now-cancel" />
+                <label for="book-now-cancel">Book Now, Pay Later</label>
+              </div>
+            </div>
+
+            <!-- Amenities -->
+            <div class="filter-section">
+              <h4 class="filter-title">Amenities</h4>
+              <div class="checkbox-item">
+                <input type="checkbox" id="breakfast-amenity" />
+                <label for="breakfast-amenity">Breakfast Included</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="parking" />
+                <label for="parking">Parking</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="gym" />
+                <label for="gym">Gym</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="wifi" />
+                <label for="wifi">WiFi</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="pets" />
+                <label for="pets">Pets Allowed</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="pool" />
+                <label for="pool">Swimming Pool</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="bar" />
+                <label for="bar">Bar</label>
+              </div>
+              <a class="show-more">Show More <i class="fa-solid fa-angle-down"></i></a>
+            </div>
+
+            <!-- Clear Button -->
+            <button class="clear-btn">Clear All Filters</button>
+          </div>
+          <!-- === === -->
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-drawer>
+<!-- === Filter modal   End == -->

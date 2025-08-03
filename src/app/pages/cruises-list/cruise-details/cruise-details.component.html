@@ -1,0 +1,1825 @@
+<div class="main-containt mob-main">
+  <section class="top-cruise-detail">
+    <div class="container container-xxl">
+      <div class="cruise-card">
+        <div class="cruise-left">
+          <div>
+            <h5>Navigator of the Seas</h5>
+            <img
+              src="assets/images/cruise-details/cruise-logo.png"
+              alt="Royal Caribbean"
+              class="cruise-logo"
+            />
+          </div>
+          <div class="cruise-content">
+            <h6>2 Night Weekend Getaway</h6>
+            <p>Navigator of the Seas</p>
+            <hr class="my-2" />
+            <div class="cruise-destination">
+              Roundtrip: from Singapore, Republic Of Singapore
+            </div>
+          </div>
+        </div>
+        <div class="cruise-right">
+          <div>
+            <div class="cruise-note">starting from</div>
+            <div class="cruise-price">$ 2,34,589/night</div>
+            <div class="cruise-note">excl. tax</div>
+          </div>
+          <button class="btn btn-orange select-button" (click)="navigateToPayment()">Select Dates Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bottom-cruise-detail">
+    <div class="container container-xxl py-4">
+      <div class="row">
+        <div class="col-lg-9">
+          <div class="bottom-cruise-detail-top">
+            <div class="row mb-3 gx-2 bottom-cruise-detail-top-img">
+              <div class="col-md-8 bottom-cruise-detail-col">
+                <a
+                  href="assets/images/cruise-details/cruise1.jpg"
+                  data-fancybox="gallery"
+                  ><img
+                    src="assets/images/cruise-details/cruise1.jpg"
+                    class="img-fluid rounded"
+                    alt="Cruise"
+                /></a>
+              </div>
+              <div class="col-md-4 bottom-cruise-detail-col d-flex gap-2">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="image-container">
+                      <a
+                        href="assets/images/cruise-details/cruise2.jpg"
+                        data-fancybox="gallery"
+                        ><img
+                          src="assets/images/cruise-details/cruise2.jpg"
+                          class="img-fluid rounded"
+                          alt="View1"
+                      /></a>
+                    </div>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="image-container">
+                      <a
+                        href="assets/images/cruise-details/cruise3.jpg"
+                        data-fancybox="gallery"
+                        ><img
+                          src="assets/images/cruise-details/cruise3.jpg"
+                          class="img-fluid rounded"
+                          alt="View2"
+                      /></a>
+                      <a
+                        href="assets/images/cruise-details/cruise3.jpg"
+                        data-fancybox="gallery"
+                        ><span class="more-images-btn">More Images</span></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Nav Tabs -->
+            <div class="position-relative">
+              <div class="filterbtn intenary-filter">
+                <a
+                  (click)="visible = true"
+                  type="button"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasLeft"
+                  aria-controls="offcanvasLeft"
+                >
+                  <img src="assets/images/filter.png" alt="" />
+                </a>
+              </div>
+              <ul
+                class="nav nav-tabs mb-4 bottom-cruise-detail-tab"
+                id="cruiseTabs"
+                role="tablist"
+              >
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link active"
+                    [class.active]="selectedTab === 'sailing'"
+                    (click)="selectTab('sailing')"
+                    id="sailing-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#sailing"
+                    type="button"
+                    role="tab"
+                  >
+                    Sailing Date
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    [class.active]="selectedTab === 'staterooms'"
+                    (click)="selectTab('staterooms')"
+                    id="staterooms-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#staterooms"
+                    type="button"
+                    role="tab"
+                  >
+                    Staterooms
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    [class.active]="selectedTab === 'onboard'"
+                    (click)="selectTab('onboard')"
+                    id="onboard-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#onboard"
+                    type="button"
+                    role="tab"
+                  >
+                    Onboard Experience
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    [class.active]="selectedTab === 'deck'"
+                    (click)="selectTab('deck')"
+                    id="deck-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#deck"
+                    type="button"
+                    role="tab"
+                  >
+                    Deck Plans
+                  </button>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content" id="cruiseTabsContent">
+              <!-- Tab 1 -->
+
+              <div
+                class="tab-pane fade"
+                [class.active]="selectedTab === 'sailing'"
+                [class.show]="selectedTab === 'sailing'"
+                id="sailing"
+                role="tabpanel"
+              >
+                <div class="cruise-price-details-content-wrap">
+                  <div class="cpd-price-details-part">
+                    <div class="cpd-price-details-part-row">
+                      <div
+                        class="cpd-price-details-part-box cpd-month-select-column"
+                      >
+                        <div class="cpd-price-details-part-box-inner w-100">
+                          <div class="cpd-month-select-wrap">
+                            <select name="" class="cpd-form-select form-select">
+                              <option>Select Month</option>
+                              <option>January</option>
+                              <option>February</option>
+                              <option>March</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="cpd-price-details-element-content-wrap">
+                        <div class="cpd-price-details-part-box">
+                          <div class="cpd-price-details-part-box-inner">
+                            <span class="cpd-price-details-part-title">
+                              Interior
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              from
+                              <span class="cpd-booking-price-amount">$216</span>
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              avg price per person
+                            </span>
+                          </div>
+                        </div>
+                        <div class="cpd-price-details-part-box">
+                          <div class="cpd-price-details-part-box-inner">
+                            <span class="cpd-price-details-part-title">
+                              Interior
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              from
+                              <span class="cpd-booking-price-amount">$216</span>
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              avg price per person
+                            </span>
+                          </div>
+                        </div>
+                        <div class="cpd-price-details-part-box">
+                          <div class="cpd-price-details-part-box-inner">
+                            <span class="cpd-price-details-part-title">
+                              Interior
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              from
+                              <span class="cpd-booking-price-amount">$216</span>
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              avg price per person
+                            </span>
+                          </div>
+                        </div>
+                        <div class="cpd-price-details-part-box">
+                          <div class="cpd-price-details-part-box-inner">
+                            <span class="cpd-price-details-part-title">
+                              Oceanview
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              from
+                              <span class="cpd-booking-price-amount">$216</span>
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              avg price per person
+                            </span>
+                          </div>
+                        </div>
+                        <div
+                          class="cpd-price-details-part-box bonus-offer-btn-wrap"
+                        >
+                          <div
+                            class="cpd-price-details-part-box-inner collapse-btn d-flex align-items-center flex-row cpdDropdowTrigger"
+                            (click)="showBonusOffers = !showBonusOffers"
+                          >
+                            <span
+                              class="cpd-bonus-offer-label cpd-bonus-offer-dropdown"
+                            >
+                              {{ showBonusOffers ? 'Hide Bonus Offer' : 'Show Bonus Offer' }}
+                            </span>
+                            <span class="cpd-bonus-offer-icon">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="22"
+                                height="22"
+                                viewBox="0 0 24 24"
+                                [style.transform]="showBonusOffers ? 'rotate(180deg)' : 'rotate(0deg)'"
+                                style="transition: transform 0.3s;"
+                              >
+                                <path
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="1.5"
+                                  d="m7 10l5 5l5-5"
+                                />
+                              </svg>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cpd-price-details-part-row">
+                      <div
+                        class="cpd-price-details-part-box cpd-date-select-column"
+                      >
+                        <div class="cpd-price-details-part-box-inner">
+                          <h3 class="cpd-booking-month-label">
+                            November 27, 2026 through-November 29, 2026
+                          </h3>
+                          <p class="cpd-booking-month-description">
+                            Friday-through-Sunday
+                          </p>
+                        </div>
+                      </div>
+                      <div class="cpd-price-details-element-content-wrap">
+                        <div class="cpd-price-details-part-box">
+                          <div class="cpd-price-details-part-box-inner">
+                            <span class="cpd-price-details-part-title">
+                              Balcony
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              from
+                              <span class="cpd-booking-price-amount">$216</span>
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              avg price per person
+                            </span>
+                          </div>
+                        </div>
+                        <div class="cpd-price-details-part-box">
+                          <div class="cpd-price-details-part-box-inner">
+                            <span class="cpd-price-details-part-title">
+                              Interior
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              from
+                              <span class="cpd-booking-price-amount">$216</span>
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              avg price per person
+                            </span>
+                          </div>
+                        </div>
+                        <div class="cpd-price-details-part-box">
+                          <div class="cpd-price-details-part-box-inner">
+                            <span class="cpd-price-details-part-title">
+                              Interior
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              from
+                              <span class="cpd-booking-price-amount">$216</span>
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              avg price per person
+                            </span>
+                          </div>
+                        </div>
+                        <div class="cpd-price-details-part-box">
+                          <div class="cpd-price-details-part-box-inner">
+                            <span class="cpd-price-details-part-title">
+                              Interior
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              from
+                              <span class="cpd-booking-price-amount">$216</span>
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              avg price per person
+                            </span>
+                          </div>
+                        </div>
+                        <div class="cpd-price-details-part-box select-btn-wrap">
+                          <div
+                            class="cpd-price-details-part-box-inner d-flex align-items-center flex-row"
+                          >
+                            <a
+                              href="javascript:void(0);"
+                              class="cpd-bonus-offer-btn"
+                              >Select</a
+                            >
+                          </div>
+                        </div>
+                        <div
+                          class="w-100 cpd-dropdown-content-wrap cpdCollapseDropdownPanel"
+                           [class.open]="showBonusOffers"
+                          [class.closed]="!showBonusOffers"
+                        >
+                          <div class="cpd-dropdown-content-body">
+                            <h5 class="cpd-dropdown-content-title">
+                              Rewards & Bonus Offers:
+                            </h5>
+                            <ul class="cpd-dropdown-content-list">
+                              <li>
+                                Cruises.com Rewards = Free Cash! Double points:
+                                Earn 20 points per $1 spent - 3 days left!
+                              </li>
+                              <li>Up to $50 Bonus Savings - Call</li>
+                              <li>60% Off Second Guest</li>
+                              <li>
+                                48-Hour Flash Sale: Up to $325 Instant Savings -
+                                Ends tomorrow!
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cpd-price-details-part-row">
+                      <div
+                        class="cpd-price-details-part-box cpd-date-select-column"
+                      >
+                        <div class="cpd-price-details-part-box-inner">
+                          <h3 class="cpd-booking-month-label">
+                            March 26, 2027 through-March 28, 2027
+                          </h3>
+                          <p class="cpd-booking-month-description">
+                            Friday-through-Sunday
+                          </p>
+                        </div>
+                      </div>
+                      <div class="cpd-price-details-element-content-wrap">
+                        <div class="cpd-price-details-part-box">
+                          <div class="cpd-price-details-part-box-inner">
+                            <span class="cpd-price-details-part-title">
+                              Balcony
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              from
+                              <span class="cpd-booking-price-amount">$216</span>
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              avg price per person
+                            </span>
+                          </div>
+                        </div>
+                        <div class="cpd-price-details-part-box">
+                          <div class="cpd-price-details-part-box-inner">
+                            <span class="cpd-price-details-part-title">
+                              Interior
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              from
+                              <span class="cpd-booking-price-amount">$216</span>
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              avg price per person
+                            </span>
+                          </div>
+                        </div>
+                        <div class="cpd-price-details-part-box">
+                          <div class="cpd-price-details-part-box-inner">
+                            <span class="cpd-price-details-part-title">
+                              Interior
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              from
+                              <span class="cpd-booking-price-amount">$216</span>
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              avg price per person
+                            </span>
+                          </div>
+                        </div>
+                        <div class="cpd-price-details-part-box">
+                          <div class="cpd-price-details-part-box-inner">
+                            <span class="cpd-price-details-part-title">
+                              Interior
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              from
+                              <span class="cpd-booking-price-amount">$216</span>
+                            </span>
+                            <span class="cpd-price-details-part-title">
+                              avg price per person
+                            </span>
+                          </div>
+                        </div>
+                        <div class="cpd-price-details-part-box select-btn-wrap">
+                          <div
+                            class="cpd-price-details-part-box-inner d-flex align-items-center flex-row"
+                          >
+                            <a
+                              href="javascript:void(0);"
+                              class="cpd-bonus-offer-btn"
+                              >Select</a
+                            >
+                          </div>
+                        </div>
+                        <div
+                          class="w-100 cpd-dropdown-content-wrap cpdCollapseDropdownPanel"
+                          [class.open]="showBonusOffers"
+                          [class.closed]="!showBonusOffers"
+                        >
+                          <div class="cpd-dropdown-content-body">
+                            <h5 class="cpd-dropdown-content-title">
+                              Rewards & Bonus Offers:
+                            </h5>
+                            <ul class="cpd-dropdown-content-list">
+                              <li>
+                                Cruises.com Rewards = Free Cash! Double points:
+                                Earn 20 points per $1 spent - 3 days left!
+                              </li>
+                              <li>Up to $50 Bonus Savings - Call</li>
+                              <li>60% Off Second Guest</li>
+                              <li>
+                                48-Hour Flash Sale: Up to $325 Instant Savings -
+                                Ends tomorrow!
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tab 2 -->
+              <div
+                class="tab-pane fade"
+                [class.active]="selectedTab === 'staterooms'"
+                [class.show]="selectedTab === 'staterooms'"
+                id="staterooms"
+                role="tabpanel"
+              >
+                <div class="swit">
+                  <div class="swit-header">
+                    <h2 class="mb-4">Suite</h2>
+                  </div>
+                  <div class="swit-main">
+                    <div class="mb-5 border-bottom pb-4 swit-main-box">
+                      <div class="row">
+                        <div class="col-md-9">
+                          <h4>Royal Suite - 1 Bedroom</h4>
+                          <div class="suite-description">
+                            <p>
+                              <strong>Deck:</strong> Deck 10 &nbsp;
+                              <strong>Category:</strong> RS
+                            </p>
+                            <p>
+                              <strong>Size:</strong> 1066 sq. ft.;
+                              <strong>Balcony:</strong> 211 sq. ft.
+                            </p>
+                            <p><strong>Occupancy:</strong> Up to 4 guests</p>
+                            <p>
+                              <strong>Amenities:</strong>  A separate bedroom
+                              with king-sized bed, private balcony with hot tub,
+                              living room with double sofa bed, dining table,
+                              baby grand piano, entertainment center, wet bar,
+                              private bathroom with whirlpool tub and shower,
+                              vanity area, walk-in closet, mini-bar, flat-screen
+                              TV, mini-safe, radio, telephone, and a hairdryer.
+                              Additional suite amenities include dedicated
+                              check-in lines at embarkation and priority
+                              departure with exclusive suite departure lounge,
+                              reserved VIP seating in the main theater for
+                              entertainment shows and priority bookings for
+                              appointments in the salon and spa, as well as for
+                              tendering and shore excursion tickets, access to
+                              Barefoot Beach in Labadee, complimentary 24-hour
+                              room service, access to the Concierge Club with
+                              concierge assistance, welcome bottle of Chandon,
+                              still water, and sparkling water, welcome fruit
+                              plate, luxury bathrobes for use onboard, exclusive
+                              bath amenities, pillow menu, and more.
+                            </p>
+                            <p>
+                              <strong>Smoking Policy:</strong> Smoking is not
+                              permitted in staterooms or on balconies.
+                            </p>
+                          </div>
+                          <a
+                            href="javascript:void(0);"
+                            onclick="toggleDescription(this)"
+                            class="d-md-none"
+                            >Read More</a
+                          >
+                        </div>
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/image1.png"
+                            class="img-fluid rounded"
+                            alt="Royal Suite"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-5 border-bottom pb-4 swit-main-box">
+                      <div class="row">
+                        <div class="col-md-9">
+                          <h4>Owner's Suite - 1 Bedroom</h4>
+                          <div class="suite-description">
+                            <p>
+                              <strong>Deck:</strong> Deck 10 &nbsp;
+                              <strong>Category:</strong> RS
+                            </p>
+                            <p>
+                              <strong>Size:</strong> 1066 sq. ft.;
+                              <strong>Balcony:</strong> 211 sq. ft.
+                            </p>
+                            <p><strong>Occupancy:</strong> Up to 4 guests</p>
+                            <p>
+                              <strong>Amenities:</strong>  A separate bedroom
+                              with king-sized bed, private balcony with hot tub,
+                              living room with double sofa bed, dining table,
+                              baby grand piano, entertainment center, wet bar,
+                              private bathroom with whirlpool tub and shower,
+                              vanity area, walk-in closet, mini-bar, flat-screen
+                              TV, mini-safe, radio, telephone, and a hairdryer.
+                              Additional suite amenities include dedicated
+                              check-in lines at embarkation and priority
+                              departure with exclusive suite departure lounge,
+                              reserved VIP seating in the main theater for
+                              entertainment shows and priority bookings for
+                              appointments in the salon and spa, as well as for
+                              tendering and shore excursion tickets, access to
+                              Barefoot Beach in Labadee, complimentary 24-hour
+                              room service, access to the Concierge Club with
+                              concierge assistance, welcome bottle of Chandon,
+                              still water, and sparkling water, welcome fruit
+                              plate, luxury bathrobes for use onboard, exclusive
+                              bath amenities, pillow menu, and more.
+                            </p>
+                            <p>
+                              <strong>Smoking Policy:</strong> Smoking is not
+                              permitted in staterooms or on balconies.
+                            </p>
+                          </div>
+                          <a
+                            href="javascript:void(0);"
+                            onclick="toggleDescription(this)"
+                            class="d-md-none"
+                            >Read More</a
+                          >
+                        </div>
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/image1.png"
+                            class="img-fluid rounded"
+                            alt="Owner Suite"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-5 border-bottom pb-4 swit-main-box">
+                      <div class="row">
+                        <div class="col-md-9">
+                          <h4>Owner's Suite - 1 Bedroom</h4>
+                          <div class="suite-description">
+                            <p>
+                              <strong>Deck:</strong> Deck 10 &nbsp;
+                              <strong>Category:</strong> RS
+                            </p>
+                            <p>
+                              <strong>Size:</strong> 1066 sq. ft.;
+                              <strong>Balcony:</strong> 211 sq. ft.
+                            </p>
+                            <p><strong>Occupancy:</strong> Up to 4 guests</p>
+                            <p>
+                              <strong>Amenities:</strong>  A separate bedroom
+                              with king-sized bed, private balcony with hot tub,
+                              living room with double sofa bed, dining table,
+                              baby grand piano, entertainment center, wet bar,
+                              private bathroom with whirlpool tub and shower,
+                              vanity area, walk-in closet, mini-bar, flat-screen
+                              TV, mini-safe, radio, telephone, and a hairdryer.
+                              Additional suite amenities include dedicated
+                              check-in lines at embarkation and priority
+                              departure with exclusive suite departure lounge,
+                              reserved VIP seating in the main theater for
+                              entertainment shows and priority bookings for
+                              appointments in the salon and spa, as well as for
+                              tendering and shore excursion tickets, access to
+                              Barefoot Beach in Labadee, complimentary 24-hour
+                              room service, access to the Concierge Club with
+                              concierge assistance, welcome bottle of Chandon,
+                              still water, and sparkling water, welcome fruit
+                              plate, luxury bathrobes for use onboard, exclusive
+                              bath amenities, pillow menu, and more.
+                            </p>
+                            <p>
+                              <strong>Smoking Policy:</strong> Smoking is not
+                              permitted in staterooms or on balconies.
+                            </p>
+                          </div>
+                          <a
+                            href="javascript:void(0);"
+                            onclick="toggleDescription(this)"
+                            class="d-md-none"
+                            >Read More</a
+                          >
+                        </div>
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/image1.png"
+                            class="img-fluid rounded"
+                            alt="Owner Suite"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-5 border-bottom pb-4 swit-main-box">
+                      <div class="row">
+                        <div class="col-md-9">
+                          <h4>Owner's Suite - 1 Bedroom</h4>
+                          <div class="suite-description">
+                            <p>
+                              <strong>Deck:</strong> Deck 10 &nbsp;
+                              <strong>Category:</strong> RS
+                            </p>
+                            <p>
+                              <strong>Size:</strong> 1066 sq. ft.;
+                              <strong>Balcony:</strong> 211 sq. ft.
+                            </p>
+                            <p><strong>Occupancy:</strong> Up to 4 guests</p>
+                            <p>
+                              <strong>Amenities:</strong>  A separate bedroom
+                              with king-sized bed, private balcony with hot tub,
+                              living room with double sofa bed, dining table,
+                              baby grand piano, entertainment center, wet bar,
+                              private bathroom with whirlpool tub and shower,
+                              vanity area, walk-in closet, mini-bar, flat-screen
+                              TV, mini-safe, radio, telephone, and a hairdryer.
+                              Additional suite amenities include dedicated
+                              check-in lines at embarkation and priority
+                              departure with exclusive suite departure lounge,
+                              reserved VIP seating in the main theater for
+                              entertainment shows and priority bookings for
+                              appointments in the salon and spa, as well as for
+                              tendering and shore excursion tickets, access to
+                              Barefoot Beach in Labadee, complimentary 24-hour
+                              room service, access to the Concierge Club with
+                              concierge assistance, welcome bottle of Chandon,
+                              still water, and sparkling water, welcome fruit
+                              plate, luxury bathrobes for use onboard, exclusive
+                              bath amenities, pillow menu, and more.
+                            </p>
+                            <p>
+                              <strong>Smoking Policy:</strong> Smoking is not
+                              permitted in staterooms or on balconies.
+                            </p>
+                          </div>
+                          <a
+                            href="javascript:void(0);"
+                            onclick="toggleDescription(this)"
+                            class="d-md-none"
+                            >Read More</a
+                          >
+                        </div>
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/image1.png"
+                            class="img-fluid rounded"
+                            alt="Owner Suite"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-5 border-bottom pb-4 swit-main-box">
+                      <div class="row">
+                        <div class="col-md-9">
+                          <h4>Owner's Suite - 1 Bedroom</h4>
+                          <div class="suite-description">
+                            <p>
+                              <strong>Deck:</strong> Deck 10 &nbsp;
+                              <strong>Category:</strong> RS
+                            </p>
+                            <p>
+                              <strong>Size:</strong> 1066 sq. ft.;
+                              <strong>Balcony:</strong> 211 sq. ft.
+                            </p>
+                            <p><strong>Occupancy:</strong> Up to 4 guests</p>
+                            <p>
+                              <strong>Amenities:</strong>  A separate bedroom
+                              with king-sized bed, private balcony with hot tub,
+                              living room with double sofa bed, dining table,
+                              baby grand piano, entertainment center, wet bar,
+                              private bathroom with whirlpool tub and shower,
+                              vanity area, walk-in closet, mini-bar, flat-screen
+                              TV, mini-safe, radio, telephone, and a hairdryer.
+                              Additional suite amenities include dedicated
+                              check-in lines at embarkation and priority
+                              departure with exclusive suite departure lounge,
+                              reserved VIP seating in the main theater for
+                              entertainment shows and priority bookings for
+                              appointments in the salon and spa, as well as for
+                              tendering and shore excursion tickets, access to
+                              Barefoot Beach in Labadee, complimentary 24-hour
+                              room service, access to the Concierge Club with
+                              concierge assistance, welcome bottle of Chandon,
+                              still water, and sparkling water, welcome fruit
+                              plate, luxury bathrobes for use onboard, exclusive
+                              bath amenities, pillow menu, and more.
+                            </p>
+                            <p>
+                              <strong>Smoking Policy:</strong> Smoking is not
+                              permitted in staterooms or on balconies.
+                            </p>
+                          </div>
+                          <a
+                            href="javascript:void(0);"
+                            onclick="toggleDescription(this)"
+                            class="d-md-none"
+                            >Read More</a
+                          >
+                        </div>
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/image1.png"
+                            class="img-fluid rounded"
+                            alt="Owner Suite"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Tab 3 -->
+              <div
+                class="tab-pane fade"
+                [class.active]="selectedTab === 'onboard'"
+                [class.show]="selectedTab === 'onboard'"
+                id="onboard"
+                role="tabpanel"
+              >
+                <div class="swit">
+                  <div class="swit-header">
+                    <h2 class="mb-4">
+                      Onboard Experience: Royal Caribbean's Navigator of the
+                      Seas
+                    </h2>
+                  </div>
+                  <div class="swit-main info-block-box">
+                    <h2 class="section-title">Dining</h2>
+                    <div class="info-block-parent">
+                      <div class="sec-hed">
+                        <h5>My Time Dining (Main Dining Room)</h5>
+                      </div>
+                      <div class="info-block row">
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/onboard1.jpg"
+                            alt="My Time Dining"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <div class="col-md-9">
+                          <div class="info-block-txt">
+                            <p>
+                              My Time Dining is Royal Caribbean's flexible
+                              dining option that allows you to choose when you
+                              dine and who you dine with, all while enjoying
+                              seating in the ship's main dining room; order from
+                              the same dinner menu and enjoy the same impeccable
+                              Gold Anchor Service for which Royal Caribbean is
+                              known. It's easy to enjoy My Time Dining - make
+                              your pre-reservation ahead of time, reserve
+                              onboard or simply walk in!
+                            </p>
+                            <ul>
+                              <li>
+                                <strong>Seating Times:</strong> 6:00 – 9:30 PM
+                              </li>
+                              <li>
+                                <strong>Dress:</strong> Smart casual attire. On
+                                formal evenings, formal attire is appropriate in
+                                the restaurant, which includes suits and ties or
+                                tuxedos for men and dresses for women. On couple
+                                of nights, semi-formal attire is permitted.
+                                Swimwear, shorts and jeans are not permitted.
+                              </li>
+                              <li>
+                                <strong>Costs:</strong> Food included in the
+                                cost of your cruise; specialty drinks, alcoholic
+                                beverages, bottled water, beer, wine and soft
+                                drinks are at current menu pricing. Prepaid
+                                gratuities are required to participate in My
+                                Time Dining - this includes tips for your
+                                waiter, assistant waiter, head waiter and
+                                stateroom
+                              </li>
+                              <li>
+                                Reservations are recommended in order to avoid a
+                                delay in seating (reservations will be taken
+                                once onboard).
+                              </li>
+                            </ul>
+                            <a
+                              href="javascript:void(0);"
+                              onclick="toggleInfoBlock(this)"
+                              class="d-md-none"
+                              >Read More</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="info-block-parent">
+                      <div class="sec-hed">
+                        <h5>My Family Time Dining</h5>
+                      </div>
+                      <div class="info-block row">
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/onboard1.jpg"
+                            alt="My Time Dining"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <div class="col-md-9">
+                          <div class="info-block-txt">
+                            <p>
+                              My Time Dining is Royal Caribbean's flexible
+                              dining option that allows you to choose when you
+                              dine and who you dine with, all while enjoying
+                              seating in the ship's main dining room; order from
+                              the same dinner menu and enjoy the same impeccable
+                              Gold Anchor Service for which Royal Caribbean is
+                              known. It's easy to enjoy My Time Dining - make
+                              your pre-reservation ahead of time, reserve
+                              onboard or simply walk in!
+                            </p>
+                            <ul>
+                              <li>
+                                <strong>Seating Times:</strong> 6:00 – 9:30 PM
+                              </li>
+                              <li>
+                                <strong>Dress:</strong> Smart casual attire. On
+                                formal evenings, formal attire is appropriate in
+                                the restaurant, which includes suits and ties or
+                                tuxedos for men and dresses for women. On couple
+                                of nights, semi-formal attire is permitted.
+                                Swimwear, shorts and jeans are not permitted.
+                              </li>
+                              <li>
+                                <strong>Costs:</strong> Food included in the
+                                cost of your cruise; specialty drinks, alcoholic
+                                beverages, bottled water, beer, wine and soft
+                                drinks are at current menu pricing. Prepaid
+                                gratuities are required to participate in My
+                                Time Dining - this includes tips for your
+                                waiter, assistant waiter, head waiter and
+                                stateroom
+                              </li>
+                              <li>
+                                Reservations are recommended in order to avoid a
+                                delay in seating (reservations will be taken
+                                once onboard).
+                              </li>
+                            </ul>
+                            <a
+                              href="javascript:void(0);"
+                              onclick="toggleInfoBlock(this)"
+                              class="d-md-none"
+                              >Read More</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="info-block-parent">
+                      <div class="sec-hed">
+                        <h5>Chef's Table</h5>
+                      </div>
+                      <div class="info-block row">
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/onboard1.jpg"
+                            alt="My Time Dining"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <div class="col-md-9">
+                          <div class="info-block-txt">
+                            <p>
+                              My Time Dining is Royal Caribbean's flexible
+                              dining option that allows you to choose when you
+                              dine and who you dine with, all while enjoying
+                              seating in the ship's main dining room; order from
+                              the same dinner menu and enjoy the same impeccable
+                              Gold Anchor Service for which Royal Caribbean is
+                              known. It's easy to enjoy My Time Dining - make
+                              your pre-reservation ahead of time, reserve
+                              onboard or simply walk in!
+                            </p>
+                            <ul>
+                              <li>
+                                <strong>Seating Times:</strong> 6:00 – 9:30 PM
+                              </li>
+                              <li>
+                                <strong>Dress:</strong> Smart casual attire. On
+                                formal evenings, formal attire is appropriate in
+                                the restaurant, which includes suits and ties or
+                                tuxedos for men and dresses for women. On couple
+                                of nights, semi-formal attire is permitted.
+                                Swimwear, shorts and jeans are not permitted.
+                              </li>
+                              <li>
+                                <strong>Costs:</strong> Food included in the
+                                cost of your cruise; specialty drinks, alcoholic
+                                beverages, bottled water, beer, wine and soft
+                                drinks are at current menu pricing. Prepaid
+                                gratuities are required to participate in My
+                                Time Dining - this includes tips for your
+                                waiter, assistant waiter, head waiter and
+                                stateroom
+                              </li>
+                              <li>
+                                Reservations are recommended in order to avoid a
+                                delay in seating (reservations will be taken
+                                once onboard).
+                              </li>
+                            </ul>
+                            <a
+                              href="javascript:void(0);"
+                              onclick="toggleInfoBlock(this)"
+                              class="d-md-none"
+                              >Read More</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="info-block-parent">
+                      <div class="sec-hed">
+                        <h5>Jamie's Italian by Jamie Oliver - NEW!</h5>
+                      </div>
+                      <div class="info-block row">
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/onboard1.jpg"
+                            alt="My Time Dining"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <div class="col-md-9">
+                          <div class="info-block-txt">
+                            <p>
+                              My Time Dining is Royal Caribbean's flexible
+                              dining option that allows you to choose when you
+                              dine and who you dine with, all while enjoying
+                              seating in the ship's main dining room; order from
+                              the same dinner menu and enjoy the same impeccable
+                              Gold Anchor Service for which Royal Caribbean is
+                              known. It's easy to enjoy My Time Dining - make
+                              your pre-reservation ahead of time, reserve
+                              onboard or simply walk in!
+                            </p>
+                            <ul>
+                              <li>
+                                <strong>Seating Times:</strong> 6:00 – 9:30 PM
+                              </li>
+                              <li>
+                                <strong>Dress:</strong> Smart casual attire. On
+                                formal evenings, formal attire is appropriate in
+                                the restaurant, which includes suits and ties or
+                                tuxedos for men and dresses for women. On couple
+                                of nights, semi-formal attire is permitted.
+                                Swimwear, shorts and jeans are not permitted.
+                              </li>
+                              <li>
+                                <strong>Costs:</strong> Food included in the
+                                cost of your cruise; specialty drinks, alcoholic
+                                beverages, bottled water, beer, wine and soft
+                                drinks are at current menu pricing. Prepaid
+                                gratuities are required to participate in My
+                                Time Dining - this includes tips for your
+                                waiter, assistant waiter, head waiter and
+                                stateroom
+                              </li>
+                              <li>
+                                Reservations are recommended in order to avoid a
+                                delay in seating (reservations will be taken
+                                once onboard).
+                              </li>
+                            </ul>
+                            <a
+                              href="javascript:void(0);"
+                              onclick="toggleInfoBlock(this)"
+                              class="d-md-none"
+                              >Read More</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="info-block-parent">
+                      <div class="sec-hed">
+                        <h5>Playmakers Sports Bar & Arcade</h5>
+                      </div>
+                      <div class="info-block row">
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/onboard1.jpg"
+                            alt="My Time Dining"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <div class="col-md-9">
+                          <div class="info-block-txt">
+                            <p>
+                              My Time Dining is Royal Caribbean's flexible
+                              dining option that allows you to choose when you
+                              dine and who you dine with, all while enjoying
+                              seating in the ship's main dining room; order from
+                              the same dinner menu and enjoy the same impeccable
+                              Gold Anchor Service for which Royal Caribbean is
+                              known. It's easy to enjoy My Time Dining - make
+                              your pre-reservation ahead of time, reserve
+                              onboard or simply walk in!
+                            </p>
+                            <ul>
+                              <li>
+                                <strong>Seating Times:</strong> 6:00 – 9:30 PM
+                              </li>
+                              <li>
+                                <strong>Dress:</strong> Smart casual attire. On
+                                formal evenings, formal attire is appropriate in
+                                the restaurant, which includes suits and ties or
+                                tuxedos for men and dresses for women. On couple
+                                of nights, semi-formal attire is permitted.
+                                Swimwear, shorts and jeans are not permitted.
+                              </li>
+                              <li>
+                                <strong>Costs:</strong> Food included in the
+                                cost of your cruise; specialty drinks, alcoholic
+                                beverages, bottled water, beer, wine and soft
+                                drinks are at current menu pricing. Prepaid
+                                gratuities are required to participate in My
+                                Time Dining - this includes tips for your
+                                waiter, assistant waiter, head waiter and
+                                stateroom
+                              </li>
+                              <li>
+                                Reservations are recommended in order to avoid a
+                                delay in seating (reservations will be taken
+                                once onboard).
+                              </li>
+                            </ul>
+                            <a
+                              href="javascript:void(0);"
+                              onclick="toggleInfoBlock(this)"
+                              class="d-md-none"
+                              >Read More</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="info-block-parent">
+                      <div class="sec-hed">
+                        <h5>Cafe Promenade</h5>
+                      </div>
+                      <div class="info-block row">
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/onboard1.jpg"
+                            alt="My Time Dining"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <div class="col-md-9">
+                          <div class="info-block-txt">
+                            <p>
+                              My Time Dining is Royal Caribbean's flexible
+                              dining option that allows you to choose when you
+                              dine and who you dine with, all while enjoying
+                              seating in the ship's main dining room; order from
+                              the same dinner menu and enjoy the same impeccable
+                              Gold Anchor Service for which Royal Caribbean is
+                              known. It's easy to enjoy My Time Dining - make
+                              your pre-reservation ahead of time, reserve
+                              onboard or simply walk in!
+                            </p>
+                            <ul>
+                              <li>
+                                <strong>Seating Times:</strong> 6:00 – 9:30 PM
+                              </li>
+                              <li>
+                                <strong>Dress:</strong> Smart casual attire. On
+                                formal evenings, formal attire is appropriate in
+                                the restaurant, which includes suits and ties or
+                                tuxedos for men and dresses for women. On couple
+                                of nights, semi-formal attire is permitted.
+                                Swimwear, shorts and jeans are not permitted.
+                              </li>
+                              <li>
+                                <strong>Costs:</strong> Food included in the
+                                cost of your cruise; specialty drinks, alcoholic
+                                beverages, bottled water, beer, wine and soft
+                                drinks are at current menu pricing. Prepaid
+                                gratuities are required to participate in My
+                                Time Dining - this includes tips for your
+                                waiter, assistant waiter, head waiter and
+                                stateroom
+                              </li>
+                              <li>
+                                Reservations are recommended in order to avoid a
+                                delay in seating (reservations will be taken
+                                once onboard).
+                              </li>
+                            </ul>
+                            <a
+                              href="javascript:void(0);"
+                              onclick="toggleInfoBlock(this)"
+                              class="d-md-none"
+                              >Read More</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="info-block-parent">
+                      <div class="sec-hed">
+                        <h5>Ice Cream Parlor</h5>
+                      </div>
+                      <div class="info-block row">
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/onboard1.jpg"
+                            alt="My Time Dining"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <div class="col-md-9">
+                          <div class="info-block-txt">
+                            <p>
+                              My Time Dining is Royal Caribbean's flexible
+                              dining option that allows you to choose when you
+                              dine and who you dine with, all while enjoying
+                              seating in the ship's main dining room; order from
+                              the same dinner menu and enjoy the same impeccable
+                              Gold Anchor Service for which Royal Caribbean is
+                              known. It's easy to enjoy My Time Dining - make
+                              your pre-reservation ahead of time, reserve
+                              onboard or simply walk in!
+                            </p>
+                            <ul>
+                              <li>
+                                <strong>Seating Times:</strong> 6:00 – 9:30 PM
+                              </li>
+                              <li>
+                                <strong>Dress:</strong> Smart casual attire. On
+                                formal evenings, formal attire is appropriate in
+                                the restaurant, which includes suits and ties or
+                                tuxedos for men and dresses for women. On couple
+                                of nights, semi-formal attire is permitted.
+                                Swimwear, shorts and jeans are not permitted.
+                              </li>
+                              <li>
+                                <strong>Costs:</strong> Food included in the
+                                cost of your cruise; specialty drinks, alcoholic
+                                beverages, bottled water, beer, wine and soft
+                                drinks are at current menu pricing. Prepaid
+                                gratuities are required to participate in My
+                                Time Dining - this includes tips for your
+                                waiter, assistant waiter, head waiter and
+                                stateroom
+                              </li>
+                              <li>
+                                Reservations are recommended in order to avoid a
+                                delay in seating (reservations will be taken
+                                once onboard).
+                              </li>
+                            </ul>
+                            <a
+                              href="javascript:void(0);"
+                              onclick="toggleInfoBlock(this)"
+                              class="d-md-none"
+                              >Read More</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="info-block-parent">
+                      <div class="sec-hed">
+                        <h5>Room Service</h5>
+                      </div>
+                      <div class="info-block row">
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/onboard1.jpg"
+                            alt="My Time Dining"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <div class="col-md-9">
+                          <div class="info-block-txt">
+                            <p>
+                              My Time Dining is Royal Caribbean's flexible
+                              dining option that allows you to choose when you
+                              dine and who you dine with, all while enjoying
+                              seating in the ship's main dining room; order from
+                              the same dinner menu and enjoy the same impeccable
+                              Gold Anchor Service for which Royal Caribbean is
+                              known. It's easy to enjoy My Time Dining - make
+                              your pre-reservation ahead of time, reserve
+                              onboard or simply walk in!
+                            </p>
+                            <ul>
+                              <li>
+                                <strong>Seating Times:</strong> 6:00 – 9:30 PM
+                              </li>
+                              <li>
+                                <strong>Dress:</strong> Smart casual attire. On
+                                formal evenings, formal attire is appropriate in
+                                the restaurant, which includes suits and ties or
+                                tuxedos for men and dresses for women. On couple
+                                of nights, semi-formal attire is permitted.
+                                Swimwear, shorts and jeans are not permitted.
+                              </li>
+                              <li>
+                                <strong>Costs:</strong> Food included in the
+                                cost of your cruise; specialty drinks, alcoholic
+                                beverages, bottled water, beer, wine and soft
+                                drinks are at current menu pricing. Prepaid
+                                gratuities are required to participate in My
+                                Time Dining - this includes tips for your
+                                waiter, assistant waiter, head waiter and
+                                stateroom
+                              </li>
+                              <li>
+                                Reservations are recommended in order to avoid a
+                                delay in seating (reservations will be taken
+                                once onboard).
+                              </li>
+                            </ul>
+                            <a
+                              href="javascript:void(0);"
+                              onclick="toggleInfoBlock(this)"
+                              class="d-md-none"
+                              >Read More</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <h2 class="section-title">Entertainment</h2>
+                    <div class="info-block-parent">
+                      <div class="sec-hed">
+                        <h5>Bars, Clubs & Lounges</h5>
+                      </div>
+                      <div class="info-block entermaint row">
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/onboard1.jpg"
+                            alt="My Time Dining"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <div class="col-md-9">
+                          <div class="info-block-txt">
+                            <h5>Lounges & Bars</h5>
+                            <ul>
+                              <li>
+                                <span>Intimate Lounge</span> The Bamboo Room R
+                                Bar
+                              </li>
+                              <li>
+                                <span>Privileged Membership Lounge</span> Crown
+                                Lounge Suite Lounge
+                              </li>
+                              <li>
+                                <span>Scenic/360 Degree Views</span> Viking
+                                Crown Lounge
+                              </li>
+                              <li>
+                                <span>Sports Bar</span> The Lime and Coconut
+                                Solarium Bar
+                              </li>
+                              <li>
+                                <span>Intimate Lounge</span> The Bamboo Room R
+                                Bar
+                              </li>
+                              <li>
+                                <span>Pool Bar</span> The Lime and Coconut
+                                Solarium Bar
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="info-block-parent">
+                      <div class="sec-hed">
+                        <h5>Casino & Gambling</h5>
+                      </div>
+                      <div class="info-block row">
+                        <div class="col-md-3">
+                          <img
+                            src="assets/images/cruise-details/onboard1.jpg"
+                            alt="My Time Dining"
+                            class="img-fluid"
+                          />
+                        </div>
+                        <div class="col-md-9">
+                          <div class="info-block-txt">
+                            <ul>
+                              <li>
+                                <strong>Seating Times:</strong> 6:00 – 9:30 PM
+                              </li>
+                              <li>
+                                <strong>Dress:</strong> Smart casual attire. On
+                                formal evenings, formal attire is appropriate in
+                                the restaurant, which includes suits and ties or
+                                tuxedos for men and dresses for women. On couple
+                                of nights, semi-formal attire is permitted.
+                                Swimwear, shorts and jeans are not permitted.
+                              </li>
+                              <li>
+                                <strong>Costs:</strong> Food included in the
+                                cost of your cruise; specialty drinks, alcoholic
+                                beverages, bottled water, beer, wine and soft
+                                drinks are at current menu pricing. Prepaid
+                                gratuities are required to participate in My
+                                Time Dining - this includes tips for your
+                                waiter, assistant waiter, head waiter and
+                                stateroom
+                              </li>
+                              <li>
+                                Reservations are recommended in order to avoid a
+                                delay in seating (reservations will be taken
+                                once onboard).
+                              </li>
+                            </ul>
+                            <a
+                              href="javascript:void(0);"
+                              onclick="toggleInfoBlock(this)"
+                              class="d-md-none"
+                              >Read More</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="swit-bottom-list">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <ul>
+                          <li><strong>Name</strong>: Navigator of the Seas</li>
+                          <li><strong>Registry</strong>: Bahamas</li>
+                          <li><strong>Builder</strong>: Kvaerner Masa-Yards</li>
+                          <li><strong>Country Built In</strong>: Finland</li>
+                          <li>
+                            <strong>Ship Completed Date</strong>: 12/14/2002
+                          </li>
+                          <li><strong>Christened By</strong>: Steffi Graf</li>
+                          <li><strong>Call Letters</strong>: C6FU4</li>
+                          <li><strong>Refurbished Date</strong>: 1/1/2019</li>
+                          <li><strong>Capacity</strong>: 3114</li>
+                          <li>
+                            <strong>Number of Crew, Nationality</strong>: 1181,
+                            International
+                          </li>
+                          <li><strong>Gross Tonnage</strong>: 138279</li>
+                          <li><strong>Stabilized</strong>: Yes</li>
+                          <li><strong>Average Speed</strong>: 23.7 knots</li>
+                        </ul>
+                      </div>
+                      <div class="col-md-6">
+                        <ul>
+                          <li><strong>Maximum Speed</strong>: 23.7 knots</li>
+                          <li><strong>Length</strong>: 1020 feet</li>
+                          <li><strong>Beam</strong>: 154.7 feet</li>
+                          <li>
+                            <strong>Number of Passenger Decks</strong>: 14
+                          </li>
+                          <li><strong>Number of Inside Rooms</strong>: 618</li>
+                          <li><strong>Number of Outside Rooms</strong>: 939</li>
+                          <li><strong>Number of Restaurants</strong>: 9</li>
+                          <li><strong>Number of Pools</strong>: 3</li>
+                          <li><strong>Number of Elevators</strong>: 14</li>
+                          <li><strong>Voltage</strong>: 110/220</li>
+                          <li><strong>Non-Smoking Dining</strong>: Yes</li>
+                          <li><strong>Non-Smoking Ship</strong>: No</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Tab 4 -->
+              <div
+                class="tab-pane fade"
+                [class.active]="selectedTab === 'deck'"
+                [class.show]="selectedTab === 'deck'"
+                id="deck"
+                role="tabpanel"
+              >
+                <div class="deck-sec">
+                  <div class="deck-top-img">
+                    <img src="assets/images/cruise-details/deck.png" alt="" />
+                  </div>
+                  <div class="deck-bottom">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="card">
+                          <div class="card-header fw-bold">Key to Symbols</div>
+                          <ul>
+                            <li class="list-group-item border-0">
+                              Stateroom has third Pullman bed available.
+                            </li>
+                            <li class="list-group-item border-0">
+                              3rd & 4th Pullman Beds Available
+                            </li>
+                            <li class="list-group-item border-0">
+                              Connecting Staterooms
+                            </li>
+                            <li class="list-group-item border-0">
+                              Wheelchair Accessible
+                            </li>
+                            <li class="list-group-item border-0">
+                              Sofa Bed & 3rd Pullman Bed Available
+                            </li>
+                            <li class="list-group-item border-0">
+                              Stateroom with sofa bed
+                            </li>
+                            <li class="list-group-item border-0">
+                              Stateroom has four additional Pullman beds
+                              available.
+                            </li>
+                            <li class="list-group-item border-0">
+                              Stateroom has an obstructed view.
+                            </li>
+                            <li class="list-group-item border-0">
+                              Stateroom has porthole.
+                            </li>
+                            <li class="list-group-item border-0">
+                              Sofa Bed Eligible
+                            </li>
+                            <li class="list-group-item border-0">
+                              Bar & Lounges
+                            </li>
+                            <li class="list-group-item border-0">Casino</li>
+                            <li class="list-group-item border-0">
+                              Conference Center
+                            </li>
+                            <li class="list-group-item border-0">
+                              Dining Venue
+                            </li>
+                            <li class="list-group-item border-0">
+                              Entertainment Area
+                            </li>
+                            <li class="list-group-item border-0">Fitness</li>
+                            <li class="list-group-item border-0">
+                              Information
+                            </li>
+                            <li class="list-group-item border-0">
+                              Kids & Teens Area
+                            </li>
+                            <li class="list-group-item border-0">Pool</li>
+                            <li class="list-group-item border-0">
+                              Rock Climbing
+                            </li>
+                            <li class="list-group-item border-0">
+                              Running Track
+                            </li>
+                            <li class="list-group-item border-0">Shopping</li>
+                            <li class="list-group-item border-0">Spa</li>
+                            <li class="list-group-item border-0">FlowRider</li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="mb-3">
+                          <select
+                            class="form-select"
+                            aria-label="Deck Plan Selector"
+                          >
+                            <option selected>View Other Deck Plans</option>
+                            <option value="1">Deck 3</option>
+                            <option value="2">Deck 5</option>
+                          </select>
+                        </div>
+                        <h4>Deck 4</h4>
+                        <p>
+                          Deck 4 features the upper level of Royal Theater,
+                          Schooner Bar, Hooked Seafood, Casino Royale, Boleros,
+                          the Centrum, Starbucks, and the middle level of the
+                          Main Dining Room.
+                        </p>
+                      </div>
+                      <div class="col-md-4">
+                        <div>
+                          <img
+                            src="assets/images/cruise-details/deck1.png"
+                            alt=""
+                            class="w-100"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="stickybox">
+            <div class="cruise-list-card shadow-sm">
+              <h5>Navigator of the Seas</h5>
+              <p><strong>2 Nights</strong></p>
+              <ul class="list-unstyled">
+                <li><span class="label">Ship:</span> Sirena</li>
+                <li>
+                  <span class="label">Departing From:</span> Copenhagen, Denmark
+                </li>
+                <li>
+                  <span class="label">Destination:</span> Copenhagen, Denmark
+                </li>
+                <li><span class="label">Departure Date:</span> 14 Jun 2025</li>
+                <li><span class="label">Arrival Date:</span> 20 Jul 2025</li>
+                <li><span class="label">Duration:</span> 36 Nights</li>
+                <li>
+                  <span class="label">Port Of Call:</span>
+                  <ul class="sub-cruise-list">
+                    <li>DKCPH - Copenhagen, Denmark</li>
+                    <li>DEWAR - Warnemünde, Germany</li>
+                    <li>DEWAR - Warnemünde, Germany</li>
+                    <li>SEKAA - Karlskrona, Sweden</li>
+                    <li>SEVBY - Visby, Sweden</li>
+                  </ul>
+                </li>
+              </ul>
+              <a href="#" class="show-more">Show more</a>
+            </div>
+            <div class="itinerary-card shadow-sm">
+              <h5 class="mb-4">Itinerary</h5>
+              <div class="timeline">
+                <!-- Day 1 -->
+                <div class="timeline-item active">
+                  <div class="timeline-icon"></div>
+                  <h6>Day 1</h6>
+                  <p><strong>Copenhagen, Denmark (DKCPH)</strong></p>
+                  <div class="row mt-2">
+                    <div class="col-6">
+                      <div class="date-label">Arrival Time</div>
+                      <div class="data-txt">14 Jun 2025</div>
+                    </div>
+                    <div class="col-6">
+                      <div class="date-label">Departure Time</div>
+                      <div class="data-txt">14 Jun 2025</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="timeline-item">
+                  <div class="timeline-icon"></div>
+                  <h6>Day 2</h6>
+                  <p><strong>Warnemünde, Germany (DEWAR)</strong></p>
+                  <div class="row mt-2">
+                    <div class="col-6">
+                      <div class="date-label">Arrival Time</div>
+                      <div class="data-txt">14 Jun 2025</div>
+                    </div>
+                    <div class="col-6">
+                      <div class="date-label">Departure Time</div>
+                      <div class="data-txt">14 Jun 2025</div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Hidden Items -->
+                <div id="more-itinerary" style="display: none">
+                  <!-- Day 3 -->
+                  <div class="timeline-item">
+                    <div class="timeline-icon"></div>
+                    <h6>Day 3</h6>
+                    <p><strong>Karlskrona, Sweden (SEKAA)</strong></p>
+                    <div class="row mt-2">
+                      <div class="col-6">
+                        <div class="date-label">Arrival Time</div>
+                        <div class="data-txt">15 Jun 2025</div>
+                      </div>
+                      <div class="col-6">
+                        <div class="date-label">Departure Time</div>
+                        <div class="data-txt">15 Jun 2025</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Day 4 -->
+                  <div class="timeline-item">
+                    <div class="timeline-icon"></div>
+                    <h6>Day 4</h6>
+                    <p><strong>Visby, Sweden (SEVBY)</strong></p>
+                    <div class="row mt-2">
+                      <div class="col-6">
+                        <div class="date-label">Arrival Time</div>
+                        <div class="data-txt">16 Jun 2025</div>
+                      </div>
+                      <div class="col-6">
+                        <div class="date-label">Departure Time</div>
+                        <div class="data-txt">16 Jun 2025</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a
+                  href="javascript:void(0);"
+                  class="show-more mt-3"
+                  onclick="showMore()"
+                  >Show more</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<p-drawer #drawerRef [(visible)]="visible" header="Drawer">
+  <ng-template #headless>
+<div
+  class="offcanvas show offcanvas-start filtercanvas cruise-offcan"
+  tabindex="-1"
+  id="offcanvasLeft"
+  aria-labelledby="offcanvasLeftLabel"
+>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasRightLabel">lorem</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+      (click)="closeCallback($event)"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="cruise-list-card shadow-sm">
+      <h5>Navigator of the Seas</h5>
+      <p><strong>2 Nights</strong></p>
+      <ul class="list-unstyled">
+        <li><span class="label">Ship:</span> Sirena</li>
+        <li><span class="label">Departing From:</span> Copenhagen, Denmark</li>
+        <li><span class="label">Destination:</span> Copenhagen, Denmark</li>
+        <li><span class="label">Departure Date:</span> 14 Jun 2025</li>
+        <li><span class="label">Arrival Date:</span> 20 Jul 2025</li>
+        <li><span class="label">Duration:</span> 36 Nights</li>
+        <li>
+          <span class="label">Port Of Call:</span>
+          <ul class="sub-cruise-list">
+            <li>DKCPH - Copenhagen, Denmark</li>
+            <li>DEWAR - Warnemünde, Germany</li>
+            <li>DEWAR - Warnemünde, Germany</li>
+            <li>SEKAA - Karlskrona, Sweden</li>
+            <li>SEVBY - Visby, Sweden</li>
+          </ul>
+        </li>
+      </ul>
+      <a href="#" class="show-more">Show more</a>
+    </div>
+    <div class="itinerary-card shadow-sm">
+      <h5 class="mb-4">Itinerary</h5>
+      <div class="timeline">
+        <!-- Day 1 -->
+        <div class="timeline-item active">
+          <div class="timeline-icon"></div>
+          <h6>Day 1</h6>
+          <p><strong>Copenhagen, Denmark (DKCPH)</strong></p>
+          <div class="row mt-2">
+            <div class="col-6">
+              <div class="date-label">Arrival Time</div>
+              <div class="data-txt">14 Jun 2025</div>
+            </div>
+            <div class="col-6">
+              <div class="date-label">Departure Time</div>
+              <div class="data-txt">14 Jun 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="timeline-item">
+          <div class="timeline-icon"></div>
+          <h6>Day 2</h6>
+          <p><strong>Warnemünde, Germany (DEWAR)</strong></p>
+          <div class="row mt-2">
+            <div class="col-6">
+              <div class="date-label">Arrival Time</div>
+              <div class="data-txt">14 Jun 2025</div>
+            </div>
+            <div class="col-6">
+              <div class="date-label">Departure Time</div>
+              <div class="data-txt">14 Jun 2025</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hidden Items -->
+        <div id="more-itinerary" style="display: none">
+          <!-- Day 3 -->
+          <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <h6>Day 3</h6>
+            <p><strong>Karlskrona, Sweden (SEKAA)</strong></p>
+            <div class="row mt-2">
+              <div class="col-6">
+                <div class="date-label">Arrival Time</div>
+                <div class="data-txt">15 Jun 2025</div>
+              </div>
+              <div class="col-6">
+                <div class="date-label">Departure Time</div>
+                <div class="data-txt">15 Jun 2025</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 4 -->
+          <div class="timeline-item">
+            <div class="timeline-icon"></div>
+            <h6>Day 4</h6>
+            <p><strong>Visby, Sweden (SEVBY)</strong></p>
+            <div class="row mt-2">
+              <div class="col-6">
+                <div class="date-label">Arrival Time</div>
+                <div class="data-txt">16 Jun 2025</div>
+              </div>
+              <div class="col-6">
+                <div class="date-label">Departure Time</div>
+                <div class="data-txt">16 Jun 2025</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a
+          href="javascript:void(0);"
+          class="show-more mt-3"
+          onclick="showMore()"
+          >Show more</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+</ng-template>
+</p-drawer>

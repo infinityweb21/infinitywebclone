@@ -1,0 +1,233 @@
+<div class="tab-pane fade active show" id="packages-tab">
+    <div class="combo-btn-group d-flex align-items-center justify-content-start">
+        <button type="button" class="combo-btn combo-btn-1" [ngClass]="{ active: activePackage === 'Flight Hotel' }"
+            (click)="setActiveTab(Package.FlightHotel)">Flight <span class="add-icon mx-1"><i
+                    class="fa-regular fa-plus"></i></span> Hotel</button>
+        <button type="button" class="combo-btn" [ngClass]="{ active: activePackage === 'Flight Car' }"
+            (click)="setActiveTab(Package.FlightCar)">Flight <span class="add-icon mx-1"><i
+                    class="fa-regular fa-plus"></i></span>Car</button>
+    </div>
+    <!-- Flight + Hotel -->
+    <form [formGroup]="flightHotelForm" *ngIf="activePackage === 'Flight Hotel'" (ngSubmit)="searchFlightHotel()">
+        <div class="banner--radio-btn-group-wrap d-flex align-items-center flex-wrap">
+            <div class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2">
+                <input type="radio" id="package-round-trip" class="roundTripInput" formControlName="packageTripType"
+                    name="packageTripType" value="roundTrip" checked>
+                <label for="package-round-trip"><span class="radio-label-inner-text">Round Trip</span></label>
+            </div>
+            <div class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2">
+                <input type="radio" id="package-oneway" class="oneWayInput" formControlName="packageTripType"
+                    name="packageTripType" value="oneway">
+                <label for="package-oneway"><span class="radio-label-inner-text">Oneway</span></label>
+            </div>
+            <div class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2">
+                <input type="radio" id="package-multicity" class="multiCityInput" formControlName="packageTripType"
+                    name="packageTripType" value="multicity">
+                <label for="package-multicity"><span class="radio-label-inner-text">Multi City</span></label>
+            </div>
+        </div>
+        <div class="flight-tab-form-content-wrap">
+            <div class="common-form-content">
+                <div class="row g-3 gy-lg-0 gx-lg-0">
+                    <div class="col-lg-2 add-departure-col">
+                        <div class="add-departure-content-wrap">
+                            <input type="text" class="form-control" placeholder="Add Departure"
+                                formControlName="departure" name="departure">
+                            <div class="both-way-icon">
+                                <svg width="28" height="27" viewBox="0 0 28 27" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="0.838867" width="26.9725" height="27" rx="6" fill="#FEFEFE" />
+                                    <path
+                                        d="M18.8205 12L22.8164 8M22.8164 8L18.8205 4M22.8164 8L6.8327 8M10.8286 14L6.8327 18M6.8327 18L10.8286 22M6.8327 18H22.8164"
+                                        stroke="black" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 add-arrival-col">
+                        <div class="add-arrival-content-wrap">
+                            <input type="text" class="form-control" placeholder="Add Arrival" formControlName="arrival"
+                                name="arrival">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="row g-3 gy-lg-0 gx-lg-0">
+                            <div class="col depart-date-col">
+                                <div class="depart-date-content-wrap position-relative">
+                                    <input type="text" id="" class="form-control calender-icon packageDepartureDate"
+                                        placeholder="Departure Date" readonly
+                                        [appFlatpickr]="flightHotelForm.get('packageTripType')?.value === 'roundTrip' ? 'range' : 'single'"
+                                        formControlName="departureDate" (dateSelected)="onDatesSelected($event)">
+                                </div>
+                            </div>
+                            <div class="col arrival-date-col"
+                                *ngIf="flightHotelForm.get('packageTripType')?.value === 'roundTrip'">
+                                <div class="arrival-date-content-wrap position-relative">
+                                    <input type="text" id="" class="form-control calender-icon packageArrivalDate"
+                                        placeholder="Arrival Date" readonly placeholder="Departure Date" readonly
+                                        [appFlatpickr]="flightHotelForm.get('packageTripType')?.value === 'roundTrip' ? 'range' : 'single'"
+                                        formControlName="arrivalDate">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 guest-col">
+                        <div class="passenger-dropdown-container position-relative">
+                            <input type="text" class="form-control ps-input psDropDownTrigger" [value]="inputValue"
+                                (click)="toggleDropdown($event)">
+                            <div class="ps-dropdown psDropDownPanel" [class.show]="showDropdown"
+                                (clickOutside)="this.showDropdown = false">
+                                <div class="ps-adult-box">
+                                    <h5>Adult(s)</h5>
+                                    <ul class="ps-adults-list">
+                                        <li *ngFor="let count of adultsList" [class.active]="selectedAdults === count"
+                                            (click)="selectPassenger('adult', count, $event)"> {{ count }}</li>
+                                    </ul>
+                                </div>
+                                <div class="ps-child-box">
+                                    <h5>Children (2-11 yrs)</h5>
+                                    <ul class="ps-child-list">
+                                        <li *ngFor="let count of childrenList" [class.active]="
+                                        selectedChildren === count
+                                      " (click)="
+                                        selectPassenger('child', count, $event)
+                                      "> {{ count }}</li>
+                                    </ul>
+                                </div>
+                                <div class="ps-infant-box">
+                                    <h5>Infant (on lap)</h5>
+                                    <ul class="ps-infant-list">
+                                        <li *ngFor="let count of infantsList" [class.active]="selectedInfants === count"
+                                            (click)="
+                                        selectPassenger('infant', count, $event)
+                                      "> {{ count }}</li>
+
+                                    </ul>
+                                </div>
+                                <div class="ps-cabin-select-submit-bt-wrap">
+                                    <div class="ps-economy-box">
+                                        <h5>Cabin</h5>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <select class="form-select cabin-select" formControlName="cabin"
+                                                name="cabin" (change)="updateInput()" [compareWith]="compareCabins">
+                                                <option *ngFor="let cabin of cabinOptions" [ngValue]="cabin"
+                                                    aria-checked="true">
+                                                    {{ cabin.name }}
+                                                </option>
+                                            </select>
+                                            <button type="button" class="ps-apply-btn applyBtn"
+                                                (click)="this.showDropdown = false;">Apply</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-1 order-3 order-lg-0">
+                        <button type="submit" class="form-submit-btn">
+                            <span class="d-lg-none">Search Flights</span>
+                            <span class="d-none d-lg-flex">
+                                <svg width="36" height="32" viewBox="0 0 36 32" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_299_6500)">
+                                        <path
+                                            d="M28.892 32.5747L19.5124 23.1951C18.768 23.7907 17.9119 24.2621 16.9442 24.6095C15.9764 24.9569 14.9467 25.1306 13.8549 25.1306C11.1502 25.1306 8.86133 24.1936 6.98839 22.3197C5.11545 20.4458 4.17848 18.1569 4.17749 15.4532C4.1765 12.7495 5.11347 10.4607 6.98839 8.58678C8.86332 6.71285 11.1521 5.77588 13.8549 5.77588C16.5576 5.77588 18.8469 6.71285 20.7228 8.58678C22.5987 10.4607 23.5352 12.7495 23.5322 15.4532C23.5322 16.545 23.3585 17.5748 23.0111 18.5426C22.6637 19.5103 22.1923 20.3664 21.5967 21.1108L30.9763 30.4904L28.892 32.5747ZM13.8549 22.153C15.7159 22.153 17.298 21.5018 18.6012 20.1996C19.9044 18.8974 20.5556 17.3153 20.5546 15.4532C20.5536 13.5912 19.9025 12.0096 18.6012 10.7084C17.3 9.40712 15.7179 8.75551 13.8549 8.75353C11.9918 8.75154 10.4102 9.40315 9.10997 10.7084C7.80973 12.0136 7.15812 13.5952 7.15514 15.4532C7.15216 17.3113 7.80377 18.8934 9.10997 20.1996C10.4162 21.5058 11.9978 22.1569 13.8549 22.153Z"
+                                            fill="#fff" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_299_6500">
+                                            <rect width="35.7318" height="31.2024" fill="white"
+                                                transform="translate(0.0545654 0.0078125)" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="multicity-input-fields-group"
+                        *ngIf="flightHotelForm.get('packageTripType')?.value === 'multicity'">
+                        <div formArrayName="multiCitySegments">
+                            <div *ngFor="let segment of multiCitySegments.controls; let i = index" [formGroupName]="i" class="row g-3 gy-lg-0 gx-lg-0 align-items-center">
+                                <div class="col-lg-2">
+                                    <div class="add-departure-content-wrap">
+                                        <input type="text" class="form-control" placeholder="Add Departure" formControlName="departure">
+                                        <div class="both-way-icon">
+                                            <svg width="28" height="27" viewBox="0 0 28 27" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <rect x="0.838867" width="26.9725" height="27" rx="6" fill="#FEFEFE" />
+                                                <path
+                                                    d="M18.8205 12L22.8164 8M22.8164 8L18.8205 4M22.8164 8L6.8327 8M10.8286 14L6.8327 18M6.8327 18L10.8286 22M6.8327 18H22.8164"
+                                                    stroke="black" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="add-arrival-content-wrap">
+                                        <input type="text" class="form-control" placeholder="Add Arrival" formControlName="arrival">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="depart-date-content-wrap position-relative">
+                                        <input type="text" id="" class="form-control calender-icon flightDepartureDate"
+                                            placeholder="Departure Date" readonly formControlName="departureDate"
+                                        [appFlatpickr]="'single'" (dateSelected)="onMultiCityDateSelected($event, i)">
+                                    </div>
+                                </div>
+                                <div class="col-lg-1">
+                                    <div class="delete-multicity-btn-wrap mx-auto mx-lg-0">
+                                        <button type="button" class="delete-multicity-btn mx-auto mx-lg-0" (click)="removeSegment(i)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 16 16">
+                                                <path fill="currentColor"
+                                                    d="M7 3h2a1 1 0 0 0-2 0M6 3a2 2 0 1 1 4 0h4a.5.5 0 0 1 0 1h-.564l-1.205 8.838A2.5 2.5 0 0 1 9.754 15H6.246a2.5 2.5 0 0 1-2.477-2.162L2.564 4H2a.5.5 0 0 1 0-1zm1 3.5a.5.5 0 0 0-1 0v5a.5.5 0 0 0 1 0zM9.5 6a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0v-5a.5.5 0 0 1 .5-.5m-4.74 6.703A1.5 1.5 0 0 0 6.246 14h3.508a1.5 1.5 0 0 0 1.487-1.297L12.427 4H3.573z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div
+                                    class="d-flex align-items-center multicity-add--delete-btn-wrap justify-content-center justify-content-lg-start ">
+                                    <button type="button" class="btn btn-link add-multicity-btn" (click)="addSegment()">
+                                        <span class="me-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 256 256">
+                                                <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="16">
+                                                    <circle cx="128" cy="128" r="112"></circle>
+                                                    <path d="M 79.999992,128 H 176.0001"></path>
+                                                    <path d="m 128.00004,79.99995 v 96.0001"></path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                        Add Flight</button>
+                                    <button type="button" class="btn btn-link remove-multicity-btn text-danger" (click)="clearSegments()">
+                                        <span class="me-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 256 256">
+                                                <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="16">
+                                                    <circle cx="128" cy="128" r="112"></circle>
+                                                    <path d="M 80.000004,128 H 176.00001"></path>
+                                                </g>
+                                            </svg>
+                                        </span>
+                                        Clear All
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- Flight + Car -->
+    <form [formGroup]="flightCarForm" *ngIf="activePackage === 'Flight Car'" (ngSubmit)="searchFlightHotel()">
+        <p>Flight + Car</p>
+    </form>
+</div>

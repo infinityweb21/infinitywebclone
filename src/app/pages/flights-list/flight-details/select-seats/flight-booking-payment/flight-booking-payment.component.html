@@ -1,0 +1,748 @@
+<section
+  class="common-section flightdetails-section flightdetails-section-wrap"
+>
+  <div class="container container-xxl">
+    <div class="row mobrow g-3">
+      <form
+        class="col-xxl-9 col-xl-9 col-xl-9 order-2 order-xl-0"
+        [formGroup]="checkoutForm"
+        
+      >
+       <!-- Payment Details -->
+  <div class="u-side-card mb-4">
+    <div class="u-side-card-body">
+      <div class="card-title-wrap">
+        <h3 class="card-title-text">Payment Details</h3>
+        <div class="payment-title-info">
+          <span class="payment-lock-icon"></span>
+          <span class="payment-title-info-text">Secured Encrypted Transaction</span>
+        </div>
+      </div>
+
+      <h4 class="card-sub-title-text">Payment method</h4>
+      <div class="payment-method-selection c-scrollbar">
+        @for (method of paymentMethods; track $index) {
+        <div class="payment-method-item">
+          <div class="payment-method-option">
+            <label class="o-custom-radio">
+              
+              <span class="u-radio-indicator"></span>
+            </label>
+          </div>
+          <div class="payment-method-item-image">
+            <img [src]="method.icon" [alt]="method.label" />
+          </div>
+        </div>
+        }
+      </div>
+
+      <div class="card-form-wrap flight-payment-form-wrap mt-3">
+        <div class="row g-lg-3">
+          <div class="col-md-6 col-lg-4">
+            <div class="card-form-content">
+              <label class="form-label">Card/Debit card number *</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Card/Debit card number"
+                formControlName="CardNumber"
+              />
+              @if (checkoutForm.get('CardNumber')?.touched && checkoutForm.get('CardNumber')?.invalid) {
+              <div class="text-danger">Card number is required.</div>
+              }
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="card-form-content">
+              <label class="form-label">Card holder’s name *</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Card holder’s name"
+                formControlName="cardHolder"
+              />
+              @if (checkoutForm.get('cardHolder')?.touched && checkoutForm.get('cardHolder')?.invalid) {
+              <div class="text-danger">Card holder name is required.</div>
+              }
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-4">
+            <div class="card-form-content">
+              <div class="row row-cols-lg-2 g-2 g-lg-3">
+                <div class="col">
+                  <label class="form-label">Exp Date *</label>
+                  <input
+                    type="text"
+                    class="form-control booking-form-control"
+                    placeholder="MM/YYYY"
+                    formControlName="ExpiryDate"
+                  />
+                  @if (checkoutForm.get('ExpiryDate')?.touched && checkoutForm.get('ExpiryDate')?.invalid) {
+                  <div class="text-danger">
+                    @if (checkoutForm.get('ExpiryDate')?.errors?.['required']) {
+                    <div>Expiry date is required.</div>
+                    } @if (checkoutForm.get('ExpiryDate')?.errors?.['pattern']) {
+                    <div>Format must be MM/YYYY.</div>
+                    }
+                  </div>
+                  }
+                </div>
+                <div class="col">
+                  <label class="form-label">CVV *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="CVV"
+                    formControlName="CVV"
+                  />
+                  @if (checkoutForm.get('CVV')?.touched && checkoutForm.get('CVV')?.invalid) {
+                  <div class="text-danger">
+                    @if (checkoutForm.get('CVV')?.errors?.['required']) {
+                    <div>CVV is required.</div>
+                    } @if (checkoutForm.get('CVV')?.errors?.['minlength']) {
+                    <div>Minimum 3 digits.</div>
+                    } @if (checkoutForm.get('CVV')?.errors?.['maxlength']) {
+                    <div>Maximum 4 digits.</div>
+                    }
+                  </div>
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Billing and Contact Information -->
+  <div class="u-side-card">
+    <div class="u-side-card-body">
+      <div class="card-title-wrap">
+        <h3 class="card-title-text">Billing and Contact Information</h3>
+      </div>
+      <div class="card-form-wrap flight-payment-form-wrap">
+        <div class="row g-lg-3">
+          @for (field of billingFields; track $index) {
+          <div class="col-md-6 col-lg-4">
+            <div class="card-form-content">
+              <label class="form-label">{{ field.label }}</label>
+              @switch (field.type) {
+                @case ('input') {
+<input
+  type="text"
+  class="form-control"
+  [placeholder]="field.placeholder"
+  [formControlName]="field.name"
+  [readonly]="field.name !== 'street' && field.name !== 'BillingPhoneNum'"
+
+  *ngIf="field.name === 'street'; else otherInput"
+
+  googlePlacesAutocomplete
+  [autocompleteType]="'address'"
+  (placeChanged)="onPlaceSelected($event)"
+/>
+
+<ng-template #otherInput>
+  <input
+    type="text"
+    class="form-control"
+    [placeholder]="field.placeholder"
+    [formControlName]="field.name"
+    [readonly]="field.name !== 'street' && field.name !== 'BillingPhoneNum'"
+  />
+</ng-template>
+
+                @if (checkoutForm.get(field.name)?.touched && checkoutForm.get(field.name)?.invalid) {
+                <div class="text-danger">{{ field.label }} is required.</div>
+                }
+                }
+              }
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+        <!-- == === -->
+        <!-- == === -->
+        <div class="flightdetailsmain-box">
+          <div class="insideinfobox">
+            <div class="imgtitlebox">
+              <img src="assets/images/flight-details/plane-up1.png" alt="" />
+              <div class="flex">
+                <h2 class="common-titlenew">Travel Protection</h2>
+                <h5 class="subtitlenew">
+                  Reasons you might need travel protection
+                </h5>
+              </div>
+            </div>
+            <div class="row departrow">
+              <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                <ul class="tripdetails">
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Trip
+                    cancellation
+                  </li>
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Baggage
+                    delay
+                  </li>
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Inclement
+                    weather
+                  </li>
+                </ul>
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                <ul class="tripdetails">
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Trip
+                    cancellation
+                  </li>
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Baggage
+                    delay
+                  </li>
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Inclement
+                    weather
+                  </li>
+                </ul>
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                <ul class="tripdetails">
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Trip
+                    cancellation
+                  </li>
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Baggage
+                    delay
+                  </li>
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Inclement
+                    weather
+                  </li>
+                </ul>
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                <ul class="tripdetails">
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Trip
+                    cancellation
+                  </li>
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Baggage
+                    delay
+                  </li>
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Inclement
+                    weather
+                  </li>
+                </ul>
+              </div>
+              <div class="maintravelgroup">
+                <div class="Travelamount">
+                  <h4 class="travel-amount-title">
+                    $1,109.56<small>/person</small>
+                  </h4>
+                  <a
+                    href="javascript:void(0)"
+                    class="commonbtnnew add-travel-protection-btn"
+                    >Add Travel Protection</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- == === -->
+        <!-- == === -->
+        <div class="flightdetailsmain-box">
+          <div class="insideinfobox">
+            <div class="imgtitlebox">
+              <img src="assets/images/flight-details/car-icon.png" alt="" />
+              <div class="flex">
+                <h2 class="common-titlenew">Add a Car Rental</h2>
+                <h5 class="subtitlenew">
+                  Drive away and save even more on car rental deals with our
+                  Insider Deals!
+                </h5>
+              </div>
+            </div>
+            <div class="row departrow">
+              <div class="maintravelgroup">
+                <div class="Travelamount">
+                  <a
+                    href="javascript:void(0)"
+                    class="commonbtnnew add-travel-protection-btn mt-0"
+                    >Add Travel Protection</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- == === -->
+        <!-- == === -->
+        <div class="flightdetailsmain-box">
+          <div class="insideinfobox">
+            <div class="imgtitlebox">
+              <img src="assets/images/flight-details/plane-up1.png" alt="" />
+              <div class="flex">
+                <h2 class="common-titlenew">Cancel for any reason</h2>
+                <h5 class="subtitlenew">
+                   Lorem Ipsum has been the industry's standard dummy text ever
+                  since the 1500s
+                </h5>
+              </div>
+            </div>
+            <div class="row departrow">
+              <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                <ul class="tripdetails">
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Trip
+                    cancellation
+                  </li>
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Baggage
+                    delay
+                  </li>
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Inclement
+                    weather
+                  </li>
+                </ul>
+              </div>
+              <div class="col-xl-3 col-lg-4 col-md-6 col-6">
+                <ul class="tripdetails">
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Trip
+                    cancellation
+                  </li>
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Baggage
+                    delay
+                  </li>
+                  <li>
+                    <span><i class="fas fa-check-circle"></i></span>Inclement
+                    weather
+                  </li>
+                </ul>
+              </div>
+
+              <div class="maintravelgroup">
+                <div class="Travelamount">
+                  <h4 class="travel-amount-title">
+                    $1,109.56<small>/person</small>
+                  </h4>
+                  <a
+                    href="javascript:void(0)"
+                    class="commonbtnnew add-travel-protection-btn"
+                    >Add Cancel for any reason</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- == === -->
+        <!-- == === -->
+        <div class="u-side-card">
+          <div class="u-side-card-body">
+            <div class="card-title-wrap">
+              <h3 class="card-title-text">Policies & Review</h3>
+            </div>
+            <!-- <h4 class="card-smal-title-text">Traveler 1:</h4>
+            <div class="traveler-details-view-card">
+              <div class="traveler-card-left-section">
+                <div class="traveler-card-item">
+                  <div class="traveler-icon-box-wrap">
+                    <div class="traveler-icon-box">
+                      <img src="assets/images/user-icon.png" alt="User" />
+                    </div>
+                  </div>
+                  <span class="traveler-name">Dona Dey</span>
+                </div>
+                <div class="traveler-card-item">
+                  <span class="traveler-dob">Date of birth:</span>
+                  <span class="traveler-dob-value">30-10-1999</span>
+                </div>
+                <div class="traveler-card-item">
+                  <span class="traveler-gender">Gender:</span>
+                  <span class="traveler-gender-value">Female</span>
+                </div>
+              </div>
+              <div class="traveler-card-right-section">
+                <div class="traveler-card-item">
+                  <a href="#" class="traveler-forward-link"
+                    >make change
+                    <span class="traveler-forward-link-icon">
+                      <svg
+                        width="8"
+                        height="14"
+                        viewBox="0 0 8 14"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M7.46853 6.22234L1.49349 0L0 1.55531L5.22829 7L0 12.4447L1.49349 14L7.46853 7.77766C7.66654 7.57139 7.77778 7.29166 7.77778 7C7.77778 6.70834 7.66654 6.42861 7.46853 6.22234Z"
+                          fill="#01032b"
+                        />
+                      </svg>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="flightandprice-box">
+                  <div class="flightandprice">
+                    <div class="row align-items-center">
+                      <div class="col">
+                        <div class="flightandprice-row">
+                          <div class="row align-items-center">
+                            <div class="col-md-2 text-center">
+                              <div class="mobflexsec">
+                                <div class="mobsecnewdesk">
+                                  <img
+                                    src="assets/images/flag-icons/flight-icon-1.png"
+                                    alt="logo1"
+                                    class="img-fluid newicoimg"
+                                  />
+                                  <h6
+                                    class="text-capitalize d-flex align-items-center mb-0 justify-content-center"
+                                  >
+                                    air india
+                                  </h6>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-7">
+                              <div
+                                class="flight-ticket-card flight-ticket-card-payment"
+                              >
+                                <div class="flight-ticket-section">
+                                  <div class="flight-ticket-time">12:00pm</div>
+                                  <div class="flight-ticket-code">DEL</div>
+                                  <div class="flight-ticket-label">Depart</div>
+                                </div>
+                                <div class="flight-ticket-middle">
+                                  <img
+                                    src="assets/images/flightstartstop.png"
+                                    alt="plane route"
+                                  />
+                                  <div class="absecmiddle">1 stop</div>
+                                  <div class="flight-ticket-duration">
+                                    2h 35m
+                                  </div>
+                                </div>
+                                <div class="flight-ticket-section">
+                                  <div class="flight-ticket-time">02:40pm</div>
+                                  <div class="flight-ticket-code">CCU</div>
+                                  <div class="flight-ticket-label">Arrive</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="flightandprice-row">
+                          <div class="row align-items-center">
+                            <div class="col-md-2 text-center">
+                              <div class="mobflexsec">
+                                <div class="mobsecnewdesk">
+                                  <img
+                                    src="assets/images/flag-icons/flight-icon-1.png"
+                                    alt="logo1"
+                                    class="img-fluid newicoimg"
+                                  />
+                                  <h6
+                                    class="text-capitalize d-flex align-items-center mb-0 justify-content-center"
+                                  >
+                                    air india
+                                  </h6>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-7">
+                              <div
+                                class="flight-ticket-card flight-ticket-card-payment"
+                              >
+                                <div class="flight-ticket-section">
+                                  <div class="flight-ticket-time">12:00pm</div>
+                                  <div class="flight-ticket-code">DEL</div>
+                                  <div class="flight-ticket-label">Depart</div>
+                                </div>
+                                <div class="flight-ticket-middle">
+                                  <img
+                                    src="assets/images/flightstartstop.png"
+                                    alt="plane route"
+                                  />
+                                  <div class="absecmiddle">1 stop</div>
+                                  <div class="flight-ticket-duration">
+                                    2h 35m
+                                  </div>
+                                </div>
+                                <div class="flight-ticket-section">
+                                  <div class="flight-ticket-time">02:40pm</div>
+                                  <div class="flight-ticket-code">CCU</div>
+                                  <div class="flight-ticket-label">Arrive</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+            <hr class="card-devider-line flight-payment-card-line" />
+            <p class="u-card-info-text">
+              Tickets are non-transferable and name changes are not permitted.
+              Total price shown includes all applicable taxes & fees and our
+              service fees. Some airlines may charge additional baggage fees or
+              other fees. Fares are not guaranteed until ticketed. Tickets and
+              our fees are non-refundable (see Fare Rules). Some taxes and
+              government agency fees may be non-refundable. Tickets can be
+              cancelled for a fee, if requested within twenty-four (24) hours
+              from the time of purchase. Date and routing changes will be
+              subject to airline change rules and post-ticketing fees.
+            </p>
+          </div>
+        </div>
+        <!-- == === -->
+        <div class="text-center">
+          <a type="button" (click)="submitForm()" class="upgrade-action-button w-auto checkbtn checkout-btn"
+            >Confirm & Book</a
+          >
+        </div>
+      </form>
+
+      <div class="col-xxl-3 col-xl-3 col-xl-3">
+        <div class="stickybox">
+          <div class="price-card card p-3 mx-auto">
+            <div class="top-title">
+              <h5 class="fw-bold mb-2">Price Details (INR)</h5>
+              <p class="text-muted small mb-3">
+                Please make your payment within the next 20 minutes to keep this
+                session active.
+              </p>
+              <hr class="price-sidebar-separator" />
+            </div>
+
+             <div class="travellers">
+  <div class="d-flex justify-content-between mb-2">
+    <strong>Travelers</strong>
+    <strong>Subtotal</strong>
+  </div>
+
+  <div class="d-flex justify-content-between mb-1" *ngIf="fareSummary?.adults">
+    <span>Adult ({{ fareSummary.adults }})</span>
+    <span>${{ getTravelerTotal('ADT') | number: '1.2-2' }}</span>
+  </div>
+
+  <div class="d-flex justify-content-between mb-1" *ngIf="fareSummary?.children">
+    <span>Child ({{ fareSummary.children }})</span>
+    <span>${{ getTravelerTotal('CHD') | number: '1.2-2' }}</span>
+  </div>
+
+  <div class="d-flex justify-content-between mb-1" *ngIf="fareSummary?.infants">
+    <span>Infant ({{ fareSummary.infants }})</span>
+    <span>${{ getTravelerTotal('INF') | number: '1.2-2' }}</span>
+  </div>
+
+  <div class="d-flex justify-content-between mb-3">
+    <span>Fees & Surcharges</span>
+    <span>${{ getTotalServiceCharges() | number: '1.2-2' }}</span>
+  </div>
+
+  <div class="d-flex justify-content-between mb-3" *ngIf="selectedSeatTotal">
+    <span>Selected Seat Charges</span>
+    <span>${{ selectedSeatTotal | number: '1.2-2' }}</span>
+  </div>
+
+  <!-- <div class="d-flex justify-content-between mb-3">
+    <span>Service Tax (18%)</span>
+    <span>${{ serviceTaxAmount | number: '1.2-2' }}</span>
+  </div> -->
+
+  <div class="d-flex justify-content-between mb-1" *ngIf="travelProtectionAdded">
+    <span>
+      Travel Protection
+      <button class="btn btn-link text-danger p-0" (click)="toggleTravelProtection()">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+    </span>
+    <span>${{ travelProtectionAmount | number: '1.2-2' }}</span>
+  </div>
+
+  <hr />
+  <div class="d-flex justify-content-between fw-semibold text-primary mb-1">
+    <span class="total-price">Total Price (INR)</span>
+    <span class="total-price">${{ finalTotal | number: '1.2-2' }}</span>
+  </div>
+</div>
+
+
+              <!-- Travel Protection -->
+      <div *ngIf="!travelProtectionAdded" class="travel-protection d-flex align-items-center justify-content-between mb-2">
+  <div class="d-flex align-items-center gap-2">
+    <img src="assets/images/flight-details/plane-up.png" alt="Travel Icon" />
+    <div class="travel-protection-txt">
+      <small>Travel Protection</small>
+      <p><b>${{ travelProtectionAmount }}</b> per person</p>
+    </div>
+  </div>
+  <button (click)="toggleTravelProtection()" class="btn btn-link btn-sm text-primary text-decoration-none p-0 sidebar-btn-add-new-link">
+    + Add Now
+  </button>
+</div>
+
+            <!-- Note -->
+            <small class="text-muted d-block mb-2 note-text">
+              Note: Your Card will be charged in
+              <strong>United States Dollars</strong> for a total amount of USD
+              176.88, the INR amount of
+              <span class="text-primary fw-semibold">$15,108.95</span> is an
+              approx. amount based on today’s conv. rate of
+              <span class="fw-semibold">1 USD = 85.42 INR</span>. Your bank may
+              have a different conv. rate and currency conv. fee which we do not
+              have control over. (Source: www.xe.com)
+            </small>
+            <small class="text-muted d-block mb-3 note-text">
+              Some airlines may charge <strong>baggage fees</strong>. Your
+              credit/debit card may be billed in multiple charges totaling the
+              final total price. Promo Code is off our service fees.
+              <br />
+
+              ClubMiles P
+            </small>
+
+            <!-- Payment Methods -->
+            <div class="mb-2 payment-methods">
+              <p>
+                Payment method
+                <span class="badge"
+                  ><span><i class="fas fa-lock"></i></span>Secured Encrypted
+                  Transaction</span
+                >
+              </p>
+              <ul>
+                <li>
+                  <a href="#"
+                    ><img
+                      src="assets/images/flight-details/paymnt-icon1.png"
+                      alt=""
+                  /></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><img
+                      src="assets/images/flight-details/paymnt-icon2.png"
+                      alt=""
+                  /></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><img
+                      src="assets/images/flight-details/paymnt-icon3.png"
+                      alt=""
+                  /></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><img
+                      src="assets/images/flight-details/paymnt-icon4.png"
+                      alt=""
+                  /></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><img
+                      src="assets/images/flight-details/paymnt-icon5.png"
+                      alt=""
+                  /></a>
+                </li>
+                <li>
+                  <a href="#"
+                    ><img
+                      src="assets/images/flight-details/paymnt-icon6.png"
+                      alt=""
+                  /></a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Promo Input -->
+            <div class="promocode-div">
+              <a href="" for="promo" class="form-label small mb-1"
+                >Apply my clubMiles point</a
+              >
+              <div class="input-group mb-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Enter promo code"
+                  id="promo"
+                />
+                <button class="btn btn-primary btn-sidebar-apply" type="button">
+                  Apply
+                </button>
+              </div>
+            </div>
+
+            <!-- Continue Button -->
+            <button class="btn continue-btn w-100 fw-semibold">
+              Confirm & Book
+            </button>
+          </div>
+          <div class="call-card">
+            <div class="call-box-wrap">
+              <div class="call-banner">
+                <p>
+                  Speak To An Agent To<br />Book Flights On Hundreds<br />Of
+                  Airlines
+                </p>
+              </div>
+            </div>
+            <div class="call-body">
+              <div class="call-icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_1246_2637)">
+                    <path
+                      d="M1.02144 8.53564C0.686444 7.62904 0.450045 6.70304 0.509045 5.71764C0.548445 5.10684 0.785044 4.59464 1.23824 4.16104C1.71104 3.70784 2.18404 3.21504 2.65704 2.76204C3.26784 2.15124 4.05604 2.15124 4.66704 2.76204L5.80984 3.90484C6.18424 4.27924 6.55844 4.63404 6.91324 5.00844C7.56344 5.65864 7.56344 6.42704 6.91324 7.07744C6.46004 7.55024 5.98724 8.00344 5.51424 8.45684C5.39604 8.57484 5.37624 8.67344 5.43544 8.83104C5.75064 9.57984 6.18424 10.2302 6.69644 10.8608C7.70144 12.1022 8.86404 13.2056 10.2236 14.0728C10.5192 14.25 10.8344 14.3878 11.1496 14.5456C11.3074 14.6244 11.406 14.6046 11.5438 14.4668C11.997 13.9938 12.4698 13.5208 12.943 13.048C13.5538 12.4372 14.342 12.4372 14.953 13.048C15.7016 13.7968 16.47 14.5456 17.219 15.314C17.8494 15.9446 17.8494 16.7328 17.219 17.3634C16.7854 17.7968 16.3322 18.2106 15.938 18.6638C15.347 19.3142 14.618 19.5308 13.7706 19.4914C12.5488 19.4324 11.406 19.0186 10.3222 18.4866C7.89844 17.3042 5.80984 15.6686 4.07564 13.5996C2.77524 12.0824 1.71104 10.4076 1.02144 8.53564ZM19.4954 8.95104C19.046 4.51204 15.5236 0.977842 11.0902 0.509242C10.555 0.452642 10.0856 0.863843 10.0856 1.40204V1.41924C10.0856 1.88024 10.4352 2.26324 10.8936 2.31164C14.4666 2.68824 17.3266 5.53224 17.7076 9.11744C17.7568 9.57944 18.1454 9.93024 18.61 9.92524C19.132 9.91944 19.548 9.47044 19.4954 8.95104ZM10.0856 4.80384V4.81644C10.0856 5.24604 10.3866 5.62784 10.8102 5.70044C11.6802 5.84944 12.4854 6.26524 13.1202 6.90004C13.755 7.53484 14.1708 8.34004 14.32 9.21004C14.3924 9.63364 14.7742 9.93464 15.204 9.93464H15.212C15.766 9.93464 16.1964 9.43624 16.0994 8.89064C15.6494 6.35704 13.6472 4.35404 11.1262 3.91564C10.5816 3.82084 10.0856 4.25124 10.0856 4.80384Z"
+                      fill="#0071E9"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_1246_2637">
+                      <rect width="20" height="20" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+              <div class="call-text">
+                <small>CALL US NOW</small>
+                <h3>1-760-999-7119</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

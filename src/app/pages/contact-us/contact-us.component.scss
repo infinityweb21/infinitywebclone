@@ -1,0 +1,436 @@
+/* inner banner css */
+.innerbannersection {
+    min-height: 45vh;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    align-content: center;
+}
+
+.innerbannerimgbox {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.innerbannerimg {
+    object-position: 9%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.innerbanner-txt {
+    display: block;
+    align-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.innerbanner-txt h1 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.innerbannersection::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.7;
+}
+
+.subtitletext {
+    color: #f88320;
+}
+
+.breadcrumbssec {
+    margin-top: 1rem;
+}
+
+.breadcrumbssec .currentpagesec {
+    color: #fff;
+}
+
+.breadcrumbssec .breadcrumb-item.active {
+    color: #f88320;
+}
+
+.breadcrumbssec .breadcrumb-item+.breadcrumb-item::before {
+    color: rgb(255 255 255);
+}
+.section-shape {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 97px;
+    background-size: contain;
+    background-repeat: repeat-x;
+    z-index: 1;
+}
+.section-shape.section-shape1 {
+    transform: rotate(180deg);
+}
+@media(max-width:1024px) {
+    .innerbanner-txt h1 {
+        font-size: 30px;
+    }
+}
+@media(max-width:991px) {
+    .innerbanner-txt h1 {
+        font-size: 24px;
+    }
+}
+@media(max-width:767px) {
+    .innerbannersection {
+        min-height: 36vh;
+    }
+}
+@media(max-width:580px) {
+    .innerbanner-txt h1 {
+        font-size: 25px;
+    }
+    .innerbannersection {
+        min-height: 36vh;
+    }
+}
+/* inner banner css */
+
+.contact-one .section-title, .contact-two__left .section-title   {
+    position: relative;
+    display: block;
+    margin-bottom: 60px;
+    margin-top: -8px;
+}
+.contact-two__left .section-title{
+  margin-bottom: 10px;
+}
+.contact-one .section-title__tagline, .contact-two__left .section-title__tagline  {
+    font-size: 18px;
+    line-height: 18px;
+    color: #f3832c;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+.contact-one .section-title__title, .contact-two__left .section-title__title  {
+    color: #000;
+    font-size: 31px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 5px 0 0;
+}
+
+.contact-one {
+    position: relative;
+    display: block;
+    padding: 70px 0;
+    z-index: 1
+}
+
+.contact-one__inner {
+    position: relative;
+    display: block;
+    background: #fff;
+    box-shadow: 0 0 60px rgba(0,0,0,.05);
+    border-radius: 20px;
+    padding: 17px 60px 17px;
+}
+.contact-one__contact-list {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 75px;
+}
+
+.contact-one__contact-list li {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.contact-one__contact-list li .icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: #f3832c;
+    border-radius: 50%
+}
+
+.contact-one__contact-list li .icon>span {
+    position: relative;
+    display: inline-block;
+    font-size: 18px;
+    color: #ffffff;
+    transition: .2s;
+    transform-origin: 50% 60%;
+}
+
+.contact-one__contact-list li:hover .icon>span {
+    animation: wiggle .05s ease infinite alternate
+}
+
+.contact-one__contact-list li:hover .icon>.location-icon {
+    -webkit-animation: none;
+    -webkit-transform: scale(1.4);
+    animation: none;
+    transform: scale(1.4)
+}
+
+.contact-one__contact-list li:hover .icon>.email-icon {
+    -webkit-animation: none;
+    -webkit-transform: skew(-20deg);
+    animation: none;
+    transform: skew(-20deg);
+    text-indent: .1em
+}
+
+.contact-one__contact-list li .content {
+    position: relative;
+    display: block;
+    margin-left: 20px
+}
+
+.contact-one__contact-list li .content h3 {
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 34px;
+    margin-bottom: 0;
+    color: #ee8435;
+}
+
+.contact-one__contact-list li .content p, .contact-one__contact-list li .content p>a {
+    color: #000000;
+    margin: 0;
+}
+
+.contact-one__contact-list li .content p>a:hover {
+    color: #f3832c
+}
+
+.contact-two {
+    padding: 0 0 120px
+}
+
+.contact-two,.contact-two__left {
+    position: relative;
+    display: block;
+    z-index: 1
+}
+.contact-two__btn-box .thm-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none!important;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    padding: 9px 4px 9px 24px;
+    letter-spacing: 1.6px;
+    border-radius: 30px;
+    border: 1px solid #f3872f;
+    background-color: #f3872f;
+    transition: all .5s linear;
+    overflow: hidden;
+    gap: 22px;
+    z-index: 1;
+}
+.contact-two__left {
+    background: #fff;
+    box-shadow: 0 4.4px 20px -1px rgba(19,16,34,.05);
+    border-radius: 20px;
+    padding: 60px;
+}
+
+.contact-two__form {
+    position: relative;
+    display: block
+}
+
+.contact-two__form .row {
+    --bs-gutter-x: 20px
+}
+
+.contact-two__input-box {
+    position: relative;
+    display: block;
+    margin-bottom: 20px
+}
+
+
+.contact-two__input-box input[type=email],.contact-two__input-box input[type=text],.contact-two__input-box input[type=number],.contact-two__input-box textarea {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    outline: none;
+    color: #787878;
+    display: block;
+    font-weight: 400;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid #ccc;
+        height: 45px;
+    font-size: 15px
+}
+
+.contact-two__input-box textarea {
+    position: relative;
+    height: 130px;
+    padding-top: 15px;
+    font-size: 15px
+}
+
+.contact-two__btn-box {
+    position: relative;
+    display: block
+}
+
+.contact-two__btn {
+    border: none;
+    color: #000;
+    background-color: #ffc000
+}
+
+
+.contact-two__right {
+    margin-left: -120px;
+    z-index: -1
+}
+
+.contact-two__img,.contact-two__right {
+    position: relative;
+    display: block
+}
+
+.contact-two__img img {
+    width: 100%;
+    height: 580px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.google-map-two .google-map__one {
+  width: 100%;
+    height: 576px
+}
+
+/*  */
+@media (max-width:991px) {
+    .contact-one {
+    padding: 20px 0 0 0;
+}
+.contact-two {
+    padding: 0 0 20px;
+}
+.contact-one__contact-list {
+    display: inherit;
+}
+.contact-two__right {
+    margin-left: 0;
+    margin-top: 20px;
+}
+.contact-one__contact-list li .icon {
+    width: 45px;
+    height: 45px;
+}
+.contact-one__inner {
+    padding: 17px 10px 17px;
+}
+}
+@media (max-width:767px) {
+    .contact-two__img img {
+    height: auto;
+}
+    .contact-one {
+    padding: 20px 0 0 0;
+}
+.contact-two {
+    padding: 0 0 20px;
+}
+.contact-one__contact-list {
+    display: inherit;
+}
+.contact-two__right {
+    margin-left: 0;
+    margin-top: 20px;
+}
+.contact-one__contact-list li .icon {
+    width: 45px;
+    height: 45px;
+}
+.contact-one__inner {
+    padding: 17px 10px 17px;
+}
+.contact-one__contact-list li .icon>span {
+    font-size: 17px;
+}
+.contact-one__contact-list li {
+    margin-bottom: 20px;
+}
+.contact-one .section-title__tagline, .contact-two__left .section-title__tagline {
+    font-size: 15px;
+}
+.contact-one__contact-list li:last-child {
+    margin-bottom: 0px;
+}
+.contact-one__contact-list li .content h3 {
+    font-size: 16px;
+}
+.contact-one__contact-list li .content p, .contact-one__contact-list li .content p>a {
+    font-size: 13px;
+}
+.contact-two__left {
+    padding: 20px;
+    margin-top: 19px;
+}
+.contact-one .section-title__title, .contact-two__left .section-title__title {
+    font-size: 24px;
+    line-height: 29px;
+}
+.contact-two__input-box input[type=email], .contact-two__input-box input[type=text], .contact-two__input-box textarea {
+    font-size: 14px;
+}
+}
+
+@media (max-width:400px) {
+    .contact-one__contact-list li .icon {
+    width: 35px;
+    height: 35px;
+}
+    .contact-one__contact-list li .content h3 {
+    font-size: 15px;
+}
+.contact-two__btn-box .thm-btn {
+    gap: inherit;
+    font-size: 13px;
+    padding: 9px 20px 9px 20px;
+    z-index: 1;
+}
+.contact-one .section-title__title, .contact-two__left .section-title__title {
+    font-size: 20px;
+    line-height: 25px;
+}
+.contact-one__contact-list li .content {
+    margin-left: 11px;
+}
+.contact-two__input-box input[type=email], .contact-two__input-box input[type=text] {
+    height: 39px;
+
+}
+}

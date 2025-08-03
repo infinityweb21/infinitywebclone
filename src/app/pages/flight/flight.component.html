@@ -1,0 +1,404 @@
+<!--=========== Banner Section Start  ==============-->
+<app-main-filter />
+<!--=========== Banner Section End  ==============-->
+<!--=========== Unique Experiences Start  ==============-->
+<section class="unique-experiences pb-0 cmn-gap">
+  <div class="container container-xxl">
+    <div class="cmn-heading">
+      <div class="heading-cmn-flex">
+        <h2>Celebrating What Makes Travel Special</h2>
+      </div>
+
+      <div class="common-slider-container">
+        <!-- <div class="swiper commonSlider8"> -->
+          <!-- <div class="swiper-wrapper"> -->
+            <swiper-container #flightsSwiperRef>
+              @for (flight of flights; track $index) {
+              <swiper-slide>
+                <div class="swiper-slide">
+                  <div class="uxf-card">
+                    <div class="uxf-card-image-box">
+                      <img [src]="flight.image" alt="Flight" />
+                      @if (flight.isCheapest) {
+                      <span class="uxf-sticker">Cheapest</span>
+                      }
+                      <button class="like-btn uxf-card-flight-like-btn" aria-label="Like this package">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 14 14">
+                          <g fill="none">
+                            <path class="heart-bg" fill=""
+                              d="M7.004 12.36L1.53 7.402c-2.976-2.976 1.398-8.688 5.474-4.067c4.076-4.621 8.43 1.111 5.474 4.067z">
+                            </path>
+                            <path class="heart-border" stroke="" stroke-linecap="round" stroke-linejoin="round"
+                              d="M7.004 12.36L1.53 7.402c-2.976-2.976 1.398-8.688 5.474-4.067c4.076-4.621 8.43 1.111 5.474 4.067z"
+                              stroke-width="1"></path>
+                          </g>
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="uxf-route-info">
+                      <div class="uxf-city-row">
+                        <div class="uxf-city-box">
+                          <span class="uxf-city-flight-icon">
+                            <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M14.0685 8.00831L4.77869 10.4641C4.52605 10.5288 4.28687 10.5134 4.06115 10.4181C3.83542 10.3227 3.65362 10.1664 3.51573 9.94914L2.05373 7.51601C1.97817 7.39701 1.9666 7.26857 2.01902 7.13068C2.07144 6.99279 2.17037 6.90779 2.31581 6.87568L2.57294 6.81051C2.64566 6.7869 2.71531 6.78407 2.7819 6.80201C2.84895 6.81996 2.91152 6.85207 2.9696 6.89835L4.68306 8.35539L7.61202 7.5911L4.61577 3.58122C4.50008 3.42397 4.4734 3.25067 4.53573 3.06131C4.59853 2.87242 4.72887 2.75011 4.92673 2.69439L5.1626 2.63276C5.24713 2.60632 5.33591 2.60278 5.42894 2.62214C5.52197 2.64103 5.60342 2.684 5.67331 2.75106L10.4779 6.83106L13.5018 6.03064C13.7705 5.96075 14.0279 5.99806 14.2739 6.14256C14.5195 6.28753 14.6772 6.49436 14.7471 6.76306C14.817 7.03175 14.7886 7.28911 14.6621 7.53514C14.5355 7.78117 14.3376 7.93889 14.0685 8.00831ZM3.36981 14.1666C3.26923 14.1666 3.18494 14.1328 3.11694 14.0653C3.04894 13.9977 3.01517 13.9134 3.01565 13.8124C3.01612 13.7113 3.04988 13.627 3.11694 13.5595C3.18399 13.492 3.26828 13.4582 3.36981 13.4582H13.9948C14.0959 13.4582 14.1802 13.492 14.2477 13.5595C14.3152 13.627 14.349 13.7113 14.349 13.8124C14.349 13.9134 14.3152 13.9977 14.2477 14.0653C14.1802 14.1328 14.0959 14.1666 13.9948 14.1666H3.36981Z"
+                                fill="#9E9E9E" />
+                            </svg>
+                          </span>
+                          <p class="uxf-city-text">{{ flight.from }}</p>
+                        </div>
+                        <div class="uxf-route-arrow">
+                          <span class="uxf-route-arrow-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 20 20">
+                              <path fill="currentColor"
+                                d="M12.78 3.22a.75.75 0 1 0-1.06 1.06L13.44 6H4.75a.75.75 0 0 0 0 1.5h8.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3a.75.75 0 0 0 0-1.06zm-4.5 7.56a.75.75 0 1 0-1.06-1.06l-3 3a.75.75 0 0 0 0 1.06l3 3a.75.75 0 0 0 1.06-1.06L6.56 14h8.69a.75.75 0 0 0 0-1.5H6.56z" />
+                            </svg>
+                          </span>
+                        </div>
+                        <div class="uxf-city-box">
+                          <span class="uxf-city-flight-icon">
+                            <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path
+                                d="M3.3698 14.1667C3.26921 14.1667 3.18516 14.1327 3.11763 14.0647C3.0501 13.9967 3.0161 13.9124 3.01563 13.8118C3.01516 13.7112 3.04916 13.6272 3.11763 13.5597C3.1861 13.4921 3.27016 13.4584 3.3698 13.4584H13.9948C14.0954 13.4584 14.1794 13.4924 14.247 13.5604C14.3145 13.6284 14.3485 13.7127 14.349 13.8132C14.3494 13.9138 14.3154 13.9979 14.247 14.0654C14.1785 14.1329 14.0944 14.1667 13.9948 14.1667H3.3698ZM13.0903 10.7525L3.83871 8.07008C3.58607 8.00302 3.38585 7.86608 3.23805 7.65924C3.09024 7.45241 3.0161 7.22078 3.01563 6.96437V4.14378C3.01563 3.99834 3.07371 3.88217 3.18988 3.79528C3.30605 3.70792 3.43591 3.68408 3.57946 3.72374L3.82738 3.79458C3.89916 3.81819 3.95889 3.85266 4.00659 3.89799C4.05428 3.94333 4.09135 4.00212 4.1178 4.07437L4.84313 6.20928L7.73596 7.04937L7.24013 2.07333C7.21416 1.87499 7.27909 1.71255 7.43492 1.58599C7.59075 1.45944 7.7643 1.42638 7.95555 1.48683L8.19638 1.55412C8.28138 1.57678 8.35552 1.62046 8.4188 1.68516C8.48255 1.74938 8.5293 1.82328 8.55905 1.90687L10.5884 7.88024L13.6073 8.76141C13.8198 8.82988 13.9967 8.95408 14.1379 9.13399C14.2781 9.31344 14.3483 9.51885 14.3483 9.75024C14.3483 10.0501 14.2255 10.3179 13.9799 10.5535C13.7344 10.7891 13.4376 10.8557 13.0895 10.7532"
+                                fill="#9E9E9E" />
+                            </svg>
+                          </span>
+                          <p class="uxf-city-text">{{ flight.to }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="uxf-flight-details">
+                      <h2 class="uxf-flight-title m-0">{{ flight.flightNumber }}</h2>
+                      <div class="uxf-flight-meta">
+                        <div class="uxf-airline">
+                          <div class="uxf-airline-logo-box">
+                            <img [src]="flight.logo" alt="Airline Logo">
+                          </div>
+                          <span class="uxf-airline-meta-label">{{ flight.airline }}</span>
+                        </div>
+                        <div class="uxf-stop-info">
+                          <span class="uxf-stop-circle"></span>
+                          <span class="uxf-airline-stop-label">{{ flight.stops }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="uxf-date-range">
+                      <span class="uxf-date-range-icon">
+                        <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g clip-path="url(#clip0_299_7696)">
+                            <path
+                              d="M15.7657 1.59362H13.4636V0.531116C13.4637 0.39022 13.4078 0.255057 13.3083 0.155362C13.2087 0.0556667 13.0736 -0.000394224 12.9327 -0.000488155C12.7918 -0.000582086 12.6567 0.0552987 12.557 0.154861C12.4573 0.254423 12.4012 0.389511 12.4011 0.530408V1.59362H9.21362V0.531116C9.21367 0.461351 9.19997 0.39226 9.17332 0.327788C9.14666 0.263316 9.10757 0.204726 9.05827 0.155362C9.00898 0.105998 8.95044 0.0668271 8.886 0.0400864C8.82156 0.0133456 8.75249 -0.000441653 8.68273 -0.000488163C8.54183 -0.000582094 8.40667 0.0552986 8.30697 0.154861C8.20728 0.254423 8.15122 0.389511 8.15112 0.530408V1.59362H4.96362V0.531116C4.96367 0.461351 4.94997 0.39226 4.92332 0.327788C4.89666 0.263316 4.85757 0.204726 4.80827 0.155362C4.75898 0.105998 4.70044 0.0668271 4.636 0.0400864C4.57156 0.0133456 4.50249 -0.000441653 4.43273 -0.000488163C4.29183 -0.000582094 4.15667 0.0552986 4.05697 0.154861C3.95728 0.254423 3.90122 0.389511 3.90112 0.530408V1.59362H1.59904C1.22344 1.59362 0.863212 1.74277 0.597555 2.0083C0.331899 2.27382 0.182561 2.63397 0.182373 3.00957V15.5825C0.182373 15.9582 0.331629 16.3185 0.597305 16.5842C0.862982 16.8499 1.22332 16.9992 1.59904 16.9992H15.7657C16.1414 16.9992 16.5018 16.8499 16.7674 16.5842C17.0331 16.3185 17.1824 15.9582 17.1824 15.5825V3.00957C17.1822 2.63397 17.0328 2.27382 16.7672 2.0083C16.5015 1.74277 16.1413 1.59362 15.7657 1.59362ZM16.1199 15.5832C16.1199 15.677 16.0827 15.767 16.0164 15.8334C15.9501 15.8998 15.8602 15.9372 15.7664 15.9374H1.59904C1.50511 15.9374 1.41503 15.9001 1.34861 15.8336C1.28219 15.7672 1.24487 15.6771 1.24487 15.5832V3.01028C1.24506 2.91647 1.28246 2.82657 1.34886 2.76031C1.41525 2.69404 1.50523 2.65682 1.59904 2.65682H3.90112V3.71932C3.90103 3.86022 3.95691 3.99538 4.05647 4.09508C4.15603 4.19477 4.29112 4.25083 4.43202 4.25093C4.57292 4.25102 4.70808 4.19514 4.80777 4.09558C4.90747 3.99602 4.96353 3.86093 4.96362 3.72003V2.65682H8.15112V3.71932C8.15103 3.86022 8.20691 3.99538 8.30647 4.09508C8.40603 4.19477 8.54112 4.25083 8.68202 4.25093C8.82292 4.25102 8.95808 4.19514 9.05777 4.09558C9.15747 3.99602 9.21353 3.86093 9.21362 3.72003V2.65682H12.4011V3.71932C12.401 3.86022 12.4569 3.99538 12.5565 4.09508C12.656 4.19477 12.7911 4.25083 12.932 4.25093C13.0729 4.25102 13.2081 4.19514 13.3078 4.09558C13.4075 3.99602 13.4635 3.86093 13.4636 3.72003V2.65682H15.7657C15.8594 2.65701 15.9492 2.69431 16.0154 2.76056C16.0817 2.8268 16.119 2.9166 16.1192 3.01028L16.1199 15.5832Z"
+                              fill="#666666" />
+                            <path
+                              d="M3.90112 6.375H6.02612V7.96875H3.90112V6.375ZM3.90112 9.03125H6.02612V10.625H3.90112V9.03125ZM3.90112 11.6875H6.02612V13.2812H3.90112V11.6875ZM7.61987 11.6875H9.74487V13.2812H7.61987V11.6875ZM7.61987 9.03125H9.74487V10.625H7.61987V9.03125ZM7.61987 6.375H9.74487V7.96875H7.61987V6.375ZM11.3386 11.6875H13.4636V13.2812H11.3386V11.6875ZM11.3386 9.03125H13.4636V10.625H11.3386V9.03125ZM11.3386 6.375H13.4636V7.96875H11.3386V6.375Z"
+                              fill="#666666" />
+                          </g>
+                          <defs>
+                            <clipPath id="clip0_299_7696">
+                              <rect width="17" height="17" fill="white" transform="translate(0.182373)" />
+                            </clipPath>
+                          </defs>
+                        </svg>
+                      </span>
+                      <p class="uxf-date-range-value"><span class="uxf-date-range-value-start">{{ flight.dateStart }}</span>
+                        - <span class="uxf-date-range-value-end">{{ flight.dateEnd }}</span></p>
+                    </div>
+                    <div class="uxf-price-section">
+                      <div class="uxf-price-left">
+                        <h2 class="uxf-actual-price m-0">From <span class="uxf-actual-price-highlight">${{ flight.price
+                            }}</span></h2>
+                        <span class="uxf-flight-reamain-seat">{{ flight.seatsLeft }} Seats Left</span>
+                      </div>
+                      <div class="uxf-price-right">
+                        <a href="javascript:void(0);" class="uxf-btn-view-nore">View Now</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </swiper-slide>
+              }
+            </swiper-container>
+          <!-- </div> -->
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+<!--=========== Unique Experiences End  ==============-->
+<!--=========== Booking Section Start  ==============-->
+<section class="booking cmn-gap pb-0">
+  <div class="container container-xxl">
+    <div class="booking-parent" style="background: url('./assets/images/booking-background.png')">
+      <div class="booking-left">
+        <h2 class="banner-add-caption">Get a Discount on Your First Reservation</h2>
+        <p class="banner-add-subtext">Offer Ends Soon!</p>
+      </div>
+      <div class="booking-right">
+        <a href="#" class="cmn-btn btn-orange fs-20 fw-semibold cta-add-btn cta-add-btn-reserve">Reserve Now!</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!--=========== Booking Section End  ==============-->
+<!-- ==== Top Rate Provider Start ==== -->
+<section class="unique-experiences pb-0 cmn-gap">
+  <div class="container container-xxl">
+    <div class="cmn-heading">
+      <div class="heading-cmn-flex">
+        <h2>Trusted by Thousands</h2>
+      </div>
+    </div>
+    <div class="common-slider-container">
+      <!-- <div class="swiper commonSlider9">
+            <div class="swiper-wrapper"> -->
+      <swiper-container #providersSwiperRef>
+        @for (provider of providers; track $index) {
+        <swiper-slide>
+          <div class="swiper-slide">
+            <div class="etd-provider-card">
+              <div class="etd-card-header"></div>
+    
+              <div class="etd-image-wrapper">
+                <img class="etd-image" [src]="provider.image" [alt]="provider.name + ' Logo'" />
+              </div>
+    
+              <h5 class="etd-provider-name">{{ provider.name }}</h5>
+    
+              <div class="etd-rating-section d-flex justify-content-center">
+                <div class="etd-rating-badge">
+                  <span class="etd-star-icon">
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M11.2052 4.69253L8.19799 4.25549L6.85369 1.53016C6.81697 1.45555 6.75657 1.39514 6.68195 1.35843C6.49481 1.26604 6.2674 1.34303 6.17384 1.53016L4.82953 4.25549L1.82232 4.69253C1.73941 4.70438 1.66361 4.74346 1.60557 4.80268C1.53541 4.8748 1.49675 4.97182 1.49808 5.07242C1.49941 5.17303 1.54063 5.26899 1.61268 5.33922L3.78844 7.4605L3.2744 10.4559C3.26235 10.5255 3.27006 10.5972 3.29666 10.6627C3.32326 10.7282 3.36769 10.785 3.42491 10.8266C3.48212 10.8681 3.54983 10.8928 3.62037 10.8978C3.6909 10.9029 3.76144 10.888 3.82397 10.855L6.51376 9.44083L9.20355 10.855C9.27699 10.8941 9.36226 10.9071 9.44399 10.8929C9.65007 10.8574 9.78865 10.662 9.75312 10.4559L9.23909 7.4605L11.4148 5.33922C11.4741 5.28119 11.5131 5.20538 11.525 5.12247C11.557 4.9152 11.4125 4.72333 11.2052 4.69253Z"
+                        fill="#fff" />
+                    </svg>
+                  </span>
+                  {{ provider.rating }}
+                </div>
+                <p class="etd-review-count">{{ provider.reviews }}</p>
+              </div>
+    
+              <hr class="etd-provider-card-devider">
+    
+              <div class="etd-provider-details">
+                <div class="etd-detail-item">
+                  <span class="etd-detail-number">{{ provider.flights }}</span>
+                  <p class="etd-detail-label">Flights</p>
+                </div>
+                <div class="etd-detail-item">
+                  <span class="etd-detail-number">{{ provider.locations }}</span>
+                  <p class="etd-detail-label">Locations</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+        }
+      </swiper-container>
+      <!-- </div>
+          </div> -->
+    </div>
+  </div>
+</section>
+<!-- ==== Top Rate Provider End ==== -->
+
+<!--=========== Trending Section Start  ==============-->
+<section class="unique-experiences cmn-gap">
+  <div class="container container-xxl">
+    <div class="cmn-heading">
+      <div class="sec-title-wrap">
+        <h2>Today’s Top Picks</h2>
+      </div>
+    </div>
+    <div class="row g-2 g-md-3">
+      <div class="col-xxl-6" *ngFor="let flight of trendingFlights; let i = index">
+        <div class="card tdc-card">
+          <div class="row g-0">
+            <div class="col-md-3 d-none d-md-flex">
+              <div class="tdc-card-image-box">
+                <img [src]="flight.thumbnail" alt="Trending Thumb">
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="card-body">
+                <div class="row row-cols-md-3 g-0 g-md-3">
+                  <div class="col-12 d-md-none">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="flight-icon">
+                        <img [src]="flight.airlineLogo" alt="airline">
+                      </div>
+                      <div class="flight-price-destination-wrap d-flex align-items-center">
+                        <div class="d-flex align-items-center">
+                          <div class="trend-value-box py-0">
+                            <span class="trend-value">{{ flight.price }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="trend-card-content-wrap">
+                      <div class="destination-start-end-box">
+                        <span class="destination-start-end-text d-none d-md-flex">From</span>
+                        <span class="destination-start-end-text-dark">{{ flight.fromCity }}</span>
+                      </div>
+                      <div class="time-single-content-wrap">
+                        <span class="time-content-start">{{ flight.fromTime }}</span>
+                        <span class="time-content-median">{{ flight.fromPeriod }}</span>
+                      </div>
+                      <div class="trend-value-box d-none d-md-flex">
+                        <span class="trend-value">{{ flight.price }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="trend-card-content-wrap">
+                      <div class="trend-flight-trip-content-box">
+                        <span class="trend-flight-trip-icon">
+                          <img src="assets/images/flight/icons/flight-route-icon.svg" alt="Destination Icon">
+                        </span>
+                        <span class="trend-flight-trip-duration d-none d-lg-flex">
+                          <span class="ms-1">Trip Duration</span> : <span class="ms-1">{{ flight.tripDuration }}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="trend-card-content-wrap">
+                      <div class="destination-start-end-box justify-content-end">
+                        <span class="destination-start-end-text d-none d-md-flex">To</span>
+                        <span class="destination-start-end-text-dark">{{ flight.toCity }}</span>
+                      </div>
+                      <div class="time-single-content-wrap justify-content-end">
+                        <span class="time-content-start">{{ flight.toTime }}</span>
+                        <span class="time-content-median">{{ flight.toPeriod }}</span>
+                      </div>
+                      <div class="view-detail-btn-wrap">
+                        <button class="view-detail-btn trending-details-btn">View Detail</button>
+                      </div>
+                      <div class="ftd-detail-btn-wrap d-none d-md-flex">
+                        <button class="btn btn-flight-details" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#ftd-inner-card" (click)="toggleDetails(i)"
+                          [attr.aria-expanded]="!flight.isCollapsed" [attr.aria-controls]="'collapse' + flight.id">
+                          Flight Details
+                          <span class="flight-details-btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                              <path fill="currentColor"
+                                d="m12.37 15.835l6.43-6.63C19.201 8.79 18.958 8 18.43 8H5.57c-.528 0-.771.79-.37 1.205l6.43 6.63c.213.22.527.22.74 0" />
+                            </svg>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- COLLAPSE SECTION -->
+            <div class="col-md-12">
+              <div class="collapse ftd-inner-card-wrap w-100 mt-2" [id]="'collapse' + flight.id"
+                [collapse]="flight.isCollapsed">
+                <div class="card card-body border-0">
+                  <div class="segment-flight-container">
+                    <div class="flight-header">
+                      <span class="flight-depart-schedule">Depart - {{ flight.departureDate }}</span>
+                      <span class="flight-duration"> {{ flight.duration }}</span>
+                    </div>
+                    <div class="flight-segment">
+                      <div class="row">
+                        <div class="col-md-7">
+                          <div class="segment-carrier">
+                            <img [src]="flight.airlineLogo" width="50" alt="airline">
+                            <span class="segment-content ms-2">{{ flight.flightNumber }}</span>
+                          </div>
+                          <div class="segment-body my-3">
+                            <div class="d-flex justify-content-start">
+                              <div class="ms-3 departure-airport-time-content-wrap">
+                                <span class="departure-time">{{ flight.departureTime }}</span>
+                                <span class="separator-dash">-</span>
+                                <span class="departure-date">{{ flight.departureDate }}</span>
+                                <span class="departure-airport">{{ flight.departureAirport }}</span>
+                                <span class="separator-dash">-</span>
+                                <span class="departure-airport-name d-none d-lg-flex">{{ flight.departureAirportFull
+                                  }}</span>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                              <div class="depart-arrival-time-line">
+                                <span class="fw-light fight-duration depart-arrival-time">{{ flight.duration }}</span>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                              <div class="ms-3 arrival-airport-time-content-wrap">
+                                <span class="arrival-time">{{ flight.arrivalTime }}</span>
+                                <span class="separator-dash">-</span>
+                                <span class="arrival-date">{{ flight.arrivalDate }}</span>
+                                <span class="arrival-airport">{{ flight.arrivalAirport }}</span>
+                                <span class="separator-dash">-</span>
+                                <span class="arrival-airport-name d-none d-lg-flex">{{ flight.arrivalAirportFull
+                                  }}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-5 d-none d-md-block">
+                          <div class="flight-misc">
+                            <div class="mb-2">
+                              <strong><span class="class-label">Class:</span></strong>
+                              <span class="class-status">{{ flight.flightClass }}</span>
+                            </div>
+                            <div>
+                              <div class="flight-misc-toggle">
+                                B6 1524 <i class="fa fa-caret-down"></i>
+                                <ul class="flight-btn-icon-list flight-btn-icon-list-ul">
+                                  <li *ngFor="let info of flight.miscInfo">
+                                    <i class="fa-regular" [ngClass]="info.icon + ' align-middle me-2'"></i>
+                                    <!-- {{ info.text }} -->
+                                  </li>
+                                </ul>
+                              </div>
+                              <ul class="flight-misc-list">
+                                <li *ngFor="let info of flight.miscInfo">
+                                  <i class="fa-regular" [ngClass]="info.icon + ' align-middle me-2'"></i>
+                                  {{ info.text }}
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- /row -->
+                    </div><!-- /flight-segment -->
+                  </div>
+                </div>
+              </div>
+            </div><!-- /collapse -->
+          </div><!-- /row -->
+        </div><!-- /card -->
+      </div><!-- /col -->
+    </div>
+  </div>
+</section>
+<!--=========== Trending Section End  ==============-->
+<!--=========== Quick Book Flight Section Start  ==============-->
+<div class="qb-section-wrap">
+  <div class="container container-xxl">
+    <div class="qb-section-content">
+      <div class="qb-section-content-box position-relative">
+        <h1 class="qb-heading">Luxury in Every Detail, Comfort in Every Moment</h1>
+        <p class="qb-subheading">
+          Our goal is to offer more than just a place to stay—we offer an experience. No matter the reason for your travel, we make sure it feels like home every time.
+        </p>
+
+        <div class="qb-stats">
+          <div class="qb-stat-item">19+<span>Unique Destinations</span></div>
+          <div class="qb-stat-item">300+<span>Accommodations Available</span></div>
+          <div class="qb-stat-item">38k<span>Happy Travelers</span></div>
+          <div class="qb-stat-item">25+<span>International Locations</span></div>
+        </div>
+
+        <button class="qb-book-btn">Book a Flight</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--=========== Quick Book Flight Section End  ==============-->
