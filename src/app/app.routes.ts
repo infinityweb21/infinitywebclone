@@ -392,10 +392,10 @@ export const routes: Routes = [
     ),
 },
 {
-  path: 'top-destinations/istanbul',
+  path: 'top-destinations/amsterdam',
   loadComponent: () =>
-    import('./pages/top-destinations/istanbul/istanbul.component').then(
-      (m) => m.IstanbulComponent
+    import('./pages/top-destinations/amsterdam/amsterdam.component').then(
+      (m) => m.AmsterdamComponent
     ),
 },
 {
@@ -406,25 +406,25 @@ export const routes: Routes = [
     ),
 },
 {
-  path: 'top-destinations/ottawa',
+  path: 'top-destinations/bangkok',
   loadComponent: () =>
-    import('./pages/top-destinations/ottawa/ottawa.component').then(
-      (m) => m.OttawaComponent
+    import('./pages/top-destinations/bangkok/bangkok.component').then(
+      (m) => m.BangkokComponent
     ),
 },
 {
-  path: 'top-destinations/philadelphia',
+  path: 'top-destinations/california',
   loadComponent: () =>
-    import('./pages/top-destinations/philadelphia/philadelphia.component').then(
-      (m) => m.PhiladelphiaComponent
+    import('./pages/top-destinations/california/california.component').then(
+      (m) => m.CaliforniaComponent
     ),
 },
 
 {
-  path: 'top-destinations/portland-maine',
+  path: 'top-destinations/florida',
   loadComponent: () =>
-    import('./pages/top-destinations/portland-maine/portland-maine.component').then(
-      (m) => m.PortlandMaineComponent
+    import('./pages/top-destinations/florida/florida.component').then(
+      (m) => m.FloridaComponent
     ),
 },
 {
@@ -441,7 +441,69 @@ export const routes: Routes = [
       (m) => m.SingaporeComponent
     ),
 },
-      
+{
+  path: 'top-destinations/kuala-lumpur',
+  loadComponent: () =>
+    import('./pages/top-destinations/kuala-lumpur/kuala-lumpur.component').then(
+      (m) => m.KualaLumpurComponent
+    ),
+},
+{
+  path: 'top-destinations/sydney',
+  loadComponent: () =>
+    import('./pages/top-destinations/sydney/sydney.component').then(
+      (m) => m.SydneyComponent
+    ),
+},
+     {
+  path: 'top-destinations/tokyo',
+  loadComponent: () =>
+    import('./pages/top-destinations/tokyo/tokyo.component').then(
+      (m) => m.TokyoComponent
+    ),
+}, 
+{
+  path: 'top-destinations/zurich',
+  loadComponent: () =>
+    import('./pages/top-destinations/zurich/zurich.component').then(
+      (m) => m.ZurichComponent
+    ),
+},
+{
+  path: 'top-destinations',
+  loadComponent: () =>
+    import('./pages/top-destinations/top-destination/top-destination.component').then(
+      (m) => m.TopDestinationComponent
+    ),
+},
+{
+  path: 'top-airlines',
+  loadComponent: () =>
+    import('./pages/top-destinations/top-airlines/top-airlines.component').then(
+      (m) => m.TopAirlinesComponent
+    ),
+},
+{
+  path: 'top-routes',
+  loadComponent: () =>
+    import('./pages/top-destinations/top-routes/top-routes.component').then(
+      (m) => m.TopRoutesComponent
+    ),
+},
+{
+  path: 'speacial-deals',
+  loadComponent: () =>
+    import('./pages/top-destinations/special-deals/special-deals.component').then(
+      (m) => m.SpecialDealsComponent
+    ),
+},
+{
+  path: 'cruise-lines',
+  loadComponent: () =>
+    import('./pages/top-destinations/cruise-lines/cruise-lines.component').then(
+      (m) => m.CruiseLinesComponent
+    ),
+},
     ],
   },
 
