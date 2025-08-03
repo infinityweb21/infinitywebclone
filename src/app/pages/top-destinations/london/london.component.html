@@ -312,7 +312,7 @@
                 <div class="app-flight-form-wrap"><app-flights-tab></app-flights-tab></div>
               </div>
               <div class="tab-pane" id="wtv-hotel" role="tabpanel" aria-labelledby="wtv-hotel-tab">
-                <div class="app-hotel-form-wrap">Hotel Form</div>
+                <div class="app-hotel-form-wrap"><app-hotels-tab></app-hotels-tab></div>
               </div>
             </div>
           </div>
@@ -322,16 +322,16 @@
             <div class="tab-map">
               <div id="mapouter" style="position:relative;text-align:center;width:100%; height:500px;">
                 <div style="overflow:hidden;background:none!important;width:100%; height:500px;" id="gmap_canvasid">
-                  <iframe
-                    style="width:100%; height:500px;"
-                    id="gmap_canvas"
-                    src="https://maps.google.com/maps?q=43.7184038,-79.5181437&amp;t=&amp;z=5&amp;ie=UTF8&amp;output=embed"
-                    frameborder="0"
-                    scrolling="no"
+                 
+                   <agm-map [latitude]="this.lat" [longitude]="this.lng"
+             style="width:100%; height:500px;" frameborder="0"
+                    scrolling="no"  id="gmap_canvas"
                     marginheight="0"
-                    marginwidth="0"
-                  ></iframe
-                  ><br />
+                    marginwidth="0">
+            <agm-marker [latitude]="this.lat"
+              [longitude]="this.lng"></agm-marker>
+          </agm-map>
+                  <br />
                 </div>
               </div>
             </div>
