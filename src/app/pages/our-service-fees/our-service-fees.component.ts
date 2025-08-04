@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
   selector: 'app-our-service-fees',
@@ -9,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './our-service-fees.component.scss'
 })
 export class OurServiceFeesComponent implements OnInit {
+ private shareService: SharedService = inject(SharedService);
+    getData:any='';
 
   constructor(
     private meta: Meta,
@@ -17,6 +20,7 @@ export class OurServiceFeesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+        this.getData=this.shareService.getcompanyName();
     // Get meta data from route
     const metaTitle = this.route.snapshot.data['metaTitle'];
     const metaDescription = this.route.snapshot.data['metaDescription'];
