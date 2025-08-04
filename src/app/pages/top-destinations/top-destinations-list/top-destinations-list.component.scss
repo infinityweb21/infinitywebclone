@@ -1,11 +1,10 @@
 .top-destination-wrapper {
   // background-color: #f4f2f9;
-  padding: 2rem;
+  padding: 30px 0px 0px;
 
   .title {
     font-weight: bold;
     font-size: 20px;
-    margin-bottom: 1.5rem;
 
     .highlight {
       color: #fbbf24;
@@ -58,7 +57,10 @@
 }
 
 @media(min-width:992px){
-  .title {
-    font-size: 1.8rem;
+  .top-destination-wrapper .title {
+    font-size: 24px;
+  }
+  .top-destination-wrapper {
+    padding: 40px 0px 0px;
   }
 }
