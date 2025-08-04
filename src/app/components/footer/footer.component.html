@@ -79,14 +79,14 @@
               <ul class="contact-list">
                 <li>
                   <i class="fas fa-map-marker-alt"></i>
-                  <span>1876 Harvest Cir Tustin, CA 92780, USA</span>
+                  <span>{{getData?.address}}</span>
                 </li>
                 <li>
                   <i class="far fa-envelope"></i>
-                  <a href="mailto:connect@infinityfarecompare.us">connect&#64;infinityfarecompare.us</a>
+                  <a >{{getData?.email}}</a>
                 </li>
                 <li>
-                  <i class="fa fa-mobile" aria-hidden="true"></i> <a href="tel:(888) 230-2647">&nbsp;(888) 230-2647&nbsp;</a>
+                  <i class="fa fa-mobile" aria-hidden="true"></i> <a href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a>
                 </li>
               </ul>
               <div class="social-links">
@@ -301,11 +301,11 @@
       <div class="row align-items-center">
         <div class="col-md-12 text-center">
           <p>
-            <a routerLink="/">newsite.theinfinitytravel.com</a>, operated by Infinity Web Solutions LLC (EIN: 82-160816), is a
+            <a >{{getData?.link}}</a>, operated by Infinity Web Solutions LLC (EIN: 82-160816), is a
             premier travel brand. We are an IATA certified company (Number: 05-7 1127 4) located at 1876 Harvest Cir, Tustin, CA
             92780-4589. We ensure that our flight services meet the highest standards through IATA certification. Our additional
             services like hotels and cruises are sourced from the leading suppliers in the industry. <br />By using our
-            services, you agree to our <a routerLink="/">www.newsite.theinfinitytravel.com</a> (Infinity Travels)'s
+            services, you agree to our <a >{{getData?.link}}</a> (Infinity Travels)'s
             <a routerLink="/terms-and-conditions">Terms & Conditions</a> and <a routerLink="/privacy-policy">Privacy Policy</a>
             <br />Please note that all transactions are subject to <a routerLink="/our-service-fees">our Service Fees</a> and
             <a routerLink="/post-ticketing-fees">Post Ticketing Fees</a>. For more details, make sure to check insights from our
@@ -319,13 +319,13 @@
     <div class="container container-xxl">
       <div class="row align-items-center">
         <div class="col-md-5 footer-logo">
-          <a routerLink="/"
+          <a 
             ><img src="assets/images/footer/logo-footer.png" alt="Infinity Travels Logo" width="194" height="59" loading="lazy"
           /></a>
         </div>
         <div class="col-md-7 ">
           <p class="footer-copyright text-center text-lg-end">
-            © Copyright 2025 <a routerLink="/" target="_blank">Infinity Web Solutions LLC | DBA - Infinity Travels</a>. All
+            © Copyright 2025 <a  target="_blank">Infinity Web Solutions LLC | DBA - Infinity Travels</a>. All
             Rights Reserved
           </p>
         </div>

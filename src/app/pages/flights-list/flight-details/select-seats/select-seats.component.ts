@@ -17,6 +17,7 @@ import { FlightFilterService } from '../../../../services/flight/flight-filter.s
 import { TosterService } from '../../../../services/common/toaster.service';
 import { SearchService } from '../../../../services/search.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { SharedService } from '../../../../services/shared/shared.service';
 
 interface Seat {
   id: string;
@@ -109,6 +110,9 @@ SeatAssignmentFee:number=0;
   selectedAdults: number = 0;
   selectedChildren: number = 0;
   selectedInfants: number = 0;
+       private shareService: SharedService = inject(SharedService);
+        getData:any='';
+ 
   constructor(
     private fb: FormBuilder,
     private flightService: FlightService,
@@ -127,6 +131,7 @@ SeatAssignmentFee:number=0;
   }
 
   ngOnInit(): void {
+      this.getData=this.shareService.getcompanyName();
    const summary = this.flightService.getFareSummary();
   if (summary) {
     this.fareSummary = summary;
