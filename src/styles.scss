@@ -5410,6 +5410,9 @@ header.header-six.fixed
 .testimonial-section{
   padding-bottom: 40px;
 }
+.flightdetails-section {
+  padding-bottom: 40px;
+}
 .popular-sec {
   margin-bottom: 40px;
 }
@@ -5426,5 +5429,11 @@ header.header-six.fixed
   .top-destination-wrapper {
     padding-bottom: 60px !important;
   }
+  .flightdetails-section  {
+    padding-bottom: 60px;
+  }
 }
 
+.u-radio-indicator{
+  display: none;
+}
