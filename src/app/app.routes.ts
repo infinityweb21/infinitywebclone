@@ -442,6 +442,13 @@ export const routes: Routes = [
     ),
 },
 {
+  path: 'top-destinations/swis-alps',
+  loadComponent: () =>
+    import('./pages/top-destinations/swis-alps/swis-alps.component').then(
+      (m) => m.SwisAlpsComponent
+    ),
+},
+{
   path: 'top-destinations/kuala-lumpur',
   loadComponent: () =>
     import('./pages/top-destinations/kuala-lumpur/kuala-lumpur.component').then(
