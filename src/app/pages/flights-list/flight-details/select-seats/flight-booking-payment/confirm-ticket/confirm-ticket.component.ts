@@ -90,7 +90,7 @@ flight = {
   baseFare: 187.00,
   taxes: 261.70,
   total: 493.57,
-  airlineContact: '1-760-999-7119',
+  airlineContact: '(888) 230-2647',
   passenger: {
     name: 'Mrs. Tugba Demirtas',
     dob: '1989-03-04',
