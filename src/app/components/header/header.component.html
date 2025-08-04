@@ -26,7 +26,7 @@
                 <li><a routerLink="/flights/business-class">Business Class Flights</a></li>
                 <li><a routerLink="/top-airlines-deals">Top Airline Deals</a></li>
                 <li><a routerLink="/flights/international-flights-from-us">International Flights from US</a></li>
-                <li><a routerLink="/flights/international-flights-to-us">International Flights to US</a></li>
+                <!-- <li><a routerLink="/flights/international-flights-to-us">International Flights to US</a></li> -->
               </ul>
             </li>
 
@@ -168,7 +168,7 @@
             </button>
             @if(profileDropdownOpen){
             <div class="profile-dropdown" [class.active]="profileDropdownOpen">
-              <a href="#">Profile</a> <a href="#">Settings</a> <a href="#">Logout</a>
+              <a  href="javascript:void(0);">Profile</a> <a  href="javascript:void(0);">Settings</a> <a  href="javascript:void(0);">Logout</a>
             </div>
             }
           </div>
@@ -277,13 +277,13 @@
             <li><a routerLink="/flights/first-class" (click)="closeCallback($event)">First Class Flights</a></li>
             <li><a routerLink="/flights/business-class" (click)="closeCallback($event)">Business Class Flights</a></li>
             <li><a routerLink="/top-airlines-deals" (click)="closeCallback($event)">Top Airline Deals</a></li>
-            <li>
+            <!-- <li>
               <a routerLink="/flights/international-flights-from-us" (click)="closeCallback($event)"
                 >International Flights from US</a
               >
-            </li>
+            </li> -->
             <li>
-              <a routerLink="/flights/international-flights-to-us" (click)="closeCallback($event)"
+              <a  
                 >International Flights to US</a
               >
             </li>
