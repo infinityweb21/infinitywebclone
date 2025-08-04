@@ -1,10 +1,16 @@
-import { NgStyle } from '@angular/common';
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NgIf, NgStyle } from '@angular/common';
+import { ChangeDetectorRef, Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { SharedService } from '../../../services/shared/shared.service';
+import { TosterService } from '../../../services/common/toaster.service';
+import { SpinnerService } from '../../../services/common/spinner.service';
+import { AuthService } from '../../../services/auth.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-top-destinations-head',
-  imports: [NgStyle],
+  imports: [NgStyle,ReactiveFormsModule,NgIf],
   templateUrl: './top-destinations-head.component.html',
   styleUrl: './top-destinations-head.component.scss',
 })
@@ -108,6 +114,8 @@ export class TopDestinationsHeadComponent implements OnInit {
   };
 
   ngOnInit(): void {
+        this.getData=this.shareService.getcompanyName();
+
     this.setActiveTabBasedOnRoute(this.router.url);
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -134,5 +142,67 @@ export class TopDestinationsHeadComponent implements OnInit {
       this.routeSubHeaderTexts['default'];
 
     this.cdr.detectChanges();
+  }
+   private shareService: SharedService = inject(SharedService);
+      private toasterService: TosterService = inject(TosterService);
+  private destroyRef: DestroyRef = inject(DestroyRef);
+  private SpinnerService: SpinnerService = inject(SpinnerService);
+  private route: ActivatedRoute = inject(ActivatedRoute);
+
+     private authService: AuthService = inject(AuthService);
+  getData:any='';
+  contactForm!: FormGroup;
+  submitted = false;
+  constructor(private fb: FormBuilder,
+   
+  ) {
+     this.contactForm = this.fb.group({
+      name: ['', Validators.required],
+        phone: ['', [Validators.required, Validators.pattern(/^\d{6,15}$/)]]
+    });
+  }
+
+
+isInvalid(field: string): boolean {
+  const control = this.contactForm.get(field);
+  return !!(control && (control.touched || this.submitted) && control.invalid);
+}
+
+  submitContactForm() {
+       this.submitted = true;
+    if (this.contactForm.invalid) {
+          this.contactForm.markAllAsTouched();
+      return;
+    }
+    console.log("this.getData.email",this.getData.email)
+   const payload={
+    name:this.contactForm.value['name'],
+        email:'',
+    phone:this.contactForm.value['phone'],
+    subject:'get a call back',
+    message:'request a call back',
+      contact_email:this.getData.email,
+  appName:this.getData?.appName
+   }
+   this.SpinnerService.show();
+    this.authService
+      .sendEmail(payload)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (res) => {
+             this.SpinnerService.hide();
+             this.contactForm.reset();
+          this.router.navigate(['/thankyou'])
+        },
+        error: (err) => {
+                       this.SpinnerService.hide();
+          this.toasterService.showError(
+            err.error.message ||
+              'Something went wrong while sending the contact!'
+          );
+        },
+      });
+
+    
   }
 }
