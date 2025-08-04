@@ -17,98 +17,104 @@ export class TopDestinationsHeadComponent implements OnInit {
   subHeaderText = '';
   private routeBackgrounds: { [key: string]: string } = {
     london:
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/london.webp',
     'new-york': '/assets/images/destination-banner/new-york.webp',
-    'swis-alps':'/assets/images/destination-banner/new-york.webp',
+    'swis-alps':'/assets/images/destination-banner/swiss-alps.webp',
     madrid:
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/madrid.webp',
     paris:
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
-    rome: 'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/paris.webp',
+    rome: '/assets/images/destination-banner/rome.webp',
     toronto:
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/singapore.webp',
     amsterdam:
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/Amsterdam.webp',
     maldives:
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/maldives.webp',
     bangkok:
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/bangkok.webp',
     california:
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/california.webp',
     florida:
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/florida.webp',
     singapore:
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/singapore.webp',
     sydney:
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/sydney.webp',
     tokyo:
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/Toyko.webp',
     zurich:
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/Zuric.webp',
     // Optional other routes:
     'top-destinations':
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/new-york.webp',
     'top-airlines':
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/new-york.webp',
     'top-routes':
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/new-york.webp',
     'speacial-deals':
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/new-york.webp',
     'cruise-lines':
-      'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
+      '/assets/images/destination-banner/new-york.webp',
     default:
       'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
   };
-  private routeHeaderTexts: { [key: string]: string } = {
-    london: 'Discover the Land of Love',
-    'new-york':'',
-     'swis-alps':'',
-    madrid: 'Discover Madrid',
-    paris: 'Experience Paris',
-    rome: 'Roam in Rome',
-    toronto: 'Toronto Adventures',
-    amsterdam: 'Visit Amsterdam',
-    maldives: 'Relax in Maldives',
-    bangkok: 'Bangkok Awaits',
-    california: 'California Vibes',
-    florida: 'Fun in Florida',
-    singapore: 'Explore Singapore',
-    sydney: 'Sydney Escapes',
-    tokyo: 'Tokyo Journeys',
-    zurich: 'Zurich Charm',
-    'top-destinations': 'Top Travel Destinations',
-    'top-airlines': 'Best Airlines for Your Trip',
-    'top-routes': 'Popular Flight Routes',
-    'speacial-deals': 'Special Travel Deals',
-    'cruise-lines': 'Explore Cruise Lines',
-    default: 'Discover the World',
-  };
+private routeHeaderTexts: { [key: string]: string } = {
+  amsterdam: 'Amsterdam Awaits You',
+  bangkok: 'Bangkok is Calling',
+  california: 'California Dreaming Starts Here',
+  florida: 'Find Fun in Florida',
+  'kuala-lumpur': 'Kuala Lumpur Beckons',
+  london: 'Fall in Love with London',
+  madrid: 'Move to Madrid Magic',
+  'new-york': 'Fly to Wonderland Now',
+  paris: 'Paris is Always a Good Idea',
+  rome: 'Roam Freely in Rome',
+  singapore: 'Say Hello to Singapore',
+  sydney: 'Step into Sydney’s Sunshine',
+  tokyo: 'Take Off to Tokyo Today',
+  toronto: 'Touch Down in Toronto',
+  zurich: 'Zoom into Zurich',
+  'swis-alps': 'Escape to the Swiss Alps',
+  maldives:'Find Bliss in the Maldives',
 
-  private routeSubHeaderTexts: { [key: string]: string } = {
-    london:
-      'Uncover the best pages of your life by visiting London &amp; make inexplicable memories.',
-        'new-york':'',
-             'swis-alps':'',
-    madrid: 'Stroll through art, culture, and sunshine.',
-    paris: 'The city of lights, love, and fashion.',
-    rome: 'Step into ancient history and fine cuisine.',
-    toronto: 'A mosaic of cultures and skylines.',
-    amsterdam: 'Canals, cafes, and colorful experiences.',
-    maldives: 'Turquoise waters and luxury retreats.',
-    bangkok: 'A vibrant city of temples and tastes.',
-    california: 'Beaches, tech, and endless fun.',
-    florida: 'Theme parks, sunshine, and coastlines.',
-    singapore: 'A futuristic island city-state.',
-    sydney: 'Beaches, harbors, and laid-back life.',
-    tokyo: 'Tech, tradition, and Tokyo towers.',
-    zurich: 'Alpine beauty and urban elegance.',
-    'top-destinations': 'Your guide to trending places worldwide.',
-    'top-airlines': 'Fly with the top-rated carriers.',
-    'top-routes': 'Navigate the most popular journeys.',
-    'speacial-deals': 'Save more on handpicked offers.',
-    'cruise-lines': 'Sail away with premier cruise lines.',
-    default: 'Plan your next unforgettable journey.',
-  };
+  // Optional or general sections
+  'top-destinations': 'Top Travel Destinations',
+  'top-airlines': 'Best Airlines for Your Trip',
+  'top-routes': 'Popular Flight Routes',
+  'speacial-deals': 'Special Travel Deals',
+  'cruise-lines': 'Explore Cruise Lines',
+  default: 'Discover the World',
+};
+
+
+ private routeSubHeaderTexts: { [key: string]: string } = {
+  amsterdam: 'Let the canals whisper stories as you float through the heart of Amsterdam',
+  bangkok: 'Unleash your senses in a city where culture, spice, and sparkle collide',
+  california: 'Soak in golden sunsets and endless vibes in the land of dreams',
+  florida: 'From thrilling parks to coastal bliss, Florida is where memories are made',
+  'kuala-lumpur': 'Touch the sky with twin towers and taste every flavor of Malaysia',
+  london: 'Wander through royal streets where history and modern charm meet',
+  madrid: 'Let every step move to the rhythm of flamenco and timeless charm',
+  'new-york': 'Chase your boldest dreams in the city that never dares to sleep',
+  paris: 'Savor romance in every step through the timeless beauty of Paris',
+  rome: 'Step into a living museum where past and present embrace you',
+  singapore: 'From futuristic trees to vibrant streets, Singapore is a world in itself',
+  sydney: 'Ride the waves and feel the pulse of the Aussie spirit in Sydney',
+  tokyo: 'From ancient temples to neon dreams, Tokyo is a world of wonders',
+  toronto: 'Where cultures unite and every corner tells a new story',
+  zurich: 'Snowy peaks and serene lakes await in Switzerland’s stylish gem',
+  'swis-alps': 'Feel the crisp mountain air as you rise above the clouds in style',
+ maldives:'Sink into serenity where turquoise waters kiss the sunlit skies',
+  // Optional or general sections
+  'top-destinations': 'Your guide to trending places worldwide.',
+  'top-airlines': 'Fly with the top-rated carriers.',
+  'top-routes': 'Navigate the most popular journeys.',
+  'speacial-deals': 'Save more on handpicked offers.',
+  'cruise-lines': 'Sail away with premier cruise lines.',
+  default: 'Plan your next unforgettable journey.',
+};
+
   ngOnInit(): void {
     this.setActiveTabBasedOnRoute(this.router.url);
     this.router.events.subscribe((event) => {
