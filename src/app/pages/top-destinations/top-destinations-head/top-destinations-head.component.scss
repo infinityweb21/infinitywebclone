@@ -11,7 +11,7 @@
   content: "";
   width: 100%;
   height: 100%;
-  background-color: rgb(0, 0, 0, 0.3);
+  background-color: rgb(0, 0, 0, 0.2);
   position: absolute;
   top: 0;
   left: 0;
@@ -22,7 +22,7 @@
 }
 
 .inf-hero-content h1 {
-  font-size: 42px;
+  font-size: 28px;
   font-weight: 700;
   margin-bottom: 5px;
 }
@@ -45,7 +45,7 @@
 
 .inf-call-widget h2 {
   text-align: center;
-  font-size: 26px;
+  font-size: 18px;
   font-weight: 600;
   margin-bottom: 14px;
   line-height: 100%;
@@ -61,8 +61,8 @@
 }
 
 .form-row .form-control {
-  padding: 14px 16px;
-  font-size: 16px;
+  padding: 10px 16px;
+  font-size: 13px;
   border: 1px solid #ccc;
   // border-radius: 10px;
   transition: border-color 0.3s ease;
@@ -79,12 +79,12 @@
   color: #fff;
   font-size: 16px;
   font-weight: 600;
-  padding: 14px;
   border: none;
-  border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 20px;
+  margin-top: 13px;
+  padding: 9px;
+  border-radius: 5px;
 }
 
 .form-row button:hover {
@@ -97,18 +97,32 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+// @media (max-width: 768px) {
+//   .inf-hero-content h1 {
+//     font-size: 32px;
+//   }
+
+//   .inf-hero-section {
+//     padding: 60px 0;
+//   }
+
+//   .inf-call-widget {
+//     padding: 30px 20px;
+//   }
+// }
+
+@media (min-width: 992px) {
   .inf-hero-content h1 {
-    font-size: 32px;
+    font-size: 42px;
   }
-
-  .inf-hero-section {
-    padding: 60px 0;
+  .form-row .form-control {
+    padding: 14px 16px;
+    font-size: 16px;
   }
-
-  .inf-call-widget {
-    padding: 30px 20px;
+  .banner-form-submit-btn {
+    padding: 14px;
+    border-radius: 10px;
+    margin-top: 20px;
   }
 }
-
 //   === ==

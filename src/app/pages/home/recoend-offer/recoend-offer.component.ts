@@ -1,10 +1,11 @@
 import { NgFor } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { RouterLink } from '@angular/router';
 // import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   selector: 'app-recoend-offer',
-  imports: [ NgFor],
+  imports: [ NgFor,RouterLink],
   templateUrl: './recoend-offer.component.html',
   styleUrl: './recoend-offer.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -33,8 +34,6 @@ export class RecoendOfferComponent implements OnInit {
         'Local village walk',
         'Glacier excursion',
       ],
-      price: 80000,
-      originalPrice: 88952,
       link: '#',
     },
     {
@@ -53,9 +52,8 @@ export class RecoendOfferComponent implements OnInit {
         'Guided city walk',
         'Louvre access',
       ],
-      price: 86952,
-      originalPrice: 88952,
-      link: '#',
+
+      link: '/top-destinations/paris',
     },
     {
       image: 'assets/images/home/california_dreaming.webp',
@@ -73,9 +71,7 @@ export class RecoendOfferComponent implements OnInit {
         'Santa Monica Beach Day',
         'Universal Studios Entry',
       ],
-      price: 87952,
-      originalPrice: 88952,
-      link: '#',
+      link: '/top-destinations/california',
     },
     {
       image: 'assets/images/home/florida_escape.webp',
@@ -93,9 +89,7 @@ export class RecoendOfferComponent implements OnInit {
         'Everglades Airboat Tour',
         'Miami Beach Day Trip',
       ],
-      price: 85952,
-      originalPrice: 88952,
-      link: '#',
+      link: '/top-destinations/florida',
     },
     {
       image: 'assets/images/home/tokyo_tour.webp',
@@ -113,9 +107,7 @@ export class RecoendOfferComponent implements OnInit {
         'Sushi-making class',
         'City walking tour',
       ],
-      price: 84952,
-      originalPrice: 88952,
-      link: '#',
+      link: '/top-destinations/tokyo',
     },
     {
       image: 'assets/images/home/rome_journey.webp',
@@ -133,9 +125,7 @@ export class RecoendOfferComponent implements OnInit {
         'Vatican City visit',
         'Trevi Fountain stop',
       ],
-      price: 82952,
-      originalPrice: 88952,
-      link: '#',
+      link: '/top-destinations/rome',
     },
     {
       image: 'assets/images/home/singapore_city_fun.webp',
@@ -153,9 +143,7 @@ export class RecoendOfferComponent implements OnInit {
         'Sentosa Island Entry',
         'Night Safari Ride',
       ],
-      price: 84952,
-      originalPrice: 88952,
-      link: '#',
+      link: '/top-destinations/singapore',
     },
     {
       image: 'assets/images/home/london_getaway.webp',
@@ -173,9 +161,9 @@ export class RecoendOfferComponent implements OnInit {
         'Tower of London entry',
         'Thames River cruise',
       ],
-      price: 90952,
-      originalPrice: 88952,
-      link: '#',
+      // price: 90952,
+      // originalPrice: 88952,
+      link: '/top-destinations/london',
     }
   ];
 
