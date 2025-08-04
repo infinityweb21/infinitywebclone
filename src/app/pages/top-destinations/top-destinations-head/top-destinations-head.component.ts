@@ -18,7 +18,7 @@ export class TopDestinationsHeadComponent implements OnInit {
   private routeBackgrounds: { [key: string]: string } = {
     london:
       'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
-    'new-york': 'public/assets/images/destination-banner/new-york.webp',
+    'new-york': '/assets/images/destination-banner/new-york.webp',
     madrid:
       'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
     paris:
@@ -60,6 +60,7 @@ export class TopDestinationsHeadComponent implements OnInit {
   };
   private routeHeaderTexts: { [key: string]: string } = {
     london: 'Discover the Land of Love',
+    'new-york':'',
     madrid: 'Discover Madrid',
     paris: 'Experience Paris',
     rome: 'Roam in Rome',
@@ -84,6 +85,7 @@ export class TopDestinationsHeadComponent implements OnInit {
   private routeSubHeaderTexts: { [key: string]: string } = {
     london:
       'Uncover the best pages of your life by visiting London &amp; make inexplicable memories.',
+        'new-york':'',
     madrid: 'Stroll through art, culture, and sunshine.',
     paris: 'The city of lights, love, and fashion.',
     rome: 'Step into ancient history and fine cuisine.',

@@ -13,7 +13,7 @@
     </div>
     <swiper-container #swiperRef >
       <swiper-slide *ngFor="let destination of destinations">
-        <div class="destination-slider mx-2">
+        <div class="destination-slider mx-2" routerLink="{{destination?.route}}">
           <div class="destination-item">
             <img [src]="destination.image" [alt]="destination.name" class="w-100" />
             <div class="destination-info text-center">
