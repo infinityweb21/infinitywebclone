@@ -511,6 +511,13 @@ export const routes: Routes = [
       (m) => m.CruiseLinesComponent
     ),
 },
+{
+  path: 'thankyou',
+  loadComponent: () =>
+    import('./components/thankyou/thankyou.component').then(
+      (m) => m.ThankyouComponent
+    ),
+},
     ],
   },
 

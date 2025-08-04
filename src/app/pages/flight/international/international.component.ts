@@ -11,6 +11,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ClickOutsideDirective } from '../../../directives/click-outside.directive';
 import { Meta, Title } from '@angular/platform-browser';
+import { SharedService } from '../../../services/shared/shared.service';
 
 @Component({
   selector: 'app-international',
@@ -55,6 +56,9 @@ export class InternationalComponent {
   infantsList = Array.from({ length: 5 }, (_, i) => i);
 
   flightForm: FormGroup;
+      private shareService: SharedService = inject(SharedService);
+      getData:any='';
+ 
   constructor(
     private fb: FormBuilder,
     private flightService: FlightService,
@@ -83,6 +87,8 @@ export class InternationalComponent {
   }
 
   ngOnInit(): void {
+        this.getData=this.shareService.getcompanyName();
+
     // Replace this with real data from an API if needed
     this.allAirports = [
       { name: 'Los Angeles International Airport (LAX)' },
