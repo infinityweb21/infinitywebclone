@@ -221,7 +221,7 @@
 }
 
 .contact-two {
-    padding: 0 0 120px
+    padding: 0 0 60px
 }
 
 .contact-two,.contact-two__left {
@@ -433,4 +433,10 @@
     height: 39px;
 
 }
+}
+
+@media(min-width:992px){
+    .contact-two {
+        padding: 0 0 80px
+    }
 }

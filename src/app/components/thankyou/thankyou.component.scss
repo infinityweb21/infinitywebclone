@@ -1,6 +1,6 @@
 .thankyou_section {
     height: 100vh;
-    // background: url('assets/new_images/thankyou.webp');
+    background: url('../../../../public/assets/images/thank-you.webp');
     background-position: center;
     background-size: cover;
 }
@@ -82,6 +82,9 @@
 
 .contact-widget {
     display: none;
+}
+.thankyou-logo{
+    width: 150px;
 }
 
 /* Responsive */

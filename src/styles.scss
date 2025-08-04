@@ -5397,3 +5397,34 @@ header.header-six.fixed
   display: none;
 }
 // =========
+
+
+// .main-wrapper{
+//   padding-bottom: 40px;
+// }
+// @media(min-width:992px){
+//   .main-wrapper {
+//     padding-bottom: 60px;
+//   }  
+// }
+.testimonial-section{
+  padding-bottom: 40px;
+}
+.popular-sec {
+  margin-bottom: 40px;
+}
+.top-destination-wrapper {
+  padding-bottom: 40px !important;
+}
+@media(min-width:992px){
+  .testimonial-section {
+    padding-bottom: 60px;
+  }  
+  .popular-sec {
+    margin-bottom: 60px;
+  }
+  .top-destination-wrapper {
+    padding-bottom: 60px !important;
+  }
+}
+
