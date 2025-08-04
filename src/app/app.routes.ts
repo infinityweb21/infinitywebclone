@@ -491,7 +491,7 @@ export const routes: Routes = [
     ),
 },
 {
-  path: 'top-routes',
+  path: 'top-route',
   loadComponent: () =>
     import('./pages/top-destinations/top-routes/top-routes.component').then(
       (m) => m.TopRoutesComponent
