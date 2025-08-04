@@ -12,7 +12,7 @@ export class SharedService {
 
   private data = {
     companyName: 'Infinity Travels',
-    phoneNumber: '(000)000-0000',
+    phoneNumber: '1-760-999-7119',
     // address: '',
     // email: ''
   };
