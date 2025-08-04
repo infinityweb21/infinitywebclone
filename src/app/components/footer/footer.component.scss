@@ -447,7 +447,7 @@
   gap: 0px;
 }
 
-@media(min-width:992px){
+@media(min-width:768px){
   .footer-middle-links-content-wrap {
     flex-direction: row;
   }
@@ -459,16 +459,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-direction: column;
   }
   .travel-registration h3 {
-    margin: 38px 0px 0px 0px;
+    margin: 36px 0px 0px 0px;
     text-align: right;
     line-height: 100%;
   }
   .footer-middle-links-content-wrap .links-list a{
-    padding: 0px 15px;
+    padding: 2px 15px;
     line-height: 100%;
+  }
+  .footer-middle-payment-member-review-content-wrap{
+    gap: 16px;
   }
 }
 
