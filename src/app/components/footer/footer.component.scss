@@ -212,6 +212,15 @@
   align-items: center;
 }
 
+.iata-memeber-link{
+  display: flex;
+  width: 65px;
+}
+.american-society-member-link, .cruise-line-member-link, .pci-memeber-link{
+  display: flex;
+  width: 100px;
+}
+
 .member-list li img {
   transition: transform 0.3s ease;
 }
