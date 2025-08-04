@@ -5,4 +5,5 @@ export interface Destination {
     flights: number;
     hotels: number;
     cruises: number;
+    route:string;
   }

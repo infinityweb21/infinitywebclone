@@ -10,7 +10,7 @@
         <div class="common-slider-container">
             <swiper-container #recoendSwiperRef>
                 <swiper-slide *ngFor="let product of recommendedProducts">
-                    <div class="swiper-slide mx-2">
+                    <div class="swiper-slide mx-2" routerLink="{{product?.link}}">
                         <div class="package-card">
                             <div class="package-card-img">
                                 <img [src]="product.image" alt="" class="img-fluid w-100" />
@@ -106,13 +106,13 @@
                             </ul>
 
                             <div class="package-price">
-                                <div class="package-price-left">
+                                <!-- <div class="package-price-left">
                                     <h2 class="package-price-value">
                                         ${{ product.price }}
                                         <span class="package-price-text">Per person</span>
                                     </h2>
                                     <del class="package-price-value-strike">${{ product.originalPrice }}</del>
-                                </div>
+                                </div> -->
                                 <div class="package-price-right">
                                     <a [href]="product.link" class="cmn-btn">Reserve Now</a>
                                 </div>
