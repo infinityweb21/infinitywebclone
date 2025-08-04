@@ -146,7 +146,7 @@ export class PopularTravelComponent {
         'Phillip Martin is an outstanding helpful knowledgable and very professional individual he should be seriously consider him for a promotion.',
       clientName: 'David Alan Martell, Mexico',
       // clientDesignation: 'Product Manager',
-      clientAvatar: 'https://i.pravatar.cc/40?img=2',
+      clientAvatar: 'https://i.pravatar.cc/40?img=9',
     },
     {
       id: 3,
@@ -164,7 +164,7 @@ export class PopularTravelComponent {
         'Dominguez Brown was an Awesome Coordinator. He helped me in everything that I needed. He is really knowledgable, and I would highly recommend him to anyone who needs assistance. He is also patient& kind. You can Trust him.',
       clientName: 'Thomasea Hall, USA',
       // clientDesignation: 'Business Analyst',
-      clientAvatar: 'https://i.pravatar.cc/40?img=4',
+      clientAvatar: 'https://i.pravatar.cc/40?img=12',
     },
     {
       id: 5,
@@ -182,7 +182,7 @@ export class PopularTravelComponent {
         'Roman was really helpful in navigating our travel information and seating allocations. Roman even gave me his phone number in case we were disconnected! Very nice indeed.',
       clientName: 'Gail A Greenmun, USA',
       // clientDesignation: 'Product Manager',
-      clientAvatar: 'https://i.pravatar.cc/40?img=2',
+      clientAvatar: 'https://i.pravatar.cc/40?img=8',
     },
     {
       id: 7,
@@ -191,7 +191,7 @@ export class PopularTravelComponent {
         'Spoke to Leon and he handled everything for me! He got the job done and made it all happen, definitely would recommend him in the future! Thank you Leon, 10 out of 10.',
       clientName: 'Whalen Merrill, USA',
       // clientDesignation: 'Product Manager',
-      clientAvatar: 'https://i.pravatar.cc/40?img=2',
+      clientAvatar: 'https://i.pravatar.cc/40?img=10',
     }
   ];
 

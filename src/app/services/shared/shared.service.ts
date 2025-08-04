@@ -12,9 +12,9 @@ export class SharedService {
 
   private data = {
     companyName: 'Infinity Travels',
-    phoneNumber: '(888) 230-2647',
-    // address: '',
-    // email: ''
+    phoneNumber: '(888) 230-2647 ',
+    address: '1876 Harvest Cir Tustin, CA 92780, USA',
+    email: 'connect@infinityfarecompare.us'
   };
   
   constructor(private http: HttpClient) { }

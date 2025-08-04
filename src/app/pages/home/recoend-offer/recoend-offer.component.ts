@@ -185,7 +185,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'NYC - CDG',
       dateRange: this.generateDateRange(),
       rating: 4.8,
-      price: 80952,
+      // price: 80952,
       link: '#',
     },
     {
@@ -194,7 +194,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'LHR - FCO',
       dateRange: this.generateDateRange(),
       rating: 4.6,
-      price: 81952,
+      
       link: '#',
     },
     {
@@ -203,7 +203,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'LAX - HND',
       dateRange: this.generateDateRange(),
       rating: 4.9,
-      price: 82952,
+    
       link: '#',
     },
     {
@@ -212,7 +212,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'LAX - SIN',
       dateRange: this.generateDateRange(),
       rating: 4.7,
-      price: 83952,
+     
       link: '#',
     },
     {
@@ -221,7 +221,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'JFK - BCN',
       dateRange: this.generateDateRange(),
       rating: 4.5,
-      price: 84952,
+     
       link: '#',
     },
     {
@@ -230,7 +230,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'ORD - ZRH',
       dateRange: this.generateDateRange(),
       rating: 4.5,
-      price: 84952,
+     
       link: '#',
     },
     {
@@ -239,7 +239,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'BOS - LHR',
       dateRange: this.generateDateRange(),
       rating: 4.9,
-      price: 84952,
+    
       link: '#',
     },
     {
@@ -248,7 +248,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'DEL - JFK',
       dateRange: this.generateDateRange(),
       rating: 4.8,
-      price: 84952,
+     
       link: '#',
     }
     // Add more flight objects if needed
