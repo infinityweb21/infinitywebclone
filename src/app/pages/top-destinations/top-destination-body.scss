@@ -1,6 +1,6 @@
 /* London Travel Tab Section Start*/
 .lnt-tab-section {
-  padding: 3rem 0;
+  padding: 16px 0px 0px;
   background-color: #f5f6f5;
   //   background-color: #f2f1f9;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -228,7 +228,7 @@
 .hotel-accordion-ui .accordion-button {
   background-color: #f9f9f9;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 14px;
   color: #333;
   transition: background-color 0.2s ease-in-out;
 }
@@ -262,7 +262,7 @@
 // /* === == *
 .ezbk-booking-section {
   background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-  padding: 60px 20px;
+  padding: 24px 20px;
   border-radius: 16px;
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.05);
 }
@@ -273,7 +273,7 @@
 }
 
 .ezbk-heading {
-  font-size: 2.75rem;
+  font-size: 24px;
   font-weight: 700;
   color: #1e2a38;
   margin-bottom: 25px;
@@ -285,7 +285,7 @@
   display: inline-block;
   font-size: 1.75rem;
   color: #0056b3;
-  font-weight: 600;
+  font-weight: 800;
   text-decoration: none;
   margin-bottom: 20px;
   transition: color 0.3s ease;
@@ -304,20 +304,22 @@
 }
 
 // /* === == *
-
+.tab-content-wrap{
+  padding: 16px;
+}
 @media(min-width:992px){
   .ldn-heading {
-    font-size: 32px;
+    font-size: 24px;
   }
   .ldn-subheading {
     font-size: 24px;
   }
   .ldn-paragraph {
-    font-size: 16px;
+    font-size: 15px;
   }
   
   .ldn-section-title {
-    font-size: 1.2rem;
+    font-size: 18px;
     margin-top: 15px;
     font-weight: bold;
   }
@@ -326,6 +328,18 @@
   }
   .inf-call-widget h2 {
     font-size: 26px;
+  }
+  .lnt-tab-section {
+    padding: 3rem 0;
+  }
+  .hotel-accordion-ui .accordion-button {
+    font-size: 1rem;
+  }
+  .ezbk-heading {
+    font-size: 28px;
+  }
+  .ezbk-booking-section {
+    padding: 60px 20px;
   }
 }
 /* London Travel Tab Section End*/
