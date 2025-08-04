@@ -30,14 +30,14 @@ export class TopDestinationsHeadComponent implements OnInit {
     florida: '/assets/images/destination-banner/florida.webp',
     singapore: '/assets/images/destination-banner/singapore.webp',
     sydney: '/assets/images/destination-banner/sydney.webp',
-    tokyo: '/assets/images/destination-banner/Toyko.webp',
+    tokyo: '/assets/images/destination-banner/tokyo.webp',
     zurich: '/assets/images/destination-banner/zurich.webp',
     'kuala-lumpur': '/assets/images/destination-banner/kuala-lumpur.webp',
     // Optional other routes:
     'top-destinations':
       '/assets/images/destination-banner/top-destinations.webp',
     'top-airlines': '/assets/images/destination-banner/top-airline.webp',
-    'top-routes': '/assets/images/destination-banner/top-routes.webp',
+    'top-route': '/assets/images/destination-banner/top-routes.webp',
     'speacial-deals': '/assets/images/destination-banner/special-deals.webp',
     'cruise-lines': '/assets/images/destination-banner/cruise-line.webp',
     default:
@@ -65,7 +65,7 @@ export class TopDestinationsHeadComponent implements OnInit {
     // Optional or general sections
     'top-destinations': 'Explore the Best',
     'top-airlines': 'Best Airlines for Your Trip',
-    'top-routes': 'Popular Flight Routes',
+    'top-route': 'Popular Flight Routes',
     'speacial-deals': 'Special Travel Deals',
     'cruise-lines': 'Explore Cruise Lines',
     default: 'Discover the World',
@@ -101,7 +101,7 @@ export class TopDestinationsHeadComponent implements OnInit {
     'top-destinations':
       'Let your heart wander and your eyes soak in the magic as we take you towards the journey of your dreams.',
     'top-airlines': 'Fly with the top-rated carriers.',
-    'top-routes': 'Navigate the most popular journeys.',
+    'top-route': 'Navigate the most popular journeys.',
     'speacial-deals': 'Save more on handpicked offers.',
     'cruise-lines': 'Sail away with premier cruise lines.',
     default: 'Plan your next unforgettable journey.',
