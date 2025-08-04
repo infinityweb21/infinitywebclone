@@ -4179,6 +4179,7 @@ header.header-six.fixed
   padding: 16px;
   /* margin: 15px 0; */
   background-color: #fff;
+  cursor: pointer;
 }
 .package-card-img {
   border-radius: 8px;
@@ -5378,3 +5379,21 @@ header.header-six.fixed
     padding-left: 10px;
   }
 }
+
+.recoend .swiper-slide,.cmn-gap .swiper-slide ,.popular .swiper-slide{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.offer-card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+
+
+// =========
+.blog-section{
+  display: none;
+}
+// =========

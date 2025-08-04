@@ -55,3 +55,39 @@
 .content-tabs ul li {
     margin-bottom: 10px;
 }
+
+@media (max-width: 991px) {
+.y-book1 {
+    margin-bottom: 20px;
+}
+}
+@media (max-width: 767px) {
+	.cmn-details-sec {
+    margin-top: 0 !important;
+    margin-bottom: 15px !important;
+}
+.y-book1 {
+    margin-bottom: 10px;
+}
+.why-bookwith1 h2 {
+    font-size: 14px;
+}
+.y-book1  img {
+    width: 50px;
+    height: 50px;
+}
+.content-tabs p {
+    font-size: 13px;
+}
+.callbg p {
+    margin: 0;
+    font-size: 14px;
+}
+.callbg a {
+    font-size: 19px;
+}
+.callbg i {
+    margin-right: 10px;
+    font-size: 19px;
+}
+}
