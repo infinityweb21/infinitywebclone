@@ -262,7 +262,7 @@
 // /* === == *
 .ezbk-booking-section {
   background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-  padding: 60px 20px;
+  padding: 24px 20px;
   border-radius: 16px;
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.05);
 }
@@ -273,7 +273,7 @@
 }
 
 .ezbk-heading {
-  font-size: 2.75rem;
+  font-size: 24px;
   font-weight: 700;
   color: #1e2a38;
   margin-bottom: 25px;
@@ -285,7 +285,7 @@
   display: inline-block;
   font-size: 1.75rem;
   color: #0056b3;
-  font-weight: 600;
+  font-weight: 800;
   text-decoration: none;
   margin-bottom: 20px;
   transition: color 0.3s ease;
@@ -334,6 +334,12 @@
   }
   .hotel-accordion-ui .accordion-button {
     font-size: 1rem;
+  }
+  .ezbk-heading {
+    font-size: 28px;
+  }
+  .ezbk-booking-section {
+    padding: 60px 20px;
   }
 }
 /* London Travel Tab Section End*/
