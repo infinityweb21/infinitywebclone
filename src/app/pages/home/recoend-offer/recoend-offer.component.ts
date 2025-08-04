@@ -34,7 +34,7 @@ export class RecoendOfferComponent implements OnInit {
         'Local village walk',
         'Glacier excursion',
       ],
-      link: '#',
+      link: '/top-destinations/swis-alps',
     },
     {
       image: 'assets/images/home/paries_getaway.webp',
@@ -166,13 +166,24 @@ export class RecoendOfferComponent implements OnInit {
       link: '/top-destinations/london',
     }
   ];
+  generateDateRange(): string {
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+    const today = new Date();
+    const start = new Date(today);
+    start.setDate(today.getDate() +15);
+
+    const end = new Date(start);
+    end.setDate(start.getDate() + 7);
+
+    return `${months[start.getMonth()]} ${String(start.getDate()).padStart(2, '0')} - ${months[end.getMonth()]} ${String(end.getDate()).padStart(2, '0')}`;
+  }
   flights = [
     {
       image: 'assets/images/home/paris.webp',
       destination: 'Paris',
       route: 'NYC - CDG',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.8,
       price: 80952,
       link: '#',
@@ -181,7 +192,7 @@ export class RecoendOfferComponent implements OnInit {
    image: 'assets/images/home/rome.webp',
       destination: 'Rome',
       route: 'LHR - FCO',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.6,
       price: 81952,
       link: '#',
@@ -190,7 +201,7 @@ export class RecoendOfferComponent implements OnInit {
    image: 'assets/images/home/tokyo1.webp',
       destination: 'Tokyo',
       route: 'LAX - HND',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.9,
       price: 82952,
       link: '#',
@@ -199,7 +210,7 @@ export class RecoendOfferComponent implements OnInit {
    image: 'assets/images/home/singapore1.webp',
       destination: 'Singapore',
       route: 'LAX - SIN',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.7,
       price: 83952,
       link: '#',
@@ -208,7 +219,7 @@ export class RecoendOfferComponent implements OnInit {
    image: 'assets/images/home/barcelona.webp',
       destination: 'Barcelona',
       route: 'JFK - BCN',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.5,
       price: 84952,
       link: '#',
@@ -217,7 +228,7 @@ export class RecoendOfferComponent implements OnInit {
    image: 'assets/images/home/zurich.webp',
       destination: 'Zurich',
       route: 'ORD - ZRH',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.5,
       price: 84952,
       link: '#',
@@ -226,7 +237,7 @@ export class RecoendOfferComponent implements OnInit {
    image: 'assets/images/home/london.webp',
       destination: 'London',
       route: 'BOS - LHR',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.9,
       price: 84952,
       link: '#',
@@ -235,7 +246,7 @@ export class RecoendOfferComponent implements OnInit {
    image: 'assets/images/home/newyork1.webp',
       destination: 'New York',
       route: 'DEL - JFK',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.8,
       price: 84952,
       link: '#',
