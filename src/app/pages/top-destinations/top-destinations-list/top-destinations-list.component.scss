@@ -4,7 +4,7 @@
 
   .title {
     font-weight: bold;
-    font-size: 1.8rem;
+    font-size: 20px;
     margin-bottom: 1.5rem;
 
     .highlight {
@@ -55,4 +55,10 @@
 
 .c-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: #f0ebeb;
+}
+
+@media(min-width:992px){
+  .title {
+    font-size: 1.8rem;
+  }
 }

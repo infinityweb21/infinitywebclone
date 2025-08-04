@@ -18,7 +18,7 @@ export class TopDestinationsHeadComponent implements OnInit {
   private routeBackgrounds: { [key: string]: string } = {
     london:
       'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
-    'new-york': 'public/assets/images/destination-banner/new-york.webp',
+    'new-york': '/assets/images/destination-banner/new-york.webp',
     madrid:
       'https://theinfinitytravel.com/control/assets/images/top-destinations/1631957667Londonwebp.webp',
     paris:
