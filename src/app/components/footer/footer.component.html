@@ -79,14 +79,14 @@
               <ul class="contact-list">
                 <li>
                   <i class="fas fa-map-marker-alt"></i>
-                  <span>1876 Harvest Cir Tustin, CA 92780, USA</span>
+                  <span>{{getData?.address}}</span>
                 </li>
                 <li>
                   <i class="far fa-envelope"></i>
-                  <a href="mailto:connect@infinityfarecompare.us">connect&#64;infinityfarecompare.us</a>
+                  <a >{{getData?.email}}</a>
                 </li>
                 <li>
-                  <i class="fa fa-mobile" aria-hidden="true"></i> <a href="tel:(888) 230-2647">&nbsp;(888) 230-2647&nbsp;</a>
+                  <i class="fa fa-mobile" aria-hidden="true"></i> <a href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a>
                 </li>
               </ul>
               <div class="social-links">

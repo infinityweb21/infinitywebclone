@@ -36,15 +36,15 @@
                   <div class="icon"><span class="icon-call"><i class="fas fa-phone"></i></span></div>
                   <div class="content">
                      <h3>Contact Us</h3>
-                     <p>Phone number: <a href="tel:(888) 230-2647">(888) 230-2647</a></p>
-                     <p>Phone number: <a href="tel:(888) 230-2647">(888) 230-2647</a></p>
+                     <p>Phone number: <a href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a></p>
+                     <p>Phone number: <a href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a></p>
                   </div>
                </li>
                <li>
                   <div class="icon"><span class="icon-location location-icon"><i class="fas fa-map-marker-alt"></i></span></div>
                   <div class="content">
                      <h3>Office Location</h3>
-                     <p>17875 Von Karman Ave, Suite 150 & 250, <br> Irvine, California, 92614, <br> United States of America</p>
+                     <p>{{getData?.address}}</p>
                   </div>
                </li>
                <li>
