@@ -95,7 +95,7 @@
           </div>
         </div>
         <div class="tab-pane fade" id="things" role="tabpanel">
-          <div class="row g-3">
+          <div class="row g-3 justify-content-center">
             <div class="col-md-3 d-flex">
               <div class="things-card">
                 <img src="assets/images/home/hotel_booking.webp" />
@@ -109,7 +109,7 @@
                     Tokyo. After all the sightseeing, have some traditional snacks at the street shops on Nakamise-dori
                     street.
                   </p>
-                  <a href="https://example.com" target="_blank" class="things-card-button">Book Now</a>
+                  <a href="tel:{{getData?.phoneNumber}}" class="things-card-button">Book Now</a>
                 </div>
               </div>
             </div>
@@ -126,7 +126,7 @@
                     visit the small but popular aquarium. If you are a first-time traveler, this place is a must.
 
                   </p>
-                  <a href="https://example.com" target="_blank" class="things-card-button">Book Now</a>
+                  <a href="tel:{{getData?.phoneNumber}}" class="things-card-button">Book Now</a>
                 </div>
               </div>
             </div>
@@ -142,7 +142,7 @@
                     café or rooftop for a great aerial view, especially in the evening when the neon lights come alive.
 
                   </p>
-                  <a href="https://example.com" target="_blank" class="things-card-button">Book Now</a>
+                  <a href="tel:{{getData?.phoneNumber}}" class="things-card-button">Book Now</a>
                 </div>
               </div>
             </div>
@@ -159,7 +159,7 @@
                     experience.
 
                   </p>
-                  <a href="https://example.com" target="_blank" class="things-card-button">Book Now</a>
+                  <a href="tel:{{getData?.phoneNumber}}" class="things-card-button">Book Now</a>
                 </div>
               </div>
             </div>
@@ -176,7 +176,7 @@
                     the best restaurants here. So come early and hungry; the flavors are best in the morning.
 
                   </p>
-                  <a href="https://example.com" target="_blank" class="things-card-button">Book Now</a>
+                  <a href="tel:{{getData?.phoneNumber}}" class="things-card-button">Book Now</a>
                 </div>
               </div>
             </div>
@@ -193,7 +193,7 @@
                     rabbits. Akihabara is the perfect spot to understand the otaku culture of Japan.
 
                   </p>
-                  <a href="https://example.com" target="_blank" class="things-card-button">Book Now</a>
+                  <a href="tel:{{getData?.phoneNumber}}" class="things-card-button">Book Now</a>
                 </div>
               </div>
             </div>
@@ -317,29 +317,29 @@
           </div>
         </div>
         <div class="tab-pane fade" id="photos" role="tabpanel">
-          <div class="row g-3">
-            <div class="col-md-3 d-flex">
+          <div class="row row-cols-2 row-cols-md-4 g-3 justify-content-center">
+            <div class="col d-flex">
               <div class="img-card-box"><img src="assets/images/home/hotel_booking2.webp" alt="Card Image" /></div>
             </div>
-            <div class="col-md-3 d-flex">
+            <div class="col d-flex">
               <div class="img-card-box"><img src="assets/images/home/hotel_booking2.webp" alt="Card Image" /></div>
             </div>
-            <div class="col-md-3 d-flex">
+            <div class="col d-flex">
               <div class="img-card-box"><img src="assets/images/home/hotel_booking2.webp" alt="Card Image" /></div>
             </div>
-            <div class="col-md-3 d-flex">
+            <div class="col d-flex">
               <div class="img-card-box"><img src="assets/images/home/hotel_booking2.webp" alt="Card Image" /></div>
             </div>
-            <div class="col-md-3 d-flex">
+            <div class="col d-flex">
               <div class="img-card-box"><img src="assets/images/home/hotel_booking2.webp" alt="Card Image" /></div>
             </div>
-            <div class="col-md-3 d-flex">
+            <div class="col d-flex">
               <div class="img-card-box"><img src="assets/images/home/hotel_booking2.webp" alt="Card Image" /></div>
             </div>
-            <div class="col-md-3 d-flex">
+            <div class="col d-flex">
               <div class="img-card-box"><img src="assets/images/home/hotel_booking2.webp" alt="Card Image" /></div>
             </div>
-            <div class="col-md-3 d-flex">
+            <div class="col d-flex">
               <div class="img-card-box"><img src="assets/images/home/hotel_booking2.webp" alt="Card Image" /></div>
             </div>
           </div>
@@ -348,7 +348,7 @@
           <div class="ezbk-booking-section">
             <div class="ezbk-content text-center">
               <h2 class="ezbk-heading">LET’S MAKE TRAVEL SIMPLE AND FUN</h2>
-              <a href="tel:+17609997119" class="ezbk-phone-link">1-760-999-7119</a>
+              <a href="tel:+18882302647" class="ezbk-phone-link">{{getData?.phoneNumber}}</a>
               <p class="ezbk-description">
                 Count on us to turn every trip into a lasting memory
               </p>

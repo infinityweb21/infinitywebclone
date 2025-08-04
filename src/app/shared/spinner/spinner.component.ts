@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { SpinnerService } from '../../services/common/spinner.service';
 import { CommonModule } from '@angular/common';
 import { SearchService } from '../../services/search.service';
+import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
   selector: 'app-spinner',
@@ -12,10 +13,14 @@ import { SearchService } from '../../services/search.service';
 export class SpinnerComponent implements OnInit {
   diparture:string='';
   arrival:string='';
+   private shareService: SharedService = inject(SharedService);
+    getData:any='';
+  
 constructor(public spinnerService: SpinnerService,private searchService:SearchService){
   console.log(this.spinnerService)
 }
 ngOnInit(): void {
+      this.getData=this.shareService.getcompanyName();
   this.searchService.searchData$.subscribe((searchData) => {
     if (searchData) {
       if (searchData.tripType !== 'multicity') {

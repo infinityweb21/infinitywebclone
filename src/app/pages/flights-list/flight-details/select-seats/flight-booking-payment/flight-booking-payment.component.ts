@@ -16,6 +16,7 @@ import { FlightFilterService } from '../../../../../services/flight/flight-filte
 import { SearchService } from '../../../../../services/search.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { GooglePlacesAutocompleteDirective } from '../../../../../directives/google-places-autocomplete.directive';
+import { SharedService } from '../../../../../services/shared/shared.service';
 
 @Component({
   selector: 'app-flight-booking-payment',
@@ -129,7 +130,8 @@ flightDetails:any[]=[];
 getFlights: any='';
 pnr:any='';
 flightBookingResponse: any;
-
+    private shareService: SharedService = inject(SharedService);
+    getData:any='';
   constructor(
     private fb: FormBuilder,
     private flightService: FlightService,
@@ -159,6 +161,7 @@ flightBookingResponse: any;
   });
   }
   ngOnInit() {
+    this.getData=this.shareService.getcompanyName();
        this.searchService.searchData$.subscribe((searchData) => {
       console.log('Received Flight Data:', searchData);
       if (searchData) {

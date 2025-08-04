@@ -4,6 +4,7 @@ import { HotelService } from '../../../../services/hotel/hotel.service';
 import { TosterService } from '../../../../services/common/toaster.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DatePipe } from '@angular/common';
+import { SharedService } from '../../../../services/shared/shared.service';
 
 @Component({
   selector: 'app-hotel-booking-ticket',
@@ -20,8 +21,10 @@ public hotelDetails:any
 public travellers:any[]=[]
 
 private bookingId:string|null=null
-
+  private shareService: SharedService = inject(SharedService);
+    getData:any='';
 ngOnInit(){
+      this.getData=this.shareService.getcompanyName();
   this.activateRoute.paramMap.subscribe(params => {
   this.bookingId = params.get('bookingId');
   if(this.bookingId){

@@ -1,5 +1,6 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, inject, ViewChild } from '@angular/core';
 import { MainFilterComponent } from "../../components/main-filter/main-filter.component";
+import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
   selector: 'app-top-routes',
@@ -64,4 +65,9 @@ export class TopRoutesComponent {
      
     });
   }
+   private shareService: SharedService = inject(SharedService);
+    getData:any='';
+    ngOnInit(){
+      this.getData=this.shareService.getcompanyName();
+    }
 }

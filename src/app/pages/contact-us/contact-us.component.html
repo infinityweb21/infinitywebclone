@@ -36,22 +36,22 @@
                   <div class="icon"><span class="icon-call"><i class="fas fa-phone"></i></span></div>
                   <div class="content">
                      <h3>Contact Us</h3>
-                     <p>Phone number: <a href="tel:1-760-999-7119">1-760-999-7119</a></p>
-                     <p>Phone number: <a href="tel:1-760-999-7119">1-760-999-7119</a></p>
+                     <p>Phone number: <a href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a></p>
+                     <p>Phone number: <a href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a></p>
                   </div>
                </li>
                <li>
                   <div class="icon"><span class="icon-location location-icon"><i class="fas fa-map-marker-alt"></i></span></div>
                   <div class="content">
                      <h3>Office Location</h3>
-                     <p>17875 Von Karman Ave, Suite 150 & 250, <br> Irvine, California, 92614, <br> United States of America</p>
+                     <p>{{getData?.address}}</p>
                   </div>
                </li>
                <li>
                   <div class="icon"><span class="icon-envolop email-icon"><i class="fas fa-envelope"></i></span></div>
                   <div class="content">
                      <h3>Email Us</h3>
-                     <p><a href="mailto:support@theinfinitytravel.com">{{'support@theinfinitytravel.com'}}</a></p>
+                     <p><a href="mailto:{{getData?.email}}">{{getData?.email}}</a></p>
                      <!-- <p><a href="mailto:demo23gmail.com">demo23&#64;gmail.com</a></p> -->
                   </div>
                </li>
@@ -69,28 +69,70 @@
                      <div class="section-title__tagline-box"><span class="section-title__tagline">We're Here to Help</span></div>
                      <h2 class="section-title__title">Have something on your mind? Send us a message!</h2>
                   </div>
-                  <form class="contact-form-validated contact-two__form">
-                     <div class="row">
-                        <div class="col-xl-6 col-lg-6">
-                           <div class="contact-two__input-box"><input placeholder="Name" type="text" name="name"></div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6">
-                           <div class="contact-two__input-box"><input placeholder="E-mail" type="email" name="email"></div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6">
-                           <div class="contact-two__input-box"><input placeholder="Phone" type="number" name="phone"></div>
-                        </div>
-                        <div class="col-xl-6 col-lg-6">
-                           <div class="contact-two__input-box"><input placeholder="Subject" type="text" name="text"></div>
-                        </div>
-                        <div class="col-xl-12">
-                           <div class="contact-two__input-box text-message-box"><textarea name="message" placeholder="Message"></textarea></div>
-                        </div>
-                        <div class=" col-xl-12">
-                           <div class="contact-two__btn-box"><button type="submit" class="thm-btn contact-two__btn">Submit Now<span></span></button></div>
-                        </div>
-                     </div>
-                  </form>
+               <form [formGroup]="contactForm" (ngSubmit)="submitContactForm()" class="contact-form-validated contact-two__form">
+  <div class="row">
+    <div class="col-xl-6 col-lg-6">
+      <div class="contact-two__input-box">
+        <input
+          placeholder="Name"
+          type="text"
+          formControlName="name"
+          [class.is-invalid]="isInvalid('name')"
+        />
+        <div *ngIf="isInvalid('name')" class="text-danger">Name is required.</div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6">
+      <div class="contact-two__input-box">
+        <input
+          placeholder="E-mail"
+          type="email"
+          formControlName="email"
+          [class.is-invalid]="isInvalid('email')"
+        />
+        <div *ngIf="isInvalid('email')" class="text-danger">Valid email is required.</div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6">
+      <div class="contact-two__input-box">
+        <input
+          placeholder="Phone"
+          type="number"
+          formControlName="phone"
+          [class.is-invalid]="isInvalid('phone')"
+        />
+        <div *ngIf="isInvalid('phone')" class="text-danger">Phone number is required.</div>
+      </div>
+    </div>
+    <div class="col-xl-6 col-lg-6">
+      <div class="contact-two__input-box">
+        <input
+          placeholder="Subject"
+          type="text"
+          formControlName="subject"
+          [class.is-invalid]="isInvalid('subject')"
+        />
+        <div *ngIf="isInvalid('subject')" class="text-danger">Subject is required.</div>
+      </div>
+    </div>
+    <div class="col-xl-12">
+      <div class="contact-two__input-box text-message-box">
+        <textarea
+          placeholder="Message"
+          formControlName="message"
+          [class.is-invalid]="isInvalid('message')"
+        ></textarea>
+        <div *ngIf="isInvalid('message')" class="text-danger">Message is required.</div>
+      </div>
+    </div>
+    <div class="col-xl-12">
+      <div class="contact-two__btn-box">
+        <button type="submit" class="thm-btn contact-two__btn">Submit Now<span></span></button>
+      </div>
+    </div>
+  </div>
+</form>
+
                   <div class="result"></div>
                </div>
             </div>

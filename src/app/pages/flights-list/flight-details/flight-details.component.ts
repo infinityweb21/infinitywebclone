@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { SearchService } from '../../../services/search.service';
 import { FlatpickrDirective } from '../../../directives/flatpickr.directive';
 import { GooglePlacesAutocompleteDirective } from '../../../directives/google-places-autocomplete.directive';
+import { SharedService } from '../../../services/shared/shared.service';
 
 @Component({
   selector: 'app-flight-details',
@@ -106,11 +107,14 @@ export class FlightDetailsComponent {
   segmentSeatMaps:any='';
 isSeatAvailable:boolean=false;
 isDomestic:boolean=false;
+private route:ActivatedRoute=inject(ActivatedRoute);
+private router:Router=inject(Router);
+     private shareService: SharedService = inject(SharedService);
+      getData:any='';
   constructor(private fb: FormBuilder,
     private flightService: FlightService,
     private toasterService: TosterService,
     private filterService: FlightFilterService,
-    private route: ActivatedRoute, private router: Router,
     private searchService: SearchService) {
     this.route.queryParams.subscribe(({ id }) => {
       if (id) {
@@ -137,6 +141,8 @@ isDomestic:boolean=false;
 
   }
   ngOnInit() {
+        this.getData=this.shareService.getcompanyName();
+
     this.searchService.searchData$.subscribe((searchData) => {
       console.log('Received Flight Data:', searchData);
       if (searchData) {

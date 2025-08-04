@@ -1,6 +1,7 @@
 import { NgFor } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SharedService } from '../../../services/shared/shared.service';
 // import { CarouselModule } from 'primeng/carousel';
 
 @Component({
@@ -185,7 +186,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'NYC - CDG',
       dateRange: this.generateDateRange(),
       rating: 4.8,
-      price: 80952,
+      // price: 80952,
       link: '#',
     },
     {
@@ -194,7 +195,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'LHR - FCO',
       dateRange: this.generateDateRange(),
       rating: 4.6,
-      price: 81952,
+      
       link: '#',
     },
     {
@@ -203,7 +204,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'LAX - HND',
       dateRange: this.generateDateRange(),
       rating: 4.9,
-      price: 82952,
+    
       link: '#',
     },
     {
@@ -212,7 +213,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'LAX - SIN',
       dateRange: this.generateDateRange(),
       rating: 4.7,
-      price: 83952,
+     
       link: '#',
     },
     {
@@ -221,7 +222,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'JFK - BCN',
       dateRange: this.generateDateRange(),
       rating: 4.5,
-      price: 84952,
+     
       link: '#',
     },
     {
@@ -230,7 +231,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'ORD - ZRH',
       dateRange: this.generateDateRange(),
       rating: 4.5,
-      price: 84952,
+     
       link: '#',
     },
     {
@@ -239,7 +240,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'BOS - LHR',
       dateRange: this.generateDateRange(),
       rating: 4.9,
-      price: 84952,
+    
       link: '#',
     },
     {
@@ -248,7 +249,7 @@ export class RecoendOfferComponent implements OnInit {
       route: 'DEL - JFK',
       dateRange: this.generateDateRange(),
       rating: 4.8,
-      price: 84952,
+     
       link: '#',
     }
     // Add more flight objects if needed
@@ -285,10 +286,12 @@ export class RecoendOfferComponent implements OnInit {
     // Add more offer objects here as needed
   ];
 
-  ngOnInit() {
-   
-  }
 
+ private shareService: SharedService = inject(SharedService);
+    getData:any='';
+    ngOnInit(){
+      this.getData=this.shareService.getcompanyName();
+    }
   ngAfterViewInit(): void {
     const swiperEl: any = this.recoendSwiperRef.nativeElement;
     const swiperEl1: any = this.recoendSwiperRef1.nativeElement;

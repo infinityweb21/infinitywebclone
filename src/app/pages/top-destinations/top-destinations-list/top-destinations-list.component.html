@@ -8,7 +8,7 @@
       <tbody>
         <tr *ngFor="let row of destinationRows">
           <td *ngFor="let destination of row">
-            {{ destination }}
+            <span [routerLink]="getRoute(destination)">{{ destination }}</span>
           </td>
         </tr>
       </tbody>

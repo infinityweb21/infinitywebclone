@@ -11,6 +11,7 @@ import { FlatpickrDirective } from '../../directives/flatpickr.directive';
 import { Router } from '@angular/router';
 import { SearchService } from '../../services/search.service';
 import { SliderModule } from 'primeng/slider';
+import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
   selector: 'app-cruises-list',
@@ -66,10 +67,14 @@ export class CruisesListComponent {
   }
   // Add more items as needed
 ];
+   private shareService: SharedService = inject(SharedService);
+  getData:any='';
 
   constructor() {}
   
   ngOnInit(): void {
+    this.getData=this.shareService.getcompanyName();
+
     this.cruisesForm = new FormGroup({
       departureCruises: new FormControl(''),
       startDate: new FormControl(''),
