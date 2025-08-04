@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -7,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class SpinnerService {
   private loadingSubject = new BehaviorSubject<any>({ loading: false, data: {} });
   public isLoading$ = this.loadingSubject.asObservable();
+  private  spinner:NgxSpinnerService=inject(NgxSpinnerService)
 
   private requestCount = 0; // 🔸 Track active API calls
 
@@ -43,5 +45,13 @@ export class SpinnerService {
     this.loaderType = null;
     this.loadingSubject.next({ loading: false, data: {} });
     console.log('force hide loader');
+  }
+  show(): void {
+    this.spinner.show();
+  }
+
+  // Hide the spinner
+  hide(): void {
+    this.spinner.hide();
   }
 }
