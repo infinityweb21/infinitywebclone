@@ -1,0 +1,33 @@
+
+@media (min-width: 992px) {
+  .banner {
+    width: 100%;
+    height: 550px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .banner-home {
+    background-image: url("../../../../public/assets/images/banner/home-banner.webp");
+    width: 100%;
+    height: 550px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .banner-flights {
+    background-image: url("../../../../public/assets/images/banner/flights-banner.webp");
+    width: 100%;
+    height: 550px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .banner-hotels {
+    background-image: url("../../../../public/assets/images/banner/hotels-banner.webp");
+    width: 100%;
+    height: 550px;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}

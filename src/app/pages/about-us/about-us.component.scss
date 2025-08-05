@@ -1,4 +1,7 @@
 /* inner banner css */
+
+
+
 .innerbannersection {
     min-height: 45vh;
     position: relative;
@@ -49,7 +52,7 @@
 }
 
 .subtitletext {
-    color: #f88320;
+    color: #ffffff;
 }
 
 .breadcrumbssec {
@@ -61,7 +64,7 @@
 }
 
 .breadcrumbssec .breadcrumb-item.active {
-    color: #f88320;
+    color: #ffffff;
 }
 
 .breadcrumbssec .breadcrumb-item+.breadcrumb-item::before {
@@ -121,7 +124,7 @@
   -ms-flex-negative: 0;
   flex-shrink: 0;
   border-radius: 280px;
-  background: #F7921F;
+  background: #663399;
   -webkit-filter: blur(200px);
   filter: blur(200px);
   z-index: -1;
@@ -168,7 +171,7 @@
     width: 100%;
     height: 100%;
     border-radius: 10%;
-    background-color: #f3842d;
+    background-color: #663399;
     content: "";
     position: absolute;
     top: -6px;
@@ -180,8 +183,8 @@
 .about-card-sm .icon svg{
   width: 30px !important;
   height: 30px !important;
-  color: #f3842d;
-  fill: #f3842d !important;
+  color: #663399;
+  fill: #663399 !important;
 }
 .about-card-sm .line {
   width: 1px;
@@ -193,7 +196,7 @@
 .about-content .sub-title.text-success {
     font-size: 22px;
     font-weight: 600;
-    color: #f2822c !important;
+    color: #663399 !important;
 }
 .about-content h4 {
     font-size: 19px;
@@ -205,9 +208,9 @@
     font-weight: 600;
 }
 .about-content .cta-add-btn {
-    background: linear-gradient(135deg,  rgba(251,176,64,1) 0%,rgba(247,127,29,1) 100%);
+    background: #663399;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    color: #000;
+    color: #fff;
     font-size: 16px;
     font-weight: 600;
     line-height: 100%;
@@ -387,7 +390,7 @@
     top: 0;
     width: 52%;
     height: 100%;
-    background: #f3812b;
+    background: #663399;
     z-index: -1;
 }
 
@@ -482,7 +485,7 @@
 }
 .destination-content a {
     background: #fff;
-    color: #f77f1d;
+    color: #663399;
     margin-top: 10px;
     text-transform: capitalize;
 }
@@ -506,8 +509,8 @@
     overflow: hidden;
 }
 .btn-see-all{
-  background: linear-gradient(135deg,  rgba(251,176,64,1) 0%,rgba(247,127,29,1) 100%);
-  color: #000;
+  background: #663399;
+  color: #fff;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   font-size: 16px;
   font-weight: 600;
