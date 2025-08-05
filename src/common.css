@@ -79,3 +79,7 @@ body {
         padding: 74px 0px 0px;
     }
 }
+
+.section-shape{
+    display: none !important;
+}
