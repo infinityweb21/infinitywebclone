@@ -20,7 +20,7 @@
 }
 
 .custom-logo img {
-  max-height: 40px;
+  max-height: 46px;
 }
 
 /* Menu List and Items */
@@ -321,6 +321,16 @@
   }
 }
 /* Responsive - Mobile (max 991px) */
+@media(max-width:374px){
+  .custom-logo img {
+    max-height: 28px;
+  }
+}
+@media(min-width:375px){
+  .custom-logo img {
+    max-height: 50px;
+  }
+}
 @media (max-width: 991px) {
   .header-btn {
     margin-left: auto;
@@ -431,9 +441,7 @@
   .submenu-open .dropdown-icon {
     transform: rotate(180deg);
   }
-  .custom-logo img {
-    max-height: 50px;
-  }
+
 }
 
 

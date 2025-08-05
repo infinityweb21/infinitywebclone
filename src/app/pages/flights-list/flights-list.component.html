@@ -89,7 +89,7 @@
                         <!-- Info -->
                         <div class="airport-text">
                           <div class="city-country">
-                            {{ airport.city }}, {{ airport.country }}
+                            {{ airport.city ? airport.city + ', ' + airport.country : airport.country }}
                           </div>
                           <div class="airport-name">
                             {{ airport.airport_name }}
@@ -161,7 +161,7 @@
                         <!-- Info -->
                         <div class="airport-text">
                           <div class="city-country">
-                            {{ airport.city }}, {{ airport.country }}
+                            {{ airport.city ? airport.city + ', ' + airport.country : airport.country }}
                           </div>
                           <div class="airport-name">
                             {{ airport.airport_name }}
@@ -360,7 +360,7 @@
                               <!-- Info -->
                               <div class="airport-text">
                                 <div class="city-country">
-                                  {{ airport.city }}, {{ airport.country }}
+                                  {{ airport.city ? airport.city + ', ' + airport.country : airport.country }}
                                 </div>
                                 <div class="airport-name">
                                   {{ airport.airport_name }}
@@ -424,7 +424,7 @@
                               <!-- Info -->
                               <div class="airport-text">
                                 <div class="city-country">
-                                  {{ airport.city }}, {{ airport.country }}
+                                  {{ airport.city ? airport.city + ', ' + airport.country : airport.country }}
                                 </div>
                                 <div class="airport-name">
                                   {{ airport.airport_name }}

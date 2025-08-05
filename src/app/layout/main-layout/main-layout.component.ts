@@ -12,6 +12,8 @@ import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 import { SpinnerService } from '../../services/common/spinner.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { CookiesComponent } from '../../components/cookies/cookies.component';
+import { QuickContactComponent } from '../../components/quick-contact/quick-contact.component';
 
 @Component({
   selector: 'app-main-layout',
@@ -21,6 +23,8 @@ import { Subscription } from 'rxjs';
     FooterComponent,
     SpinnerComponent,
     CommonModule,
+    CookiesComponent,
+    QuickContactComponent
 
   ],
   templateUrl: './main-layout.component.html',
