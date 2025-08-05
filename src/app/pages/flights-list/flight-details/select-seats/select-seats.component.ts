@@ -325,6 +325,20 @@ onSeatClick(seat: Seat): void {
 }
 
 
+getAllSelectedSeats(): any[] {
+  const seatData = this.flightService.getseatData();
+  const seatRequest = seatData?.SeatRequest || [];
+
+  let selectedSeats: any[] = [];
+
+  seatRequest.forEach((segmentGroup: any) => {
+    const segmentKey = Object.keys(segmentGroup)[0];
+    const seats = segmentGroup[segmentKey] || [];
+    selectedSeats = selectedSeats.concat(seats);
+  });
+
+  return selectedSeats;
+}
 
 
   getSubtotal(): number {

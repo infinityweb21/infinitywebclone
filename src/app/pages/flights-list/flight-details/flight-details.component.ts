@@ -248,7 +248,7 @@ travelerGroup.get('nationality')?.setValue(countryCode);
     this.flightService.getFlightReprice(payload).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
         console.log("res", res);
-        if(res?.data?.flight!=''){
+        if(res?.data && 'flight' in res.data && res.data.flight){
        this.getMainDetails = res?.data?.flight || '';
         this.flightService.setRepriceData(res);
         }else{

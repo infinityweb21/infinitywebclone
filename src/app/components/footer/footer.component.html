@@ -336,7 +336,7 @@
 </footer>
 
 <!-- === Short Popup Popup Start=== -->
-<a href="tel:{{ getData?.phoneNumber }}" class="short-cta-popup shortCTAModal">
+<a href="tel:{{ getData?.phoneNumber }}" class="short-cta-popup shortCTAModal"    *ngIf="isMobile && isScrolled ">
   <figure class="short-cta-popup-image">
     <img alt="tfn agent" src="assets/images/avatar.png" class="img-non3" width="48" height="48" />
   </figure>
@@ -360,9 +360,9 @@
 <!-- === Short Popup Popup End=== -->
 
 <!-- === Short Popup details Popup Start === -->
-<div class="details-modal-popup detailsModalPopup">
+<div class="details-modal-popup detailsModalPopup" *ngIf="isMobile && !isScrolled && !hidePopup">
   <div class="details-modal-popup-content">
-    <a href="javaScript:void(0);" class="close-details-popup closeDetailsPopup">✕</a>
+    <a  class="close-details-popup closeDetailsPopup" (click)="closeDetailsPopup()">✕</a>
     <div class="details-modal-popup-header-content-wrap d-flex align-items-center">
       <div class="details-modal-popup-img-wrap">
         <div class="details-modal-popup-img"><img src="assets/images/avatar.png" alt="tfn agent" /></div>

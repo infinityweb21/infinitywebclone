@@ -1,7 +1,7 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, retry, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, retry, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
@@ -20,6 +20,19 @@ export class SharedService {
   };
   
   constructor(private http: HttpClient) { }
+  private showCookiesSubject = new BehaviorSubject<boolean>(this.getFromStorage());
+
+  showCookies$ = this.showCookiesSubject.asObservable();
+
+  private getFromStorage(): boolean {
+    const value = localStorage.getItem('showCookies');
+    return value !== 'false'; // default to true
+  }
+
+  acceptCookies(): void {
+    localStorage.setItem('showCookies', 'false');
+    this.showCookiesSubject.next(false);
+  }
   airportlList(city: any): Observable<any> {
     const params = { city };
 
