@@ -7,8 +7,7 @@
           <h1>
             @if (!showHome) { @switch (activeTab) { @case ('flights-tab') {
             {{ companyName }} - Your Gateway to Various Flight Options } @case
-            ('hotels-tab') { Stay in Comfort with Best Hotel Rates Across the
-            World } @case ('cruises-tab') { {{ companyName }}: Where Your Dream
+            ('hotels-tab') { Book Amazing Stays in Popular Destinations at the Best Rates  } @case ('cruises-tab') { {{ companyName }}: Where Your Dream
             Cruise Begins } @case ('packages-tab') { Test Package } @default {
               {{ companyName }} — The Perfect Travel Partner for You } } }
             @else { Your Perfect Travel Companion for Flights, Cruises, & Stays
@@ -23,11 +22,10 @@
             <a [attr.href]="'tel:' + phoneNumber"
               >&nbsp;{{ phoneNumber }}&nbsp;</a
             >
-            and Grab the Best Deals } @case ('hotels-tab') { Call Now at
+            Today to Get the Best Deals } @case ('hotels-tab') { To know more, get in touch with us
             <a [attr.href]="'tel:' + phoneNumber"
               >&nbsp;{{ phoneNumber }}&nbsp;</a
-            >
-            to Save More } @case ('cruises-tab') { Get Exclusive Cruise Deals -
+            > } @case ('cruises-tab') { Get Exclusive Cruise Deals -
             Just Call
             <a [attr.href]="'tel:' + phoneNumber"
               >&nbsp;{{ phoneNumber }}&nbsp;</a
