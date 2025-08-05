@@ -1,11 +1,13 @@
 import { Component, DestroyRef, inject } from '@angular/core';
 import { SvgIcons } from '../../../../../shared/svg-icons';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { CommonModule, NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
@@ -17,10 +19,11 @@ import { SearchService } from '../../../../../services/search.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { GooglePlacesAutocompleteDirective } from '../../../../../directives/google-places-autocomplete.directive';
 import { SharedService } from '../../../../../services/shared/shared.service';
+import { SearchCountryField, CountryISO, PhoneNumberFormat, NgxIntlTelInputComponent, NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-flight-booking-payment',
-  imports: [FormsModule, ReactiveFormsModule,CommonModule,GooglePlacesAutocompleteDirective],
+  imports: [FormsModule, ReactiveFormsModule,CommonModule,GooglePlacesAutocompleteDirective,NgxIntlTelInputModule],
   templateUrl: './flight-booking-payment.component.html',
   styleUrl: './flight-booking-payment.component.scss',
 })
@@ -32,7 +35,11 @@ export class FlightBookingPaymentComponent {
   selectedInfants: number = 0;
   selectedCabin = 'E';
   checkoutForm!: FormGroup;
-
+separateDialCode = false;
+	SearchCountryField = SearchCountryField;
+	CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   paymentMethods = [
     {
       value: 'VI',
@@ -157,7 +164,7 @@ flightBookingResponse: any;
     ZipCode: ['', Validators.required],
     State: ['', Validators.required],
     Country: ['', Validators.required],
-    BillingPhoneNum: ['', [Validators.required, Validators.pattern(/^\d{10,15}$/)]],
+    BillingPhoneNum:  [undefined, [Validators.required,this.phoneLengthValidator]]
   });
   }
   ngOnInit() {
@@ -228,6 +235,21 @@ this.flattenedSeatData = allSeatSegments;
   }
 
   }
+     phoneLengthValidator(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
+
+  // Ensure value is an object and has nationalNumber
+  if (value && typeof value === 'object' && value.nationalNumber) {
+    const digits = value.nationalNumber.replace(/\D/g, ''); // remove non-digits
+    const length = digits.length;
+
+    if (length < 6 || length > 15) {
+      return { invalidPhoneLength: true };
+    }
+  }
+
+  return null;
+}
     getFlightsByItinerary() {
             const res = this.flightService.getRepriceData();
             console.log(res,"res");
@@ -498,7 +520,7 @@ const paymentPayload = {
   ItineraryId: this.itnearyId,
     "AgentMarkup":this.discountAmount,
     "BookItineraryPaxDetail":BookItineraryPaxDetail,
-  PhoneNumber: contactInfo.phoneNumber || '',
+  PhoneNumber: contactInfo.phoneNumber.number || '',
   AlternatePhoneNumber: '',
   Email: contactInfo.email || '',
   PaymentType: 'CC',
@@ -506,7 +528,7 @@ const paymentPayload = {
   CardNumber: formValue.CardNumber,
   CVV: formValue.CVV,
   ExpiryDate: formValue.ExpiryDate,
-  BillingPhoneNum: formValue.BillingPhoneNum,
+  BillingPhoneNum: formValue.BillingPhoneNum.number,
   Name: contactInfo.firstName || '', // You can also combine first/last if needed
   Address1: formValue.street,
   Address2: '',
@@ -520,7 +542,7 @@ const confirmPayload = {
   ItineraryId: this.itnearyId,
     "AgentMarkup":this.discountAmount,
     "BookItineraryPaxDetail":BookItineraryPaxDetail,
-  PhoneNumber: contactInfo.phoneNumber || '',
+  PhoneNumber: contactInfo.phoneNumber.number || '',
   AlternatePhoneNumber: '',
   Email: contactInfo.email || '',
   PaymentType: 'CC',
@@ -528,7 +550,7 @@ const confirmPayload = {
   CardNumber: formValue.CardNumber,
   CVV: formValue.CVV,
   ExpiryDate: formValue.ExpiryDate,
-  BillingPhoneNum: formValue.BillingPhoneNum,
+  BillingPhoneNum: formValue.BillingPhoneNum.number,
   Name: contactInfo.firstName || '', // You can also combine first/last if needed
   Address1: formValue.street,
   Address2: '',
@@ -943,7 +965,7 @@ const mainPayload={
     "bookingId": bookingId,
     "customer_name": contactInfo.firstName || '',
     "customer_email":contactInfo.email || '',
-    "customer_phone":  contactInfo.phoneNumber || '',
+    "customer_phone":  contactInfo.phoneNumber.number || '',
     "customer_alt_phone": "",
     "customer_id":customerId,
     "password": password,

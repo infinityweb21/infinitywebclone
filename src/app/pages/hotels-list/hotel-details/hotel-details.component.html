@@ -69,7 +69,7 @@
           <h5 class="mb-3 fs-18">Highlights</h5>
           @if(hotelDetails){
           <div class="highlight-box" *ngFor="let entry of entries">
-            <p class="d-flex align-items-center">
+            <p class="d-flex align-items-start gap-2">
               <i class="fa-brands fa-slack text-orange"></i>
               <strong class="me-1">{{ entry[0] | titlecase }}:</strong>
               <span [innerHTML]="entry[1]"></span>

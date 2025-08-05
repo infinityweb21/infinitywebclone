@@ -16483,11 +16483,16 @@ span.fctooltip__parent-text.latoBold {
 
 ::ng-deep .p-galleria-item{
 	img{
-		width:80%!important
+		width:100%!important
 	}
 }
 ::ng-deep .p-galleria-thumbnail-item{
 	img{
-		height: 3rem!important;
+		height: 9rem!important;
+	}
+}
+::ng-deep .rmSelect__card--leftDtlNew .p-galleria-thumbnail-item{
+	img{
+		height: 5rem !important;
 	}
 }
