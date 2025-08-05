@@ -222,10 +222,10 @@ export const routes: Routes = [
           import('./pages/privacy-policy/privacy-policy.component').then(
             (m) => m.PrivacyPolicyComponent
           ),
-        title: 'Read Our Detailed Privacy Policy & Commitments | Infinity Travel',
+        title: 'Privacy Policy | Infinityfarecompare',
         data: {
-          metaTitle: 'Read Our Detailed Privacy Policy & Commitments | Infinity Travel',
-          metaDescription: 'Your travel privacy matters. Read how Infinity Travel keeps your data secure across all bookings, flights, hotels and cruises.'
+          metaTitle: 'Privacy Policy | Infinityfarecompare',
+          metaDescription: 'Learn how Infinityfarecompare collects, protects, and uses your data. Read our Privacy Policy to ensure a safe and secure travel experience.'
         }
       },
       {
