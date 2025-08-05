@@ -2,7 +2,11 @@
 <main class="main-wrapper">
   <app-spinner />
   <router-outlet />
-  <app-cookies></app-cookies>
+
+  @if (showCookies) {
+    <app-cookies></app-cookies>
+  }
+
   <app-quick-contact></app-quick-contact>
 </main>
 <app-footer />
