@@ -3,7 +3,7 @@
 <section class="common-section booking-section">
     <div class="container container-xxl">
         <div class="row mobrow">
-            <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-6 col-12">
+            <div class="col-xxl-9 col-xl-9 col-lg-8 col-md-6 col-12">
                 <div class="flightdetailsmain-box">
                     <div class="insideinfobox">
                         <h2 class="common-titlenew">Who's checking in?</h2>
@@ -11,11 +11,14 @@
                             <div formArrayName="travelers">
                                 <div *ngFor="let traveler of travelers.controls; let i = index" [formGroupName]="i"
                                     class="traveler-info-row">
-                                    <h4 class="traveler-section-header">Traveler {{ i + 1 }}: Adult</h4>
+                                    <h4 class="traveler-section-header mb-3">Traveler {{ i + 1 }}: Adult</h4>
 
-                                    <!-- Email -->
-                                    <div class="row mb-3">
-                                        <div class="col-lg-12">
+
+                                    <!-- Name Fields -->
+                                    <div class="row">
+                                        <div class="col-xl-3 col-lg-4 col-md-12 col-12">
+                                              <label class="booking-form-label">Email<span
+                                                    class="booking-required-asterisk">*</span></label>
                                             <input type="email" class="form-control booking-form-control"
                                                 formControlName="email" placeholder="Email address" required />
                                             <div *ngIf="traveler.get('email')?.touched && traveler.get('email')?.invalid"
@@ -26,11 +29,9 @@
                                                     email.</div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <!-- Name Fields -->
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-12">
+                                        <div class="col-xl-2 col-lg-4 col-md-12 col-12">
+                                              <label class="booking-form-label">First Name<span
+                                                    class="booking-required-asterisk">*</span></label>
                                             <input type="text" class="form-control booking-form-control"
                                                 formControlName="firstName" placeholder="First Name" required />
                                             <div *ngIf="traveler.get('firstName')?.touched && traveler.get('firstName')?.invalid"
@@ -38,7 +39,9 @@
                                                 First Name is required.
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-md-12">
+                                        <div class="col-xl-2 col-lg-4 col-md-12 col-12">
+                                              <label class="booking-form-label">Last Name<span
+                                                    class="booking-required-asterisk">*</span></label>
                                             <input type="text" class="form-control booking-form-control"
                                                 formControlName="lastName" placeholder="Last Name" required />
                                             <div *ngIf="traveler.get('lastName')?.touched && traveler.get('lastName')?.invalid"
@@ -46,11 +49,7 @@
                                                 Last Name is required.
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <!-- Date of Birth and Gender -->
-                                    <div class="row mt-3">
-                                        <div class="col-lg-8 col-md-12">
+                                        <div class="col-xl-3 col-lg-4 col-md-12 col-12">
                                             <label class="booking-form-label">Date of Birth<span
                                                     class="booking-required-asterisk">*</span></label>
                                             <p-datepicker class="form-select booking-form-control"
@@ -60,7 +59,7 @@
                                                 Date of Birth is required.
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-12">
+                                        <div class="col-xl-2 col-lg-4 col-md-12 col-12">
                                             <label class="booking-form-label">Gender<span
                                                     class="booking-required-asterisk">*</span></label>
                                             <select class="form-select booking-form-control booking-form-select"
@@ -76,6 +75,8 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                  
 
                                     <!-- Remove Traveler Button -->
                                     <div *ngIf="travelers.length > 1" class="mt-3">
@@ -197,7 +198,7 @@
                         <form [formGroup]="paymentForm" class="booking-traveler-form">
                             <div class="passport-details-section row">
                                 <!-- Name on Card -->
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-4 col-md-4 col-md-12">
                                     <div class="booking-form-group">
                                         <label class="booking-form-label">Name On The Card</label>
                                         <input type="text" class="form-control booking-form-control"
@@ -210,7 +211,7 @@
                                 </div>
 
                                 <!-- Email -->
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-4 col-md-4 col-md-12">
                                     <div class="booking-form-group">
                                         <label class="booking-form-label">Email</label>
                                         <input type="email" class="form-control booking-form-control"
@@ -226,7 +227,7 @@
                                 </div>
 
                                 <!-- Phone -->
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-4 col-md-4 col-md-12">
                                     <div class="booking-form-group">
                                         <label class="booking-form-label">Phone No</label>
                                         <!-- <input type="text" class="form-control booking-form-control"
@@ -255,7 +256,7 @@
                                 </div>
 
                                 <!-- Card Number -->
-                                <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-4 col-md-4 col-md-12">
                                     <div class="booking-form-group">
                                         <label class="booking-form-label">Card number</label>
                                         <input type="text" class="form-control booking-form-control"
@@ -271,11 +272,11 @@
                                 </div>
 
                                 <!-- Expiry Date -->
-                                <div class="col-lg-3 col-md-12">
+                                <div class="col-lg-3 col-md-3 col-md-12">
                                     <div class="booking-form-group">
                                         <label class="booking-form-label">Exp date</label>
-                                        <input type="text" class="form-control booking-form-control" placeholder="MM/YYYY"
-                                            formControlName="expDate" />
+                                        <input type="text" class="form-control booking-form-control"
+                                            placeholder="MM/YYYY" formControlName="expDate" />
                                         <div *ngIf="paymentForm.get('expDate')?.touched && paymentForm.get('expDate')?.invalid"
                                             class="text-danger">
                                             <div *ngIf="paymentForm.get('expDate')?.errors?.['required']">Expiry date is
@@ -287,7 +288,7 @@
                                 </div>
 
                                 <!-- CVV -->
-                                <div class="col-lg-3 col-md-12">
+                                <div class="col-lg-3 col-md-3 col-md-12">
                                     <div class="booking-form-group">
                                         <label class="booking-form-label">CVV</label>
                                         <input type="text" class="form-control booking-form-control" placeholder="422"
@@ -316,99 +317,99 @@
                     <h2 class="detailstiitle">Billing Address</h2>
 
                     <div class="flightinfo">
-                       
+
                         <form [formGroup]="billingForm" class="booking-traveler-form">
                             <div class="passport-details-section row">
                                 <!-- Name on Card -->
-                                <div class="col-lg-6 col-md-12">
+                             <div class="col-xl-3 col-lg-4 col-md-12 col-12">
                                     <div class="booking-form-group">
                                         <label class="booking-form-label">Address</label><span
-                                                    class="booking-required-asterisk">*</span>
+                                            class="booking-required-asterisk">*</span>
                                         <input type="text" class="form-control booking-form-control"
                                             formControlName="address" />
                                         <div *ngIf="billingForm.get('address')?.touched && billingForm.get('address')?.invalid"
                                             class="text-danger">
-                                           Address is required
+                                            Address is required
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Email -->
-                                <div class="col-lg-6 col-md-12">
+                              <div class="col-xl-2 col-lg-4 col-md-12 col-12">
                                     <div class="booking-form-group">
                                         <label class="booking-form-label">Area</label>
                                         <input type="text" class="form-control booking-form-control"
                                             formControlName="area" />
-                                       
+
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6 col-md-12">
+                              <div class="col-xl-2 col-lg-4 col-md-12 col-12">
                                     <div class="booking-form-group">
                                         <label class="booking-form-label">Street</label>
                                         <input type="text" class="form-control booking-form-control"
                                             formControlName="street" />
-                                       
+
                                     </div>
                                 </div>
 
                                 <!-- Phone -->
-                                <div class="col-lg-6 col-md-12">
+                              <div class="col-xl-2 col-lg-4 col-md-12 col-12">
                                     <div class="booking-form-group">
                                         <label class="booking-form-label">City</label><span
-                                                    class="booking-required-asterisk">*</span>
+                                            class="booking-required-asterisk">*</span>
                                         <!-- <input type="text" class="form-control booking-form-control"
                                             formControlName="phone" /> -->
                                         <div class="wrapper">
-                                             <input type="text" class="form-control booking-form-control"
-                                            formControlName="city" />
-                                        <div *ngIf="billingForm.get('city')?.touched && billingForm.get('city')?.invalid"
-                                            class="text-danger">
-                                           City is required
+                                            <input type="text" class="form-control booking-form-control"
+                                                formControlName="city" />
+                                            <div *ngIf="billingForm.get('city')?.touched && billingForm.get('city')?.invalid"
+                                                class="text-danger">
+                                                City is required
+                                            </div>
                                         </div>
-                                        </div>
-                                        
+
                                     </div>
                                 </div>
 
                                 <!-- Card Number -->
-                                <div class="col-lg-6 col-md-12">
+                              <div class="col-xl-2 col-lg-4 col-md-12 col-12">
                                     <div class="booking-form-group">
                                         <label class="booking-form-label">State</label><span
-                                                    class="booking-required-asterisk">*</span>
+                                            class="booking-required-asterisk">*</span>
                                         <input type="text" class="form-control booking-form-control"
                                             formControlName="state" />
                                         <div *ngIf="billingForm.get('state')?.touched && billingForm.get('state')?.invalid"
                                             class="text-danger">
-                                           State is required
+                                            State is required
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- Expiry Date -->
-                                <div class="col-lg-6 col-md-12">
+                              <div class="col-xl-2 col-lg-4 col-md-12 col-12">
                                     <div class="booking-form-group">
                                         <label class="booking-form-label">Zip Code</label><span
-                                                    class="booking-required-asterisk">*</span>
-                                        <input type="text" class="form-control booking-form-control" placeholder="7000111"
-                                            formControlName="zipCode" />
+                                            class="booking-required-asterisk">*</span>
+                                        <input type="text" class="form-control booking-form-control"
+                                            placeholder="7000111" formControlName="zipCode" />
                                         <div *ngIf="billingForm.get('zipCode')?.touched && billingForm.get('zipCode')?.invalid"
                                             class="text-danger">
-                                           Zip Code is required or invalid
+                                            Zip Code is required or invalid
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- CVV -->
-                                <div class="col-lg-6 col-md-12">
+                              <div class="col-xl-2 col-lg-4 col-md-12 col-12">
                                     <div class="booking-form-group">
                                         <label class="booking-form-label">Country</label><span
-                                                    class="booking-required-asterisk">*</span>
-                                        <input type="text" class="form-control booking-form-control" 
+                                            class="booking-required-asterisk">*</span>
+                                        <input type="text" class="form-control booking-form-control"
                                             formControlName="country" />
                                         <div *ngIf="billingForm.get('country')?.touched && billingForm.get('country')?.invalid"
                                             class="text-danger">
-                                           Country is required
+                                            Country is required
                                         </div>
                                     </div>
                                 </div>
@@ -475,7 +476,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-6 col-12">
+            <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-12">
                 <div class="stickybox">
                     <div class="booking-card-container">
                         <div class="hotel-image-wrapper">
