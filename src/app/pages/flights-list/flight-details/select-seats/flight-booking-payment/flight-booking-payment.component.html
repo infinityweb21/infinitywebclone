@@ -718,9 +718,16 @@
             </div>
 
             <!-- Continue Button -->
-            <button class="btn continue-btn w-100 fw-semibold">
+            <!-- <button class="btn continue-btn w-100 fw-semibold" (click)="submitForm()">
               Confirm & Book
-            </button>
+            </button> -->
+            <button 
+  class="btn continue-btn w-100 fw-semibold" 
+  (click)="submitForm()" 
+  [disabled]="loading">
+  <span *ngIf="!loading">Confirm & Book</span>
+  <span *ngIf="loading">Processing...</span>
+</button>
           </div>
           <div class="call-card">
             <div class="call-box-wrap">

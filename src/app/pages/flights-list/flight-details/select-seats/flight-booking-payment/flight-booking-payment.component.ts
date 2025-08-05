@@ -37,6 +37,7 @@ separateDialCode = false;
 	SearchCountryField = SearchCountryField;
 	CountryISO = CountryISO;
   PhoneNumberFormat = PhoneNumberFormat;
+  loading = false;
 	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   paymentMethods = [
     {
@@ -476,7 +477,7 @@ formatDate(dateStr: string): string {
     
     if (this.checkoutForm.valid) {
       console.log('Form submitted:', this.checkoutForm.value);
-      
+      this.loading = true; 
         const BookItineraryPaxDetail = this.travelData?.travelers?.map((traveler: any) => {
   return {
     PaxType: traveler.PaxType,
@@ -561,6 +562,7 @@ if(this.flattenedSeatData.length!=0){
       if (res?.data?.bookingStatus === 'Success') {
         this.createBooking();
       }
+      this.loading = false; 
               
         },
         error: (err) => {
@@ -568,6 +570,7 @@ if(this.flattenedSeatData.length!=0){
             err.error.message ||
               'Something went wrong while fetching vendor list!'
           );
+          this.loading = false; 
         },
       });
 }else{
