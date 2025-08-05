@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import { SvgIcons } from '../../../shared/svg-icons';
+import { SharedService } from '../../../services/shared/shared.service';
 
 interface Testimonial {
   id: number;
@@ -34,11 +35,12 @@ export class PopularTravelComponent {
   @ViewChild('testimonialsRef', { static: true }) testimonialsRef!: ElementRef;
 
   protected icon = inject(SvgIcons);
-  
+
   popularTrips = [
     {
       image: 'assets/images/home/lasvegas.webp',
-      description: 'Las Vegas – Entertainment Escape – Strip Tour, Live Shows, Nightlife',
+      description:
+        'Las Vegas – Entertainment Escape – Strip Tour, Live Shows, Nightlife',
       rating: 4.6,
       price: 8852,
       link: '#',
@@ -46,11 +48,12 @@ export class PopularTravelComponent {
     },
     {
       image: 'assets/images/home/banff_canada.webp',
-      description: 'Banff, Canada – Alpine Adventure – Lake Louise, Gondola Ride, Hot Springs',
+      description:
+        'Banff, Canada – Alpine Adventure – Lake Louise, Gondola Ride, Hot Springs',
       rating: 4.7,
       price: 1052,
       link: '#',
-       days: 9,
+      days: 9,
     },
     {
       image: 'assets/images/home/miami.webp',
@@ -58,42 +61,46 @@ export class PopularTravelComponent {
       rating: 4.7,
       price: 9952,
       link: '#',
-       days: 7,
+      days: 7,
     },
     {
       image: 'assets/images/home/singapore.webp',
-      description: 'Singapore – Fun in Singapore – Sentosa, Universal, Night Safari',
+      description:
+        'Singapore – Fun in Singapore – Sentosa, Universal, Night Safari',
       rating: 4.8,
       price: 7952,
       link: '#',
-       days: 6,
+      days: 6,
     },
     {
       image: 'assets/images/home/newyork.webp',
-      description: 'New York – NYC Highlights – Liberty Cruise, Times Square, Broadway',
+      description:
+        'New York – NYC Highlights – Liberty Cruise, Times Square, Broadway',
       rating: 4.5,
       price: 8852,
       link: '#',
       days: 7,
     },
-    
+
     {
       image: 'assets/images/home/tokyo.webp',
-      description: 'Tokyo – Tokyo Urban Vibes – Mt. Fuji, Sushi Class, City Tour',
+      description:
+        'Tokyo – Tokyo Urban Vibes – Mt. Fuji, Sushi Class, City Tour',
       rating: 4.7,
       price: 8052,
       link: '#',
       days: 9,
     },
-    
+
     {
       image: 'assets/images/home/maldives.webp',
-      description: 'Maldives – Lagoon Luxury Stay – Villa Stay, Spa, Dolphin Watching',
+      description:
+        'Maldives – Lagoon Luxury Stay – Villa Stay, Spa, Dolphin Watching',
       rating: 4.7,
       price: 7852,
       link: '#',
       days: 8,
-    }
+    },
   ];
 
   travelFeatures = [
@@ -126,7 +133,7 @@ export class PopularTravelComponent {
       icon: 'assets/images/home/custom_trip_planning.svg',
       title: 'Custom Trip Planning',
       description: 'Customize your trip with flexible options',
-    }
+    },
   ];
 
   testimonials: Testimonial[] = [
@@ -192,53 +199,59 @@ export class PopularTravelComponent {
       clientName: 'Whalen Merrill, USA',
       // clientDesignation: 'Product Manager',
       clientAvatar: 'https://i.pravatar.cc/40?img=10',
-    }
+    },
   ];
 
-  travelArticles =[
+  travelArticles = [
     {
-    image: 'assets/images/home/international_flight_booking.webp',
-    badge: 'Explore',
-    date: 'March 12, 2015',
-    author: 'Paul Theroux',
-    title: 'Cheap International Flights from the US – Full Guide',
-  },
+      image: 'assets/images/home/international_flight_booking.webp',
+      badge: 'Explore',
+      date: 'March 12, 2015',
+      author: 'Paul Theroux',
+      title: 'Cheap International Flights from the US – Full Guide',
+    },
     {
-    image: 'assets/images/home/hotel_booking.webp',
-    badge: 'Wander',
-    date: 'July 8, 2020',
-    author: 'Elizabeth Gilbert',
-    title: 'Get Hotel Booking Discounts: Easy Steps to Save Big',
-  },
+      image: 'assets/images/home/hotel_booking.webp',
+      badge: 'Wander',
+      date: 'July 8, 2020',
+      author: 'Elizabeth Gilbert',
+      title: 'Get Hotel Booking Discounts: Easy Steps to Save Big',
+    },
     {
-    image: 'assets/images/home/hotel_booking2.webp',
-    badge: 'Journey',
-    date: 'November 23, 2018',
-    author: 'Bill Bryson',
-    title: 'Book Cheap Domestic Flights: Tips & Deals for USA Travel',
-  },
+      image: 'assets/images/home/hotel_booking2.webp',
+      badge: 'Journey',
+      date: 'November 23, 2018',
+      author: 'Bill Bryson',
+      title: 'Book Cheap Domestic Flights: Tips & Deals for USA Travel',
+    },
     {
-    image: 'assets/images/home/busniess_flight_booking.webp',
-    badge: 'Roam',
-    date: 'June 1, 2022',
-    author: 'Pico Iyer',
-    title: 'Business Class Flight Cost, And Upgrade Deals Guide',
-  },
+      image: 'assets/images/home/busniess_flight_booking.webp',
+      badge: 'Roam',
+      date: 'June 1, 2022',
+      author: 'Pico Iyer',
+      title: 'Business Class Flight Cost, And Upgrade Deals Guide',
+    },
     {
-    image: 'assets/images/home/flight_booking.webp',
-    badge: 'Trek',
-    date: 'September 17, 2016',
-    author: 'Cheryl Strayed',
-    title: 'Cheap International Flights with Layovers save big on Airfare',
-  },
+      image: 'assets/images/home/flight_booking.webp',
+      badge: 'Trek',
+      date: 'September 17, 2016',
+      author: 'Cheryl Strayed',
+      title: 'Cheap International Flights with Layovers save big on Airfare',
+    },
     {
-    image: 'assets/images/home/travel-image.webp',
-    badge: 'Escape',
-    date: 'January 4, 2024',
-    author: 'Freya Stark',
-    title: 'A Comprehensive Guide to Premium Economy and Business Class Flights',
+      image: 'assets/images/home/travel-image.webp',
+      badge: 'Escape',
+      date: 'January 4, 2024',
+      author: 'Freya Stark',
+      title:
+        'A Comprehensive Guide to Premium Economy and Business Class Flights',
+    },
+  ];
+  private shareService: SharedService = inject(SharedService);
+  getData: any = '';
+  ngOnInit() {
+    this.getData = this.shareService.getcompanyName();
   }
-];
 
   ngAfterViewInit(): void {
     const swiperEl: any = this.popularTripsRef.nativeElement;
