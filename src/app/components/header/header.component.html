@@ -168,17 +168,15 @@
             </button>
             @if(profileDropdownOpen){
             <div class="profile-dropdown" [class.active]="profileDropdownOpen">
-              <a  href="javascript:void(0);">Profile</a> <a  href="javascript:void(0);">Settings</a> <a  href="javascript:void(0);">Logout</a>
+              <a href="javascript:void(0);">Profile</a> <a href="javascript:void(0);">Settings</a>
+              <a href="javascript:void(0);">Logout</a>
             </div>
             }
           </div>
-          <a href="tel:{{getData?.phoneNumber}}" class="header-call-btn">
-            <div class="header-call-icon">
-              <img src="assets/icons/call.svg" alt="" />
-            </div>
+          <a href="tel:{{ getData?.phoneNumber }}" class="header-call-btn">
+            <div class="header-call-icon"><img src="assets/icons/call.svg" alt="" /></div>
             <div class="header-call-txt">
-              <span>To More Inquiry</span>
-              <span class="header-inquery-no">{{getData?.phoneNumber}}</span>
+              <span>To More Inquiry</span> <span class="header-inquery-no">{{ getData?.phoneNumber }}</span>
             </div>
           </a>
         </div>
@@ -282,11 +280,7 @@
                 >International Flights from US</a
               >
             </li> -->
-            <li>
-              <a  
-                >International Flights to US</a
-              >
-            </li>
+            <li><a>International Flights to US</a></li>
           </ul>
         </li>
 
@@ -370,6 +364,21 @@
           >
         </li>
       </ul>
+
+      <!-- == == -->
+      <a href="tel:{{getData?.phoneNumber}}" class="d-lg-none">
+        <div class="nav-call-button-wrap">
+          <div class="phone-content">
+            <b class="phone-heading">Looking for last-minute deals?</b>
+            <span class="phone-sub-heading">Speak with a travel expert and get assistance <b>24/7</b>. </span>
+          </div>
+          <div class="call-button sidebar-call-button-wrap">
+            <div class="call-icon"></div>
+            <div class="phone-number">{{ getData?.phoneNumber }}</div>
+          </div>
+        </div>
+      </a>
+      <!-- == == -->
     </div>
   </ng-template>
 </p-drawer>
