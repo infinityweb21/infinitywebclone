@@ -222,10 +222,10 @@ export const routes: Routes = [
           import('./pages/privacy-policy/privacy-policy.component').then(
             (m) => m.PrivacyPolicyComponent
           ),
-        title: 'Read Our Detailed Privacy Policy & Commitments | Infinity Travel',
+        title: 'Privacy Policy | Infinityfarecompare',
         data: {
-          metaTitle: 'Read Our Detailed Privacy Policy & Commitments | Infinity Travel',
-          metaDescription: 'Your travel privacy matters. Read how Infinity Travel keeps your data secure across all bookings, flights, hotels and cruises.'
+          metaTitle: 'Privacy Policy | Infinityfarecompare',
+          metaDescription: 'Learn how Infinityfarecompare collects, protects, and uses your data. Read our Privacy Policy to ensure a safe and secure travel experience.'
         }
       },
       {
@@ -326,10 +326,10 @@ export const routes: Routes = [
           import('./pages/terms-and-conditions/terms-and-conditions.component').then(
             (m) => m.TermsAndConditionsComponent
           ),
-        title: 'Read Our Terms & Conditions For Smart Browsing | Infinity Travel',
+        title: 'Terms & Conditions  | Infinityfarecompare',
         data: {
-          metaTitle: 'Read Our Terms & Conditions For Smart Browsing | Infinity Travel',
-          metaDescription: 'Understand your rights and responsibilities when using our site. We keep it fair, clear, and straightforward for all users. A better experience starts here.'
+          metaTitle: 'Terms & Conditions  | Infinityfarecompare',
+          metaDescription: 'Stay informed with our Terms & Conditions. Learn about our policies, user responsibilities, and booking guidelines to ensure a smooth booking experience.'
         }
       },{
         path:'cancellation-policy',
