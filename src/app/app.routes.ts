@@ -186,10 +186,10 @@ export const routes: Routes = [
           import('./pages/about-us/about-us.component').then(
             (m) => m.AboutUsComponent
           ),
-        title: 'Trusted Experts in Global Travel | Infinity Travel',
+        title: 'Your Travel Booking Partner  | Infinityfarecompare',
         data: {
-          metaTitle: 'Trusted Experts in Global Travel | Infinity Travel',
-          metaDescription: 'Discover how Infinity Travel puts your travel dreams at the heart of every plan with curated trips, expert guidance, and exceptional service from start to finish'
+          metaTitle: 'Your Travel Booking Partner  | Infinityfarecompare',
+          metaDescription: 'Trusted by thousands of travelers. We offer professional booking services for flights, hotels & cruises with dedicated customer support. Contact today'
         }
       },
       {
