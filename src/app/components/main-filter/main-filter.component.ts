@@ -81,4 +81,14 @@ export class MainFilterComponent implements OnInit {
 
     this.cdr.detectChanges();
   }
+  getBannerClass(): string {
+    switch (this.activeTab) {
+      case 'flights-tab':
+        return 'banner-flights';
+      case 'hotels-tab':
+        return 'banner-hotels';
+      default:
+        return 'banner-home';
+    }
+  }
 }
