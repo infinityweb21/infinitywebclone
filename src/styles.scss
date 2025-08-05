@@ -5473,11 +5473,12 @@ header.header-six.fixed
   right: 16px;
   z-index: 999;
 }
-
+ 
+ 
 .contact-popup {
   position: relative;
 }
-
+ 
 .contact-toggle-btn {
   background-color: #007c04;
   color: #fff;
@@ -5492,10 +5493,9 @@ header.header-six.fixed
   cursor: pointer;
   z-index: 1001;
 }
-
+ 
 .contact-dropdown {
-  // display: none;
-  display: block;
+  display: none;
   position: absolute;
   bottom: 65px;
   right: 0;
@@ -5504,21 +5504,20 @@ header.header-six.fixed
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  // opacity: 0;
-  opacity: 1;
+  opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
   z-index: 1000;
   pointer-events: none;
 }
-
-.contact-popup.show-dropdown .contact-dropdown {
+ 
+.contact-widget.show-dropdown .contact-dropdown {
   display: block;
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
-
+ 
 .agent-image {
   width: 100px;
   height: 100px;
@@ -5527,7 +5526,7 @@ header.header-six.fixed
     center/cover;
   margin: 0 auto;
 }
-
+ 
 .contact-info {
   margin-top: 10px;
   display: flex;
