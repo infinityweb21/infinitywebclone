@@ -23,10 +23,10 @@ export const routes: Routes = [
           import('./pages/flight/flight.component').then(
             (m) => m.FlightComponent
           ),
-        title: 'Find Great Flight Deals Fast |Infinity Travel',
+        title: 'Flight Deals & Airline Tickets |Infinity Travel',
         data: {
-          metaTitle: 'Find Great Flight Deals Fast |Infinity Travel',
-          metaDescription: 'Explore top-flight destinations worldwide with easy booking and great deals at Infinity Travel. Start your journey with us today!'
+          metaTitle: 'Flight Deals & Airline Tickets |Infinity Travel',
+          metaDescription: 'Amazing flight deals with our expert booking service. Get competitive prices and access to top airlines worldwide. Start your journey today!'
         }
       },
       {
@@ -106,10 +106,10 @@ export const routes: Routes = [
         path: 'hotel',
         loadComponent: () =>
           import('./pages/hotel/hotel.component').then((m) => m.HotelComponent),
-        title: 'Secure your stay at the best prices | Infinity Travel',
+        title: 'Get Amazing Hotel Deals at the Best Rates | Infinity Travel',
          data: {
-          metaTitle: 'Secure your stay at the best prices  | Infinity Travel',
-          metaDescription: 'Explore and book various hotels from affordable to luxurious in top destinations worldwide. Book now!'
+          metaTitle: 'Get Amazing Hotel Deals at the Best Rates  | Infinity Travel',
+          metaDescription: 'Enjoy luxurious comfort and exceptional service at this hotel, featuring modern amenities and a prime location for a memorable stay.'
         }
       },
       {
@@ -279,10 +279,10 @@ export const routes: Routes = [
           import('./pages/our-service-fees/our-service-fees.component').then(
             (m) => m.OurServiceFeesComponent
           ),
-        title: 'Understand Our Travel Service Fees | Infinity Travel',
+        title: 'Know About our Booking Service Fees | Infinity Travel',
         data: {
-          metaTitle: 'Understand Our Travel Service Fees | Infinity Travel',
-          metaDescription: 'View booking fee details for all services - flights, hotels, car hires, and cruises. Plan smarter by knowing exactly how much you\'re being charged.'
+          metaTitle: 'Know About our Booking Service Fees | Infinity Travel',
+          metaDescription: 'Know your costs before you go. Our clear service fees cover everything from flights to cruises, so you can book with confidence. '
         }
       },
       {

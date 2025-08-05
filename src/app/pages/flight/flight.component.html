@@ -6,7 +6,7 @@
   <div class="container container-xxl">
     <div class="cmn-heading">
       <div class="heading-cmn-flex">
-        <h2>Celebrating What Makes Travel Special</h2>
+        <h2>Choose Your Preferred Airline</h2>
       </div>
 
       <div class="common-slider-container">
@@ -15,6 +15,7 @@
             <swiper-container #flightsSwiperRef>
               @for (flight of flights; track $index) {
               <swiper-slide>
+                <a href="tel:{{getData?.phoneNumber}}">
                 <div class="swiper-slide">
                   <div class="uxf-card">
                     <div class="uxf-card-image-box">
@@ -105,16 +106,17 @@
                     </div>
                     <div class="uxf-price-section">
                       <div class="uxf-price-left">
-                        <h2 class="uxf-actual-price m-0">From <span class="uxf-actual-price-highlight">${{ flight.price
-                            }}</span></h2>
+                        <!-- <h2 class="uxf-actual-price m-0">From <span class="uxf-actual-price-highlight">${{ flight.price
+                            }}</span></h2> -->
                         <span class="uxf-flight-reamain-seat">{{ flight.seatsLeft }} Seats Left</span>
                       </div>
-                      <div class="uxf-price-right">
+                      <!-- <div class="uxf-price-right">
                         <a href="javascript:void(0);" class="uxf-btn-view-nore">View Now</a>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
+                </a>
               </swiper-slide>
               }
             </swiper-container>
@@ -130,8 +132,8 @@
   <div class="container container-xxl">
     <div class="booking-parent" style="background: url('./assets/images/booking-background.png')">
       <div class="booking-left">
-        <h2 class="banner-add-caption">Get a Discount on Your First Reservation</h2>
-        <p class="banner-add-subtext">Offer Ends Soon!</p>
+        <h2 class="banner-add-caption">Don't Miss Out on Great Flight Deals</h2>
+        <p class="banner-add-subtext">Limited time offers available</p>
       </div>
       <div class="booking-right">
         <a  href="javascript:void(0);" class="cmn-btn btn-orange fs-20 fw-semibold cta-add-btn cta-add-btn-reserve">Reserve Now!</a>
@@ -145,7 +147,7 @@
   <div class="container container-xxl">
     <div class="cmn-heading">
       <div class="heading-cmn-flex">
-        <h2>Trusted by Thousands</h2>
+        <h2>More Airlines to Choose</h2>
       </div>
     </div>
     <div class="common-slider-container">
@@ -203,7 +205,7 @@
 <!-- ==== Top Rate Provider End ==== -->
 
 <!--=========== Trending Section Start  ==============-->
-<section class="unique-experiences cmn-gap">
+<!-- <section class="unique-experiences cmn-gap">
   <div class="container container-xxl">
     <div class="cmn-heading">
       <div class="sec-title-wrap">
@@ -294,7 +296,6 @@
                 </div>
               </div>
             </div>
-            <!-- COLLAPSE SECTION -->
             <div class="col-md-12">
               <div class="collapse ftd-inner-card-wrap w-100 mt-2" [id]="'collapse' + flight.id"
                 [collapse]="flight.isCollapsed">
@@ -353,7 +354,6 @@
                                 <ul class="flight-btn-icon-list flight-btn-icon-list-ul">
                                   <li *ngFor="let info of flight.miscInfo">
                                     <i class="fa-regular" [ngClass]="info.icon + ' align-middle me-2'"></i>
-                                    <!-- {{ info.text }} -->
                                   </li>
                                 </ul>
                               </div>
@@ -366,34 +366,34 @@
                             </div>
                           </div>
                         </div>
-                      </div><!-- /row -->
-                    </div><!-- /flight-segment -->
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div><!-- /collapse -->
-          </div><!-- /row -->
-        </div><!-- /card -->
-      </div><!-- /col -->
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</section> -->
 <!--=========== Trending Section End  ==============-->
 <!--=========== Quick Book Flight Section Start  ==============-->
-<div class="qb-section-wrap">
+<div class="qb-section-wrap cmn-gap">
   <div class="container container-xxl">
     <div class="qb-section-content">
       <div class="qb-section-content-box position-relative">
-        <h1 class="qb-heading">Luxury in Every Detail, Comfort in Every Moment</h1>
+        <h1 class="qb-heading">Premium Travel Booking Solutions, Personalized for You</h1>
         <p class="qb-subheading">
-          Our goal is to offer more than just a place to stay—we offer an experience. No matter the reason for your travel, we make sure it feels like home every time.
+          Your journey deserves exceptional service and attention to detail. We go beyond simple bookings to create travel experiences that exceed expectations and deliver lasting memories.
         </p>
 
         <div class="qb-stats">
-          <div class="qb-stat-item">19+<span>Unique Destinations</span></div>
-          <div class="qb-stat-item">300+<span>Accommodations Available</span></div>
-          <div class="qb-stat-item">38k<span>Happy Travelers</span></div>
-          <div class="qb-stat-item">25+<span>International Locations</span></div>
+          <div class="qb-stat-item">50+<span>Partner Airlines</span></div>
+          <div class="qb-stat-item">150+<span>Global Cities</span></div>
+          <div class="qb-stat-item">95%<span>Customer Satisfaction</span></div>
+          <div class="qb-stat-item">24/7<span>Expert Support</span></div>
         </div>
 
         <button class="qb-book-btn">Book a Flight</button>
