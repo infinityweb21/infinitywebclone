@@ -42,7 +42,7 @@
             <div class="card-form-content">
               <label class="form-label">Card/Debit card number *</label>
               <input
-                type="text"
+                type="number"
                 class="form-control"
                 placeholder="Card/Debit card number"
                 formControlName="CardNumber"
@@ -90,7 +90,7 @@
                 <div class="col">
                   <label class="form-label">CVV *</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     placeholder="CVV"
                     formControlName="CVV"
@@ -140,7 +140,7 @@
       googlePlacesAutocomplete
       [autocompleteType]="'address'"
       (placeChanged)="onPlaceSelected($event)"
-      [readonly]="true"
+      [readonly]="false"
     />
 
     <!-- Not street -->
@@ -702,7 +702,7 @@
             </div>
 
             <!-- Promo Input -->
-            <div class="promocode-div">
+            <!-- <div class="promocode-div">
               <a href="" for="promo" class="form-label small mb-1"
                 >Apply my clubMiles point</a
               >
@@ -717,12 +717,19 @@
                   Apply
                 </button>
               </div>
-            </div>
+            </div> -->
 
             <!-- Continue Button -->
-            <button class="btn continue-btn w-100 fw-semibold">
+            <!-- <button class="btn continue-btn w-100 fw-semibold" (click)="submitForm()">
               Confirm & Book
-            </button>
+            </button> -->
+            <button 
+  class="btn continue-btn w-100 fw-semibold" 
+  (click)="submitForm()" 
+  [disabled]="loading">
+  <span *ngIf="!loading">Confirm & Book</span>
+  <span *ngIf="loading">Processing...</span>
+</button>
           </div>
           <div class="call-card">
             <div class="call-box-wrap">

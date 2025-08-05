@@ -51,12 +51,10 @@
                   <ul class="links-list">
                     <li><a routerLink="/about-us">About</a></li>
                     <li><a routerLink="/contact-us">Contact</a></li>
-                    <li><a routerLink="/support">Support</a></li>
+                    <!-- <li><a routerLink="/support">Support</a></li> -->
                     <!-- <li><a routerLink="/blog">Blog</a></li> -->
-                    <li><a routerLink="/careers">Careers</a></li>
-                    <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
-                    <li><a routerLink="/post-ticketing-fees">Post Ticketing Fee</a></li>
-                    <li><a routerLink="/cookie-policy">Cookie Policy</a></li>
+                    <!-- <li><a routerLink="/careers">Careers</a></li> -->
+                   
                     <li><a routerLink="/our-service-fees">Our Service Fees</a></li>
                     <li><a routerLink="/testimonials">Testimonials</a></li>
                     <li><a routerLink="/disclaimer">Disclaimer</a></li>
@@ -64,9 +62,12 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 footer-links">
                   <ul class="links-list">
-                    <li><a routerLink="/flights/business-class">Business Class</a></li>
-                    <li><a routerLink="/flights/first-class">First Class</a></li>
-                    <li><a routerLink="/flights/international-flights-from-us">International Flight</a></li>
+                    <!-- <li><a routerLink="/flights/business-class">Business Class</a></li> -->
+                    <!-- <li><a routerLink="/flights/first-class">First Class</a></li> -->
+                    <!-- <li><a routerLink="/flights/international-flights-from-us">International Flight</a></li> -->
+                    <li><a routerLink="/privacy-policy">Privacy Policy</a></li>
+                    <li><a routerLink="/post-ticketing-fees">Post Ticketing Fee</a></li>
+                    <li><a routerLink="/cookie-policy">Cookie Policy</a></li>
                     <li><a routerLink="/cancellation-policy">Cancellation Policy</a></li>
                     <li><a routerLink="/terms-and-conditions">Terms and Conditions</a></li>
                     <!-- <li><a href="/sitemap">Site Maps</a></li> -->
@@ -320,7 +321,7 @@
       <div class="row align-items-center">
         <div class="col-md-5 footer-logo">
           <a routerLink=""
-            ><img src="assets/images/logo.png" alt="Infinity Travels Logo" width="194" height="59" loading="lazy"
+            ><img src="assets/images/logo-footer.png" alt="Infinity Travels Logo" width="194" height="59" loading="lazy"
           /></a>
         </div>
         <div class="col-md-7 ">
@@ -336,7 +337,7 @@
 </footer>
 
 <!-- === Short Popup Popup Start=== -->
-<a href="tel:{{ getData?.phoneNumber }}" class="short-cta-popup shortCTAModal">
+<a href="tel:{{ getData?.phoneNumber }}" class="short-cta-popup shortCTAModal"    *ngIf="isMobile && isScrolled ">
   <figure class="short-cta-popup-image">
     <img alt="tfn agent" src="assets/images/avatar.png" class="img-non3" width="48" height="48" />
   </figure>
@@ -360,9 +361,9 @@
 <!-- === Short Popup Popup End=== -->
 
 <!-- === Short Popup details Popup Start === -->
-<div class="details-modal-popup detailsModalPopup">
+<div class="details-modal-popup detailsModalPopup" *ngIf="isMobile && !isScrolled && !hidePopup">
   <div class="details-modal-popup-content">
-    <a href="javaScript:void(0);" class="close-details-popup closeDetailsPopup">✕</a>
+    <a  class="close-details-popup closeDetailsPopup" (click)="closeDetailsPopup()">✕</a>
     <div class="details-modal-popup-header-content-wrap d-flex align-items-center">
       <div class="details-modal-popup-img-wrap">
         <div class="details-modal-popup-img"><img src="assets/images/avatar.png" alt="tfn agent" /></div>
