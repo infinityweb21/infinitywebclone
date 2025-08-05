@@ -5,22 +5,24 @@ import { BehaviorSubject, catchError, Observable, retry, throwError } from 'rxjs
 import { environment } from '../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SharedService {
   apiUrl: string = environment.API_URL;
 
   private data = {
-    companyName: 'Infinity Travels',
+    companyName: 'infinityfarecompare',
     phoneNumber: '(888) 230-2647',
     address: '1876 Harvest Cir Tustin, CA 92780, USA',
     email: 'connect@infinityfarecompare.us',
-    link:'https://infinityfarecompare.us/',
-    appName:'Infinity Travel'
+    link: 'https://infinityfarecompare.us/',
+    appName: 'Infinity Travel',
   };
-  
-  constructor(private http: HttpClient) { }
-  private showCookiesSubject = new BehaviorSubject<boolean>(this.getFromStorage());
+
+  constructor(private http: HttpClient) {}
+  private showCookiesSubject = new BehaviorSubject<boolean>(
+    this.getFromStorage()
+  );
 
   showCookies$ = this.showCookiesSubject.asObservable();
 
@@ -36,20 +38,22 @@ export class SharedService {
   airportlList(city: any): Observable<any> {
     const params = { city };
 
-    return this.http.get(`${this.apiUrl}${environment.AIRPORT_LIST}`, { params })
-      .pipe(retry(1), catchError(this.errorHandler))
+    return this.http
+      .get(`${this.apiUrl}${environment.AIRPORT_LIST}`, { params })
+      .pipe(retry(1), catchError(this.errorHandler));
   }
   cityList(city: any): Observable<any> {
-   const params = { cityName:city };
+    const params = { cityName: city };
 
-    return this.http.get(`${this.apiUrl}${environment.CITY_LIST}`, { params })
-      .pipe(retry(1), catchError(this.errorHandler))
-  }  
+    return this.http
+      .get(`${this.apiUrl}${environment.CITY_LIST}`, { params })
+      .pipe(retry(1), catchError(this.errorHandler));
+  }
 
-   getcompanyName(): any {
+  getcompanyName(): any {
     return this.data;
   }
   private errorHandler(error: any): Observable<never> {
-    return throwError(() => (error || "Server Error"));
+    return throwError(() => error || 'Server Error');
   }
 }
