@@ -10,10 +10,11 @@ import { SearchService } from '../../../services/search.service';
 import { FlatpickrDirective } from '../../../directives/flatpickr.directive';
 import { GooglePlacesAutocompleteDirective } from '../../../directives/google-places-autocomplete.directive';
 import { SharedService } from '../../../services/shared/shared.service';
+import { SearchCountryField, CountryISO, PhoneNumberFormat, NgxIntlTelInputComponent, NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-flight-details',
-  imports: [ CommonModule, ReactiveFormsModule,FlatpickrDirective,GooglePlacesAutocompleteDirective],
+  imports: [ CommonModule, ReactiveFormsModule,FlatpickrDirective,GooglePlacesAutocompleteDirective,NgxIntlTelInputModule],
   templateUrl: './flight-details.component.html',
   styleUrl: './flight-details.component.scss'
 })
@@ -21,7 +22,11 @@ export class FlightDetailsComponent {
   loading: boolean = true;
   private destroyRef: DestroyRef = inject(DestroyRef);
   @ViewChildren('error') errorElements!: QueryList<ElementRef>;
-
+separateDialCode = false;
+	SearchCountryField = SearchCountryField;
+	CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   flights = [
     {
       id: 1,
@@ -153,8 +158,8 @@ private router:Router=inject(Router);
       } else {
       }
     });
-    this.getFlightsByItinerary();
-    this.getAvailableSeatByItinerary();
+    // this.getFlightsByItinerary();
+    // this.getAvailableSeatByItinerary();
 const tradeldata = this.flightService.getTravelData();
     
    if (tradeldata) {

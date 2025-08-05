@@ -1063,13 +1063,27 @@
               <div class="booking-form-group">
                 <div class="o-booking-form-select-wrap">
                   <label class="form-label">Phone Number</label>
-                  <input
+                  <!-- <input
                     type="tel"
                     class="form-control intlTeleInput"
                     formControlName="phoneNumber"
                     placeholder="Enter Phone No"
                     [class.is-invalid]="(contactInfoGroup.get('phoneNumber')?.touched || submitted) && contactInfoGroup.get('phoneNumber')?.invalid"
-                  />
+                  /> -->
+
+                            <div class="wrapper">
+                                            <ngx-intl-tel-input [cssClass]="'form-control booking-form-control'"
+                                                [preferredCountries]="preferredCountries"
+                                                [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                                [searchCountryFlag]="true" [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="15"
+                                                [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                                [numberFormat]="PhoneNumberFormat.National" name="phone"
+                                                formControlName="phoneNumber" [class.is-invalid]="(contactInfoGroup.get('phoneNumber')?.touched || submitted) && contactInfoGroup.get('phoneNumber')?.invalid">
+                                            </ngx-intl-tel-input>
+                                        </div>
                   <div *ngIf="(contactInfoGroup.get('phoneNumber')?.touched || submitted) && contactInfoGroup.get('phoneNumber')?.invalid" class="invalid-feedback">
                     <div *ngIf="contactInfoGroup.get('phoneNumber')?.errors?.['required']">Phone number is required.</div>
                     <div *ngIf="contactInfoGroup.get('phoneNumber')?.errors?.['pattern']">Enter a 10-digit phone number.</div>

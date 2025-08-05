@@ -127,37 +127,55 @@
           <div class="col-md-6 col-lg-4">
             <div class="card-form-content">
               <label class="form-label">{{ field.label }}</label>
-              @switch (field.type) {
-                @case ('input') {
-<input
-  type="text"
-  class="form-control"
-  [placeholder]="field.placeholder"
-  [formControlName]="field.name"
-  [readonly]="field.name !== 'street' && field.name !== 'BillingPhoneNum'"
+          @switch (field.type) {
+  @case ('input') {
 
-  *ngIf="field.name === 'street'; else otherInput"
+    <!-- If field.name is 'street' -->
+    <input
+      *ngIf="field.name === 'street'; else otherInput"
+      type="text"
+      class="form-control"
+      [placeholder]="field.placeholder"
+      [formControlName]="field.name"
+      googlePlacesAutocomplete
+      [autocompleteType]="'address'"
+      (placeChanged)="onPlaceSelected($event)"
+      [readonly]="field.name !== 'street' && field.name !== 'BillingPhoneNum'"
+    />
 
-  googlePlacesAutocomplete
-  [autocompleteType]="'address'"
-  (placeChanged)="onPlaceSelected($event)"
-/>
+    <!-- If field.name is 'BillingPhoneNum' -->
+    <ng-template #otherInput>
+       <ngx-intl-tel-input [cssClass]="'form-control booking-form-control'"
+                                                [preferredCountries]="preferredCountries"
+                                                [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                                [searchCountryFlag]="true" [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="15"
+                                                [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                                [numberFormat]="PhoneNumberFormat.National" name="phone"
+                                                formControlName="BillingPhoneNum" >
+                                            </ngx-intl-tel-input>
 
-<ng-template #otherInput>
-  <input
-    type="text"
-    class="form-control"
-    [placeholder]="field.placeholder"
-    [formControlName]="field.name"
-    [readonly]="field.name !== 'street' && field.name !== 'BillingPhoneNum'"
-  />
-</ng-template>
+      <!-- Fallback to default input -->
+      <ng-template #defaultInput>
+        <input
+          type="text"
+          class="form-control"
+          [placeholder]="field.placeholder"
+          [formControlName]="field.name"
+          [readonly]="field.name !== 'street' && field.name !== 'BillingPhoneNum'"
+        />
+      </ng-template>
+    </ng-template>
 
-                @if (checkoutForm.get(field.name)?.touched && checkoutForm.get(field.name)?.invalid) {
-                <div class="text-danger">{{ field.label }} is required.</div>
-                }
-                }
-              }
+    <!-- Error Message -->
+    @if (checkoutForm.get(field.name)?.touched && checkoutForm.get(field.name)?.invalid) {
+      <div class="text-danger">{{ field.label }} is required.</div>
+    }
+  }
+}
+
             </div>
           </div>
           }
