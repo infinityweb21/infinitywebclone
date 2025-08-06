@@ -86,7 +86,6 @@ export class SelectSeatsComponent implements OnInit {
   scrollContainer!: ElementRef<HTMLDivElement>;
   private _router = inject(Router);
   private destroyRef: DestroyRef = inject(DestroyRef);
-
   rangeValue = 0;
   seatPrice = 0; // This will now be dynamic based on selected seat
   seatAssignmentFee = 0;
@@ -222,7 +221,7 @@ calculateTotalSeatPriceFromAllSegments(): void {
       )
     );
   }, 0);
-
+   this.shareService.setSeatTotal(this.selectedSeatTotal);
   this.updateTotalWithSeatAndServiceTax();
 }
 
