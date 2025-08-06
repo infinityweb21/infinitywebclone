@@ -95,8 +95,28 @@
               </div>
               <div class="col-xl-6 col-lg-6">
                 <div class="contact-two__input-box">
-                  <input placeholder="Phone" type="number" formControlName="phone" [class.is-invalid]="isInvalid('phone')" />
-                  <div *ngIf="isInvalid('phone')" class="text-danger">Phone number is required.</div>
+
+                  <div class="wrapper">
+                                            <ngx-intl-tel-input [cssClass]="'form-control'"
+                                                [preferredCountries]="preferredCountries"
+                                                [enableAutoCountrySelect]="true" [enablePlaceholder]="true"
+                                                [searchCountryFlag]="true" [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="15"
+                                                [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                                                [numberFormat]="PhoneNumberFormat.National" name="phone"
+                                                formControlName="phone" [class.is-invalid]="isInvalid('phone')">
+                                            </ngx-intl-tel-input>
+                                        </div>
+                         <div *ngIf="isInvalid('phone')" class="text-danger">
+  <span *ngIf="contactForm.get('phone')?.errors?.['required']">
+    Phone number is required.
+  </span>
+  <span *ngIf="contactForm.get('phone')?.errors?.['invalidPhoneLength'] && !contactForm.get('phone')?.errors?.['required']">
+    Please enter a valid phone number (6–15 digits).
+  </span>
+</div>
                 </div>
               </div>
               <div class="col-xl-6 col-lg-6">
@@ -142,9 +162,11 @@
 
 <section class="google-map-one google-map-two">
   <iframe
-  src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13261.182!2d-117.807585!3d33.732205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1691353200000!5m2!1sen!2sus"
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3302.9609060077913!2d-117.81273298478653!3d33.72522638070586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcd9b66e6ab1a3%3A0xf67c08f3e6ef03c7!2s1876%20Harvest%20Cir%2C%20Tustin%2C%20CA%2092780%2C%20USA!5e0!3m2!1sen!2sin!4v1691674700000!5m2!1sen!2sin"
   class="google-map__one"
 ></iframe>
+
+   
 </section>
 
 <!--=========== Contact ==============-->

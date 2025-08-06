@@ -5,12 +5,13 @@ import { SharedService } from '../../../services/shared/shared.service';
 import { TosterService } from '../../../services/common/toaster.service';
 import { SpinnerService } from '../../../services/common/spinner.service';
 import { AuthService } from '../../../services/auth.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { SearchCountryField, CountryISO, PhoneNumberFormat, NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-top-destinations-head',
-  imports: [NgStyle,ReactiveFormsModule,NgIf],
+  imports: [NgStyle,ReactiveFormsModule,NgIf,NgxIntlTelInputModule],
   templateUrl: './top-destinations-head.component.html',
   styleUrl: './top-destinations-head.component.scss',
 })
@@ -18,6 +19,11 @@ export class TopDestinationsHeadComponent implements OnInit {
   activeroute: string = '';
   private router: Router = inject(Router);
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+    separateDialCode = false;
+      SearchCountryField = SearchCountryField;
+      CountryISO = CountryISO;
+      PhoneNumberFormat = PhoneNumberFormat;
+      preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   backgroundImageUrl = '';
   headerText = '';
   subHeaderText = '';
@@ -158,11 +164,25 @@ export class TopDestinationsHeadComponent implements OnInit {
   ) {
      this.contactForm = this.fb.group({
       name: ['', Validators.required],
-        phone: ['', [Validators.required, Validators.pattern(/^\d{6,15}$/)]]
+        phone: [undefined, [Validators.required,this.phoneLengthValidator]]
     });
   }
 
+ phoneLengthValidator(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
 
+  // Ensure value is an object and has nationalNumber
+  if (value && typeof value === 'object' && value.nationalNumber) {
+    const digits = value.nationalNumber.replace(/\D/g, ''); // remove non-digits
+    const length = digits.length;
+
+    if (length < 6 || length > 15) {
+      return { invalidPhoneLength: true };
+    }
+  }
+
+  return null;
+}
 isInvalid(field: string): boolean {
   const control = this.contactForm.get(field);
   return !!(control && (control.touched || this.submitted) && control.invalid);
@@ -178,7 +198,7 @@ isInvalid(field: string): boolean {
    const payload={
     name:this.contactForm.value['name'],
         email:'',
-    phone:this.contactForm.value['phone'],
+    phone:this.contactForm.value['phone'].e164Number,
     subject:'get a call back',
     message:'request a call back',
       contact_email:this.getData.email,
