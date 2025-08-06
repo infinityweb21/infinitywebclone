@@ -56,7 +56,7 @@ destinationRouteMap: { [key: string]: string } = {
 destinationRows: string[][] = [];
 
 constructor() {
-  this.chunkDestinations(7); // Split into rows of 7
+  this.chunkDestinations(7);
 }
 
 chunkDestinations(size: number): void {

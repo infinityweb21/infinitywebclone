@@ -316,7 +316,7 @@ export class HotelComponent {
       id: 2,
       title: 'Outstanding Experience ',
       description:
-        '“Booking my hotel in California was a smooth one. As soon as I called the booking team of [COMPANY_NAME], the entire process was easy. The agent was very polite and helped me get the best stay. Thanks a lot!” ',
+        '“Booking my hotel in California was a smooth one. As soon as I called the booking team of infinityfarecompare, the entire process was easy. The agent was very polite and helped me get the best stay. Thanks a lot!” ',
       clientName: 'Sarah Davis, Charlotte ',
       // clientDesignation: 'Product Manager',
       clientAvatar: 'https://i.pravatar.cc/40?img=2',
@@ -325,7 +325,7 @@ export class HotelComponent {
       id: 3,
       title: 'Incredible Customer Support ',
       description:
-        '“I booked my hotel in New York with [COMPANY_NAME]. I had some confusion regarding the check-in process. I called their customer support team after booking, and they helped me throughout the process. Their team is very efficient and helpful.” ',
+        '“I booked my hotel in New York with infinityfarecompare. I had some confusion regarding the check-in process. I called their customer support team after booking, and they helped me throughout the process. Their team is very efficient and helpful.” ',
       clientName: 'Emma Wilson, Texas ',
       // clientDesignation: 'Tech Lead',
       clientAvatar: 'https://i.pravatar.cc/40?img=3',
@@ -334,7 +334,7 @@ export class HotelComponent {
       id: 4,
       title: 'Reliable and Efficient ',
       description:
-        '“I had a trip with my family to Orlando, and it was a smooth experience with [COMPANY_NAME]. The hotel I booked for my family was close to Disney World. The services as guaranteed at the time of booking were the same. Extremely reliable and trusted.” ',
+        '“I had a trip with my family to Orlando, and it was a smooth experience with infinityfarecompare. The hotel I booked for my family was close to Disney World. The services as guaranteed at the time of booking were the same. Extremely reliable and trusted.” ',
       clientName: 'Daniel Moore, Colorado ',
       // clientDesignation: 'Business Analyst',
       clientAvatar: 'https://i.pravatar.cc/40?img=4',
@@ -343,7 +343,7 @@ export class HotelComponent {
       id: 5,
       title: 'Made Business Travel Easy ',
       description:
-        '“Booked a room in Dubai for my business trip with [COMPANY_NAME]. From the very first, the company helped me a lot. They guided me in booking the best hotel with exclusive services. It was a memorable experience.” ',
+        '“Booked a room in Dubai for my business trip with infinityfarecompare. From the very first, the company helped me a lot. They guided me in booking the best hotel with exclusive services. It was a memorable experience.” ',
       clientName: 'James Smith, Georgia ',
       // clientDesignation: 'Marketing Director',
       clientAvatar: 'https://i.pravatar.cc/40?img=5',
@@ -352,7 +352,7 @@ export class HotelComponent {
       id: 6,
       title: 'Highly Recommended ',
       description:
-        '“Booking through [COMPANY_NAME] was an amazing experience. I have reserved a hotel in Los Angeles. I got the best deal on my booking and the services provided by the hotel were superb. They made my trip more enjoyable.” ',
+        '“Booking through infinityfarecompare was an amazing experience. I have reserved a hotel in Los Angeles. I got the best deal on my booking and the services provided by the hotel were superb. They made my trip more enjoyable.” ',
       clientName: 'Michael Brown, North Carolina ',
       // clientDesignation: 'Marketing Director',
       clientAvatar: 'https://i.pravatar.cc/40?img=5',
@@ -428,7 +428,7 @@ export class HotelComponent {
     this.testimonials.forEach(testimonial => {
     testimonial.description = testimonial.description
       .replace('{{companyName}}', this.companyName)
-      .replace('[COMPANY_NAME]', this.companyName);
+      .replace('infinityfarecompare', this.companyName);
        });
   }
 

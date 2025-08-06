@@ -138,7 +138,7 @@ export class PopularTravelComponent {
       id: 1,
       title: 'Saved me time and money',
       description:
-        'I used [COMPANY_NAME] to plan a last-minute trip to Miami, and I honestly don’t know how I ever booked trips before. They found me a better deal than what I saw on other sites, and everything, from flights to hotel, was smooth. Definitely using them again.',
+        'I used infinityfarecompare to plan a last-minute trip to Miami, and I honestly don’t know how I ever booked trips before. They found me a better deal than what I saw on other sites, and everything, from flights to hotel, was smooth. Definitely using them again.',
       clientName: '— Jessica Reynolds., Atlanta, GA',
       // clientDesignation: 'Web Designer',
       clientAvatar: 'https://i.pravatar.cc/40?img=1',
@@ -156,7 +156,7 @@ export class PopularTravelComponent {
       id: 3,
       title: 'Perfect for family trips',
       description:
-        'We booked our Disney vacation through [COMPANY_NAME], and they handled everything — flights, hotel, park tickets. They even gave us great tips for saving money in Orlando. Super helpful and affordable.',
+        'We booked our Disney vacation through infinityfarecompare, and they handled everything — flights, hotel, park tickets. They even gave us great tips for saving money in Orlando. Super helpful and affordable.',
       clientName: '— Tina Schwart, Denver, CO',
       // clientDesignation: 'Tech Lead',
       clientAvatar: 'https://i.pravatar.cc/40?img=3',
@@ -165,7 +165,7 @@ export class PopularTravelComponent {
       id: 4,
       title: 'Finally, a travel site that doesn’t feel sketchy',
       description:
-        '[COMPANY_NAME] felt trustworthy from the start. The prices were transparent, no weird hidden fees, and the booking process was quick. I booked a trip to Cancun, and everything went exactly as planned.',
+        'infinityfarecompare felt trustworthy from the start. The prices were transparent, no weird hidden fees, and the booking process was quick. I booked a trip to Cancun, and everything went exactly as planned.',
       clientName: '— Anthony Moore, Phoenix, AZ',
       // clientDesignation: 'Business Analyst',
       clientAvatar: 'https://i.pravatar.cc/40?img=12',
@@ -174,7 +174,7 @@ export class PopularTravelComponent {
       id: 5,
       title: 'They actually listen to what you want',
       description:
-        'I was planned a honeymoon trip to Italy and had certain very particular requirements. The [COMPANY_NAME] team didn’t just throw random travel plan at me, they actually tailored something around my budget and wishlist. That meant a lot.',
+        'I was planned a honeymoon trip to Italy and had certain very particular requirements. The infinityfarecompare team didn’t just throw random travel plan at me, they actually tailored something around my budget and wishlist. That meant a lot.',
       clientName: '— Laura Patterson, Boston, MA',
       // clientDesignation: 'Marketing Director',
       clientAvatar: 'https://i.pravatar.cc/40?img=5',
@@ -183,7 +183,7 @@ export class PopularTravelComponent {
       id: 6,
       title: 'Deals you won’t find anywhere else',
       description:
-        'I compared prices across at least five other travel sites before landing on [COMPANY_NAME], and they really did offer a better deal for my New York trip. Flights and hotel in one package. Couldn’t beat it.',
+        'I compared prices across at least five other travel sites before landing on infinityfarecompare, and they really did offer a better deal for my New York trip. Flights and hotel in one package. Couldn’t beat it.',
       clientName: '— Daniel Harris, Seattle, WA',
       // clientDesignation: 'Product Manager',
       clientAvatar: 'https://i.pravatar.cc/40?img=8',

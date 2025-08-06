@@ -23,7 +23,7 @@ export class TestimonialsComponent implements OnInit {
   ngOnInit(): void {
     // Company Name Get
     const data = this.shareService.getcompanyName();
-    this.companyName = data.appName;
+    this.companyName = data.companyName;
 
     // Set meta tags
     const metaTitle = this.route.snapshot.data['metaTitle'];
