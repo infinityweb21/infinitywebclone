@@ -27,6 +27,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import { FlightFilters, FlightFilterService } from '../../services/flight/flight-filter.service';
 import { Subscription } from 'rxjs';
 import { Meta, Title } from '@angular/platform-browser';
+import { SharedService } from '../../services/shared/shared.service';
 
 Swiper.use([Navigation]);
 
@@ -68,6 +69,7 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
   selectedCabin = { name: 'Economy', value: 'E' };
   filters!: FlightFilters;
   private filterSub!: Subscription;
+  getData: any = '';
   stopOptions = [
     { value: 0, key: 'stopes_0', label: 'Direct' },
     { value: 1, key: 'stopes_1', label: '1 stop' },
@@ -749,7 +751,8 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
   constructor(private fb: FormBuilder, private flightService: FlightService, private toasterService: TosterService, private filterService: FlightFilterService,
         private meta: Meta,
     private title: Title,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private sharedService: SharedService
   ) {
     this.flightForm = this.fb.group({
       tripType: ['roundtrip'],
@@ -797,6 +800,7 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
+    this.getData = this.sharedService.getcompanyName();
 
      const metaTitle = this.route.snapshot.data['metaTitle'];
     const metaDescription = this.route.snapshot.data['metaDescription'];

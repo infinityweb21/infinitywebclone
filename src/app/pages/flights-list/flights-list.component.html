@@ -2620,6 +2620,39 @@
                   </div>
                 </div>
 
+                  <div class="agent-benefits-box border rounded-3 p-3 mt-3 bg-white">
+                    <div class="row align-items-end g-3">
+                      
+                      <!-- Agent Image -->
+                      <div class="col-lg-1">
+                        <div class="agent-img position-relative rounded-circle overflow-hidden" style="width: 64px; height: 64px;">
+                          <img src="assets/images/flag-icons/call-phone.webp" alt="Agent" class="w-100 h-100 object-fit-cover">
+                          <i class="bi bi-telephone-fill text-success position-absolute bottom-0 end-0 bg-white rounded-circle p-1" style="font-size: 12px;"></i>
+                        </div>
+                      </div>
+
+                      <!-- Benefits Text -->
+                      <div class="col-lg-7 agent-left">
+                        <h6 class="fw-bold mb-2">Benefits of booking with an agent</h6>
+                        <ul class="row row-cols-2 list-unstyled mb-0 small text-dark">
+                          <li class="col-lg-6 col-12 mb-1"><span><i class="fa-solid fa-circle-check fw-bold text-success"></i></span>Phone-only deals available</li>
+                          <li class="col-lg-6 col-12 mb-1"><span><i class="fa-solid fa-circle-check fw-bold text-success"></i></span>Personalized travel assistance</li>
+                          <li class="col-lg-6 col-12 mb-1"><span><i class="fa-solid fa-circle-check fw-bold text-success"></i></span>24-hour cancellation</li>
+                          <li class="col-lg-6 col-12 mb-1"><span><i class="fa-solid fa-circle-check fw-bold text-success"></i></span>2X ClubMiles reward points</li>
+                        </ul>
+                      </div>
+
+                      <!-- Call Button -->
+                      <div class="col-lg-4 agent-right text-center">
+                        <a href="tel:{{ getData?.phoneNumber }}" class="call-button btn border border-success rounded-pill px-4 py-2">
+                          <div class="fw-bold text-success">Book Now - Call us 24/7</div>
+                        </a>
+                      </div>
+
+                    </div>
+                  </div>
+
+
                 <div class="offer-box shadow rounded">
                   <div class="offer-image">
                     <img
@@ -2704,7 +2737,7 @@
             </div>
           </div>
           <div class="col-xxl-2 col-xl-2 col-lg-12 third-section">
-            <div class="advertisement">
+            <!-- <div class="advertisement">
               <div class="ad-banner">
                 <div class="ad-content">
                   <h3>Need a Stay? We’ve Got You Covered</h3>
@@ -2721,9 +2754,10 @@
                   <button class="btn btn-custom mt-3">Search for Hotel</button>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="advertisement advertisement-cruise mt-4">
               <div class="ad-banner">
+                <a href="tel:{{ getData?.phoneNumber }}">
                 <div class="ad-content">
                   <h3>Fly Smart, Land Happy</h3>
                   <p>Find unbeatable deals on domestic and international flights
@@ -2737,8 +2771,9 @@
                   <a class="phone">(888) 230-2647</a>
                   <small>Available 24/7</small>
                   <br />
-                  <button class="btn btn-custom mt-3">Search for Flight</button>
+                  <button class="btn btn-custom mt-3">Click to Call</button>
                 </div>
+                </a>
               </div>
             </div>
           </div>
