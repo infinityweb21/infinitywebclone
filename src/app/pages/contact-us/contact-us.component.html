@@ -11,7 +11,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-8 col-md-6 col-12">
         <div class="innerbanner-txt">
-          <h1>Reach Out <span class="subtitletext">to Us</span></h1>
+          <h1>Connect With <span class="subtitletext">Our Experts</span></h1>
           <div class="breadcrumbssec">
             <ol class="breadcrumb bg-transparent justify-content-center">
               <li class="breadcrumb-item">
@@ -42,9 +42,9 @@
             <p>
               Phone number: <a href="tel:{{ getData?.phoneNumber }}">{{ getData?.phoneNumber }}</a>
             </p>
-            <p>
+            <!-- <p>
               Phone number: <a href="tel:{{ getData?.phoneNumber }}">{{ getData?.phoneNumber }}</a>
-            </p>
+            </p> -->
           </div>
         </li>
         <li>
@@ -79,8 +79,8 @@
       <div class="col-xl-7 col-md-6">
         <div class="contact-two__left">
           <div class="section-title text-left">
-            <div class="section-title__tagline-box"><span class="section-title__tagline">We're Here to Help</span></div>
-            <h2 class="section-title__title">Have something on your mind? Send us a message!</h2>
+            <div class="section-title__tagline-box"><span class="section-title__tagline">Book Your Next Trip</span></div>
+            <h2 class="section-title__title">Got questions? Send us a text</h2>
           </div>
           <form [formGroup]="contactForm" (ngSubmit)="submitContactForm()" class="contact-form-validated contact-two__form">
             <div class="row">

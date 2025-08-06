@@ -6,7 +6,7 @@
         <div class="banner-txt">
           <h1>
             @if (!showHome) { @switch (activeTab) { @case ('flights-tab') {
-            {{ companyName }} - Your Gateway to Various Flight Options } @case
+            Best Flight Deals for Every Travel Destination } @case
             ('hotels-tab') { Book Amazing Stays in Popular Destinations at the Best Rates  } @case ('cruises-tab') { {{ companyName }}: Where Your Dream
             Cruise Begins } @case ('packages-tab') { Test Package } @default {
               {{ companyName }} — The Perfect Travel Partner for You } } }
@@ -18,7 +18,7 @@
           </p> -->
           <p class="banner-sub-text d-none d-md-flex">
             @if (!showHomeCta) { @switch (activeTab) { @case ('flights-tab') {
-            Call to Book & Save More Today } @case ('home-tab') { Dial
+            Compare and Book Instantly  } @case ('home-tab') { Dial
             <a [attr.href]="'tel:' + phoneNumber"
               >&nbsp;{{ phoneNumber }}&nbsp;</a
             >

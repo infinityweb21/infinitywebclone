@@ -70,10 +70,10 @@ export class TopDestinationsHeadComponent implements OnInit {
 
     // Optional or general sections
     'top-destinations': 'Explore the Best',
-    'top-airlines': 'Best Airlines for Your Trip',
-    'top-route': 'Popular Flight Routes',
-    'speacial-deals': 'Special Travel Deals',
-    'cruise-lines': 'Explore Cruise Lines',
+    'top-airlines': 'Book Your Next Flight Here',
+    'top-route': 'Blue Skies & Most Popular Routes',
+    'speacial-deals': 'Get The Benifits Of Exclusive Deals',
+    'cruise-lines': 'Find Your Bliss on the High Seas',
     default: 'Discover the World',
   };
 
@@ -105,12 +105,12 @@ export class TopDestinationsHeadComponent implements OnInit {
     maldives: 'Sink into serenity where turquoise waters kiss the sunlit skies',
     // Optional or general sections
     'top-destinations':
-      'Let your heart wander and your eyes soak in the magic as we take you towards the journey of your dreams.',
-    'top-airlines': 'Fly with the top-rated carriers.',
-    'top-route': 'Navigate the most popular journeys.',
-    'speacial-deals': 'Save more on handpicked offers.',
-    'cruise-lines': 'Sail away with premier cruise lines.',
-    default: 'Plan your next unforgettable journey.',
+      'Let your heart wander and your eyes soak in the magic as we take you towards the journey of your dreams',
+    'top-airlines': 'Unbeatable fares with additional benefits. It’s time to explore the flight deals',
+    'top-route': 'Wander the earth to the most sought after destinations with us! Our top routes offer you the freedom and the affordability all at once',
+    'speacial-deals': 'Plan you next trip and avail the best deals with us. Plan big, travel more and spend less',
+    'cruise-lines': 'Set sail on your dream voyage as you discover the world with us and book now to enjoy exclusive discounts at the perfect time of day',
+    default: 'Plan your next unforgettable journey',
   };
 
   ngOnInit(): void {
