@@ -6,7 +6,7 @@ import { SharedService } from '../../../services/shared/shared.service';
 
 @Component({
   selector: 'app-recoend-offer',
-  imports: [ NgFor,RouterLink],
+  imports: [NgFor, RouterLink],
   templateUrl: './recoend-offer.component.html',
   styleUrl: './recoend-offer.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -48,11 +48,7 @@ export class RecoendOfferComponent implements OnInit {
         transfers: '2 Transfers',
         activities: '4 Activities',
       },
-      description: [
-        'Seine River Cruise',
-        'Guided city walk',
-        'Louvre access',
-      ],
+      description: ['Seine River Cruise', 'Guided city walk', 'Louvre access'],
 
       link: '/top-destinations/paris',
     },
@@ -165,19 +161,35 @@ export class RecoendOfferComponent implements OnInit {
       // price: 90952,
       // originalPrice: 88952,
       link: '/top-destinations/london',
-    }
+    },
   ];
   generateDateRange(): string {
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
 
     const today = new Date();
     const start = new Date(today);
-    start.setDate(today.getDate() +15);
+    start.setDate(today.getDate() + 15);
 
     const end = new Date(start);
     end.setDate(start.getDate() + 7);
 
-    return `${months[start.getMonth()]} ${String(start.getDate()).padStart(2, '0')} - ${months[end.getMonth()]} ${String(end.getDate()).padStart(2, '0')}`;
+    return `${months[start.getMonth()]} ${String(start.getDate()).padStart(
+      2,
+      '0'
+    )} - ${months[end.getMonth()]} ${String(end.getDate()).padStart(2, '0')}`;
   }
   flights = [
     {
@@ -190,108 +202,107 @@ export class RecoendOfferComponent implements OnInit {
       link: '#',
     },
     {
-   image: 'assets/images/home/rome.webp',
+      image: 'assets/images/home/rome.webp',
       destination: 'Rome',
       route: 'LHR - FCO',
       dateRange: this.generateDateRange(),
       rating: 4.6,
-      
+
       link: '#',
     },
     {
-   image: 'assets/images/home/tokyo1.webp',
+      image: 'assets/images/home/tokyo1.webp',
       destination: 'Tokyo',
       route: 'LAX - HND',
       dateRange: this.generateDateRange(),
       rating: 4.9,
-    
+
       link: '#',
     },
     {
-   image: 'assets/images/home/singapore1.webp',
+      image: 'assets/images/home/singapore1.webp',
       destination: 'Singapore',
       route: 'LAX - SIN',
       dateRange: this.generateDateRange(),
       rating: 4.7,
-     
+
       link: '#',
     },
     {
-   image: 'assets/images/home/barcelona.webp',
+      image: 'assets/images/home/barcelona.webp',
       destination: 'Barcelona',
       route: 'JFK - BCN',
       dateRange: this.generateDateRange(),
       rating: 4.5,
-     
+
       link: '#',
     },
     {
-   image: 'assets/images/home/zurich.webp',
+      image: 'assets/images/home/zurich.webp',
       destination: 'Zurich',
       route: 'ORD - ZRH',
       dateRange: this.generateDateRange(),
       rating: 4.5,
-     
+
       link: '#',
     },
     {
-   image: 'assets/images/home/london.webp',
+      image: 'assets/images/home/london.webp',
       destination: 'London',
       route: 'BOS - LHR',
       dateRange: this.generateDateRange(),
       rating: 4.9,
-    
+
       link: '#',
     },
     {
-   image: 'assets/images/home/newyork1.webp',
+      image: 'assets/images/home/newyork1.webp',
       destination: 'New York',
       route: 'DEL - JFK',
       dateRange: this.generateDateRange(),
       rating: 4.8,
-     
+
       link: '#',
-    }
+    },
     // Add more flight objects if needed
   ];
   offers = [
     {
       image: 'assets/images/home/offer-img-1.webp',
-      category: 'Flight Fest',
-      title: 'Fly more, spend less on top domestic and global routes',
-      description: 'Grab the Best Flight Deals Now',
+      category: 'Flight Specials',
+      title: 'Get low fares on top domestic & international flights',
+      description: 'Save Big with Smart Booking Options',
       link: '#',
     },
     {
-         image: 'assets/images/home/cruise_server.webp',
-      category: 'Cruise Saver',
-      title: 'Sail away with exclusive deals on luxury cruise packages',
-      description: 'Get Great Cruise Discounts Today',
+      image: 'assets/images/home/cruise_server.webp',
+      category: 'Cruise Escapes',
+      title: 'Experience the sea with exclusive cruise deals',
+      description: 'Limited-Time Offers on Luxury Voyages',
       link: '#',
     },
     {
-         image: 'assets/images/home/hotel_deals.webp',
-      category: 'Hotel Deals',
-      title: 'Top-rated stays at truly pocket-friendly hotel prices',
-      description: 'Find Amazing Hotel Offers Near You',
+      image: 'assets/images/home/hotel_deals.webp',
+      category: 'Hotel Steals',
+      title: 'Stay in style without stretching your budget',
+      description: 'Browse Affordable Hotels with High Ratings',
       link: '#',
     },
     {
-         image: 'assets/images/home/customizable_deals.webp',
-      category: 'Customizable Deals',
-      title: 'Create your own offer with flexible travel options ',
-      description: 'Design Your Perfect Travel Package',
+      image: 'assets/images/home/customizable_deals.webp',
+      category: 'Build Your Trip',
+      title: 'Plan it your way with fully customizable packages',
+      description: 'Tailor-Made Travel for Every Type of Explorer',
       link: '#',
-    }
+    },
     // Add more offer objects here as needed
   ];
 
-
- private shareService: SharedService = inject(SharedService);
-    getData:any='';
-    ngOnInit(){
-      this.getData=this.shareService.getcompanyName();
-    }
+  private shareService: SharedService = inject(SharedService);
+  getData: any = '';
+  ngOnInit() {
+    this.getData = this.shareService.getcompanyName();
+  }
   ngAfterViewInit(): void {
     const swiperEl: any = this.recoendSwiperRef.nativeElement;
     const swiperEl1: any = this.recoendSwiperRef1.nativeElement;

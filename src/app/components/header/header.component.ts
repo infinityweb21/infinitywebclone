@@ -1,13 +1,12 @@
 import { Component, HostListener, inject, ViewChild } from '@angular/core';
 import { DrawerModule } from 'primeng/drawer';
 import { Drawer } from 'primeng/drawer';
-import { ClickOutsideDirective } from '../../directives/click-outside.directive';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
   selector: 'app-header',
-  imports: [DrawerModule, RouterLink, ClickOutsideDirective, RouterLinkActive],
+  imports: [DrawerModule, RouterLink,  RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
