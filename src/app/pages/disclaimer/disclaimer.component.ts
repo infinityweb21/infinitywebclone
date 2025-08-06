@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
   selector: 'app-disclaimer',
@@ -9,7 +10,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './disclaimer.component.scss'
 })
 export class DisclaimerComponent implements OnInit {
-
+  private shareService: SharedService = inject(SharedService);
+  getData: any = '';
+companyName: string = '';
   constructor(
     private meta: Meta,
     private title: Title,
@@ -17,6 +20,11 @@ export class DisclaimerComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Set company data
+    this.getData = this.shareService.getcompanyName();
+    
+    this.companyName = this.getData.companyName;
+    
     // Set meta tags
     const metaTitle = this.route.snapshot.data['metaTitle'];
     const metaDescription = this.route.snapshot.data['metaDescription'];
