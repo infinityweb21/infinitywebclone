@@ -86,7 +86,6 @@ export class SelectSeatsComponent implements OnInit {
   scrollContainer!: ElementRef<HTMLDivElement>;
   private _router = inject(Router);
   private destroyRef: DestroyRef = inject(DestroyRef);
-
   rangeValue = 0;
   seatPrice = 0; // This will now be dynamic based on selected seat
   seatAssignmentFee = 0;
@@ -156,8 +155,17 @@ SeatAssignmentFee:number=0;
     });
     this.getAvailableSeatByItinerary();
     this.calculateTotalSeatPriceFromAllSegments()
-
+    
   }
+
+setFirstValidSegment() {
+  const firstValid = this.segmentSeatMaps.find(
+    seg => seg.origin && seg.destination
+  );
+  if (firstValid) {
+    this.setActiveSegment(firstValid);
+  }
+}
 
 
 restoreSelectedSeats(): void {
@@ -213,7 +221,7 @@ calculateTotalSeatPriceFromAllSegments(): void {
       )
     );
   }, 0);
-
+   this.shareService.setSeatTotal(this.selectedSeatTotal);
   this.updateTotalWithSeatAndServiceTax();
 }
 
@@ -367,6 +375,8 @@ getAllSelectedSeats(): any[] {
           // Set the first segment as active by default
           if (this.segmentSeatMaps.length > 0) {
             this.setActiveSegment(this.segmentSeatMaps[0]);
+            this.setFirstValidSegment();
+            
           }
         },
         error: (err) => {

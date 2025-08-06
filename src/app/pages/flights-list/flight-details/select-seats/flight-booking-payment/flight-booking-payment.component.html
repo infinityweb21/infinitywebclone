@@ -187,7 +187,7 @@
   </div>
         <!-- == === -->
         <!-- == === -->
-        <div class="flightdetailsmain-box">
+        <!-- <div class="flightdetailsmain-box">
           <div class="insideinfobox">
             <div class="imgtitlebox">
               <img src="assets/images/flight-details/plane-up1.png" alt="" />
@@ -265,7 +265,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- == === -->
         <!-- == === -->
         <div class="flightdetailsmain-box">
@@ -286,7 +286,7 @@
                   <a
                     href="javascript:void(0)"
                     class="commonbtnnew add-travel-protection-btn mt-0"
-                    >Add Travel Protection</a
+                    >Add Car Rental</a
                   >
                 </div>
               </div>
@@ -567,7 +567,7 @@
 
   <div class="d-flex justify-content-between mb-3" *ngIf="selectedSeatTotal">
     <span>Selected Seat Charges</span>
-    <span>${{ selectedSeatTotal | number: '1.2-2' }}</span>
+    <span>{{ selectedSeatTotal | number:'1.2-2' | currency  }}</span>
   </div>
 
   <!-- <div class="d-flex justify-content-between mb-3">
@@ -575,7 +575,7 @@
     <span>${{ serviceTaxAmount | number: '1.2-2' }}</span>
   </div> -->
 
-  <div class="d-flex justify-content-between mb-1" *ngIf="travelProtectionAdded">
+  <!-- <div class="d-flex justify-content-between mb-1" *ngIf="travelProtectionAdded">
     <span>
       Travel Protection
       <button class="btn btn-link text-danger p-0" (click)="toggleTravelProtection()">
@@ -583,18 +583,18 @@
       </button>
     </span>
     <span>${{ travelProtectionAmount | number: '1.2-2' }}</span>
-  </div>
+  </div> -->
 
   <hr />
   <div class="d-flex justify-content-between fw-semibold text-primary mb-1">
     <span class="total-price">Total Price (INR)</span>
-    <span class="total-price">${{ finalTotal | number: '1.2-2' }}</span>
+    <span class="total-price">{{ finalTotal | number:'1.2-2'|currency }}</span>
   </div>
 </div>
 
 
               <!-- Travel Protection -->
-      <div *ngIf="!travelProtectionAdded" class="travel-protection d-flex align-items-center justify-content-between mb-2">
+      <!-- <div *ngIf="!travelProtectionAdded" class="travel-protection d-flex align-items-center justify-content-between mb-2">
   <div class="d-flex align-items-center gap-2">
     <img src="assets/images/flight-details/plane-up.png" alt="Travel Icon" />
     <div class="travel-protection-txt">
@@ -605,7 +605,7 @@
   <button (click)="toggleTravelProtection()" class="btn btn-link btn-sm text-primary text-decoration-none p-0 sidebar-btn-add-new-link">
     + Add Now
   </button>
-</div>
+</div> -->
 
             <!-- Note -->
             <small class="text-muted d-block mb-2 note-text">

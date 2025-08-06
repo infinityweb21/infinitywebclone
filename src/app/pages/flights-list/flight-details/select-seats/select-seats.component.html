@@ -98,15 +98,14 @@
                       role="presentation"
                       *ngFor="let segment of segmentSeatMaps; let i = index"
                     >
+                    @if (segment.origin && segment.destination) {
                       <button
                         class="nav-link"
                         [class.active]="activeSegment === segment"
                         [id]="'flight-select-seat-tab' + (i + 1)"
-                        data-bs-toggle="tab"
-                        [attr.data-bs-target]="'#tab' + (i + 1) + 'Content'"
+                        
                         type="button"
-                        role="tab"
-                        [attr.aria-controls]="'tab' + (i + 1) + 'Content'"
+                       
                         [attr.aria-selected]="activeSegment === segment"
                         (click)="setActiveSegment(segment)"
                       >
@@ -131,6 +130,7 @@
                           segment.destination
                         }}</span>
                       </button>
+                    }
                     </li>
                   </ul>
                 </div>
@@ -166,6 +166,7 @@
                     [attr.aria-labelledby]="'flight-select-seat-tab' + (i + 1)"
             
                   >
+                 
                     <div class="flight-select-seat-tab1-content-wrap">
                           <div class="tab-inner-depart-flight-details">
                                 
@@ -640,7 +641,7 @@
     <span>${{ serviceTaxAmount | number: '1.2-2' }}</span>
   </div> -->
 
-  <div class="d-flex justify-content-between mb-1" *ngIf="travelProtectionAdded">
+  <!-- <div class="d-flex justify-content-between mb-1" *ngIf="travelProtectionAdded">
     <span>
       Travel Protection
       <button class="btn btn-link text-danger p-0" (click)="toggleTravelProtection()">
@@ -648,7 +649,7 @@
       </button>
     </span>
     <span>${{ travelProtectionAmount | number: '1.2-2' }}</span>
-  </div>
+  </div> -->
 
   <hr />
   <div class="d-flex justify-content-between fw-semibold text-primary mb-1">
@@ -659,7 +660,7 @@
 
 
               <!-- Travel Protection -->
-      <div *ngIf="!travelProtectionAdded" class="travel-protection d-flex align-items-center justify-content-between mb-2">
+      <!-- <div *ngIf="!travelProtectionAdded" class="travel-protection d-flex align-items-center justify-content-between mb-2">
   <div class="d-flex align-items-center gap-2">
     <img src="assets/images/flight-details/plane-up.png" alt="Travel Icon" />
     <div class="travel-protection-txt">
@@ -670,7 +671,7 @@
   <button (click)="toggleTravelProtection()" class="btn btn-link btn-sm text-primary text-decoration-none p-0 sidebar-btn-add-new-link">
     + Add Now
   </button>
-</div>
+</div> -->
 
 
             <!-- Note -->

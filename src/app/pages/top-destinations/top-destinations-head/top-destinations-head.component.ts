@@ -5,12 +5,13 @@ import { SharedService } from '../../../services/shared/shared.service';
 import { TosterService } from '../../../services/common/toaster.service';
 import { SpinnerService } from '../../../services/common/spinner.service';
 import { AuthService } from '../../../services/auth.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { SearchCountryField, CountryISO, PhoneNumberFormat, NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-top-destinations-head',
-  imports: [NgStyle,ReactiveFormsModule,NgIf],
+  imports: [NgStyle,ReactiveFormsModule,NgIf,NgxIntlTelInputModule],
   templateUrl: './top-destinations-head.component.html',
   styleUrl: './top-destinations-head.component.scss',
 })
@@ -18,6 +19,11 @@ export class TopDestinationsHeadComponent implements OnInit {
   activeroute: string = '';
   private router: Router = inject(Router);
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+    separateDialCode = false;
+      SearchCountryField = SearchCountryField;
+      CountryISO = CountryISO;
+      PhoneNumberFormat = PhoneNumberFormat;
+      preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   backgroundImageUrl = '';
   headerText = '';
   subHeaderText = '';
@@ -70,10 +76,10 @@ export class TopDestinationsHeadComponent implements OnInit {
 
     // Optional or general sections
     'top-destinations': 'Explore the Best',
-    'top-airlines': 'Best Airlines for Your Trip',
-    'top-route': 'Popular Flight Routes',
-    'speacial-deals': 'Special Travel Deals',
-    'cruise-lines': 'Explore Cruise Lines',
+    'top-airlines': 'Book Your Next Flight Here',
+    'top-route': 'Blue Skies & Most Popular Routes',
+    'speacial-deals': 'Get The Benifits Of Exclusive Deals',
+    'cruise-lines': 'Find Your Bliss on the High Seas',
     default: 'Discover the World',
   };
 
@@ -105,12 +111,12 @@ export class TopDestinationsHeadComponent implements OnInit {
     maldives: 'Sink into serenity where turquoise waters kiss the sunlit skies',
     // Optional or general sections
     'top-destinations':
-      'Let your heart wander and your eyes soak in the magic as we take you towards the journey of your dreams.',
-    'top-airlines': 'Fly with the top-rated carriers.',
-    'top-route': 'Navigate the most popular journeys.',
-    'speacial-deals': 'Save more on handpicked offers.',
-    'cruise-lines': 'Sail away with premier cruise lines.',
-    default: 'Plan your next unforgettable journey.',
+      'Let your heart wander and your eyes soak in the magic as we take you towards the journey of your dreams',
+    'top-airlines': 'Unbeatable fares with additional benefits. It’s time to explore the flight deals',
+    'top-route': 'Wander the earth to the most sought after destinations with us! Our top routes offer you the freedom and the affordability all at once',
+    'speacial-deals': 'Plan you next trip and avail the best deals with us. Plan big, travel more and spend less',
+    'cruise-lines': 'Set sail on your dream voyage as you discover the world with us and book now to enjoy exclusive discounts at the perfect time of day',
+    default: 'Plan your next unforgettable journey',
   };
 
   ngOnInit(): void {
@@ -158,11 +164,25 @@ export class TopDestinationsHeadComponent implements OnInit {
   ) {
      this.contactForm = this.fb.group({
       name: ['', Validators.required],
-        phone: ['', [Validators.required, Validators.pattern(/^\d{6,15}$/)]]
+        phone: [undefined, [Validators.required,this.phoneLengthValidator]]
     });
   }
 
+ phoneLengthValidator(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
 
+  // Ensure value is an object and has nationalNumber
+  if (value && typeof value === 'object' && value.nationalNumber) {
+    const digits = value.nationalNumber.replace(/\D/g, ''); // remove non-digits
+    const length = digits.length;
+
+    if (length < 6 || length > 15) {
+      return { invalidPhoneLength: true };
+    }
+  }
+
+  return null;
+}
 isInvalid(field: string): boolean {
   const control = this.contactForm.get(field);
   return !!(control && (control.touched || this.submitted) && control.invalid);
@@ -178,7 +198,7 @@ isInvalid(field: string): boolean {
    const payload={
     name:this.contactForm.value['name'],
         email:'',
-    phone:this.contactForm.value['phone'],
+    phone:this.contactForm.value['phone'].e164Number,
     subject:'get a call back',
     message:'request a call back',
       contact_email:this.getData.email,

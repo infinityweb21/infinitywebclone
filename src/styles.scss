@@ -2739,6 +2739,11 @@ header.header-six.fixed
     color: #fff;
   }
 }
+@media (min-width: 992px) {
+    .app-top-destinations-label .c-custom-radio label .banner-radio-label-inner-text {
+        color: #000000 !important;
+    }
+}
 .c-custom-radio label {
   position: relative;
   padding-left: 25px;
@@ -5170,8 +5175,9 @@ header.header-six.fixed
   margin: auto auto 25px;
 }
 .etd-image-wrapper img {
-  width: 100%;
-  height: 1005;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
 }
 .etd-provider-card-devider {
   border-top-color: #e0e0e0;

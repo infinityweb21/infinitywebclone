@@ -486,7 +486,7 @@
         </div>
         <!-- == === -->
 
-        <div class="flightdetailsmain-box">
+        <!-- <div class="flightdetailsmain-box">
           <div class="insideinfobox">
             <h2 class="common-titlenew">Upgrade your flight</h2>
             <div class="common-subpara">
@@ -721,7 +721,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="flightdetailsmain-box">
           @if (getMainDetails?.Citypairs?.length>=1){
           <div class="insideinfobox">
@@ -929,7 +929,7 @@
           </div>
         }
         </div>
-        <div class="flightdetailsmain-box" *ngIf="!travelProtectionAdded">
+        <!-- <div class="flightdetailsmain-box" *ngIf="!travelProtectionAdded">
           <div class="insideinfobox">
             <div class="imgtitlebox">
               <img src="assets/images/flight-details/plane-up1.png" alt="" />
@@ -1022,7 +1022,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
   <div class="flightdetailsmain-box">
     <div class="insideinfobox">
@@ -1536,12 +1536,12 @@
       getSurchargeSubtotal('INF', selectedInfants) | number: '1.2-2'
     }}</span>
   </div>
-  <div class="d-flex justify-content-between mb-1"*ngIf="travelProtectionAdded">
+  <!-- <div class="d-flex justify-content-between mb-1"*ngIf="travelProtectionAdded">
     <span>Travel Protection   <button class="btn btn-link text-danger p-0" (click)="toggleTravelProtection()">
       <i class="fas fa-trash-alt"></i>
     </button></span>
     <span>${{travelProtectionTotal | number: '1.2-2' }}</span>
-  </div>
+  </div> -->
   
 
 
@@ -1556,7 +1556,7 @@
 
 
             <!-- Travel Protection -->
-            <div *ngIf="!travelProtectionAdded"
+            <!-- <div *ngIf="!travelProtectionAdded"
               class="travel-protection d-flex align-items-center justify-content-between mb-2"
             >
               <div class="d-flex align-items-center gap-2">
@@ -1574,7 +1574,7 @@
               >
                 + Add Now
               </button>
-            </div>
+            </div> -->
 
             <!-- Note -->
             <small class="text-muted d-block mb-2 note-text">

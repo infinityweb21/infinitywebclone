@@ -1,6 +1,6 @@
 
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, retry, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
@@ -25,6 +25,8 @@ export class SharedService {
   );
 
   showCookies$ = this.showCookiesSubject.asObservable();
+  private readonly STORAGE_KEY = 'selectedSeatTotal';
+  selectedSeatTotal = signal<number>(this.loadFromStorage());
 
   private getFromStorage(): boolean {
     const value = localStorage.getItem('showCookies');
@@ -52,6 +54,30 @@ export class SharedService {
 
   getcompanyName(): any {
     return this.data;
+  }
+
+
+  private loadFromStorage(): number {
+    const stored = localStorage.getItem(this.STORAGE_KEY);
+    return stored ? parseFloat(stored) : 0;
+  }
+
+  setSeatTotal(amount: number) {
+    this.selectedSeatTotal.set(amount);
+    localStorage.setItem(this.STORAGE_KEY, amount.toString());
+  }
+
+  getSeatTotal() {
+    return this.selectedSeatTotal();
+  }
+
+  seatTotalSignal() {
+    return this.selectedSeatTotal;
+  }
+
+  clearSeatTotal() {
+    this.selectedSeatTotal.set(0);
+    localStorage.removeItem(this.STORAGE_KEY);
   }
   private errorHandler(error: any): Observable<never> {
     return throwError(() => error || 'Server Error');

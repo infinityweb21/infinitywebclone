@@ -169,6 +169,8 @@ flightBookingResponse: any;
   });
   }
   ngOnInit() {
+    this.selectedSeatTotal = this.shareService.seatTotalSignal()();
+
     this.getData=this.shareService.getcompanyName();
        this.searchService.searchData$.subscribe((searchData) => {
       console.log('Received Flight Data:', searchData);
