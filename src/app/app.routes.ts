@@ -11,10 +11,10 @@ export const routes: Routes = [
         path: '',
         loadComponent: () =>
           import('./pages/home/home.component').then((m) => m.HomeComponent),
-        title: 'Your One-Stop Travel Platform | Infinity Travel',
+        title: 'Your One-Stop Travel Platform | Infinityfarecompare',
         data: {
-          metaTitle: 'Your One-Stop Travel Platform | Infinity Travel',
-          metaDescription: 'Book flights, hotels, and cruises in one place. Great deals, 24/7 support, and smooth travel planning withInfinity Travel. Click here!'
+          metaTitle: 'Your One-Stop Travel Platform | Infinityfarecompare',
+          metaDescription: 'Book flights, hotels, and cruises in one place. Great deals, 24/7 support, and smooth travel planning with Infinityfarecompare. Click here!'
         }
       },
       {
@@ -23,9 +23,9 @@ export const routes: Routes = [
           import('./pages/flight/flight.component').then(
             (m) => m.FlightComponent
           ),
-        title: 'Flight Deals & Airline Tickets |Infinity Travel',
+        title: 'Flight Deals & Airline Tickets |Infinityfarecompare',
         data: {
-          metaTitle: 'Flight Deals & Airline Tickets |Infinity Travel',
+          metaTitle: 'Flight Deals & Airline Tickets |Infinityfarecompare',
           metaDescription: 'Amazing flight deals with our expert booking service. Get competitive prices and access to top airlines worldwide. Start your journey today!'
         }
       },
@@ -35,9 +35,9 @@ export const routes: Routes = [
           import('./pages/flight/international/international.component').then(
             (m) => m.InternationalComponent
           ),
-        title: 'Flights from US at Great Prices | Infinity Travel',
+        title: 'Flights from US at Great Prices | Infinityfarecompare',
         data: {
-          metaTitle: 'Flights from US at Great Prices | Infinity Travel',
+          metaTitle: 'Flights from US at Great Prices | Infinityfarecompare',
           metaDescription: 'Book international flights from the US and unlock global adventures. Enjoy low fares, fast booking, and round-the-clock travel support.'
         }
       },
@@ -47,10 +47,10 @@ export const routes: Routes = [
           import('./pages/flight/first-class/first-class.component').then(
             (m) => m.FirstClassComponent
           ),
-        title: 'Fly First Class in Comfort | Deals at Infinity Travel',
+        title: 'Fly First Class in Comfort | Deals at Infinityfarecompare',
         data: {
-          metaTitle: 'Fly First Class in Comfort | Deals at Infinity Travel',
-          metaDescription: 'Infinity Travel makes First Class booking simple. Search flights, compare amenities, and fly in comfort. Your premium seat is just a few clicks away.'
+          metaTitle: 'Fly First Class in Comfort | Deals at Infinityfarecompare',
+          metaDescription: 'Infinityfarecompare makes First Class booking simple. Search flights, compare amenities, and fly in comfort. Your premium seat is just a few clicks away.'
         }
       },
       {
@@ -59,10 +59,10 @@ export const routes: Routes = [
           import('./pages/flight/business-class/business-class.component').then(
             (m) => m.BusinessClassComponent
           ),
-        title: 'Discounted Business Class Flights | Infinity Travel',
+        title: 'Discounted Business Class Flights | Infinityfarecompare',
         data: {
-          metaTitle: 'Discounted Business Class Flights | Infinity Travel',
-          metaDescription: 'Infinity Travel makes premium travel more accessible. Get discounted business class fares on international routes—call us today!'
+          metaTitle: 'Discounted Business Class Flights | Infinityfarecompare',
+          metaDescription: 'Infinityfarecompare makes premium travel more accessible. Get discounted business class fares on international routes—call us today!'
         }
       },
       {
@@ -106,9 +106,9 @@ export const routes: Routes = [
         path: 'hotel',
         loadComponent: () =>
           import('./pages/hotel/hotel.component').then((m) => m.HotelComponent),
-        title: 'Get Amazing Hotel Deals at the Best Rates | Infinity Travel',
+        title: 'Get Amazing Hotel Deals at the Best Rates | Infinityfarecompare',
          data: {
-          metaTitle: 'Get Amazing Hotel Deals at the Best Rates  | Infinity Travel',
+          metaTitle: 'Get Amazing Hotel Deals at the Best Rates  | Infinityfarecompare',
           metaDescription: 'Enjoy luxurious comfort and exceptional service at this hotel, featuring modern amenities and a prime location for a memorable stay.'
         }
       },
@@ -150,10 +150,10 @@ export const routes: Routes = [
           import('./pages/cruise/cruise.component').then(
             (m) => m.CruiseComponent
           ),
-        title: 'Plan Your Perfect Cruise Escape | Infinity Travel',
+        title: 'Plan Your Perfect Cruise Escape | Infinityfarecompare',
         data: {
-          metaTitle: 'Plan Your Perfect Cruise Escape | Infinity Travel',
-          metaDescription: 'Discover popular cruise routes, trending destinations and great deals. Plan your next sea adventure with Infinity Travel for exclusive cruise experiences now'
+          metaTitle: 'Plan Your Perfect Cruise Escape | Infinityfarecompare',
+          metaDescription: 'Discover popular cruise routes, trending destinations and great deals. Plan your next sea adventure with Infinityfarecompare for exclusive cruise experiences now'
         }
       },
       {
@@ -198,10 +198,10 @@ export const routes: Routes = [
           import('./pages/contact-us/contact-us.component').then(
             (m) => m.ContactUsComponent
           ),
-        title: 'Get in Touch with Us | Infinity Travel',
+        title: 'Get in Touch with Us | Infinityfarecompare',
         data: {
-          metaTitle: 'Get in Touch with Us | Infinity Travel',
-          metaDescription: 'Have questions or need assistance? Call us today through our contact page for prompt support and helpful information. Infinity Travel'
+          metaTitle: 'Get in Touch with Us | Infinityfarecompare',
+          metaDescription: 'Have questions or need assistance? Call us today through our contact page for prompt support and helpful information. Infinityfarecompare'
         }
       },
       {
@@ -210,10 +210,10 @@ export const routes: Routes = [
           import('./pages/cookie-policy/cookie-policy.component').then(
             (m) => m.CookiePolicyComponent
           ),
-        title: 'Learn How Cookies Help Us Improve Your Visit | Infinity Travel',
+        title: 'Learn How Cookies Help Us Improve Your Visit | Infinityfarecompare',
         data: {
-          metaTitle: 'Learn How Cookies Help Us Improve Your Visit | Infinity Travel',
-          metaDescription: 'Cookies help us remember you, show better deals, and boost performance. See how Infinity Travel uses cookies and how you can take control.'
+          metaTitle: 'Learn How Cookies Help Us Improve Your Visit | Infinityfarecompare',
+          metaDescription: 'Cookies help us remember you, show better deals, and boost performance. See how Infinityfarecompare uses cookies and how you can take control.'
         }
       },
       {
@@ -234,10 +234,10 @@ export const routes: Routes = [
           import('./pages/disclaimer/disclaimer.component').then(
             (m) => m.DisclaimerComponent
           ),
-        title: 'Our Travel Disclaimer Guide | Infinity Travel',
+        title: 'Stay Informed, Travel Smart | Infinityfarecompare',
         data: {
-          metaTitle: 'Our Travel Disclaimer Guide | Infinity Travel',
-          metaDescription: 'We\'re upfront about how we share info and what you should know. Read our disclaimer to understand how we guide your travel journey with care.'
+          metaTitle: 'Stay Informed, Travel Smart | Infinityfarecompare',
+          metaDescription: 'Get the lowdown on Infinityfarecompare’s disclaimer. We keep things genuine, with no fluff and only transparency. Read our simple terms before you explore.'
         }
       },
       {
@@ -246,10 +246,10 @@ export const routes: Routes = [
           import('./pages/testimonials/testimonials.component').then(
             (m) => m.TestimonialsComponent
           ),
-        title: 'Honest Traveler Stories | Infinity Travel',
+        title: 'Review our Testimonials | Infinityfarecompare',
         data: {
-          metaTitle: 'Honest Traveler Stories | Infinity Travel',
-          metaDescription: 'Hear what travelers say about their flight, hotel and cruise bookings. Honest reviews from people who planned smooth and happy getaways.'
+          metaTitle: 'Review our Testimonials | Infinityfarecompare',
+          metaDescription: ' Wondering why you should be trusting us? Check what our Loyal Customers have to say about us - Call us for more valuable insights'
         }
       },
       {
@@ -279,9 +279,9 @@ export const routes: Routes = [
           import('./pages/our-service-fees/our-service-fees.component').then(
             (m) => m.OurServiceFeesComponent
           ),
-        title: 'Know About our Booking Service Fees | Infinity Travel',
+        title: 'Know About our Booking Service Fees | Infinityfarecompare',
         data: {
-          metaTitle: 'Know About our Booking Service Fees | Infinity Travel',
+          metaTitle: 'Know About our Booking Service Fees | Infinityfarecompare',
           metaDescription: 'Know your costs before you go. Our clear service fees cover everything from flights to cruises, so you can book with confidence. '
         }
       },
@@ -291,9 +291,9 @@ export const routes: Routes = [
           import(
             './pages/post-ticketing-fees/post-ticketing-fees.component'
           ).then((m) => m.PostTicketingFeesComponent),
-        title: 'Know Your Flight Post-Ticketing Charges | Infinity Travel',
+        title: 'Know Your Flight Post-Ticketing Charges | Infinityfarecompare',
         data: {
-          metaTitle: 'Know Your Flight Post-Ticketing Charges | Infinity Travel',
+          metaTitle: 'Know Your Flight Post-Ticketing Charges | Infinityfarecompare',
           metaDescription: 'Stay informed with a full breakdown of post-ticketing fees - refunds, rebooking, agent waivers, and more. Plan smart, travel smarter every time.'
         }
       },
@@ -303,9 +303,9 @@ export const routes: Routes = [
           import(
             './pages/flight/top-airlines-deals/top-airlines-deals.component'
           ).then((m) => m.TopAirlinesDealsComponent),
-        title: 'Best Flight Discounts 2025 | Infinity Travel',
+        title: 'Best Flight Discounts 2025 | Infinityfarecompare',
         data: {
-          metaTitle: 'Best Flight Discounts 2025 | Infinity Travel',
+          metaTitle: 'Best Flight Discounts 2025 | Infinityfarecompare',
           metaDescription: 'Check out the best airline deals for 2025. Compare top airlines, save on domestic and international travel, and book the tickets. Click here!'
         }
       },
@@ -315,10 +315,10 @@ export const routes: Routes = [
           import('./pages/cancellation-policy/cancellation-policy.component').then(
             (m) => m.CancellationPolicyComponent
           ),
-        title: 'Flexible Flight Cancellation Guidelines | Infinity Travel',
+        title: 'Flexible Flight Cancellation Guidelines | Infinityfarecompare',
         data: {
-          metaTitle: 'Flexible Flight Cancellation Guidelines | Infinity Travel',
-          metaDescription: 'Understand how to cancel or modify your travel bookings with Infinity Travel. Transparent terms, simple process, clear communication'
+          metaTitle: 'Flexible Flight Cancellation Guidelines | Infinityfarecompare',
+          metaDescription: 'Understand how to cancel or modify your travel bookings with Infinityfarecompare. Transparent terms, simple process, clear communication'
         }
       },{
         path: 'terms-and-conditions',
@@ -337,9 +337,9 @@ export const routes: Routes = [
           import('./pages/cancellation-policy/cancellation-policy.component').then(
             (m) => m.CancellationPolicyComponent
           ),
-          title: 'Flexible Flight Cancellation Guidelines | Infinity Travel',
+          title: 'Flexible Flight Cancellation Guidelines | Infinityfarecompare',
           data: { 
-            metaTitle: 'Flexible Flight Cancellation Guidelines | Infinity Travel',
+            metaTitle: 'Flexible Flight Cancellation Guidelines | Infinityfarecompare',
             metaDescription: 'Understand your rights and responsibilities when using our site. We keep it fair, clear, and straightforward for all users. A better experience starts here'
           } 
       },{

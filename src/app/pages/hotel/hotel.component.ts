@@ -425,6 +425,11 @@ export class HotelComponent {
     if (metaDescription) {
       this.meta.updateTag({ name: 'description', content: metaDescription });
     }
+    this.testimonials.forEach(testimonial => {
+    testimonial.description = testimonial.description
+      .replace('{{companyName}}', this.companyName)
+      .replace('[COMPANY_NAME]', this.companyName);
+       });
   }
 
   ngAfterViewInit(): void {
