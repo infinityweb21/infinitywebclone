@@ -741,8 +741,11 @@
           <table>
             <tr>
               <th>Show All Fares</th>
-              <th *ngFor="let airline of getAllCarrierWiseFares">
-                <img [src]="airline.carrierImage" alt="logo" />
+              <th *ngFor="let airline of getAllCarrierWiseFares" (click)="onAirlineHeaderClick(airline.ValidatingCarrierName)"
+  [class.selected]="filters.airlines.includes(airline.ValidatingCarrierName)"
+  style="cursor: pointer;">
+                <img [src]="airline.carrierImage" alt="logo" 
+                    />
                 <p>{{ airline.ValidatingCarrierName }}</p>
               </th>
             </tr>
