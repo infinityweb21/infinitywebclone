@@ -156,8 +156,17 @@ SeatAssignmentFee:number=0;
     });
     this.getAvailableSeatByItinerary();
     this.calculateTotalSeatPriceFromAllSegments()
-
+    
   }
+
+setFirstValidSegment() {
+  const firstValid = this.segmentSeatMaps.find(
+    seg => seg.origin && seg.destination
+  );
+  if (firstValid) {
+    this.setActiveSegment(firstValid);
+  }
+}
 
 
 restoreSelectedSeats(): void {
@@ -367,6 +376,8 @@ getAllSelectedSeats(): any[] {
           // Set the first segment as active by default
           if (this.segmentSeatMaps.length > 0) {
             this.setActiveSegment(this.segmentSeatMaps[0]);
+            this.setFirstValidSegment();
+            
           }
         },
         error: (err) => {
