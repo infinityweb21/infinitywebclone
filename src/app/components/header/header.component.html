@@ -15,19 +15,19 @@
             <li class="custom-menu-item has-submenu">
               <a routerLink="/flights" routerLinkActive="active" class="custom-link submenu-toggle">
                 Flight
-                <span class="dropdown-icon">
+                <!-- <span class="dropdown-icon">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                     <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" />
                   </svg>
-                </span>
+                </span> -->
               </a>
-              <ul class="custom-submenu">
+              <!-- <ul class="custom-submenu">
                 <li><a routerLink="/flights/first-class">First Class Flights</a></li>
                 <li><a routerLink="/flights/business-class">Business Class Flights</a></li>
                 <li><a routerLink="/top-airlines-deals">Top Airline Deals</a></li>
                 <li><a routerLink="/flights/international-flights-from-us">International Flights from US</a></li>
-                <!-- <li><a routerLink="/flights/international-flights-to-us">International Flights to US</a></li> -->
-              </ul>
+                <li><a routerLink="/flights/international-flights-to-us">International Flights to US</a></li>
+              </ul> -->
             </li>
 
             <li class="custom-menu-item"><a routerLink="/hotel" routerLinkActive="active" class="custom-link">Hotel</a></li>
@@ -36,7 +36,7 @@
                 >Car</a
               >
             </li> -->
-            <li class="custom-menu-item"><a routerLink="/cruise" routerLinkActive="active" class="custom-link">Cruise</a></li>
+            <!-- <li class="custom-menu-item"><a routerLink="/cruise" routerLinkActive="active" class="custom-link">Cruise</a></li> -->
             <!-- <li class="custom-menu-item">
               <a
 
@@ -53,7 +53,7 @@
           </ul>
         </div>
         <div class="header-btn d-flex align-items-center">
-          <div class="currency-lang-content-wrap d-none d-lg-flex">
+          <!-- <div class="currency-lang-content-wrap d-none d-lg-flex">
             <div
               class="currency-lang__dropdown"
               id="currencyLangDropdown"
@@ -102,7 +102,7 @@
 
               <div class="currency-lang__content">
                 <button class="currency-lang__close-btn" (click)="toggleCurrencyDropdown()">✕</button>
-                <!-- === === -->
+                
                 <ul class="currency-lang-menu">
                   <li class="currency-lang-title">Language</li>
                   <hr />
@@ -158,27 +158,33 @@
                     ><span class="currency-lang-label">INR <span class="currency-symbol">$</span></span>
                   </li>
                 </ul>
-                <!-- === === -->
+                
               </div>
             </div>
-          </div>
-          <div class="profile-menu order-2 order-lg-0" (clickOutside)="closeProfileDropdown()">
+          </div> -->
+          <!-- <div class="profile-menu order-2 order-lg-0" (clickOutside)="closeProfileDropdown()">
             <button class="profile-btn" (click)="toggleProfileDropdown($event)">
               <img src="https://www.gravatar.com/avatar/?d=mp&s=80" alt="Default Avatar" />
             </button>
             @if(profileDropdownOpen){
             <div class="profile-dropdown" [class.active]="profileDropdownOpen">
-              <a  href="javascript:void(0);">Profile</a> <a  href="javascript:void(0);">Settings</a> <a  href="javascript:void(0);">Logout</a>
+              <a href="javascript:void(0);">Profile</a> <a href="javascript:void(0);">Settings</a>
+              <a href="javascript:void(0);">Logout</a>
             </div>
             }
-          </div>
-          <a href="tel:{{getData?.phoneNumber}}" class="header-call-btn">
+          </div> -->
+          <a href="tel:{{ getData?.phoneNumber }}" class="header-call-btn">
             <div class="header-call-icon">
-              <img src="assets/icons/call.svg" alt="" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                <path d="M13.0786 14.7644C12.8891 14.5648 12.6266 14.4552 12.3378 14.4552C12.0337 14.4552 11.7406 14.5806 11.5336 14.7998L10.2242 16.1864L9.87034 15.9785C9.09196 15.5216 8.02527 14.8949 6.89924 13.7011C5.76862 12.5055 5.17626 11.3738 4.74316 10.5463L4.54974 10.1822L5.86141 8.7937C6.29526 8.33279 6.3104 7.59932 5.89416 7.15803L3.47073 4.59281C3.28239 4.39337 3.01948 4.28329 2.73116 4.28329C2.42739 4.28329 2.13453 4.40933 1.92684 4.62874L1.33173 5.26238L1.27655 5.35976C1.05487 5.66059 0.873501 5.9986 0.738017 6.36706C0.611935 6.718 0.533574 7.05156 0.497095 7.3862C0.184783 10.1355 1.38204 12.6594 4.63092 16.0981C8.48128 20.1736 11.6989 20.4907 12.5935 20.4907C12.747 20.4907 12.8395 20.4818 12.8651 20.4791C13.1958 20.4365 13.5119 20.3523 13.8308 20.2217C14.1752 20.0798 14.4938 19.8892 14.7775 19.6545L14.9125 19.5415L15.4697 18.9629C15.9029 18.504 15.9168 17.7715 15.5008 17.3307L13.0786 14.7644Z" fill="currentColor"/>
+                <path d="M10.5135 10.0194C9.98613 9.46141 9.32379 9.05995 8.6 8.85953L8.26704 8.76627L8.1716 9.1143C8.13577 9.24332 8.09356 9.36547 8.04568 9.4752L7.86523 9.88216L8.27866 9.99521C8.82562 10.1416 9.32406 10.4398 9.71981 10.8596C10.0981 11.2592 10.3745 11.7604 10.5193 12.308L10.589 12.5718L11.1095 12.6031C11.1621 12.6096 11.2147 12.6159 11.265 12.6207L11.7544 12.6695L11.6408 12.163C11.4584 11.3484 11.069 10.6072 10.5135 10.0194Z" fill="currentColor"/>
+                <path d="M12.2135 8.21818C11.2345 7.18153 9.98327 6.5051 8.59697 6.26251L8.11475 6.17675L8.19051 6.68709C8.21278 6.83842 8.2324 6.98907 8.24877 7.14125L8.27958 7.40976L8.53482 7.46319C9.63977 7.67929 10.6373 8.23157 11.4194 9.05905C12.3174 10.01 12.8662 11.2231 13.005 12.5691L13.0346 12.854L13.4425 12.9162C13.508 12.9217 13.5746 12.921 13.6684 12.9217L14.1597 12.9395L14.1207 12.5149C13.9678 10.8628 13.3077 9.37738 12.2135 8.21818Z" fill="currentColor"/>
+                <path d="M14.062 6.26255C12.4556 4.56228 10.3159 3.54949 8.03702 3.41155L7.59436 3.38231L7.66818 3.84385C7.69072 3.99415 7.71833 4.14789 7.74752 4.30803L7.8014 4.58803L8.06896 4.60553C10.0355 4.74811 11.8819 5.63503 13.2685 7.10267C14.6328 8.54714 15.4665 10.4796 15.6157 12.5416L15.6414 12.9085L15.9877 12.8869C16.0697 12.8824 16.1505 12.8749 16.2687 12.8639L16.7642 12.8226L16.7369 12.4509C16.5675 10.1071 15.6177 7.90932 14.062 6.26255Z" fill="currentColor"/>
+                <path d="M19.3476 12.1878C19.1211 9.21244 17.9006 6.41254 15.9104 4.30514C13.7868 2.05677 10.9599 0.753161 7.95264 0.633413L7.61174 0.618252L7.5858 0.981042C7.5798 1.08237 7.57575 1.18255 7.57218 1.28319L7.55127 1.80989L7.90482 1.82328C10.6319 1.93015 13.1929 3.11041 15.116 5.14635C16.9174 7.05344 18.0227 9.58919 18.2291 12.2854L18.258 12.664L18.6178 12.6269C18.7399 12.6131 18.8635 12.6032 18.9881 12.5929L19.3763 12.5613L19.3476 12.1878Z" fill="currentColor"/>
+                </svg>
             </div>
             <div class="header-call-txt">
-              <span>To More Inquiry</span>
-              <span class="header-inquery-no">{{getData?.phoneNumber}}</span>
+              <span>To More Inquiry</span> <span class="header-inquery-no">{{ getData?.phoneNumber }}</span>
             </div>
           </a>
         </div>
@@ -266,28 +272,24 @@
                 Flight
               </span>
             </a>
-            <span class="dropdown-icon me-3" (click)="toggleSubmenu($event)">
+            <!-- <span class="dropdown-icon me-3" (click)="toggleSubmenu($event)">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
                 <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" />
               </svg>
-            </span>
+            </span> -->
           </div>
 
-          <ul class="custom-submenu">
+          <!-- <ul class="custom-submenu">
             <li><a routerLink="/flights/first-class" (click)="closeCallback($event)">First Class Flights</a></li>
             <li><a routerLink="/flights/business-class" (click)="closeCallback($event)">Business Class Flights</a></li>
             <li><a routerLink="/top-airlines-deals" (click)="closeCallback($event)">Top Airline Deals</a></li>
-            <!-- <li>
+            <li>
               <a routerLink="/flights/international-flights-from-us" (click)="closeCallback($event)"
                 >International Flights from US</a
               >
-            </li> -->
-            <li>
-              <a  
-                >International Flights to US</a
-              >
             </li>
-          </ul>
+            <li><a>International Flights to US</a></li>
+          </ul> -->
         </li>
 
         <li class="custom-menu-item">
@@ -303,7 +305,7 @@
             Hotel</a
           >
         </li>
-        <li class="custom-menu-item">
+        <!-- <li class="custom-menu-item">
           <a routerLink="/car" routerLinkActive="active" class="custom-link" (click)="closeCallback($event)"
             ><span class="sidebar-menu-icon-box">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -319,8 +321,8 @@
             </span>
             Car</a
           >
-        </li>
-        <li class="custom-menu-item">
+        </li> -->
+        <!-- <li class="custom-menu-item">
           <a routerLink="/cruise" routerLinkActive="active" class="custom-link" (click)="closeCallback($event)"
             ><span class="sidebar-menu-icon-box">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48">
@@ -345,8 +347,8 @@
             </span>
             Cruise</a
           >
-        </li>
-        <li class="custom-menu-item">
+        </li> -->
+        <!-- <li class="custom-menu-item">
           <a routerLink="/blog" routerLinkActive="active" class="custom-link" (click)="closeCallback($event)">
             <span class="sidebar-menu-icon-box">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -354,6 +356,19 @@
               </svg>
             </span>
             Blog</a
+          >
+        </li> -->
+        <li class="custom-menu-item">
+          <a routerLink="/contact-us" routerLinkActive="active" class="custom-link" (click)="closeCallback($event)"
+            ><span class="sidebar-menu-icon-box">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M5.5 7a2.5 2.5 0 1 1 5 0a2.5 2.5 0 0 1-5 0M8 3a4 4 0 1 0 0 8a4 4 0 0 0 0-8m7.5 5a1.5 1.5 0 1 1 3 0a1.5 1.5 0 0 1-3 0M17 5a3 3 0 1 0 0 6a3 3 0 0 0 0-6M4.25 13A2.25 2.25 0 0 0 2 15.25v.278a2 2 0 0 0 .014.208a4.5 4.5 0 0 0 .778 2.07C3.61 18.974 5.172 20 8 20s4.39-1.025 5.208-2.195a4.5 4.5 0 0 0 .778-2.07a3 3 0 0 0 .014-.207v-.278A2.25 2.25 0 0 0 11.75 13zm-.75 2.507v-.257a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 .75.75v.257l-.007.08a3 3 0 0 1-.514 1.358C11.486 17.65 10.422 18.5 8 18.5s-3.486-.85-3.98-1.555a3 3 0 0 1-.513-1.359zm14.692-1.512l.476-1.205c.242-.614.92-.933 1.548-.728l.431.141c.724.237 1.326.806 1.35 1.569c.1 3.11-2.476 7.583-5.213 9.055c-.673.362-1.468.123-2.035-.391l-.337-.305a1.253 1.253 0 0 1-.142-1.706l.8-1.01c.29-.367.767-.53 1.22-.42l1.292.313q1.654-1.095 1.774-3.079l-.917-.964a1.2 1.2 0 0 1-.247-1.27"
+                />
+              </svg>
+            </span>
+            Contact</a
           >
         </li>
         <li class="custom-menu-item">
@@ -370,6 +385,21 @@
           >
         </li>
       </ul>
+
+      <!-- == == -->
+      <a href="tel:{{ getData?.phoneNumber }}" class="d-lg-none">
+        <div class="nav-call-button-wrap">
+          <div class="phone-content">
+            <b class="phone-heading">Looking for last-minute deals?</b>
+            <span class="phone-sub-heading">Speak with a travel expert and get assistance <b>24/7</b>. </span>
+          </div>
+          <div class="call-button sidebar-call-button-wrap">
+            <div class="call-icon"></div>
+            <div class="phone-number">{{ getData?.phoneNumber }}</div>
+          </div>
+        </div>
+      </a>
+      <!-- == == -->
     </div>
   </ng-template>
 </p-drawer>

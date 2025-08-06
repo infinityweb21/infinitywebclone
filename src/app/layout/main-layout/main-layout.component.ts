@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  inject,
   OnDestroy,
   OnInit,
 } from '@angular/core';
@@ -12,6 +13,9 @@ import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 import { SpinnerService } from '../../services/common/spinner.service';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { CookiesComponent } from '../../components/cookies/cookies.component';
+import { QuickContactComponent } from '../../components/quick-contact/quick-contact.component';
+import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -21,6 +25,8 @@ import { Subscription } from 'rxjs';
     FooterComponent,
     SpinnerComponent,
     CommonModule,
+    CookiesComponent,
+    QuickContactComponent
 
   ],
   templateUrl: './main-layout.component.html',
@@ -30,13 +36,21 @@ import { Subscription } from 'rxjs';
 export class MainLayoutComponent implements OnInit, OnDestroy {
   isLoading = false;
   private sub!: Subscription;
+shareService:SharedService=inject(SharedService)
 
-
-
+  showCookies:boolean=true;
+  private cookieSub!: Subscription;
 
   constructor(
     public spinnerService: SpinnerService,
-  ) {}
+  ) {
+    const showCookies=localStorage.getItem("showCookies");
+    if(showCookies=='false'){
+      this.showCookies=false;
+    }else{
+      this.showCookies=true;
+    }
+  }
 
   ngOnInit(): void {
     this.sub = this.spinnerService.isLoading$.subscribe((val) => {
@@ -44,10 +58,13 @@ export class MainLayoutComponent implements OnInit, OnDestroy {
       this.isLoading = val;
       console.log("main",val);
     });
-
+  this.cookieSub = this.shareService.showCookies$.subscribe((val) => {
+      this.showCookies = val;
+    });
   }
 
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
+    this.cookieSub?.unsubscribe();
   }
 }

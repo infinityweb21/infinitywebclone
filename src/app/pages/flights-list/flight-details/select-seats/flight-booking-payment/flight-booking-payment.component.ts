@@ -1,11 +1,13 @@
 import { Component, DestroyRef, inject } from '@angular/core';
 import { SvgIcons } from '../../../../../shared/svg-icons';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { CommonModule, NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
@@ -37,6 +39,7 @@ separateDialCode = false;
 	SearchCountryField = SearchCountryField;
 	CountryISO = CountryISO;
   PhoneNumberFormat = PhoneNumberFormat;
+  loading = false;
 	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   paymentMethods = [
     {
@@ -162,7 +165,7 @@ flightBookingResponse: any;
     ZipCode: ['', Validators.required],
     State: ['', Validators.required],
     Country: ['', Validators.required],
-    BillingPhoneNum: ['', [Validators.required, Validators.pattern(/^\d{10,15}$/)]],
+    BillingPhoneNum:  [undefined, [Validators.required,this.phoneLengthValidator]]
   });
   }
   ngOnInit() {
@@ -233,6 +236,21 @@ this.flattenedSeatData = allSeatSegments;
   }
 
   }
+     phoneLengthValidator(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
+
+  // Ensure value is an object and has nationalNumber
+  if (value && typeof value === 'object' && value.nationalNumber) {
+    const digits = value.nationalNumber.replace(/\D/g, ''); // remove non-digits
+    const length = digits.length;
+
+    if (length < 6 || length > 15) {
+      return { invalidPhoneLength: true };
+    }
+  }
+
+  return null;
+}
     getFlightsByItinerary() {
             const res = this.flightService.getRepriceData();
             console.log(res,"res");
@@ -476,7 +494,7 @@ formatDate(dateStr: string): string {
     
     if (this.checkoutForm.valid) {
       console.log('Form submitted:', this.checkoutForm.value);
-      
+      this.loading = true; 
         const BookItineraryPaxDetail = this.travelData?.travelers?.map((traveler: any) => {
   return {
     PaxType: traveler.PaxType,
@@ -508,8 +526,8 @@ const paymentPayload = {
   Email: contactInfo.email || '',
   PaymentType: 'CC',
   CardType: this.getCardBrand(formValue.CardNumber),
-  CardNumber: formValue.CardNumber,
-  CVV: formValue.CVV,
+  CardNumber: formValue.CardNumber.toString(),
+  CVV: formValue.CVV.toString(),
   ExpiryDate: formValue.ExpiryDate,
   BillingPhoneNum: formValue.BillingPhoneNum.number,
   Name: contactInfo.firstName || '', // You can also combine first/last if needed
@@ -530,8 +548,8 @@ const confirmPayload = {
   Email: contactInfo.email || '',
   PaymentType: 'CC',
   CardType: this.getCardBrand(formValue.CardNumber), // fallback to 'CA' if needed
-  CardNumber: formValue.CardNumber,
-  CVV: formValue.CVV,
+  CardNumber: formValue.CardNumber.toString(),
+  CVV: formValue.CVV.toString(),
   ExpiryDate: formValue.ExpiryDate,
   BillingPhoneNum: formValue.BillingPhoneNum.number,
   Name: contactInfo.firstName || '', // You can also combine first/last if needed
@@ -551,16 +569,19 @@ if(this.flattenedSeatData.length!=0){
           this.flightBookingResponse = res?.data;
 
       // Show toast
-      this.toasterService.showSuccess(
-        res?.data?.bookingStatus === 'Success'
-          ? 'Booking flight successful'
-          : 'Booking failed'
-      );
+      if (res?.data?.bookingStatus === 'Success') {
+        this.toasterService.showSuccess('Booking flight successful');
+      }
+
+      if (res?.data?.bookingStatus === 'Failed') {
+        this.toasterService.showError(res.data?.errorsList.tperror[0]?.errorText);
+      }
 
       // Continue booking creation if successful
       if (res?.data?.bookingStatus === 'Success') {
         this.createBooking();
       }
+      this.loading = false; 
               
         },
         error: (err) => {
@@ -568,6 +589,7 @@ if(this.flattenedSeatData.length!=0){
             err.error.message ||
               'Something went wrong while fetching vendor list!'
           );
+          this.loading = false; 
         },
       });
 }else{
@@ -967,10 +989,10 @@ const mainPayload={
     "airline3pnr": "",
     "card_type": this.getCardBrand(formValue.CardNumber),
     "name_oncard": formValue.cardHolder,
-    "cardno":  formValue.CardNumber,
+    "cardno":  formValue.CardNumber.toString(),
     "exp_month": exp_month,
     "exp_year":exp_year,
-    "cvv":formValue.CVV,
+    "cvv":formValue.CVV.toString(),
     "billing_address":formValue.street,
     "street_number": "",
     "locality": "",

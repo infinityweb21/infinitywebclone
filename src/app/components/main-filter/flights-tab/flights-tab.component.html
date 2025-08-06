@@ -15,7 +15,7 @@
         checked
       />
       <label for="roundtrip"
-        ><span class="radio-label-inner-text">Round Trip</span></label
+        ><span class="radio-label-inner-text banner-radio-label-inner-text">Round Trip</span></label
       >
     </div>
     <div class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2">
@@ -28,7 +28,7 @@
         value="oneway"
       />
       <label for="oneway"
-        ><span class="radio-label-inner-text">Oneway</span></label
+        ><span class="radio-label-inner-text banner-radio-label-inner-text">Oneway</span></label
       >
     </div>
     <div class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2">
@@ -41,14 +41,14 @@
         value="multicity"
       />
       <label for="multicity"
-        ><span class="radio-label-inner-text">Multi City</span></label
+        ><span class="radio-label-inner-text banner-radio-label-inner-text">Multi City</span></label
       >
     </div>
   </div>
   <div class="flight-tab-form-content-wrap">
     <div class="common-form-content">
       <div class="row g-3 gy-lg-0 gx-lg-3">
-        <div class="col-lg-2 add-departure-col">
+        <div class="col-lg-3 add-departure-col">
           <div class="add-departure-content-wrap">
             <!-- <input
               type="text"
@@ -133,7 +133,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-2 add-arrival-col">
+        <div class="col-lg-3 add-arrival-col">
           <div class="add-arrival-content-wrap">
             <!-- <input
               type="text"
@@ -183,7 +183,7 @@
             </p-autoComplete>
           </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-3">
           <div class="row g-3 gy-lg-0 gx-lg-3">
             <!-- Departure -->
             <div class="col depart-date-col">
@@ -230,7 +230,7 @@
           </div>
         </div>
 
-        <div class="col-lg-3 guest-col">
+        <div class="col-lg-2 guest-col">
           <div
             class="passenger-dropdown-container position-relative"
             [formGroup]="passengersGroup"
@@ -392,7 +392,7 @@
                               <!-- Info -->
                               <div class="airport-text">
                                 <div class="city-country">
-                                  {{ airport.city }}, {{ airport.country }}
+{{ airport.city ? airport.city + ', ' + airport.country : airport.country }}
                                 </div>
                                 <div class="airport-name">
                                   {{ airport.airport_name }}
@@ -456,8 +456,7 @@
                               <!-- Info -->
                               <div class="airport-text">
                                 <div class="city-country">
-                                  {{ airport.city }}, {{ airport.country }}
-                                </div>
+{{ airport.city ? airport.city + ', ' + airport.country : airport.country }}                                </div>
                                 <div class="airport-name">
                                   {{ airport.airport_name }}
                                 </div>
@@ -543,7 +542,7 @@
     <div class="quick-select-direct-flight-content-wrap d-none d-lg-block">
       <div class="row g-3 gy-lg-0 gx-lg-3">
         <div class="col-md-12">
-          <label class="custom-checkbox">
+          <label class="custom-checkbox banner-checkbox">
             <input type="checkbox" formControlName="directFlightsOnly" />
             <span class="custom-checkmark"></span>
             Direct flights only

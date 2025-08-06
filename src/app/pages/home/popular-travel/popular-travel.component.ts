@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import { SvgIcons } from '../../../shared/svg-icons';
+import { SharedService } from '../../../services/shared/shared.service';
 
 interface Testimonial {
   id: number;
@@ -34,88 +35,91 @@ export class PopularTravelComponent {
   @ViewChild('testimonialsRef', { static: true }) testimonialsRef!: ElementRef;
 
   protected icon = inject(SvgIcons);
-  
+
   popularTrips = [
     {
       image: 'assets/images/home/lasvegas.webp',
-      description: 'Las Vegas – Entertainment Escape – Strip Tour, Live Shows, Nightlife',
-      rating: 4.6,
+      description: 'Paris > Lucerne > Venice > Rome – A Classic Europe Voyage ',
+      rating: 4.9,
       price: 8852,
       link: '#',
       days: 5,
     },
     {
       image: 'assets/images/home/banff_canada.webp',
-      description: 'Banff, Canada – Alpine Adventure – Lake Louise, Gondola Ride, Hot Springs',
-      rating: 4.7,
+      description: 'Tokyo > Kyoto > Osaka – Discover Japan Spirit & Skyline ',
+      rating: 4.8,
       price: 1052,
       link: '#',
-       days: 9,
+      days: 9,
     },
     {
       image: 'assets/images/home/miami.webp',
-      description: 'Miami > Nassau > Labadee > Miami Island Hopping Adventure',
-      rating: 4.7,
+      description: 'Cairo > Luxor > Giza – Egypt Chronicles Expedition ',
+      rating: 4.6,
       price: 9952,
       link: '#',
-       days: 7,
+      days: 7,
     },
     {
       image: 'assets/images/home/singapore.webp',
-      description: 'Singapore – Fun in Singapore – Sentosa, Universal, Night Safari',
-      rating: 4.8,
+      description:
+        'Cape Town > Garden Route > Sun City – South Africa Wild Luxe ',
+      rating: 4.7,
       price: 7952,
       link: '#',
-       days: 6,
+      days: 6,
     },
     {
       image: 'assets/images/home/newyork.webp',
-      description: 'New York – NYC Highlights – Liberty Cruise, Times Square, Broadway',
-      rating: 4.5,
+      description:
+        'Reykjavik > Golden Circle > Northern Lights – Iceland Arctic Escape ',
+      rating: 4.9,
       price: 8852,
       link: '#',
       days: 7,
     },
-    
+
     {
       image: 'assets/images/home/tokyo.webp',
-      description: 'Tokyo – Tokyo Urban Vibes – Mt. Fuji, Sushi Class, City Tour',
+      description: 'Bali > Gili Islands > Ubud – Indonesia Island Bliss ',
       rating: 4.7,
       price: 8052,
       link: '#',
       days: 9,
     },
-    
+
     {
       image: 'assets/images/home/maldives.webp',
-      description: 'Maldives – Lagoon Luxury Stay – Villa Stay, Spa, Dolphin Watching',
-      rating: 4.7,
+      description:
+        'London > Edinburgh > Dublin – Royal Castles & Celtic Trails ',
+      rating: 4.6,
       price: 7852,
       link: '#',
       days: 8,
-    }
+    },
   ];
 
   travelFeatures = [
     {
       icon: 'assets/images/home/best_price_guarantee.svg',
-      title: 'Best Price Guarantee',
-      description: 'Get exclusive deals you won’t find elsewhere',
+      title: 'Unbeatable Travel Deals',
+      description: 'Access exclusive prices tailored for smart travelers',
     },
     {
       icon: 'assets/images/home/global_travel_option.svg',
-      title: 'Global Travel Options',
-      description: 'Explore popular destinations across the world',
+      title: 'Worldwide Destinations',
+      description: 'Discover top-rated getaways across every continent',
     },
     {
       icon: 'assets/images/home/24.7.svg',
-      title: 'Best Support 24/7',
-      description: 'Curabitur convallis enim atnora ullamcorper sagittis.',
+      title: '24/7 Expert Assistance',
+      description: 'Get round-the-clock travel support whenever you need it',
     },
     {
       icon: 'assets/images/home/secure_payment.svg',
-      title: 'Secure Payments',
-      description: 'Secure payments with trusted encryption',
+      title: 'Secure & Hassle-Free Payments',
+      description: 'Book with confidence using trusted, encrypted systems',
     },
     {
       icon: 'assets/images/home/instant_confermation.svg',
@@ -126,119 +130,125 @@ export class PopularTravelComponent {
       icon: 'assets/images/home/custom_trip_planning.svg',
       title: 'Custom Trip Planning',
       description: 'Customize your trip with flexible options',
-    }
+    },
   ];
 
   testimonials: Testimonial[] = [
     {
       id: 1,
-      title: 'This is what you call service',
+      title: 'Saved me time and money',
       description:
-        'Roman helped me out with a itenary change with a lot of patience and professionalism. When the phone connection abruptly ended he called back. He is my employee of the day. Keep doing a great job.',
-      clientName: 'Amanda Reynolds, New York',
+        'I used [COMPANY_NAME] to plan a last-minute trip to Miami, and I honestly don’t know how I ever booked trips before. They found me a better deal than what I saw on other sites, and everything, from flights to hotel, was smooth. Definitely using them again.',
+      clientName: '— Jessica Reynolds., Atlanta, GA',
       // clientDesignation: 'Web Designer',
       clientAvatar: 'https://i.pravatar.cc/40?img=1',
     },
     {
       id: 2,
-      title: 'Philips Help',
+      title: 'Customer service is top-tier',
       description:
-        'Phillip Martin is an outstanding helpful knowledgable and very professional individual he should be seriously consider him for a promotion.',
-      clientName: 'David Alan Martell, Mexico',
+        "Their team's responsiveness was what most impressed me. I had a question about my booking late at night, and someone actually got back to me within 10 minutes. You don’t get that level of service everywhere.",
+      clientName: '— Mark Donovan, Chicago, IL',
       // clientDesignation: 'Product Manager',
       clientAvatar: 'https://i.pravatar.cc/40?img=9',
     },
     {
       id: 3,
-      title: 'Ryan Wilson was so great to me every',
+      title: 'Perfect for family trips',
       description:
-        'Ryan Wilson was so great to me every time I spoke with him. He followed up and was so patient and kind. No question — a perfect 10, highly recommend.',
-      clientName: 'Ebony Miller, Frankfurt',
+        'We booked our Disney vacation through [COMPANY_NAME], and they handled everything — flights, hotel, park tickets. They even gave us great tips for saving money in Orlando. Super helpful and affordable.',
+      clientName: '— Tina Schwart, Denver, CO',
       // clientDesignation: 'Tech Lead',
       clientAvatar: 'https://i.pravatar.cc/40?img=3',
     },
     {
       id: 4,
-      title: 'Domingue Brown was an Awesome',
+      title: 'Finally, a travel site that doesn’t feel sketchy',
       description:
-        'Dominguez Brown was an Awesome Coordinator. He helped me in everything that I needed. He is really knowledgable, and I would highly recommend him to anyone who needs assistance. He is also patient& kind. You can Trust him.',
-      clientName: 'Thomasea Hall, USA',
+        '[COMPANY_NAME] felt trustworthy from the start. The prices were transparent, no weird hidden fees, and the booking process was quick. I booked a trip to Cancun, and everything went exactly as planned.',
+      clientName: '— Anthony Moore, Phoenix, AZ',
       // clientDesignation: 'Business Analyst',
       clientAvatar: 'https://i.pravatar.cc/40?img=12',
     },
     {
       id: 5,
-      title: 'Roman was extremely helpful with',
+      title: 'They actually listen to what you want',
       description:
-        'Impressed with the level of professionalism and quality of work. The team was responsive, knowledgeable, and delivered on time.',
-      clientName: 'David Wilson',
+        'I was planned a honeymoon trip to Italy and had certain very particular requirements. The [COMPANY_NAME] team didn’t just throw random travel plan at me, they actually tailored something around my budget and wishlist. That meant a lot.',
+      clientName: '— Laura Patterson, Boston, MA',
       // clientDesignation: 'Marketing Director',
       clientAvatar: 'https://i.pravatar.cc/40?img=5',
     },
     {
       id: 6,
-      title: 'Excellent Service',
+      title: 'Deals you won’t find anywhere else',
       description:
-        'Roman was really helpful in navigating our travel information and seating allocations. Roman even gave me his phone number in case we were disconnected! Very nice indeed.',
-      clientName: 'Gail A Greenmun, USA',
+        'I compared prices across at least five other travel sites before landing on [COMPANY_NAME], and they really did offer a better deal for my New York trip. Flights and hotel in one package. Couldn’t beat it.',
+      clientName: '— Daniel Harris, Seattle, WA',
       // clientDesignation: 'Product Manager',
       clientAvatar: 'https://i.pravatar.cc/40?img=8',
     },
     {
       id: 7,
-      title: 'Spoke to Leon and he handled everything',
+      title: 'Easy, fast, and no surprises',
       description:
-        'Spoke to Leon and he handled everything for me! He got the job done and made it all happen, definitely would recommend him in the future! Thank you Leon, 10 out of 10.',
-      clientName: 'Whalen Merrill, USA',
+        'The entire experience, from browsing to checkout, was simple. No last-minute changes or confusing fine print. Just booked my Vegas trip and already looking at their Europe deals.',
+      clientName: '— Rachel Willams, Austin, TX',
       // clientDesignation: 'Product Manager',
       clientAvatar: 'https://i.pravatar.cc/40?img=10',
-    }
+    },
   ];
 
-  travelArticles =[
+  travelArticles = [
     {
-    image: 'assets/images/home/international_flight_booking.webp',
-    badge: 'Explore',
-    date: 'March 12, 2015',
-    author: 'Paul Theroux',
-    title: 'Cheap International Flights from the US – Full Guide',
-  },
+      image: 'assets/images/home/international_flight_booking.webp',
+      badge: 'Explore',
+      date: 'March 12, 2015',
+      author: 'Paul Theroux',
+      title: 'Cheap International Flights from the US – Full Guide',
+    },
     {
-    image: 'assets/images/home/hotel_booking.webp',
-    badge: 'Wander',
-    date: 'July 8, 2020',
-    author: 'Elizabeth Gilbert',
-    title: 'Get Hotel Booking Discounts: Easy Steps to Save Big',
-  },
+      image: 'assets/images/home/hotel_booking.webp',
+      badge: 'Wander',
+      date: 'July 8, 2020',
+      author: 'Elizabeth Gilbert',
+      title: 'Get Hotel Booking Discounts: Easy Steps to Save Big',
+    },
     {
-    image: 'assets/images/home/hotel_booking2.webp',
-    badge: 'Journey',
-    date: 'November 23, 2018',
-    author: 'Bill Bryson',
-    title: 'Book Cheap Domestic Flights: Tips & Deals for USA Travel',
-  },
+      image: 'assets/images/home/hotel_booking2.webp',
+      badge: 'Journey',
+      date: 'November 23, 2018',
+      author: 'Bill Bryson',
+      title: 'Book Cheap Domestic Flights: Tips & Deals for USA Travel',
+    },
     {
-    image: 'assets/images/home/busniess_flight_booking.webp',
-    badge: 'Roam',
-    date: 'June 1, 2022',
-    author: 'Pico Iyer',
-    title: 'Business Class Flight Cost, And Upgrade Deals Guide',
-  },
+      image: 'assets/images/home/busniess_flight_booking.webp',
+      badge: 'Roam',
+      date: 'June 1, 2022',
+      author: 'Pico Iyer',
+      title: 'Business Class Flight Cost, And Upgrade Deals Guide',
+    },
     {
-    image: 'assets/images/home/flight_booking.webp',
-    badge: 'Trek',
-    date: 'September 17, 2016',
-    author: 'Cheryl Strayed',
-    title: 'Cheap International Flights with Layovers save big on Airfare',
-  },
+      image: 'assets/images/home/flight_booking.webp',
+      badge: 'Trek',
+      date: 'September 17, 2016',
+      author: 'Cheryl Strayed',
+      title: 'Cheap International Flights with Layovers save big on Airfare',
+    },
     {
-    image: 'assets/images/home/travel-image.webp',
-    badge: 'Escape',
-    date: 'January 4, 2024',
-    author: 'Freya Stark',
-    title: 'A Comprehensive Guide to Premium Economy and Business Class Flights',
+      image: 'assets/images/home/travel-image.webp',
+      badge: 'Escape',
+      date: 'January 4, 2024',
+      author: 'Freya Stark',
+      title:
+        'A Comprehensive Guide to Premium Economy and Business Class Flights',
+    },
+  ];
+  private shareService: SharedService = inject(SharedService);
+  getData: any = '';
+  ngOnInit() {
+    this.getData = this.shareService.getcompanyName();
   }
-];
 
   ngAfterViewInit(): void {
     const swiperEl: any = this.popularTripsRef.nativeElement;

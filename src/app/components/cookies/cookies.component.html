@@ -1,0 +1,20 @@
+<!-- === Cookies Policy Acceptance Popup Start ===  -->
+<div class="cookies-box hidden-xs cookieModal" id="cookie-banner">
+  <p class="cookie-text">
+    Track prices and find best deals at your fingertips! Our site uses cookies 
+   
+        @if (showMore) {
+      for a personalized web experience, 
+      <a routerLink="/cookie-policy" id="cookies" target="_blank" class="cookie-link">Click here</a> 
+      to learn more about our cookie policy.
+ 
+}
+    <a href="javascript:void(0);" (click)="toggleMoreText()">
+      {{ showMore ? 'Show less' : 'Show more' }}
+    </a>
+  </p>
+  <span class="accept" id="accept-cookies"
+  (click)="isAcceptCookies()">Accept All</span>
+</div>
+<!-- === Cookies Policy Acceptance Popup End ===  -->
+

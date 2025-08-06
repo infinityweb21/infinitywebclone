@@ -116,6 +116,7 @@ private route:ActivatedRoute=inject(ActivatedRoute);
 private router:Router=inject(Router);
      private shareService: SharedService = inject(SharedService);
       getData:any='';
+      totalPassengers:number=0;
   constructor(private fb: FormBuilder,
     private flightService: FlightService,
     private toasterService: TosterService,
@@ -133,18 +134,24 @@ private router:Router=inject(Router);
     }else{
       this.isDomestic=false;
     }
-    this.bookingForm = this.fb.group({
-      contactInfo: this.fb.group({
-        firstName: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{6,15}$/)]]
-      }),
-      travelers: this.fb.array([])
-    });
-
-    this.addTraveler()
+   
 
   }
+   phoneLengthValidator(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
+
+  // Ensure value is an object and has nationalNumber
+  if (value && typeof value === 'object' && value.nationalNumber) {
+    const digits = value.nationalNumber.replace(/\D/g, ''); // remove non-digits
+    const length = digits.length;
+
+    if (length < 6 || length > 15) {
+      return { invalidPhoneLength: true };
+    }
+  }
+
+  return null;
+}
   ngOnInit() {
         this.getData=this.shareService.getcompanyName();
 
@@ -155,11 +162,23 @@ private router:Router=inject(Router);
         this.selectedChildren = searchData?.NoOfChildren ?? 0;
         this.selectedInfants = searchData?.NoOfInfants ?? 0;
         this.selectedCabin = searchData?.OriginDestination[0].CabinClass || { name: 'Economy', value: 'E' };
+         this.totalPassengers = this.selectedAdults + this.selectedChildren + this.selectedInfants;
+
       } else {
       }
     });
-    // this.getFlightsByItinerary();
-    // this.getAvailableSeatByItinerary();
+     this.bookingForm = this.fb.group({
+      contactInfo: this.fb.group({
+        firstName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        phoneNumber: [undefined, [Validators.required,this.phoneLengthValidator]]
+      }),
+  travelers: this.fb.array([], this.validatePaxTypeCount(this.selectedAdults, this.selectedChildren, this.selectedInfants)),
+    });
+
+    this.addTraveler()
+    this.getFlightsByItinerary();
+    this.getAvailableSeatByItinerary();
 const tradeldata = this.flightService.getTravelData();
     
    if (tradeldata) {
@@ -229,7 +248,7 @@ travelerGroup.get('nationality')?.setValue(countryCode);
     this.flightService.getFlightReprice(payload).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: (res) => {
         console.log("res", res);
-        if(res?.data?.flight!=''){
+        if(res?.data && 'flight' in res.data && res.data.flight){
        this.getMainDetails = res?.data?.flight || '';
         this.flightService.setRepriceData(res);
         }else{
@@ -260,6 +279,15 @@ travelerGroup.get('nationality')?.setValue(countryCode);
       return inputDate > today ? { futureDate: true } : null;
     };
   }
+  dateNotInPast(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const inputDate = new Date(control.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    return inputDate < today ? { pastDate: true } : null;
+  };
+}
 
   // ✅ Custom validator for passport issuingDate < expiryDate
 // issuingBeforeExpiry(): ValidatorFn {
@@ -306,8 +334,8 @@ newTraveler(): FormGroup {
   if (!this.isDomestic) {
     // Make all fields required if it's international
     passportGroup.get('passportNumber')?.setValidators([Validators.required]);
-    passportGroup.get('issuingDate')?.setValidators([Validators.required]);
-    passportGroup.get('expiryDate')?.setValidators([Validators.required]);
+    passportGroup.get('issuingDate')?.setValidators([Validators.required,this.dateNotInFuture()]);
+    passportGroup.get('expiryDate')?.setValidators([Validators.required,this.dateNotInPast()]);
     passportGroup.get('issuingCountry')?.setValidators([Validators.required]);
   }
 
@@ -324,6 +352,24 @@ newTraveler(): FormGroup {
     nationality: ['', Validators.required],
     passportDetails: passportGroup
   });
+}
+validatePaxTypeCount(selectedAdults: number, selectedChildren: number, selectedInfants: number): ValidatorFn {
+  return (formArray: AbstractControl): ValidationErrors | null => {
+    const controls = (formArray as FormArray).controls;
+
+    const count = { ADT: 0, CHD: 0, INF: 0 } as any;
+    controls.forEach((ctrl:any) => {
+      const type = ctrl.get('PaxType')?.value;
+      if (type) count[type]++;
+    });
+
+    const errors: any = {};
+    if (count.ADT > selectedAdults) errors.exceededAdults = true;
+    if (count.CHD > selectedChildren) errors.exceededChildren = true;
+    if (count.INF > selectedInfants) errors.exceededInfants = true;
+
+    return Object.keys(errors).length ? errors : null;
+  };
 }
 updateTravelerPassportValidators(): void {
   const travelers = this.bookingForm.get('travelers') as FormArray;
@@ -461,10 +507,24 @@ getPassportDetails(traveler: AbstractControl): AbstractControl {
 
 
   goToCheckout(){
+       Object.keys(this.bookingForm.controls).forEach(key => {
+  const control = this.bookingForm.get(key);
+  console.log(key, control?.invalid, control?.errors);
+});
      if (this.bookingForm.invalid) {
+
       this.bookingForm.markAllAsTouched();
       return;
     }
+  
+  const travelersArray = this.bookingForm.get('travelers') as FormArray;
+
+  if (travelersArray.length < this.totalPassengers) {
+    // Show a message or alert
+    this.toasterService.showError('Please add details for all travelers before proceeding.');
+    return;
+  }
+
       this.flightService.setTravelData(this.bookingForm.value);
     const fareSummary = {
     adults: this.selectedAdults,
