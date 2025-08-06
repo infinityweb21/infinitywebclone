@@ -2739,6 +2739,11 @@ header.header-six.fixed
     color: #fff;
   }
 }
+@media (min-width: 992px) {
+    .app-top-destinations-label .c-custom-radio label .banner-radio-label-inner-text {
+        color: #000000 !important;
+    }
+}
 .c-custom-radio label {
   position: relative;
   padding-left: 25px;
