@@ -1255,5 +1255,12 @@ checkIfAllDomestic(): boolean {
       this.swiper.destroy();
     }
   }
+onAirlineHeaderClick(airlineName: string): void {
+  const isSelected = this.filters.airlines.includes(airlineName);
+  const fakeEvent = { target: { checked: !isSelected } } as unknown as Event;
+  this.toggleAirlineSelection(airlineName, fakeEvent);
+}
+
+
 
 }

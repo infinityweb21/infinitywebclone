@@ -2379,7 +2379,7 @@ button.scroll-left.active {
   border-radius: 0 5px 0 5px;
   font-size: 8px;
   font-weight: 500;
-  color: #000;
+  color: #fff;
 }
 
 .flight-card .d-flex.justify-content-between.align-items-center.mt-2 {
@@ -4026,9 +4026,16 @@ button.scroll-left.active {
     margin: 0;
     padding: 0 0 8px 0;
 }
+.agent-left h6 {
+    font-size: 16px;
+}
 .agent-left ul li {
-  font-size: 17px;
+  font-size: 15px;
   margin-bottom: 5px !important;
 }
 }
   
+th.selected {
+  background-color: #faf2e0;
+  border-bottom: 2px solid #ff9900;
+}

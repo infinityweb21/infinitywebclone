@@ -567,7 +567,7 @@
 
   <div class="d-flex justify-content-between mb-3" *ngIf="selectedSeatTotal">
     <span>Selected Seat Charges</span>
-    <span>${{ selectedSeatTotal | number: '1.2-2' }}</span>
+    <span>{{ selectedSeatTotal | number:'1.2-2' | currency  }}</span>
   </div>
 
   <!-- <div class="d-flex justify-content-between mb-3">
@@ -588,7 +588,7 @@
   <hr />
   <div class="d-flex justify-content-between fw-semibold text-primary mb-1">
     <span class="total-price">Total Price (INR)</span>
-    <span class="total-price">${{ finalTotal | number: '1.2-2' }}</span>
+    <span class="total-price">{{ finalTotal | number:'1.2-2'|currency }}</span>
   </div>
 </div>
 
