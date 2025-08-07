@@ -500,14 +500,17 @@
                     <div
                       class="d-flex align-items-center multicity-add--delete-btn-wrap justify-content-center justify-content-lg-start"
                     >
+                   
                       <button
                         type="button"
                         class="btn btn-link add-multicity-btn"
                         (click)="addSegment()"
+                        [disabled]="multiCitySegments.length >= 8"
                       >
                         <span class="me-1" [innerHTML]="icons.plusIcon"></span>
                         Add Flight
                       </button>
+                    
                       <button
                         type="button"
                         class="btn btn-link remove-multicity-btn text-danger"
@@ -539,7 +542,7 @@
         </div>
       </form>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-12">
         <div class="price-slider-card">
           <div class="price-slider-card-content-wrap d-flex align-items-center">
@@ -547,7 +550,7 @@
               class="price-slider-arrow price-slider-arrow-prev"
               (click)="slidePrev()"
             >
-              <!-- Prev Arrow SVG -->
+             
               <svg
                 width="10"
                 height="18"
@@ -579,7 +582,7 @@
               class="price-slider-arrow price-slider-arrow-next"
               (click)="slideNext()"
             >
-              <!-- Next Arrow SVG -->
+            
               <svg
                 width="10"
                 height="18"
@@ -633,7 +636,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </section>
 <div class="main-containt mob-main mt-0">
@@ -741,39 +744,105 @@
           <table>
             <tr>
               <th>Show All Fares</th>
-              <th *ngFor="let airline of getAllCarrierWiseFares" (click)="onAirlineHeaderClick(airline.ValidatingCarrierName)"
-  [class.selected]="filters.airlines.includes(airline.ValidatingCarrierName)"
-  style="cursor: pointer;">
-                <img [src]="airline.carrierImage" alt="logo" 
-                    />
+              <th
+                *ngFor="let airline of getAllCarrierWiseFares"
+                (click)="onAirlineHeaderClick(airline.ValidatingCarrierName)"
+                [class.selected]="
+                  filters.airlines.includes(airline.ValidatingCarrierName)
+                "
+                style="cursor: pointer"
+              >
+                <img [src]="airline.carrierImage" alt="logo" />
                 <p>{{ airline.ValidatingCarrierName }}</p>
               </th>
             </tr>
             <tr>
               <td>Direct</td>
-              <td *ngFor="let airline of getAllCarrierWiseFares">
-                @if (airline?.stopWiseFares["stopes_0"]!=0) { ${{
-                  airline?.stopWiseFares["stopes_0"] | number : "1.2-2"
+              <td
+                *ngFor="let airline of getAllCarrierWiseFares"
+                [ngClass]="{
+                  'clickable-fare': airline?.stopWiseFares['stopes_0'] > 0,
+                  'selected-fare':
+                    selectedFare?.price ===
+                      airline?.stopWiseFares['stopes_0'] &&
+                    selectedFare?.stopType === 0 &&
+                    selectedFare?.carrierName === airline?.ValidatingCarrierName
+                }"
+                (click)="
+                  airline?.stopWiseFares['stopes_0'] > 0 &&
+                    onFareClick(
+                      airline.stopWiseFares['stopes_0'],
+                      0,
+                      airline.ValidatingCarrierName
+                    )
+                "
+              >
+                {{
+                  airline?.stopWiseFares["stopes_0"] > 0
+                    ? "$" +
+                      (airline.stopWiseFares["stopes_0"] | number : "1.2-2")
+                    : "-"
                 }}
-                }@else {-}
               </td>
             </tr>
+
             <tr>
               <td>1 Stop</td>
-              <td *ngFor="let airline of getAllCarrierWiseFares">
-                @if (airline?.stopWiseFares["stopes_1"]!=0) { ${{
-                  airline?.stopWiseFares["stopes_1"] | number : "1.2-2"
+              <td
+                *ngFor="let airline of getAllCarrierWiseFares"
+                [ngClass]="{
+                  'clickable-fare': airline?.stopWiseFares['stopes_1'] > 0,
+                  'selected-fare':
+                    selectedFare?.price ===
+                      airline?.stopWiseFares['stopes_1'] &&
+                    selectedFare?.stopType === 1 &&
+                    selectedFare?.carrierName === airline?.ValidatingCarrierName
+                }"
+                (click)="
+                  airline?.stopWiseFares['stopes_1'] > 0 &&
+                    onFareClick(
+                      airline.stopWiseFares['stopes_1'],
+                      1,
+                      airline.ValidatingCarrierName
+                    )
+                "
+              >
+                {{
+                  airline?.stopWiseFares["stopes_1"] > 0
+                    ? "$" +
+                      (airline.stopWiseFares["stopes_1"] | number : "1.2-2")
+                    : "-"
                 }}
-                }@else {-}
               </td>
             </tr>
+
             <tr>
               <td>1+ Stop</td>
-              <td *ngFor="let airline of getAllCarrierWiseFares">
-                @if (airline?.stopWiseFares["stopes_more"]!=0) { ${{
-                  airline?.stopWiseFares["stopes_more"] | number : "1.2-2"
+              <td
+                *ngFor="let airline of getAllCarrierWiseFares"
+                [ngClass]="{
+                  'clickable-fare': airline?.stopWiseFares['stopes_more'] > 0,
+                  'selected-fare':
+                    selectedFare?.price ===
+                      airline?.stopWiseFares['stopes_more'] &&
+                    selectedFare?.stopType === 2 &&
+                    selectedFare?.carrierName === airline?.ValidatingCarrierName
+                }"
+                (click)="
+                  airline?.stopWiseFares['stopes_more'] > 0 &&
+                    onFareClick(
+                      airline.stopWiseFares['stopes_more'],
+                      2,
+                      airline.ValidatingCarrierName
+                    )
+                "
+              >
+                {{
+                  airline?.stopWiseFares["stopes_more"] > 0
+                    ? "$" +
+                      (airline.stopWiseFares["stopes_more"] | number : "1.2-2")
+                    : "-"
                 }}
-                }@else {-}
               </td>
             </tr>
           </table>
@@ -845,12 +914,12 @@
                       type="checkbox"
                       [checked]="filters.stopes.includes(stop.value)"
                       (change)="onStopChange(stop.value, $event)"
-                      [disabled]="!getFlightsAdvanced?.stopWiseLowestFare?.[stop.key]"
+                      [disabled]="!fullStopWiseLowestFare[stop.key]"
                     />
                     {{ stop.label }}
                   </div>
                   <span>
-                    ${{ getFlightsAdvanced?.stopWiseLowestFare?.[stop.key] || 0 }}
+                    ${{ fullStopWiseLowestFare[stop.key] || 0 }}
                   </span>
                 </label>
                 }
@@ -2252,35 +2321,78 @@
                   </div>
                 </div>
                 @if (randomInsertIndexes.includes(i)) {
-              
+
                 <div
                   class="agent-benefits-box border rounded-3 p-3 mt-3 bg-white"
                 >
                   <div class="row align-items-end g-3">
-                    <div class=" col-xl-1 col-lg-12 col-md-12">
-                        <div class="agent-img position-relative rounded-circle overflow-hidden" style="width: 64px; height: 64px;">
-                          <img src="assets/images/flag-icons/call-phone.webp" alt="Agent" class="w-100 h-100 object-fit-cover">
-                          <i class="bi bi-telephone-fill text-success position-absolute bottom-0 end-0 bg-white rounded-circle p-1" style="font-size: 12px;"></i>
+                    <div class="col-xl-1 col-lg-12 col-md-12">
+                      <div
+                        class="agent-img position-relative rounded-circle overflow-hidden"
+                        style="width: 64px; height: 64px"
+                      >
+                        <img
+                          src="assets/images/flag-icons/call-phone.webp"
+                          alt="Agent"
+                          class="w-100 h-100 object-fit-cover"
+                        />
+                        <i
+                          class="bi bi-telephone-fill text-success position-absolute bottom-0 end-0 bg-white rounded-circle p-1"
+                          style="font-size: 12px"
+                        ></i>
+                      </div>
+                    </div>
+
+                    <!-- Benefits Text -->
+                    <div class="col-xl-7 col-lg-12 col-md-12 agent-left">
+                      <h6 class="fw-bold mb-2">
+                        Benefits of booking with an agent
+                      </h6>
+                      <ul
+                        class="row row-cols-2 list-unstyled mb-0 small text-dark"
+                      >
+                        <li class="col-lg-6 col-12 mb-1">
+                          <span
+                            ><i
+                              class="fa-solid fa-circle-check fw-bold text-success"
+                            ></i></span
+                          >Phone-only deals available
+                        </li>
+                        <li class="col-lg-6 col-12 mb-1">
+                          <span
+                            ><i
+                              class="fa-solid fa-circle-check fw-bold text-success"
+                            ></i></span
+                          >Personalized travel assistance
+                        </li>
+                        <li class="col-lg-6 col-12 mb-1">
+                          <span
+                            ><i
+                              class="fa-solid fa-circle-check fw-bold text-success"
+                            ></i></span
+                          >24-hour cancellation
+                        </li>
+                        <li class="col-lg-6 col-12 mb-1">
+                          <span
+                            ><i
+                              class="fa-solid fa-circle-check fw-bold text-success"
+                            ></i></span
+                          >2X ClubMiles reward points
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- Call Button -->
+                    <div class="col-xl-4 col-lg-12 agent-right text-center">
+                      <a
+                        href="tel:{{ getData?.phoneNumber }}"
+                        class="call-button btn border border-success rounded-pill px-4 py-2"
+                      >
+                        <div class="fw-bold text-success">
+                          Book Now - Call us 24/7
                         </div>
-                      </div>
-
-                      <!-- Benefits Text -->
-                      <div class="col-xl-7 col-lg-12 col-md-12 agent-left">
-                        <h6 class="fw-bold mb-2">Benefits of booking with an agent</h6>
-                        <ul class="row row-cols-2 list-unstyled mb-0 small text-dark">
-                          <li class="col-lg-6 col-12 mb-1"><span><i class="fa-solid fa-circle-check fw-bold text-success"></i></span>Phone-only deals available</li>
-                          <li class="col-lg-6 col-12 mb-1"><span><i class="fa-solid fa-circle-check fw-bold text-success"></i></span>Personalized travel assistance</li>
-                          <li class="col-lg-6 col-12 mb-1"><span><i class="fa-solid fa-circle-check fw-bold text-success"></i></span>24-hour cancellation</li>
-                          <li class="col-lg-6 col-12 mb-1"><span><i class="fa-solid fa-circle-check fw-bold text-success"></i></span>2X ClubMiles reward points</li>
-                        </ul>
-                      </div>
-
-                      <!-- Call Button -->
-                      <div class="col-xl-4 col-lg-12 agent-right text-center">
-                        <a href="tel:{{ getData?.phoneNumber }}" class="call-button btn border border-success rounded-pill px-4 py-2">
-                          <div class="fw-bold text-success">Book Now - Call us 24/7</div>
-                        </a>
-                      </div>
+                      </a>
+                    </div>
                   </div>
                 </div>
                 } }

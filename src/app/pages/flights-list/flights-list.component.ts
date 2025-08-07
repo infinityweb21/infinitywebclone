@@ -46,7 +46,7 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
   private searchService: SearchService = inject(SearchService);
   protected icons: SvgIcons = inject(SvgIcons);
   private router: Router = inject(Router);
-
+fullStopWiseLowestFare: Record<string, number> = {};
   selectedTab: string = 'all';
   scrollAmount: number = 200;
   isScrollLeftDisabled: boolean = true;
@@ -63,6 +63,11 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
   selectedAdults: number = 1;
   selectedChildren: number = 0;
   selectedInfants: number = 0;
+selectedFare: {
+  price: number;
+  stopType: number;
+  carrierName: string;
+} | null = null;
 
   selectedCabin = { name: 'Economy', value: 'E' };
   filters!: FlightFilters;
@@ -319,6 +324,8 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
       next: (res) => {
         console.log("res", res);
         this.getMainDetails = res?.data?.FlightItinerary || [];
+        this.fullStopWiseLowestFare = this.calculateStopWiseLowestFare(this.getMainDetails || []);
+
         this.getNearbyDetails = res?.data?.NearLocationItinerary || [];
         this.getAllCarrierWiseFares = this.buildCarrierWiseFares(res?.data?.FlightItinerary);
         console.log("✅ Carrier-wise Fare Output:", this.getAllCarrierWiseFares);
@@ -333,6 +340,27 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
     })
   }
 
+calculateStopWiseLowestFare(itineraries: any[]) {
+  const stopWiseLowestFareMap = new Map<number, number>();
+
+  for (const itinerary of itineraries) {
+    const baseFare = itinerary.Fares?.[0]?.CCMax ?? 0;
+    const noOfStops = itinerary.Citypairs?.[0]?.NoOfStops ?? 0;
+
+    const existingFare = stopWiseLowestFareMap.get(noOfStops);
+    if (existingFare === undefined || baseFare < existingFare) {
+      stopWiseLowestFareMap.set(noOfStops, baseFare);
+    }
+  }
+
+  return {
+    stopes_0: stopWiseLowestFareMap.get(0) ?? 0,
+    stopes_1: stopWiseLowestFareMap.get(1) ?? 0,
+    stopes_more: Array.from(stopWiseLowestFareMap.entries())
+      .filter(([stops]) => stops > 1)
+      .reduce((min, [_, fare]) => (min === 0 || fare < min ? fare : min), 0)
+  };
+}
 
   buildCarrierWiseFares(itineraries: any[]): any[] {
     const carriersMap = new Map<string, {
@@ -561,6 +589,10 @@ generateInsertIndexes() {
 
     if (checked && index === -1) {
       this.filters.stopes.push(value);
+      if (checked) {
+    // Select only this stopValue (single-select)
+    this.filters.stopes = [value];
+  } 
     } else if (!checked && index !== -1) {
       this.filters.stopes.splice(index, 1);
     }
@@ -645,6 +677,8 @@ generateInsertIndexes() {
   }
   processFlightsAdvanced(filtered: any) {
     const itineraries = filtered || [];
+    console.log("itineraries", itineraries);
+    
     // Show all by default
     this.displayedFlights = [...itineraries];
     console.log("displayedFlights", this.displayedFlights)
@@ -685,9 +719,12 @@ generateInsertIndexes() {
 
       // Track lowest stop-wise fare globally
       const existingGlobalFare = stopWiseLowestFareMap.get(noOfStops);
+      console.log("existingGlobalFare", existingGlobalFare);
+      
       if (existingGlobalFare === undefined || baseFare < existingGlobalFare) {
         stopWiseLowestFareMap.set(noOfStops, baseFare);
       }
+      console.log("existingGlobalFare", existingGlobalFare);
 
       // Initialize carrier data if not exists
       if (!carriersMap.has(carrierName)) {
@@ -745,6 +782,7 @@ generateInsertIndexes() {
         .filter(([stops]) => stops > 1)
         .reduce((min, [_, fare]) => (min === 0 || fare < min ? fare : min), 0)
     };
+    console.log("stopWiseLowestFare", stopWiseLowestFare)
 
 
 
@@ -866,7 +904,23 @@ generateInsertIndexes() {
     segmentGroup.get('departureDate')?.setValue(event.departure);
   }
 
+// addSegment(): void {
+//   const segmentGroup = new FormGroup({
+//     departure: new FormControl(''),
+//     arrival: new FormControl(''),
+//     departureDate: new FormControl(''),
+//   });
+
+//   this.multiCitySegments.push(segmentGroup);
+
+//   // Optional: force validation re-evaluation
+//   this.multiCitySegments.updateValueAndValidity({ emitEvent: true });
+// }
 addSegment(): void {
+  if (this.multiCitySegments.length >= 8) {
+    return;
+  }
+
   const segmentGroup = new FormGroup({
     departure: new FormControl(''),
     arrival: new FormControl(''),
@@ -874,10 +928,9 @@ addSegment(): void {
   });
 
   this.multiCitySegments.push(segmentGroup);
-
-  // Optional: force validation re-evaluation
   this.multiCitySegments.updateValueAndValidity({ emitEvent: true });
 }
+
 
   removeSegment(index: number): void {
     this.multiCitySegments.removeAt(index);
@@ -1260,6 +1313,39 @@ onAirlineHeaderClick(airlineName: string): void {
   const fakeEvent = { target: { checked: !isSelected } } as unknown as Event;
   this.toggleAirlineSelection(airlineName, fakeEvent);
 }
+
+onFareClick(price: number, stopType: number, carrierName: string): void {
+  // If the same cell is clicked again, toggle off the selection
+  const isSameSelection =
+    this.selectedFare &&
+    this.selectedFare.price === price &&
+    this.selectedFare.stopType === stopType &&
+    this.selectedFare.carrierName === carrierName;
+
+  if (isSameSelection) {
+    // Clear selection and reset filters to full range and all stops
+    this.selectedFare = null;
+    this.sliderValue = [this.lowestPrice, this.highestPrice];
+    this.filters.rangeValues = [...this.sliderValue];
+    this.filters.stopes = []; // Reset stop filter
+  } else {
+    // New selection
+    const min = Math.max(price, this.lowestPrice);
+    const max = this.highestPrice;
+
+    this.sliderValue = [min, max];
+    this.filters.rangeValues = [min, max];
+    this.filters.stopes = [stopType];
+
+    this.selectedFare = { price, stopType, carrierName };
+  }
+
+  this.onPriceRangeChange();
+}
+
+
+
+
 
 
 
