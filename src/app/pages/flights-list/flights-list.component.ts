@@ -634,12 +634,15 @@ generateInsertIndexes() {
   }
 
   // Fallback parser if DurationInMinutes is missing
-  parseDuration(durationStr: string): number {
-    const match = durationStr.match(/(\d+)D\s*(\d+)H\s*(\d+)M/);
-    if (!match) return 0;
-    const [, d, h, m] = match.map(Number);
-    return (d || 0) * 1440 + (h || 0) * 60 + (m || 0);
-  }
+parseDuration(durationStr: string | null): number | null {
+  if (!durationStr) return null;
+
+  const match = durationStr.match(/(\d+)D\s*(\d+)H\s*(\d+)M/);
+  if (!match) return null;
+
+  const [, d, h, m] = match.map(Number);
+  return (d || 0) * 1440 + (h || 0) * 60 + (m || 0);
+}
   getTotalStops(itinerary: any): number {
     return itinerary.Citypairs?.reduce((acc: number, cp: any) => acc + (cp.NoOfStops || 0), 0);
   }
