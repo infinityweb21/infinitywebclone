@@ -11,10 +11,10 @@ export const routes: Routes = [
         path: '',
         loadComponent: () =>
           import('./pages/home/home.component').then((m) => m.HomeComponent),
-        title: 'Your One-Stop Travel Platform | Infinityfarecompare',
+        title: 'Book Cheap Flights & Hotels Online– Infinity Farecompare',
         data: {
-          metaTitle: 'Your One-Stop Travel Platform | Infinityfarecompare',
-          metaDescription: 'Book flights, hotels, and cruises in one place. Great deals, 24/7 support, and smooth travel planning with Infinityfarecompare. Click here!'
+          metaTitle: 'Book Cheap Flights & Hotels Online– Infinity Farecompare',
+          metaDescription: ' Find and book cheap flights & hotels with Infinity Farecompare. Compare top deals, exclusive discounts, and save big on your next trip.'
         }
       },
       {
@@ -23,10 +23,10 @@ export const routes: Routes = [
           import('./pages/flight/flight.component').then(
             (m) => m.FlightComponent
           ),
-        title: 'Flight Deals & Airline Tickets |Infinityfarecompare',
+        title: 'Cheap Flights & Tickets – Best Airline Deals Online',
         data: {
-          metaTitle: 'Flight Deals & Airline Tickets |Infinityfarecompare',
-          metaDescription: 'Amazing flight deals with our expert booking service. Get competitive prices and access to top airlines worldwide. Start your journey today!'
+          metaTitle: 'Cheap Flights & Tickets – Best Airline Deals Online',
+          metaDescription: 'Discover cheap flights, plane tickets, and top airline deals online. Compare fares, grab offers, and save more on every booking.'
         }
       },
       {
@@ -106,10 +106,10 @@ export const routes: Routes = [
         path: 'hotel',
         loadComponent: () =>
           import('./pages/hotel/hotel.component').then((m) => m.HotelComponent),
-        title: 'Get Amazing Hotel Deals at the Best Rates | Infinityfarecompare',
+        title: 'Cheap Hotel Reservations – Best Deals & Discounts',
          data: {
-          metaTitle: 'Get Amazing Hotel Deals at the Best Rates  | Infinityfarecompare',
-          metaDescription: 'Enjoy luxurious comfort and exceptional service at this hotel, featuring modern amenities and a prime location for a memorable stay.'
+          metaTitle: 'Cheap Hotel Reservations – Best Deals & Discounts',
+          metaDescription: 'Book cheap hotel reservations with Infinity Farecompare. Find the best deals, offers, and discounts to save on your next stay.'
         }
       },
       {
@@ -186,10 +186,10 @@ export const routes: Routes = [
           import('./pages/about-us/about-us.component').then(
             (m) => m.AboutUsComponent
           ),
-        title: 'Your Travel Booking Partner  | Infinityfarecompare',
+        title: ' About Infinity Farecompare',
         data: {
-          metaTitle: 'Your Travel Booking Partner  | Infinityfarecompare',
-          metaDescription: 'Trusted by thousands of travelers. We offer professional booking services for flights, hotels & cruises with dedicated customer support. Contact today'
+          metaTitle: ' About Infinity Farecompare',
+          metaDescription: 'Learn more about Infinity Farecompare and our mission to make travel affordable for everyone. Explore our story, values, and dedication to delivering top deals.'
         }
       },
       {
@@ -198,10 +198,10 @@ export const routes: Routes = [
           import('./pages/contact-us/contact-us.component').then(
             (m) => m.ContactUsComponent
           ),
-        title: 'Contact Us  | Infinityfarecompare',
+        title: 'Contact Us – Get in Touch with Infinity Farecompare',
         data: {
-          metaTitle: 'Contact Us  | Infinityfarecompare',
-          metaDescription: 'Need assistance or have questions? Our dedicated team is ready to help! Contact us today and let’s get you on your way to your next amazing adventure.'
+          metaTitle: 'Contact Us – Get in Touch with Infinity Farecompare',
+          metaDescription: 'Need travel assistance? Contact Infinity Farecompare for 24/7 support on flights, hotels, and tour bookings. We’re always here to make your trip smooth and affordable.'
         }
       },
       {
@@ -222,10 +222,10 @@ export const routes: Routes = [
           import('./pages/privacy-policy/privacy-policy.component').then(
             (m) => m.PrivacyPolicyComponent
           ),
-        title: 'Privacy Policy | Infinityfarecompare',
+        title: 'Privacy Policy – Infinity Farecompare',
         data: {
-          metaTitle: 'Privacy Policy | Infinityfarecompare',
-          metaDescription: 'Learn how Infinityfarecompare collects, protects, and uses your data. Read our Privacy Policy to ensure a safe and secure travel experience.'
+          metaTitle: 'Privacy Policy – Infinity Farecompare',
+          metaDescription: 'Read Infinity Farecompare’s Privacy Policy to learn how we collect, use, and protect your personal information while providing you with the best travel deals.'
         }
       },
       {
@@ -234,10 +234,10 @@ export const routes: Routes = [
           import('./pages/disclaimer/disclaimer.component').then(
             (m) => m.DisclaimerComponent
           ),
-        title: 'Stay Informed, Travel Smart | Infinityfarecompare',
+        title: 'Infinity Farecompare Disclaimer – Transparency & Liability Terms',
         data: {
-          metaTitle: 'Stay Informed, Travel Smart | Infinityfarecompare',
-          metaDescription: 'Get the lowdown on Infinityfarecompare’s disclaimer. We keep things genuine, with no fluff and only transparency. Read our simple terms before you explore.'
+          metaTitle: 'Infinity Farecompare Disclaimer – Transparency & Liability Terms',
+          metaDescription: 'Our Disclaimer outlines the scope and limitations of travel content, prices, and offers listed on Infinity Farecompare.'
         }
       },
       {
@@ -326,10 +326,10 @@ export const routes: Routes = [
           import('./pages/terms-and-conditions/terms-and-conditions.component').then(
             (m) => m.TermsAndConditionsComponent
           ),
-        title: 'Terms & Conditions  | Infinityfarecompare',
+        title: 'Terms and Conditions – Infinity Farecompare',
         data: {
-          metaTitle: 'Terms & Conditions  | Infinityfarecompare',
-          metaDescription: 'Stay informed with our Terms & Conditions. Learn about our policies, user responsibilities, and booking guidelines to ensure a smooth booking experience.'
+          metaTitle: 'Terms and Conditions – Infinity Farecompare',
+          metaDescription: 'Infinity Farecompare’s Terms and Conditions ensure every booking is safe, transparent, and backed by our trusted travel service.'
         }
       },{
         path:'cancellation-policy',
