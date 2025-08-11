@@ -3,7 +3,7 @@ export const environment = {
     API_URL:'https://centralapi.theinfinitytravel.com/',
     MOBILE_APP_URL:'https://mobileapp.theinfinitytravel.com/',
     CITY_LIST:'api/v1/mondee/city-list',
-    AIRPORT_LIST:'api/v1/mondee/airport-list',
+    AIRPORT_LIST:'api/v1/all/airport-list',
     FLIGHT_LIST:'api/v1/mondee/flight-list',
     FLIGHT_REPRICE:'api/v1/mondee/flight-reprice',
     FLIGTH_SEAT_AVILABILITY:'api/v1/mondee/flight-seat-availability',
