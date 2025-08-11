@@ -14,7 +14,7 @@ export class SharedService {
     companyName: 'infinityfarecompare',
     phoneNumber: '(888) 230-2647',
     address: '1876 Harvest Cir Tustin, CA 92780, USA',
-    email: 'connect@infinityfarecompare.us',
+    email: 'info@infinityfarecompare.us',
     link: 'https://infinityfarecompare.us/',
     appName: 'Infinity Travel',
   };
