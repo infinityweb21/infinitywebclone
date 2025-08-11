@@ -38,12 +38,12 @@ export class TopDestinationsHeadComponent implements OnInit {
     amsterdam: '/assets/images/destination-banner/Amsterdam.webp',
     maldives: '/assets/images/destination-banner/maldives.webp',
     bangkok: '/assets/images/destination-banner/bangkok.webp',
-    california: '/assets/images/destination-banner/california.webp',
+    california: '/assets/images/destination-banner/California.webp',
     florida: '/assets/images/destination-banner/florida.webp',
     singapore: '/assets/images/destination-banner/singapore.webp',
     sydney: '/assets/images/destination-banner/sydney.webp',
-    tokyo: '/assets/images/destination-banner/tokyo.webp',
-    zurich: '/assets/images/destination-banner/zurich.webp',
+    tokyo: '/assets/images/destination-banner/Tokyo.webp',
+    zurich: '/assets/images/destination-banner/Zurich.webp',
     'kuala-lumpur': '/assets/images/destination-banner/kuala-lumpur.webp',
     // Optional other routes:
     'top-destinations':
