@@ -201,7 +201,7 @@ isInvalid(field: string): boolean {
     phone:this.contactForm.value['phone'].e164Number,
     subject:'get a call back',
     message:'request a call back',
-      contact_email:this.getData.sendEmail,
+      contact_email:this.getData.sendmail,
   appName:this.getData?.appName
    }
    this.SpinnerService.show();
