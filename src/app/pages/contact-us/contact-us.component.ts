@@ -135,7 +135,7 @@ export class ContactUsComponent implements OnInit {
       phone: this.contactForm.value['phone'].e164Number,
       subject: this.contactForm.value['subject'],
       message: this.contactForm.value['message'],
-      contact_email: this.getData.email,
+      contact_email: this.getData.sendmail,
       appName: this.getData?.appName,
     };
     this.SpinnerService.show();
