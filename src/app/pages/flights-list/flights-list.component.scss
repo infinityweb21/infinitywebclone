@@ -2721,7 +2721,7 @@ button.scroll-left.active {
 }
 
 .stickybox {
-  position: sticky;
+  // position: sticky;
   top: 80px;
 }
 
@@ -4038,4 +4038,20 @@ button.scroll-left.active {
 th.selected {
   background-color: #faf2e0;
   border-bottom: 2px solid #ff9900;
+}
+
+.clickable-fare {
+  cursor: pointer;
+}
+
+.selected-fare {
+  background-color: #faf2e0;
+  font-weight: 600 !important;
+}
+
+.flight-ticket-name{
+  font-size: 12px;
+  font-weight: 500;
+  color: #000;
+  text-align:center;
 }

@@ -7,6 +7,7 @@ import {
   ElementRef,
   HostListener,
   inject,
+  NO_ERRORS_SCHEMA,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -46,9 +47,9 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
   private searchService: SearchService = inject(SearchService);
   protected icons: SvgIcons = inject(SvgIcons);
   private router: Router = inject(Router);
-
+fullStopWiseLowestFare: Record<string, number> = {};
   selectedTab: string = 'all';
-  scrollAmount: number = 200;
+  scrollAmount: number = 150;
   isScrollLeftDisabled: boolean = true;
   isScrollRightDisabled: boolean = false;
   showDetailsMap: { [key: string]: boolean } = {};
@@ -63,6 +64,11 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
   selectedAdults: number = 1;
   selectedChildren: number = 0;
   selectedInfants: number = 0;
+selectedFare: {
+  price: number;
+  stopType: number;
+  carrierName: string;
+} | null = null;
 
   selectedCabin = { name: 'Economy', value: 'E' };
   filters!: FlightFilters;
@@ -211,7 +217,8 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.updateScrollButtons();
+  //   this.updateScrollButtons();
+
 
     this.swiper = new Swiper('.priceMonthCardSlider', {
       slidesPerView: 1,
@@ -319,10 +326,13 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
       next: (res) => {
         console.log("res", res);
         this.getMainDetails = res?.data?.FlightItinerary || [];
+        this.fullStopWiseLowestFare = this.calculateStopWiseLowestFare(this.getMainDetails || []);
+
         this.getNearbyDetails = res?.data?.NearLocationItinerary || [];
         this.getAllCarrierWiseFares = this.buildCarrierWiseFares(res?.data?.FlightItinerary);
         console.log("✅ Carrier-wise Fare Output:", this.getAllCarrierWiseFares);
         this.applyFilter();
+        
       },
       error: (err) => {
          this.getMainDetails=[];
@@ -333,6 +343,27 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
     })
   }
 
+calculateStopWiseLowestFare(itineraries: any[]) {
+  const stopWiseLowestFareMap = new Map<number, number>();
+
+  for (const itinerary of itineraries) {
+    const baseFare = itinerary.Fares?.[0]?.CCMax ?? 0;
+    const noOfStops = itinerary.Citypairs?.[0]?.NoOfStops ?? 0;
+
+    const existingFare = stopWiseLowestFareMap.get(noOfStops);
+    if (existingFare === undefined || baseFare < existingFare) {
+      stopWiseLowestFareMap.set(noOfStops, baseFare);
+    }
+  }
+
+  return {
+    stopes_0: stopWiseLowestFareMap.get(0) ?? 0,
+    stopes_1: stopWiseLowestFareMap.get(1) ?? 0,
+    stopes_more: Array.from(stopWiseLowestFareMap.entries())
+      .filter(([stops]) => stops > 1)
+      .reduce((min, [_, fare]) => (min === 0 || fare < min ? fare : min), 0)
+  };
+}
 
   buildCarrierWiseFares(itineraries: any[]): any[] {
     const carriersMap = new Map<string, {
@@ -561,6 +592,10 @@ generateInsertIndexes() {
 
     if (checked && index === -1) {
       this.filters.stopes.push(value);
+      if (checked) {
+    // Select only this stopValue (single-select)
+    this.filters.stopes = [value];
+  } 
     } else if (!checked && index !== -1) {
       this.filters.stopes.splice(index, 1);
     }
@@ -634,17 +669,22 @@ generateInsertIndexes() {
   }
 
   // Fallback parser if DurationInMinutes is missing
-  parseDuration(durationStr: string): number {
-    const match = durationStr.match(/(\d+)D\s*(\d+)H\s*(\d+)M/);
-    if (!match) return 0;
-    const [, d, h, m] = match.map(Number);
-    return (d || 0) * 1440 + (h || 0) * 60 + (m || 0);
-  }
+parseDuration(durationStr: string | null): number | null {
+  if (!durationStr) return null;
+
+  const match = durationStr.match(/(\d+)D\s*(\d+)H\s*(\d+)M/);
+  if (!match) return null;
+
+  const [, d, h, m] = match.map(Number);
+  return (d || 0) * 1440 + (h || 0) * 60 + (m || 0);
+}
   getTotalStops(itinerary: any): number {
     return itinerary.Citypairs?.reduce((acc: number, cp: any) => acc + (cp.NoOfStops || 0), 0);
   }
   processFlightsAdvanced(filtered: any) {
     const itineraries = filtered || [];
+    console.log("itineraries", itineraries);
+    
     // Show all by default
     this.displayedFlights = [...itineraries];
     console.log("displayedFlights", this.displayedFlights)
@@ -685,9 +725,12 @@ generateInsertIndexes() {
 
       // Track lowest stop-wise fare globally
       const existingGlobalFare = stopWiseLowestFareMap.get(noOfStops);
+      console.log("existingGlobalFare", existingGlobalFare);
+      
       if (existingGlobalFare === undefined || baseFare < existingGlobalFare) {
         stopWiseLowestFareMap.set(noOfStops, baseFare);
       }
+      console.log("existingGlobalFare", existingGlobalFare);
 
       // Initialize carrier data if not exists
       if (!carriersMap.has(carrierName)) {
@@ -745,6 +788,7 @@ generateInsertIndexes() {
         .filter(([stops]) => stops > 1)
         .reduce((min, [_, fare]) => (min === 0 || fare < min ? fare : min), 0)
     };
+    console.log("stopWiseLowestFare", stopWiseLowestFare)
 
 
 
@@ -771,7 +815,9 @@ generateInsertIndexes() {
     return result;
   }
 
-
+getTotalPrice(ccMax: number, markup: number = 10): number {
+  return ccMax + (ccMax * markup / 100);
+}
 
   filterCountry(event: any): void {
     const query = event.query.toLowerCase();
@@ -788,6 +834,7 @@ generateInsertIndexes() {
         }));
       },
       error: (err) => {
+      this.departureAirports=[];
         this.toasterService.showError(err.error.message || 'Something went wrong while fetching vendor list!')
       }
     })
@@ -866,7 +913,23 @@ generateInsertIndexes() {
     segmentGroup.get('departureDate')?.setValue(event.departure);
   }
 
+// addSegment(): void {
+//   const segmentGroup = new FormGroup({
+//     departure: new FormControl(''),
+//     arrival: new FormControl(''),
+//     departureDate: new FormControl(''),
+//   });
+
+//   this.multiCitySegments.push(segmentGroup);
+
+//   // Optional: force validation re-evaluation
+//   this.multiCitySegments.updateValueAndValidity({ emitEvent: true });
+// }
 addSegment(): void {
+  if (this.multiCitySegments.length >= 8) {
+    return;
+  }
+
   const segmentGroup = new FormGroup({
     departure: new FormControl(''),
     arrival: new FormControl(''),
@@ -874,10 +937,9 @@ addSegment(): void {
   });
 
   this.multiCitySegments.push(segmentGroup);
-
-  // Optional: force validation re-evaluation
   this.multiCitySegments.updateValueAndValidity({ emitEvent: true });
 }
+
 
   removeSegment(index: number): void {
     this.multiCitySegments.removeAt(index);
@@ -1197,7 +1259,7 @@ checkIfAllDomestic(): boolean {
     this.isScrollRightDisabled = scrollLeft + clientWidth >= scrollWidth - 1;
   }
 
-  // Optional: Listen to scroll events
+ 
   @HostListener('window:resize')
   onResize(): void {
     this.updateScrollButtons();
@@ -1260,6 +1322,39 @@ onAirlineHeaderClick(airlineName: string): void {
   const fakeEvent = { target: { checked: !isSelected } } as unknown as Event;
   this.toggleAirlineSelection(airlineName, fakeEvent);
 }
+
+onFareClick(price: number, stopType: number, carrierName: string): void {
+  // If the same cell is clicked again, toggle off the selection
+  const isSameSelection =
+    this.selectedFare &&
+    this.selectedFare.price === price &&
+    this.selectedFare.stopType === stopType &&
+    this.selectedFare.carrierName === carrierName;
+
+  if (isSameSelection) {
+    // Clear selection and reset filters to full range and all stops
+    this.selectedFare = null;
+    this.sliderValue = [this.lowestPrice, this.highestPrice];
+    this.filters.rangeValues = [...this.sliderValue];
+    this.filters.stopes = []; // Reset stop filter
+  } else {
+    // New selection
+    const min = Math.max(price, this.lowestPrice);
+    const max = this.highestPrice;
+
+    this.sliderValue = [min, max];
+    this.filters.rangeValues = [min, max];
+    this.filters.stopes = [stopType];
+
+    this.selectedFare = { price, stopType, carrierName };
+  }
+
+  this.onPriceRangeChange();
+}
+
+
+
+
 
 
 

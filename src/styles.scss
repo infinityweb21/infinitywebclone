@@ -2998,7 +2998,7 @@ header.header-six.fixed
   font-weight: 500;
 }
 .banner-checkbox {
-  color: #fff;
+  color: #000000;
 }
 .custom-checkbox input {
   position: absolute;
@@ -3016,7 +3016,7 @@ header.header-six.fixed
   height: 15px;
   width: 15px;
   background-color: #fff;
-  border: 1px solid #01032b;
+  border: 1px solid #01032b !important;
   border-radius: 4px;
   transition: background-color 0.2s;
 }

@@ -8,7 +8,7 @@ import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
   selector: 'app-flight',
-  imports: [MainFilterComponent, NgFor, CommonModule, CollapseDirective],
+  imports: [MainFilterComponent, CommonModule],
   templateUrl: './flight.component.html',
   styleUrl: './flight.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
