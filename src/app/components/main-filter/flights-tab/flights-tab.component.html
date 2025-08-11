@@ -7,6 +7,19 @@
     <div class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2">
       <input
         type="radio"
+        id="oneway"
+        class="oneWayInput"
+        name="tripType"
+        formControlName="tripType"
+        value="oneway"
+      />
+      <label for="oneway"
+        ><span class="radio-label-inner-text banner-radio-label-inner-text">Oneway</span></label
+      >
+    </div>
+    <div class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2">
+      <input
+        type="radio"
         id="roundtrip"
         class="roundTripInput"
         name="tripType"
@@ -18,19 +31,7 @@
         ><span class="radio-label-inner-text banner-radio-label-inner-text">Round Trip</span></label
       >
     </div>
-    <div class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2">
-      <input
-        type="radio"
-        id="oneway"
-        class="oneWayInput"
-        name="tripType"
-        formControlName="tripType"
-        value="oneway"
-      />
-      <label for="oneway"
-        ><span class="radio-label-inner-text banner-radio-label-inner-text">Oneway</span></label
-      >
-    </div>
+    
     <div class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2">
       <input
         type="radio"
@@ -196,7 +197,7 @@
                   [appFlatpickr]="
                     flightForm.get('tripType')?.value === 'roundtrip'
                       ? 'range'
-                      : 'single'
+                      : 'basic'
                   "
                   (dateSelected)="onDatesSelected($event)"
                   formControlName="departureDate"
@@ -539,7 +540,7 @@
               </div>
       </div>
     </div>
-    <div class="quick-select-direct-flight-content-wrap d-none d-lg-block">
+    <!-- <div class="quick-select-direct-flight-content-wrap d-none d-lg-block">
       <div class="row g-3 gy-lg-0 gx-lg-3">
         <div class="col-md-12">
           <label class="custom-checkbox banner-checkbox">
@@ -549,6 +550,6 @@
           </label>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </form>

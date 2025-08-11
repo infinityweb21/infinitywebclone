@@ -570,7 +570,7 @@ get hasMiddleSeats(): boolean {
 
 
   continueToSeats() {
-    this._router.navigate(['/payment'],{
+    this._router.navigate(['/flight/payment'],{
       queryParams:{
         id:this.itnearyId
       }

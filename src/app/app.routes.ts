@@ -82,14 +82,14 @@ export const routes: Routes = [
         title: 'Flight Details',
       },
       {
-        path: 'select-seats',
+        path: 'flight/select-seats',
         loadComponent: () =>
           import(
             './pages/flights-list/flight-details/select-seats/select-seats.component'
           ).then((m) => m.SelectSeatsComponent),
       },
       {
-        path: 'payment',
+        path: 'flight/payment',
         loadComponent: () =>
           import(
             './pages/flights-list/flight-details/select-seats/flight-booking-payment/flight-booking-payment.component'

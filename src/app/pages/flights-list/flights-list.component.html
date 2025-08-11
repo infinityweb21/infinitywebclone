@@ -14,6 +14,21 @@
           >
             <input
               type="radio"
+              id="oneway"
+              class="oneWayInput"
+              name="tripType"
+              formControlName="tripType"
+              value="oneway"
+            />
+            <label for="oneway"
+              ><span class="radio-label-inner-text">Oneway</span></label
+            >
+          </div>
+          <div
+            class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2"
+          >
+            <input
+              type="radio"
               id="roundtrip"
               class="roundTripInput"
               name="tripType"
@@ -25,21 +40,7 @@
               ><span class="radio-label-inner-text">Round Trip</span></label
             >
           </div>
-          <div
-            class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2"
-          >
-            <input
-              type="radio"
-              id="oneway"
-              class="oneWayInput"
-              name="tripType"
-              formControlName="tripType"
-              value="oneway"
-            />
-            <label for="oneway"
-              ><span class="radio-label-inner-text">Oneway</span></label
-            >
-          </div>
+
           <div
             class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2"
           >
@@ -197,7 +198,7 @@
                         [appFlatpickr]="
                           flightForm.get('tripType')?.value === 'roundtrip'
                             ? 'range'
-                            : 'single'
+                            : 'basic'
                         "
                         (dateSelected)="onDatesSelected($event)"
                         formControlName="departureDate"
@@ -248,7 +249,7 @@
                     [class.show]="showDropdown"
                     (clickOutside)="closeDropdown()"
                   >
-                    <div class="ps-adult-box">
+                    <!-- <div class="ps-adult-box">
                       <h5>Adult(s)</h5>
                       <ul class="ps-adults-list">
                         <li
@@ -285,8 +286,101 @@
                           {{ count }}
                         </li>
                       </ul>
-                    </div>
+                    </div> -->
+                    <div class="details-content">
+                      <!-- Adults -->
+                      <div class="adult-content-wrap d-flex justify-content-between align-items-center mb-2">
+                        <div class="adult-content-column">
+                          <div class="guest-label">Adults <small>(12+ years)</small></div>
+                        </div>
+                        <div class="adult-content-column">
+                          <div class="guest-control">
+                            <div class="guest-btn-wrap">
+                              <button
+                                type="button"
+                                class="guest-decrease-btn"
+                                [disabled]="selectedAdults <= 1"
+                                (click)="selectPassenger('adult', selectedAdults - 1, $event)"
+                              >
+                                <i class="fa fa-minus"></i>
+                              </button>
+                            </div>
+                            <span class="guest-count-field">{{ selectedAdults }}</span>
+                            <div class="guest-btn-wrap">
+                              <button
+                                type="button"
+                                class="guest-increase-btn"
+                                (click)="selectPassenger('adult', selectedAdults + 1, $event)"
+                              >
+                                <i class="fa fa-plus"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
+                      <!-- Children -->
+                      <div class="children-content-wrap d-flex justify-content-between align-items-center mb-2">
+                        <div class="children-content-column">
+                          <div class="guest-child-label">Children <small>(2 - 11 years)</small></div>
+                        </div>
+                        <div class="children-content-column">
+                          <div class="guest-control">
+                            <div class="child-guest-btn-wrap">
+                              <button
+                                type="button"
+                                class="child-guest-decrease-btn"
+                                [disabled]="selectedChildren <= 0"
+                                (click)="selectPassenger('child', selectedChildren - 1, $event)"
+                              >
+                                <i class="fa fa-minus"></i>
+                              </button>
+                            </div>
+                            <span class="guest-count-field">{{ selectedChildren }}</span>
+                            <div class="child-guest-btn-wrap">
+                              <button
+                                type="button"
+                                class="child-guest-increase-btn"
+                                (click)="selectPassenger('child', selectedChildren + 1, $event)"
+                              >
+                                <i class="fa fa-plus"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Infants -->
+                      <div class="infant-content-wrap d-flex justify-content-between align-items-center mb-2">
+                        <div class="infant-content-column">
+                          <div class="guest-label">Infants <small>(on lap)</small></div>
+                        </div>
+                        <div class="infant-content-column">
+                          <div class="guest-control">
+                            <div class="guest-btn-wrap">
+                              <button
+                                type="button"
+                                class="guest-decrease-btn"
+                                [disabled]="selectedInfants <= 0"
+                                (click)="selectPassenger('infant', selectedInfants - 1, $event)"
+                              >
+                                <i class="fa fa-minus"></i>
+                              </button>
+                            </div>
+                            <span class="guest-count-field">{{ selectedInfants }}</span>
+                            <div class="guest-btn-wrap">
+                              <button
+                                type="button"
+                                class="guest-increase-btn"
+                                (click)="selectPassenger('infant', selectedInfants + 1, $event)"
+                              >
+                                <i class="fa fa-plus"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <div class="ps-cabin-select-submit-bt-wrap">
                       <div class="ps-economy-box">
                         <h5>Cabin</h5>
@@ -500,7 +594,6 @@
                     <div
                       class="d-flex align-items-center multicity-add--delete-btn-wrap justify-content-center justify-content-lg-start"
                     >
-                   
                       <button
                         type="button"
                         class="btn btn-link add-multicity-btn"
@@ -510,7 +603,7 @@
                         <span class="me-1" [innerHTML]="icons.plusIcon"></span>
                         Add Flight
                       </button>
-                    
+
                       <button
                         type="button"
                         class="btn btn-link remove-multicity-btn text-danger"
@@ -526,7 +619,7 @@
               </div>
             </div>
           </div>
-          <div
+          <!-- <div
             class="quick-select-direct-flight-content-wrap d-none d-lg-block"
           >
             <div class="row g-3 gy-lg-0 gx-lg-3">
@@ -538,7 +631,7 @@
                 </label>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </form>
     </div>
@@ -779,9 +872,10 @@
               >
                 {{
                   airline?.stopWiseFares["stopes_0"] > 0
-                    ? "$" +
-                      (airline.stopWiseFares["stopes_0"] | number : "1.2-2")
+                    ? ("$" +
+                      (getTotalPrice(airline.stopWiseFares["stopes_0"]) | number : '1.2-2'))
                     : "-"
+                    
                 }}
               </td>
             </tr>
@@ -810,7 +904,7 @@
                 {{
                   airline?.stopWiseFares["stopes_1"] > 0
                     ? "$" +
-                      (airline.stopWiseFares["stopes_1"] | number : "1.2-2")
+                     (getTotalPrice(airline.stopWiseFares["stopes_1"]) | number : "1.2-2")
                     : "-"
                 }}
               </td>
@@ -840,7 +934,7 @@
                 {{
                   airline?.stopWiseFares["stopes_more"] > 0
                     ? "$" +
-                      (airline.stopWiseFares["stopes_more"] | number : "1.2-2")
+                      (getTotalPrice(airline.stopWiseFares["stopes_more"]) | number : "1.2-2")
                     : "-"
                 }}
               </td>
@@ -918,9 +1012,7 @@
                     />
                     {{ stop.label }}
                   </div>
-                  <span>
-                    ${{ fullStopWiseLowestFare[stop.key] || 0 }}
-                  </span>
+                  <span> ${{ getTotalPrice(fullStopWiseLowestFare[stop.key])| number : "1.2-2" }} </span>
                 </label>
                 }
 
@@ -945,7 +1037,7 @@
                     />
                     {{ carrier.ValidatingCarrierName }}
                   </div>
-                  <span>${{ carrier.lowestFare | number : "1.0-2" }}</span>
+                  <span>${{ getTotalPrice(carrier.lowestFare )| number : "1.0-2" }}</span>
                 </label>
                 }
 
@@ -1292,8 +1384,8 @@
                     styleClass="w-56"
                   ></p-slider>
                   <div class="price-range-values">
-                    ${{ sliderValue[0] | number : "1.0-0" }} - ${{
-                      sliderValue[1] | number : "1.0-0"
+                    ${{ getTotalPrice(sliderValue[0]) | number : "1.0-0" }} - ${{
+                      getTotalPrice(sliderValue[1]) | number : "1.0-0"
                     }}
                   </div>
                 </div>
@@ -1333,7 +1425,7 @@
                 (click)="selectTab('recommended'); applyFilter()"
               >
                 <h4>Recommended</h4>
-                <p>${{ recommendedPrice | number : "1.2-2" }}</p>
+                <p>${{ getTotalPrice(recommendedPrice) | number : "1.2-2" }}</p>
               </a>
               <a
                 href="javascript:void(0)"
@@ -1341,7 +1433,7 @@
                 (click)="selectTab('cheapest'); applyFilter()"
               >
                 <h4>Cheapest</h4>
-                <p>${{ cheapestPrice | number : "1.2-2" }}</p>
+                <p>${{ getTotalPrice(cheapestPrice) | number : "1.2-2" }}</p>
               </a>
               @if (getNearbyDetails.length!=0) {
               <a
@@ -1407,14 +1499,17 @@
                                     @for (f of flightInfo.Fares; track $index) {
                                     <h3>
                                       @if (f?.PaxType=='ADT'){ ${{
-                                        f.CCMax | number : "1.2-2"
+                                        getTotalPrice(f?.CCMax)
+                                          | number : "1.2-2"
                                       }}}
                                     </h3>
                                     }
                                     <div class="filterbtn">
                                       <a
                                         (click)="
-                                          navigateFlightDetails(flightInfo.id)
+                                          navigateFlightDetails(
+                                            flightInfo.ItineraryId
+                                          )
                                         "
                                         type="button"
                                         data-bs-toggle="offcanvas"
@@ -1436,6 +1531,7 @@
                                           | date : "HH:mm"
                                       }}
                                     </div>
+
                                     <div class="flight-ticket-code">
                                       {{
                                         seg?.FlightSegment[0]
@@ -1444,6 +1540,11 @@
                                     </div>
                                     <div class="flight-ticket-label">
                                       Depart
+                                    </div>
+                                    <div class="flight-ticket-name">
+                                      {{
+                                        seg?.FlightSegment[0]?.OriginAirportName
+                                      }}
                                     </div>
                                   </div>
                                   <div class="flight-ticket-middle">
@@ -1476,6 +1577,13 @@
                                     <div class="flight-ticket-label">
                                       Arrive
                                     </div>
+                                    <div class="flight-ticket-name">
+                                      {{
+                                        seg?.FlightSegment[
+                                          seg?.FlightSegment.length - 1
+                                        ]?.DestinationAirportName
+                                      }}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -1504,7 +1612,7 @@
                             @for (f of flightInfo.Fares; track $index) {
                             <h3>
                               @if (f?.PaxType=='ADT'){ ${{
-                                f.CCMax | number : "1.2-2"
+                                getTotalPrice(f?.CCMax) | number : "1.2-2"
                               }}}
                             </h3>
                             }
@@ -2145,7 +2253,6 @@
                               </div>
                             </div>
                           </div>
-
                           }
 
                           <!-- <div class="row align-items-start mb-3">
@@ -2895,9 +3002,9 @@
                 </div> -->
               </div>
               } @if(selectedTab === 'cheapest'){
-              <div id="cheapest" class="common-class">cheapest</div>
+              <!-- <div id="cheapest" class="common-class">cheapest</div> -->
               } @if(selectedTab === 'alternate'){
-              <div id="alternate" class="common-class">alternate</div>
+              <!-- <div id="alternate" class="common-class">alternate</div> -->
               }
             </div>
           </div>
@@ -2934,7 +3041,7 @@
                       alt="Contact"
                       class="contact-img"
                     />
-                    <a class="phone">(888) 230-2647</a>
+                    <a class="phone">{{ getData?.phoneNumber }}</a>
                     <small>Available 24/7</small>
                     <br />
                     <button class="btn btn-custom mt-3">Click to Call</button>
@@ -3157,7 +3264,7 @@
                   {{ stop.label }}
                 </div>
                 <span
-                  >${{ getFlightsAdvanced?.stopWiseLowestFare?.[stop.key] || 0 }}</span
+                  >${{ getTotalPrice(getFlightsAdvanced?.stopWiseLowestFare?.[stop.key]) |number:'1.0-2' }}</span
                 > </label
               >}
               <hr />
@@ -3182,7 +3289,7 @@
                   {{ carrier.ValidatingCarrierName }}
                 </div>
 
-                <span>${{ carrier.lowestFare | number : "1.0-2" }}</span>
+                <span>${{ getTotalPrice(carrier.lowestFare) | number : "1.0-2" }}</span>
               </label>
               }
 
@@ -3499,8 +3606,8 @@
                   styleClass="w-56"
                 ></p-slider>
                 <div class="price-range-values">
-                  ${{ sliderValue[0] | number : "1.0-0" }} - ${{
-                    sliderValue[1] | number : "1.0-0"
+                  ${{ getTotalPrice(sliderValue[0]) | number : "1.0-0" }} - ${{
+                    getTotalPrice(sliderValue[1]) | number : "1.0-0"
                   }}
                 </div>
               </div>

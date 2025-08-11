@@ -7,6 +7,7 @@ import {
   ElementRef,
   HostListener,
   inject,
+  NO_ERRORS_SCHEMA,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -48,7 +49,7 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
   private router: Router = inject(Router);
 fullStopWiseLowestFare: Record<string, number> = {};
   selectedTab: string = 'all';
-  scrollAmount: number = 200;
+  scrollAmount: number = 150;
   isScrollLeftDisabled: boolean = true;
   isScrollRightDisabled: boolean = false;
   showDetailsMap: { [key: string]: boolean } = {};
@@ -216,7 +217,8 @@ selectedFare: {
   }
 
   ngAfterViewInit(): void {
-    this.updateScrollButtons();
+  //   this.updateScrollButtons();
+
 
     this.swiper = new Swiper('.priceMonthCardSlider', {
       slidesPerView: 1,
@@ -330,6 +332,7 @@ selectedFare: {
         this.getAllCarrierWiseFares = this.buildCarrierWiseFares(res?.data?.FlightItinerary);
         console.log("✅ Carrier-wise Fare Output:", this.getAllCarrierWiseFares);
         this.applyFilter();
+        
       },
       error: (err) => {
          this.getMainDetails=[];
@@ -812,7 +815,9 @@ parseDuration(durationStr: string | null): number | null {
     return result;
   }
 
-
+getTotalPrice(ccMax: number, markup: number = 10): number {
+  return ccMax + (ccMax * markup / 100);
+}
 
   filterCountry(event: any): void {
     const query = event.query.toLowerCase();
@@ -829,6 +834,7 @@ parseDuration(durationStr: string | null): number | null {
         }));
       },
       error: (err) => {
+      this.departureAirports=[];
         this.toasterService.showError(err.error.message || 'Something went wrong while fetching vendor list!')
       }
     })
@@ -1253,7 +1259,7 @@ checkIfAllDomestic(): boolean {
     this.isScrollRightDisabled = scrollLeft + clientWidth >= scrollWidth - 1;
   }
 
-  // Optional: Listen to scroll events
+ 
   @HostListener('window:resize')
   onResize(): void {
     this.updateScrollButtons();
