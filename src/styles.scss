@@ -5998,3 +5998,9 @@ header.header-six.fixed
 .banner-bg-overlay {
   position: relative;
 }
+
+@media(min-width:992px){
+  .inner-page-banner-form-wrap .c-custom-radio label .banner-radio-label-inner-text{
+    color: #000;
+  }
+}
