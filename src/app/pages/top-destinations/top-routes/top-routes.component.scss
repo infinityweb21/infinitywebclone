@@ -91,3 +91,18 @@
     font-size: 19px;
 }
 }
+@media (min-width: 992px) {
+    .app-top-destinations-label .c-custom-radio label .banner-radio-label-inner-text {
+        color: #000000 !important;
+    }
+}
+
+@media (max-width: 576px) {
+   .content-tabs ul {
+    padding: 0;
+    list-style-position: inside !important;
+}
+   .content-tabs ul li {
+    font-size: 13px;
+}
+}

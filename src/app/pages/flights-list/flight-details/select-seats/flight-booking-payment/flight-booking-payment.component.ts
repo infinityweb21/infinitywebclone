@@ -169,6 +169,8 @@ flightBookingResponse: any;
   });
   }
   ngOnInit() {
+    this.selectedSeatTotal = this.shareService.seatTotalSignal()();
+
     this.getData=this.shareService.getcompanyName();
        this.searchService.searchData$.subscribe((searchData) => {
       console.log('Received Flight Data:', searchData);
@@ -240,8 +242,8 @@ this.flattenedSeatData = allSeatSegments;
   const value = control.value;
 
   // Ensure value is an object and has nationalNumber
-  if (value && typeof value === 'object' && value.nationalNumber) {
-    const digits = value.nationalNumber.replace(/\D/g, ''); // remove non-digits
+  if (value && typeof value === 'object' && value.number) {
+    const digits = value.number.replace(/\D/g, ''); // remove non-digits
     const length = digits.length;
 
     if (length < 6 || length > 15) {
@@ -1041,7 +1043,7 @@ const mainPayload={
           console.log('res', res);
           if(res.status===1){
           this.toasterService.showSuccess(res?.message);
-         
+           localStorage.setItem("pnr",this.flightBookingResponse.PNR );
                this._route.navigate(['/flight-booking-confirmation'],{
                 queryParams:{
                   id:res?.booking?.booking_details?.bookingId

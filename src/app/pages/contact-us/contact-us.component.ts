@@ -3,9 +3,11 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../../services/shared/shared.service';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { NgIf } from '@angular/common';
@@ -13,10 +15,11 @@ import { AuthService } from '../../services/auth.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TosterService } from '../../services/common/toaster.service';
 import { SpinnerService } from '../../services/common/spinner.service';
+import { CountryISO, NgxIntlTelInputModule, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-contact-us',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf,NgxIntlTelInputModule],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.scss',
 })
@@ -29,6 +32,11 @@ export class ContactUsComponent implements OnInit {
   private route: ActivatedRoute = inject(ActivatedRoute);
 
   private authService: AuthService = inject(AuthService);
+  separateDialCode = false;
+    SearchCountryField = SearchCountryField;
+    CountryISO = CountryISO;
+    PhoneNumberFormat = PhoneNumberFormat;
+    preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   getData: any = '';
   contactForm!: FormGroup;
   submitted = false;
@@ -40,12 +48,26 @@ export class ContactUsComponent implements OnInit {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
+      phone: [undefined, [Validators.required,this.phoneLengthValidator]],
       subject: ['', Validators.required],
       message: ['', Validators.required],
     });
   }
+ phoneLengthValidator(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
 
+  // Ensure value is an object and has nationalNumber
+  if (value && typeof value === 'object' && value.nationalNumber) {
+    const digits = value.nationalNumber.replace(/\D/g, ''); // remove non-digits
+    const length = digits.length;
+
+    if (length < 6 || length > 15) {
+      return { invalidPhoneLength: true };
+    }
+  }
+
+  return null;
+}
   ngOnInit(): void {
     // Set meta tags
     this.getData = this.shareService.getcompanyName();
@@ -110,10 +132,10 @@ export class ContactUsComponent implements OnInit {
     const payload = {
       name: this.contactForm.value['name'],
       email: this.contactForm.value['email'],
-      phone: this.contactForm.value['phone'],
+      phone: this.contactForm.value['phone'].e164Number,
       subject: this.contactForm.value['subject'],
       message: this.contactForm.value['message'],
-      contact_email: this.getData.email,
+      contact_email: this.getData.sendmail,
       appName: this.getData?.appName,
     };
     this.SpinnerService.show();

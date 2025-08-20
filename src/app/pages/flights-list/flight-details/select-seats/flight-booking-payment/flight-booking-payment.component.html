@@ -124,7 +124,7 @@
       <div class="card-form-wrap flight-payment-form-wrap">
         <div class="row g-lg-3">
           @for (field of billingFields; track $index) {
-          <div class="col-md-6 col-lg-4">
+          <div class="col-md-4 col-lg-3">
             <div class="card-form-content">
               <label class="form-label">{{ field.label }}</label>
 
@@ -153,7 +153,7 @@
                                                 [searchCountryFlag]="true" [searchCountryField]="[
           SearchCountryField.Iso2,
           SearchCountryField.Name
-        ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.India" [maxLength]="15"
+        ]" [selectFirstCountry]="false" [selectedCountryISO]="CountryISO.UnitedStates" [maxLength]="15"
                                                 [phoneValidation]="true" [separateDialCode]="separateDialCode"
                                                 [numberFormat]="PhoneNumberFormat.National" name="phone"
                                                 formControlName="BillingPhoneNum" >
@@ -187,7 +187,7 @@
   </div>
         <!-- == === -->
         <!-- == === -->
-        <div class="flightdetailsmain-box">
+        <!-- <div class="flightdetailsmain-box">
           <div class="insideinfobox">
             <div class="imgtitlebox">
               <img src="assets/images/flight-details/plane-up1.png" alt="" />
@@ -265,10 +265,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- == === -->
         <!-- == === -->
-        <div class="flightdetailsmain-box">
+        <!-- <div class="flightdetailsmain-box">
           <div class="insideinfobox">
             <div class="imgtitlebox">
               <img src="assets/images/flight-details/car-icon.png" alt="" />
@@ -286,16 +286,16 @@
                   <a
                     href="javascript:void(0)"
                     class="commonbtnnew add-travel-protection-btn mt-0"
-                    >Add Travel Protection</a
+                    >Add Car Rental</a
                   >
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- == === -->
         <!-- == === -->
-        <div class="flightdetailsmain-box">
+        <!-- <div class="flightdetailsmain-box">
           <div class="insideinfobox">
             <div class="imgtitlebox">
               <img src="assets/images/flight-details/plane-up1.png" alt="" />
@@ -348,13 +348,13 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- == === -->
         <!-- == === -->
         <div class="u-side-card">
           <div class="u-side-card-body">
             <div class="card-title-wrap">
-              <h3 class="card-title-text">Policies & Review</h3>
+              <h3 class="card-title-text">Important Rules & Fees</h3>
             </div>
             <!-- <h4 class="card-smal-title-text">Traveler 1:</h4>
             <div class="traveler-details-view-card">
@@ -507,15 +507,7 @@
             </div> -->
             <hr class="card-devider-line flight-payment-card-line" />
             <p class="u-card-info-text">
-              Tickets are non-transferable and name changes are not permitted.
-              Total price shown includes all applicable taxes & fees and our
-              service fees. Some airlines may charge additional baggage fees or
-              other fees. Fares are not guaranteed until ticketed. Tickets and
-              our fees are non-refundable (see Fare Rules). Some taxes and
-              government agency fees may be non-refundable. Tickets can be
-              cancelled for a fee, if requested within twenty-four (24) hours
-              from the time of purchase. Date and routing changes will be
-              subject to airline change rules and post-ticketing fees.
+              Please note that tickets cannot be transferred to another person, and passenger names cannot be changed and the total price displayed covers all relevant taxes, fees, and additional fees, such as baggage charges, may be applied by airlines. Fares are not guaranteed until the ticket is issued, and all ticket fees are non-refundable with certain government taxes and charges may also be non-refundable. Cancellations within 24 hours of purchase are allowed for a fee. Any changes to travel dates or routes are subject to airline policies and related post-ticketing charges.
             </p>
           </div>
         </div>
@@ -567,7 +559,7 @@
 
   <div class="d-flex justify-content-between mb-3" *ngIf="selectedSeatTotal">
     <span>Selected Seat Charges</span>
-    <span>${{ selectedSeatTotal | number: '1.2-2' }}</span>
+    <span>{{ selectedSeatTotal | number:'1.2-2' | currency  }}</span>
   </div>
 
   <!-- <div class="d-flex justify-content-between mb-3">
@@ -575,7 +567,7 @@
     <span>${{ serviceTaxAmount | number: '1.2-2' }}</span>
   </div> -->
 
-  <div class="d-flex justify-content-between mb-1" *ngIf="travelProtectionAdded">
+  <!-- <div class="d-flex justify-content-between mb-1" *ngIf="travelProtectionAdded">
     <span>
       Travel Protection
       <button class="btn btn-link text-danger p-0" (click)="toggleTravelProtection()">
@@ -583,18 +575,18 @@
       </button>
     </span>
     <span>${{ travelProtectionAmount | number: '1.2-2' }}</span>
-  </div>
+  </div> -->
 
   <hr />
   <div class="d-flex justify-content-between fw-semibold text-primary mb-1">
     <span class="total-price">Total Price (INR)</span>
-    <span class="total-price">${{ finalTotal | number: '1.2-2' }}</span>
+    <span class="total-price">{{ finalTotal | number:'1.2-2'|currency }}</span>
   </div>
 </div>
 
 
               <!-- Travel Protection -->
-      <div *ngIf="!travelProtectionAdded" class="travel-protection d-flex align-items-center justify-content-between mb-2">
+      <!-- <div *ngIf="!travelProtectionAdded" class="travel-protection d-flex align-items-center justify-content-between mb-2">
   <div class="d-flex align-items-center gap-2">
     <img src="assets/images/flight-details/plane-up.png" alt="Travel Icon" />
     <div class="travel-protection-txt">
@@ -605,10 +597,10 @@
   <button (click)="toggleTravelProtection()" class="btn btn-link btn-sm text-primary text-decoration-none p-0 sidebar-btn-add-new-link">
     + Add Now
   </button>
-</div>
+</div> -->
 
             <!-- Note -->
-            <small class="text-muted d-block mb-2 note-text">
+            <!-- <small class="text-muted d-block mb-2 note-text">
               Note: Your Card will be charged in
               <strong>United States Dollars</strong> for a total amount of USD
               176.88, the INR amount of
@@ -625,7 +617,7 @@
               <br />
 
               ClubMiles P
-            </small>
+            </small> -->
 
             <!-- Payment Methods -->
             <div class="mb-2 payment-methods">
@@ -745,7 +737,7 @@
               </div>
               <div class="call-text">
                 <small>CALL US NOW</small>
-                <h3>{{getData?.phoneNumber}}</h3>
+                <h3><a href="tel:{{getData?.phoneNumber}}"></a>{{getData?.phoneNumber}}</h3>
               </div>
             </div>
           </div>

@@ -137,21 +137,7 @@ private router:Router=inject(Router);
    
 
   }
-   phoneLengthValidator(control: AbstractControl): ValidationErrors | null {
-  const value = control.value;
 
-  // Ensure value is an object and has nationalNumber
-  if (value && typeof value === 'object' && value.nationalNumber) {
-    const digits = value.nationalNumber.replace(/\D/g, ''); // remove non-digits
-    const length = digits.length;
-
-    if (length < 6 || length > 15) {
-      return { invalidPhoneLength: true };
-    }
-  }
-
-  return null;
-}
   ngOnInit() {
         this.getData=this.shareService.getcompanyName();
 
@@ -171,7 +157,7 @@ private router:Router=inject(Router);
       contactInfo: this.fb.group({
         firstName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        phoneNumber: [undefined, [Validators.required,this.phoneLengthValidator]]
+        phoneNumber: [undefined, [Validators.required]]
       }),
   travelers: this.fb.array([], this.validatePaxTypeCount(this.selectedAdults, this.selectedChildren, this.selectedInfants)),
     });
@@ -514,6 +500,7 @@ getPassportDetails(traveler: AbstractControl): AbstractControl {
      if (this.bookingForm.invalid) {
 
       this.bookingForm.markAllAsTouched();
+      this.scrollToFirstInvalidControl();
       return;
     }
   
@@ -548,13 +535,13 @@ getPassportDetails(traveler: AbstractControl): AbstractControl {
   this.flightService.setFareSummary(fareSummary);
 
   if(this.isSeatAvailable){
- this.router.navigate(['/select-seats'],{
+ this.router.navigate(['/flight/select-seats'],{
       queryParams:{
         id:this.itnearyId
       }
     });
   }else{
-     this.router.navigate(['/payment'],{
+     this.router.navigate(['/flight/payment'],{
       queryParams:{
         id:this.itnearyId
       }
@@ -585,4 +572,12 @@ getPassportDetails(traveler: AbstractControl): AbstractControl {
         },
       });
   }
+private scrollToFirstInvalidControl() {
+  const firstInvalidControl = document.querySelector('form .ng-invalid') as HTMLElement;
+
+  firstInvalidControl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  firstInvalidControl.focus();
+}
+
+
 }

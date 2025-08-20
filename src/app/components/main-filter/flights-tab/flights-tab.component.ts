@@ -77,7 +77,7 @@ export class FlightsTabComponent {
     private sharedService: SharedService
   ) {
     this.flightForm = this.fb.group({
-      tripType: ['roundtrip'],
+      tripType: ['oneway'],
       departureAirport: [''],
       arrivalAirport: [''],
       departureDate: [''],
