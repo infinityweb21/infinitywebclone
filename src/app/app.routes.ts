@@ -541,6 +541,13 @@ export const routes: Routes = [
     ),
 },
 {
+  path: 'thank-you',
+  loadComponent: () =>
+    import('./components/leadthankyou/leadthankyou.component').then(
+      (m) => m.LeadthankyouComponent
+    ),
+},
+{
   path: 'private-jet',
   loadComponent: () =>
     import('./pages/private-jet/private-jet.component').then(
