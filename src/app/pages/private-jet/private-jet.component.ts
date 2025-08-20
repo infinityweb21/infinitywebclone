@@ -155,6 +155,7 @@ export class PrivateJetComponent  implements OnInit {
         next: (res) => {
           this.spinnerService.hide();
           this.inquiryForm.reset();
+          this.closeModal();
           this.router.navigate(['/thank-you']);
         },
         error: (err) => {
