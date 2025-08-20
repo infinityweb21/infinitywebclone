@@ -1,0 +1,341 @@
+.common-section.bannersec {
+  padding: 70px 0px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.common-section.bannersec::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.514);
+  left: 0;
+  top: 0;
+  z-index: 5;
+  display: block;
+}
+.common-section .container {
+  z-index: 9;
+}
+.commontitle h2 {
+  color: #f7801e;
+  font-size: 50px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+.commontitle p {
+  font-size: 16px;
+  color: #fff;
+  text-transform: capitalize;
+}
+form#flights-tab {
+  padding: 10px;
+  background: #ffffff75;
+  border-radius: 10px;
+  backdrop-filter: blur(7px);
+}
+
+.jet-card {
+  position: relative;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  margin-bottom: 20px;
+  min-height: 350px;
+}
+.jet-card::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.308);
+  left: 0;
+  top: 0;
+  z-index: 5;
+  display: block;
+}
+.jet-card-image {
+  width: 100%;
+  min-height: 350px;
+  display: block;
+}
+
+.jet-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 20px;
+  width: 100%;
+  background-color: transparent;
+  //   background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 80%);
+  box-sizing: border-box;
+  z-index: 8;
+}
+
+.jet-card-title {
+  color: #fff;
+  font-size: 27px;
+  font-weight: bold;
+  margin: 0 0 15px 0;
+}
+
+.jet-card-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.jet-btn {
+  padding: 10px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.jet-btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.jet-btn-primary:hover {
+  background-color: #f7801e;
+}
+
+.jet-btn-secondary {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.jet-btn-secondary:hover {
+  background-color: #e2e6ea;
+}
+.common-section {
+  padding: 50px 0px;
+}
+
+.modern-inquiry-modal .modal-content {
+  background: #ffffff;
+  border-radius: 20px;
+}
+
+.modern-inquiry-form .form-control {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  color: #333;
+}
+
+.modern-inquiry-form .form-control:focus {
+  border-color: #888;
+  box-shadow: 0 0 0 0.2rem rgba(218, 106, 1, 0);
+}
+
+.inquiry-submit-btn {
+  background-color: #f7801e;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 50px;
+  transition: background 0.3s ease;
+}
+
+.inquiry-submit-btn:hover {
+  background-color: #f7801e;
+}
+
+@media (max-width: 576px) {
+  .modal-dialog {
+    margin: 1rem;
+  }
+}
+
+.charter-section {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.charter-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.charter-description {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 20px;
+}
+
+.charter-feature {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.charter-feature i {
+  font-size: 1.4rem;
+  color: #111;
+}
+
+.charter-feature span {
+  font-size: 1rem;
+  color: #111;
+}
+
+@media (max-width: 767.98px) {
+  .charter-title {
+    font-size: 2rem;
+  }
+
+  .charter-feature {
+    gap: 10px;
+  }
+
+  .charter-feature i {
+    font-size: 1.2rem;
+  }
+}
+
+.jet-feature-section {
+  padding: 60px 20px;
+  background: #fff;
+}
+
+.jet-feature-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px 25px;
+  height: 100%;
+  border: 1px solid #f7801e;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.jet-feature-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.jet-feature-icon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.2rem;
+  color: #4a4a4a;
+  background-color: #f2f2f2;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jet-feature-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.jet-feature-desc {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.jet-feature-highlight {
+  background-color: #f7801e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+}
+
+.jet-feature-highlight .jet-feature-icon {
+  background-color: #fff;
+  color: #f7801e;
+}
+
+.jet-feature-highlight .jet-feature-title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+@media (max-width: 767.98px) {
+  .jet-feature-card {
+    padding: 25px 20px;
+  }
+
+  .jet-feature-title {
+    font-size: 1.1rem;
+  }
+}
+
+.charter-cta-section {
+  background-color: #96d6ec;
+  border-radius: 25px;
+  padding: 60px 40px;
+  margin: 40px 0;
+}
+
+.charter-cta-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111;
+}
+
+.charter-cta-text {
+  font-size: 1rem;
+  color: #333;
+  margin-top: 15px;
+}
+
+.charter-cta-link {
+  color: #000000;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.charter-cta-btn {
+  background-color: #f7801e;
+  color: #fff;
+  padding: 10px 20px;
+  font-weight: 500;
+  border-radius: 12px;
+  border: none;
+}
+
+.charter-cta-btn:hover {
+  background-color: #f7801e;
+  color: #fff;
+}
+
+@media (max-width: 767.98px) {
+  .charter-cta-heading {
+    font-size: 1.75rem;
+  }
+
+  .charter-cta-section {
+    text-align: center;
+  }
+
+  .charter-cta-btn-wrapper {
+    margin-top: 20px;
+    text-align: center;
+  }
+}

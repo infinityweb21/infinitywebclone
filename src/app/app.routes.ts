@@ -540,6 +540,18 @@ export const routes: Routes = [
       (m) => m.ThankyouComponent
     ),
 },
+{
+  path: 'private-jet',
+  loadComponent: () =>
+    import('./pages/private-jet/private-jet.component').then(
+      (m) => m.PrivateJetComponent
+    ),
+    title: ' Choose our Private Jet Services | Infinityfarecompare',
+          data: { 
+            metaTitle: ' Choose our Private Jet Services | Infinityfarecompare',
+            metaDescription: ' Experience the finest offerings of Private Jets with infinityfarecompare.us ! Travel on your terms with flexible bookings, luxurious experiences & privacy!'
+          }
+},
     ],
   },
 
