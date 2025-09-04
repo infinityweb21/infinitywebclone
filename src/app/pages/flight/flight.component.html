@@ -2,7 +2,7 @@
 <app-main-filter />
 <!--=========== Banner Section End  ==============-->
 <!--=========== Unique Experiences Start  ==============-->
-<section class="unique-experiences pb-0 cmn-gap">
+<!-- <section class="unique-experiences pb-0 cmn-gap">
   <div class="container container-xxl">
     <div class="cmn-heading">
       <div class="heading-cmn-flex">
@@ -10,8 +10,7 @@
       </div>
 
       <div class="common-slider-container">
-        <!-- <div class="swiper commonSlider8"> -->
-          <!-- <div class="swiper-wrapper"> -->
+      
             <swiper-container #flightsSwiperRef>
               @for (flight of flights; track $index) {
               <swiper-slide>
@@ -106,13 +105,10 @@
                     </div>
                     <div class="uxf-price-section">
                       <div class="uxf-price-left">
-                        <!-- <h2 class="uxf-actual-price m-0">From <span class="uxf-actual-price-highlight">${{ flight.price
-                            }}</span></h2> -->
+                       
                         <span class="uxf-flight-reamain-seat">{{ flight.seatsLeft }} Seats Left</span>
                       </div>
-                      <!-- <div class="uxf-price-right">
-                        <a href="javascript:void(0);" class="uxf-btn-view-nore">View Now</a>
-                      </div> -->
+                     
                     </div>
                   </div>
                 </div>
@@ -120,12 +116,11 @@
               </swiper-slide>
               }
             </swiper-container>
-          <!-- </div> -->
-        <!-- </div> -->
+
       </div>
     </div>
   </div>
-</section>
+</section> -->
 <!--=========== Unique Experiences End  ==============-->
 <!--=========== Booking Section Start  ==============-->
 <section class="booking cmn-gap pb-0">
@@ -143,7 +138,7 @@
 </section>
 <!--=========== Booking Section End  ==============-->
 <!-- ==== Top Rate Provider Start ==== -->
-<section class="unique-experiences pb-0 cmn-gap">
+<!-- <section class="unique-experiences pb-0 cmn-gap">
   <div class="container container-xxl">
     <div class="cmn-heading">
       <div class="heading-cmn-flex">
@@ -151,8 +146,6 @@
       </div>
     </div>
     <div class="common-slider-container">
-      <!-- <div class="swiper commonSlider9">
-            <div class="swiper-wrapper"> -->
       <swiper-container #providersSwiperRef>
         @for (provider of providers; track $index) {
         <swiper-slide>
@@ -197,11 +190,10 @@
         </swiper-slide>
         }
       </swiper-container>
-      <!-- </div>
-          </div> -->
+      
     </div>
   </div>
-</section>
+</section> -->
 <!-- ==== Top Rate Provider End ==== -->
 
 <!--=========== Trending Section Start  ==============-->
