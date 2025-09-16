@@ -6,12 +6,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #F88320;
+  background-color: #f88320;
   padding: 5px 10px;
   border-radius: 0 0 10px 0;
   font-size: 10px;
   color: #fff;
-
 }
 
 .unique-experiences .unique-experiences-love {
@@ -30,14 +29,14 @@
   padding: 5px 10px;
   border-radius: 5px;
   color: #fff;
-  background-color: #0071E9;
+  background-color: #0071e9;
 }
 
 .unique-experiences-flight-box {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #F5F5F5;
+  border: 1px solid #f5f5f5;
   padding: 5px 5px;
   margin-top: 20px;
   border-radius: 5px;
@@ -116,8 +115,8 @@
 .unique-experiences-flight-calender {
   display: flex;
   align-items: center;
-  border: 1px solid #FFF3E8;
-  background: #FFFCF9;
+  border: 1px solid #fff3e8;
+  background: #fffcf9;
   padding: 12px;
   margin-bottom: 18px;
   border-radius: 10px;
@@ -135,7 +134,7 @@
 }
 
 .unique-experiences .recoend-price-left span {
-  color: #00AD20;
+  color: #00ad20;
 }
 
 /* top rated start*/
@@ -148,7 +147,7 @@
 }
 
 .rated-provider-top-box {
-  background: #F6F6F6;
+  background: #f6f6f6;
   width: 100%;
   height: 100px;
   border-radius: 10px;
@@ -179,7 +178,7 @@
   padding: 5px 10px;
   border-radius: 5px;
   color: #fff;
-  background-color: #0071E9;
+  background-color: #0071e9;
   margin-right: 10px;
 }
 
@@ -188,7 +187,7 @@
   justify-content: space-between;
   text-align: center;
   max-width: 266px;
-  border-top: 1px solid #E0E0E0;
+  border-top: 1px solid #e0e0e0;
   padding-top: 8px;
   margin: 20px auto 0 auto;
 }
@@ -203,21 +202,16 @@
 
 /* trending-deals start  */
 .trending-deals {
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 7px;
   padding: 6px;
 }
 
-
-
 /* trending-deals end */
-
-
-
 
 /* == Quick book Style Start === */
 .qb-section-content {
-  background-image: url('../../../../public/assets/images/flight/quick-book-flight-bg.jpg');
+  background-image: url("../../../../public/assets/images/flight/quick-book-flight-bg.jpg");
   background-size: cover;
   background-position: center;
   color: white;
@@ -291,7 +285,11 @@
 
 .qb-book-btn {
   padding: 11px 24px;
-  background: linear-gradient(135deg, rgba(251, 176, 64, 1) 0%, rgba(247, 127, 29, 1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(251, 176, 64, 1) 0%,
+    rgba(247, 127, 29, 1) 100%
+  );
   color: #000;
   border: none;
   border-radius: 4px;
@@ -309,7 +307,7 @@
   background-color: #e65c00;
 }
 
-@media(min-width:992px) {
+@media (min-width: 992px) {
   .qb-heading {
     font-size: 36px;
   }
@@ -320,7 +318,7 @@
 
   .qb-section-content {
     // background-image: url('../images/flight/quick-book-flight-bg.jpg');
-    background-image: url('../../../../public/assets/images/flight/quick-book-flight-bg-OTKCA4EJ.webp');
+    background-image: url("../../../../public/assets/images/flight/quick-book-flight-bg-OTKCA4EJ.webp");
     background-size: cover;
     background-position: center;
     color: white;
@@ -542,7 +540,7 @@
 /* === === */
 /* === Trending Deals Card Base === */
 .tdc-card {
-  border-color: #D9D9D9;
+  border-color: #d9d9d9;
   padding: 6px;
 }
 
@@ -562,7 +560,7 @@
 }
 
 /* Adjust for larger screens */
-@media(min-width: 992px) {
+@media (min-width: 992px) {
   .tdc-card-image-box img {
     border-radius: 6px 0px 0px 6px;
   }
@@ -580,7 +578,7 @@
 }
 
 .destination-start-end-box {
-  background-color: #EFEFEF;
+  background-color: #efefef;
   border-radius: 4px;
   padding: 8px;
   display: flex;
@@ -623,7 +621,7 @@
 }
 
 .time-content-median {
-  color: #A6A6A6;
+  color: #a6a6a6;
   font-size: 14px;
   font-weight: 600;
   line-height: 100%;
@@ -637,14 +635,14 @@
 }
 
 .destination-status-box-content {
-  color: #F77F1D;
+  color: #f77f1d;
   font-size: 13px;
   font-weight: 400;
   line-height: 100%;
 }
 
 .destination-place-box {
-  background-color: #EFEFEF;
+  background-color: #efefef;
   padding: 6px 8px;
   display: flex;
   flex-wrap: wrap;
@@ -680,7 +678,7 @@
 }
 
 .trend-value {
-  color: #0071E9;
+  color: #0071e9;
   font-size: 30px;
   font-weight: 700;
   line-height: 100%;
@@ -718,7 +716,7 @@
 }
 
 .seat-details-box {
-  background-color: #E9F4FF;
+  background-color: #e9f4ff;
   padding: 6px;
   display: flex;
   align-items: center;
@@ -726,7 +724,7 @@
 }
 
 .seat-details-text {
-  color: #0071E9;
+  color: #0071e9;
   font-size: 12px;
   font-weight: 400;
   line-height: 100%;
@@ -736,7 +734,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(251, 176, 64, 1) 0%, rgba(247, 127, 29, 1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(251, 176, 64, 1) 0%,
+    rgba(247, 127, 29, 1) 100%
+  );
   color: #000;
   font-weight: 600;
   line-height: 100%;
@@ -862,7 +864,7 @@
 }
 
 .segment-flight-container {
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   border-radius: 8px;
 }
 
@@ -873,7 +875,7 @@
   align-items: center;
   justify-content: space-between;
   line-height: 100%;
-  border-bottom: 1px solid #D9D9D9;
+  border-bottom: 1px solid #d9d9d9;
 }
 
 .flight-depart-schedule {
@@ -963,13 +965,13 @@
   background-color: #adadad;
 }
 
-.flightline> :first-child {
+.flightline > :first-child {
   top: 0;
   left: -4px;
   background-color: white;
 }
 
-.flightline>* {
+.flightline > * {
   position: absolute;
   top: 0;
   transform: translateY(-50%);
@@ -989,13 +991,13 @@
   background-color: #adadad;
 }
 
-.flightline2> :first-child {
+.flightline2 > :first-child {
   bottom: -9px;
   left: -4px;
   background-color: white;
 }
 
-.flightline2>* {
+.flightline2 > * {
   position: absolute;
   bottom: 0;
   transform: translateY(-50%);
@@ -1105,7 +1107,7 @@
   font-weight: 500;
 }
 
-.flight-misc-toggle:hover~.flight-misc-list {
+.flight-misc-toggle:hover ~ .flight-misc-list {
   display: block !important;
 }
 
@@ -1113,7 +1115,7 @@
   display: block !important;
 }
 
-@media(min-width:992px) {
+@media (min-width: 992px) {
   .departure-airport-time-content-wrap {
     white-space: nowrap;
   }
@@ -1131,10 +1133,6 @@
 
 /* === === */
 /* == Trending Deals Style End === */
-
-
-
-
 
 /* ===  Flight Style Start  ==== */
 
@@ -1165,7 +1163,11 @@
   top: 0;
   font-weight: 500;
   left: 0;
-  background: linear-gradient(135deg, rgba(251, 176, 64, 1) 0%, rgba(247, 127, 29, 1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(251, 176, 64, 1) 0%,
+    rgba(247, 127, 29, 1) 100%
+  );
   color: #fff;
   font-size: 12px;
   padding: 5px 10px;
@@ -1211,7 +1213,7 @@
   justify-content: center;
   color: #01032b;
   background-color: #fff;
-  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.20);
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
   padding: 5px;
 }
@@ -1229,7 +1231,6 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-
 }
 
 .uxf-airline {
@@ -1335,7 +1336,7 @@
 }
 
 .uxf-flight-reamain-seat {
-  color: #00AD20;
+  color: #00ad20;
   font-size: 11px;
   line-height: 100%;
   font-weight: 500;
@@ -1355,15 +1356,15 @@
   border-radius: 5px;
   background: rgb(0, 113, 233);
 }
-.cta-add-btn-reserve{
+.cta-add-btn-reserve {
   width: max-content;
 }
 
-.flight-btn-icon-list-ul{
+.flight-btn-icon-list-ul {
   padding-left: 6px;
 }
 
-@media(min-width:992px) {
+@media (min-width: 992px) {
   .uxf-flight-title {
     font-size: 19px;
   }
@@ -1374,3 +1375,64 @@
 }
 
 /* == Unique Experience  Style ENd === */
+
+.headingtitle h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+}
+.common-para p {
+  font-size: 15px;
+  color: #000;
+  font-weight: 500;
+}
+.common-para a {
+  font-size: 14px;
+  color: #ff832a;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.tips-list {
+  list-style: disc;
+  // padding-left: 0;
+}
+
+.tips-list li {
+  font-size: 13px;
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.tips-list strong {
+  color: #ff832a;
+  display: block;
+  font-size: 13px;
+  margin-bottom: 0px;
+  font-weight: 600 !important;
+}
+@media (max-width: 767px) {
+  .headingtitle h2 {
+    font-size: 15px;
+  }
+  .common-para p {
+    font-size: 13px;
+  }
+  .common-para a {
+    font-size: 13px;
+  }
+  .tips-list li {
+    font-size: 12px;
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+  }
+
+  .tips-list strong {
+    color: #ff832a;
+    display: block;
+    font-size: 12px;
+    margin-bottom: 0px;
+    font-weight: 600 !important;
+  }
+}
