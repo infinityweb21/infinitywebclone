@@ -1,7 +1,7 @@
 /* === Hero Section Start === */
 .hero-section-three {
   position: relative;
-  padding: 190px 0 100px;
+  padding: 110px 0 40px;
   background: url("../../../../public/assets/images/car/car-banner.webp")
     no-repeat;
   background-position: center;
@@ -24,13 +24,26 @@
   margin-bottom: 16px;
 }
 .display-5 {
-  font-size: 44px;
+  font-size: 20px;
   font-weight: 700;
+}
+.hero-section-three {
+  position: relative;
+}
+.hero-section-three::before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 /* === Hero Section End === */
 /* === Category & Form Section Start === */
 .section {
-  padding: 60px 0;
+  padding: 30px 0;
 }
 .pickup-card {
   margin-bottom: 0;
@@ -40,10 +53,13 @@
 }
 .pickup-card h5 {
   max-width: 210px;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 600;
   color: #111827;
   margin: 0;
+}
+.pickup-card p {
+  font-size: 14px;
 }
 .bg-secondary-100 {
   background-color: #f1f7ed !important;
@@ -70,13 +86,19 @@
 .bg-teal {
   background-color: #0e9384 !important;
 }
+.bg-dark-red {
+  background-color: #cf3425 !important;
+}
+.border-dark-red {
+  border: 1px solid #cf3425 !important;
+}
 .bg-teal {
   background-color: #0e9384 !important;
   border: 1px solid #0e9384 !important;
   color: #fff;
 }
 .category-wrapper {
-  padding-top: 60px;
+  padding-top: 30px;
 }
 .section-header {
   margin-bottom: 40px;
@@ -85,9 +107,9 @@
   text-align: center;
   margin-bottom: 24px;
 }
-.category-wrap h6{
+.category-wrap h6 {
   color: #111827;
-  font-size: 16px;
+  font-size: 14px;
 }
 .category-wrap .category-img {
   background: #f8fafb;
@@ -125,7 +147,7 @@
 .btn {
   border-radius: 40px;
   padding: 9px 16px;
-  font-size: 14px;
+  font-size: 12px;
   transition: all 0.5s;
   font-weight: 500;
 }
@@ -223,7 +245,8 @@
   color: #fff;
 }
 .about-car .about-exp p {
-  color: #e4ebf1;
+  color: #fff;
+  font-weight: 500;
 }
 .section-header {
   margin-bottom: 40px;
@@ -233,7 +256,7 @@
   opacity: 1;
 }
 .fs-14 {
-  font-size: 0.875rem !important;
+  font-size: 0.675rem !important;
 }
 .border-bottom {
   border-bottom: 1px solid #e4ebf1 !important;
@@ -263,7 +286,7 @@ p:last-child {
 }
 .about-heading {
   font-weight: 700;
-  font-size: 32px;
+  font-size: 20px;
 }
 .sub-title {
   color: #4e5561;
@@ -280,9 +303,11 @@ p:last-child {
 }
 .sec-title {
   font-weight: 700;
-  font-size: 32px;
+  font-size: 20px;
 }
-
+.section-header p {
+  font-size: 14px;
+}
 .category-title a {
   color: #111827;
   cursor: pointer;
@@ -400,15 +425,15 @@ p:last-child {
   color: #fff;
 }
 .place-content h5 {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   color: #111827;
 }
 .place-content p {
-  font-size: 16px;
+  font-size: 12px;
   color: #4e5561;
 }
-.place-span-content{
+.place-span-content {
   font-size: 14px;
   font-weight: 500;
   color: #4e5561;
@@ -436,24 +461,28 @@ p:last-child {
   z-index: -1;
 }
 .plan-sec {
-  margin-right: 60px;
+  // margin-right: 60px;
   z-index: 2;
   position: relative;
 }
 .plan-card {
   background: #fff;
-  padding: 40px;
+  padding: 16px;
   border-radius: 10px;
   margin-bottom: 24px;
 }
+.plan-card h2 {
+  font-size: 14px;
+  font-weight: 700;
+}
 .plan-card h5 {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 600;
   color: #111827;
 }
 .plan-card p {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 12px;
   color: #4e5561;
 }
 .plan-card.active {
@@ -480,7 +509,7 @@ p:last-child {
 }
 .faq-hader p {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   color: #e4ebf1;
 }
 .faq-three .accordion-item {
@@ -591,7 +620,10 @@ p:last-child {
   padding: 8px 0 8px 30px;
   background-color: transparent;
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
+}
+.faq-three p{
+  font-size: 13px;
 }
 .faq-three .accordion-item .accordion-button:focus {
   box-shadow: none;
@@ -604,11 +636,12 @@ p:last-child {
   -ms-transform: translateY(-50%);
   left: 0;
   z-index: 1;
+  display: none;
 }
 /* ===  Testimonial Section End === */
 /* ===  Bokking Form Section Start === */
 .booking-form {
-  background: #ffffff;
+  background: #111827;
   padding: 30px;
   border-radius: 10px;
   max-width: 750px;
@@ -631,6 +664,8 @@ p:last-child {
   display: block;
   margin-bottom: 8px;
   font-weight: 500;
+  font-size: 14px;
+  color: #fff;
 }
 
 .input-icon-group {
@@ -653,6 +688,11 @@ p:last-child {
   border-radius: 6px;
   font-size: 14px;
   transition: border-color 0.2s ease;
+  white-space: normal;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  text-overflow: ellipsis;
 }
 
 .input-icon-group input:focus {
@@ -687,12 +727,12 @@ p:last-child {
   text-align: left;
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
-  color: #111827;
+  color: #fff;
   font-weight: 700;
 }
-.btn.btn-small{
+.btn.btn-small {
   padding: 5px 12px;
-  font-size: 12px;
+  font-size: 10px;
 }
 /* Responsive tweaks */
 @media (max-width: 600px) {
@@ -705,3 +745,76 @@ p:last-child {
   }
 }
 /* ===  Bokking Form Section End === */
+
+@media (min-width: 992px) {
+  .display-5 {
+    font-size: 44px;
+    font-weight: 700;
+  }
+  .hero-section-three {
+    padding: 190px 0 100px;
+  }
+  .section {
+    padding: 60px 0;
+  }
+  .pickup-card h5 {
+    font-size: 20px;
+  }
+  .pickup-card p {
+    font-size: 16px;
+  }
+  .sec-title {
+    font-size: 32px;
+  }
+  .section-header p {
+    font-size: 16px;
+  }
+  .btn.btn-small {
+    font-size: 12px;
+  }
+  .category-wrap h6 {
+    font-size: 16px;
+  }
+  .about-heading {
+    font-size: 32px;
+  }
+  .btn {
+    font-size: 14px;
+  }
+  .place-content h5 {
+    font-size: 16px;
+  }
+  .place-content p {
+    font-size: 14px;
+  }
+  .fs-14 {
+    font-size: 0.875rem !important;
+  }
+  .plan-card h5 {
+    font-size: 20px;
+  }
+  .plan-card h2 {
+    font-size: 20px;
+  }
+  .plan-card {
+    padding: 40px;
+  }
+  .plan-card p {
+    font-size: 16px;
+  }
+  .faq-shape{
+    display: block;
+  }
+  .faq-hader p {
+    font-size: 16px;
+  }
+  .faq-three .accordion-item .accordion-button {
+    font-size: 18px;
+  }
+  .faq-three p{
+    font-size: 16px;
+  }
+  .category-wrapper {
+    padding-top: 60px;
+  }
+}
