@@ -20,7 +20,7 @@
 <section class="section">
   <div class="container">
     <div class="row justify-content-center g-4">
-      <div class="col-md-5">
+      <div class="col-lg-5 d-flex order-2 order-lg-0">
         <div class="row g-3 g-lg-4">
           <div class="col-12 d-flex">
             <a href="tel:{{phoneNumber }}">
@@ -74,7 +74,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-7">
+      <div class="col-lg-7 d-flex">
         <div class="booking-form-wrap">
           <!-- Booking Form -->
           <form id="booking-form" [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="booking-form" action="/search" method="get">

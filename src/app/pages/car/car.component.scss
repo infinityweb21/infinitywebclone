@@ -648,6 +648,9 @@ p:last-child {
 }
 /* ===  Testimonial Section End === */
 /* ===  Bokking Form Section Start === */
+.booking-form-wrap{
+  width: 100%;
+}
 .booking-form {
   background: #111827;
   padding: 30px;
@@ -664,7 +667,7 @@ p:last-child {
 
 .form-row {
   display: flex;
-  gap: 20px;
+  gap: 0px;
   flex-wrap: wrap;
 }
 
@@ -754,6 +757,11 @@ p:last-child {
 }
 /* ===  Bokking Form Section End === */
 
+@media (min-width: 768px) {
+.form-row {
+  gap: 16px;
+}
+}
 @media (min-width: 992px) {
   .display-5 {
     font-size: 44px;
@@ -825,4 +833,9 @@ p:last-child {
   .category-wrapper {
     padding-top: 60px;
   }
+  .form-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
 }
