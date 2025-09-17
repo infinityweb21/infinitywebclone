@@ -447,142 +447,144 @@ export const routes: Routes = [
           ).then((m) => m.CaliforniaComponent),
       },
 
-      {
-        path: 'top-destinations/florida',
-        loadComponent: () =>
-          import('./pages/top-destinations/florida/florida.component').then(
-            (m) => m.FloridaComponent
-          ),
-      },
-      {
-        path: 'top-destinations/san-francisco',
-        loadComponent: () =>
-          import(
-            './pages/top-destinations/san-francisco/san-francisco.component'
-          ).then((m) => m.SanFranciscoComponent),
-      },
-      {
-        path: 'top-destinations/singapore',
-        loadComponent: () =>
-          import('./pages/top-destinations/singapore/singapore.component').then(
-            (m) => m.SingaporeComponent
-          ),
-      },
-      {
-        path: 'top-destinations/swis-alps',
-        loadComponent: () =>
-          import('./pages/top-destinations/swis-alps/swis-alps.component').then(
-            (m) => m.SwisAlpsComponent
-          ),
-      },
-      {
-        path: 'top-destinations/kuala-lumpur',
-        loadComponent: () =>
-          import(
-            './pages/top-destinations/kuala-lumpur/kuala-lumpur.component'
-          ).then((m) => m.KualaLumpurComponent),
-      },
-      {
-        path: 'top-destinations/sydney',
-        loadComponent: () =>
-          import('./pages/top-destinations/sydney/sydney.component').then(
-            (m) => m.SydneyComponent
-          ),
-      },
-      {
-        path: 'top-destinations/tokyo',
-        loadComponent: () =>
-          import('./pages/top-destinations/tokyo/tokyo.component').then(
-            (m) => m.TokyoComponent
-          ),
-      },
-      {
-        path: 'top-destinations/zurich',
-        loadComponent: () =>
-          import('./pages/top-destinations/zurich/zurich.component').then(
-            (m) => m.ZurichComponent
-          ),
-      },
-      {
-        path: 'top-destinations',
-        loadComponent: () =>
-          import(
-            './pages/top-destinations/top-destination/top-destination.component'
-          ).then((m) => m.TopDestinationComponent),
-      },
-      {
-        path: 'top-airlines',
-        loadComponent: () =>
-          import(
-            './pages/top-destinations/top-airlines/top-airlines.component'
-          ).then((m) => m.TopAirlinesComponent),
-        title: 'Affordable Airlines Deals | Infinityfarecompare',
-        data: {
-          metaTitle: 'Affordable Airlines Deals | Infinityfarecompare',
-          metaDescription:
-            'Don’t miss out on limited-time airline offers. Compare top carriers and lock in your flight today. Simple, fast, and secure booking.',
-        },
-      },
-      {
-        path: 'top-route',
-        loadComponent: () =>
-          import(
-            './pages/top-destinations/top-routes/top-routes.component'
-          ).then((m) => m.TopRoutesComponent),
-        title: 'Our Leading Flight Routes | Infinityfarecompare',
-        data: {
-          metaTitle: 'Our Leading Flight Routes | Infinityfarecompare',
-          metaDescription:
-            'See and explore our choices! Learn more about the top flight routes reserved by passengers around the world through our platform. Click here now!',
-        },
-      },
-      {
-        path: 'speacial-deals',
-        loadComponent: () =>
-          import(
-            './pages/top-destinations/special-deals/special-deals.component'
-          ).then((m) => m.SpecialDealsComponent),
-        title: 'Special Deals for Your Travel | Infinityfarecompare',
-        data: {
-          metaTitle: 'Special Deals for Your Travel | Infinityfarecompare',
-          metaDescription:
-            'Infinityfarecompare offers special deals on hotels, flights, and cruise bookings to fulfil your travel dreams. Call us today!',
-        },
-      },
-      {
-        path: 'cruise-lines',
-        loadComponent: () =>
-          import(
-            './pages/top-destinations/cruise-lines/cruise-lines.component'
-          ).then((m) => m.CruiseLinesComponent),
-        title: 'Your Guide to Cruise Booking Deals | Infinityfarecompare',
-        data: {
-          metaTitle: 'Your Guide to Cruise Booking Deals | Infinityfarecompare',
-          metaDescription:
-            'Plan your perfect escape with ease and explore beautiful destinations with onboard activities and exclusive offers. Click here!',
-        },
-      },
-      {
-        path: 'thankyou',
-        loadComponent: () =>
-          import('./components/thankyou/thankyou.component').then(
-            (m) => m.ThankyouComponent
-          ),
-      },
-      {
-        path: 'private-jet',
-        loadComponent: () =>
-          import('./pages/private-jet/private-jet.component').then(
-            (m) => m.PrivateJetComponent
-          ),
-        title: ' Choose our Private Jet Services | Infinityfarecompare',
-        data: {
-          metaTitle: ' Choose our Private Jet Services | Infinityfarecompare',
-          metaDescription:
-            ' Experience the finest offerings of Private Jets with infinityfarecompare.us ! Travel on your terms with flexible bookings, luxurious experiences & privacy!',
-        },
-      },
-      {
+{
+  path: 'top-destinations/florida',
+  loadComponent: () =>
+    import('./pages/top-destinations/florida/florida.component').then(
+      (m) => m.FloridaComponent
+    ),
+},
+{
+  path: 'top-destinations/san-francisco',
+  loadComponent: () =>
+    import('./pages/top-destinations/san-francisco/san-francisco.component').then(
+      (m) => m.SanFranciscoComponent
+    ),
+},
+{
+  path: 'top-destinations/singapore',
+  loadComponent: () =>
+    import('./pages/top-destinations/singapore/singapore.component').then(
+      (m) => m.SingaporeComponent
+    ),
+},
+{
+  path: 'top-destinations/swis-alps',
+  loadComponent: () =>
+    import('./pages/top-destinations/swis-alps/swis-alps.component').then(
+      (m) => m.SwisAlpsComponent
+    ),
+},
+{
+  path: 'top-destinations/kuala-lumpur',
+  loadComponent: () =>
+    import('./pages/top-destinations/kuala-lumpur/kuala-lumpur.component').then(
+      (m) => m.KualaLumpurComponent
+    ),
+},
+{
+  path: 'top-destinations/sydney',
+  loadComponent: () =>
+    import('./pages/top-destinations/sydney/sydney.component').then(
+      (m) => m.SydneyComponent
+    ),
+},
+     {
+  path: 'top-destinations/tokyo',
+  loadComponent: () =>
+    import('./pages/top-destinations/tokyo/tokyo.component').then(
+      (m) => m.TokyoComponent
+    ),
+}, 
+{
+  path: 'top-destinations/zurich',
+  loadComponent: () =>
+    import('./pages/top-destinations/zurich/zurich.component').then(
+      (m) => m.ZurichComponent
+    ),
+},
+{
+  path: 'top-destinations',
+  loadComponent: () =>
+    import('./pages/top-destinations/top-destination/top-destination.component').then(
+      (m) => m.TopDestinationComponent
+    ),
+},
+{
+  path: 'top-airlines',
+  loadComponent: () =>
+    import('./pages/top-destinations/top-airlines/top-airlines.component').then(
+      (m) => m.TopAirlinesComponent
+    ),
+    title: 'Affordable Airlines Deals | Infinityfarecompare',
+          data: { 
+            metaTitle: 'Affordable Airlines Deals | Infinityfarecompare',
+            metaDescription: 'Don’t miss out on limited-time airline offers. Compare top carriers and lock in your flight today. Simple, fast, and secure booking.'
+          }
+},
+{
+  path: 'top-route',
+  loadComponent: () =>
+    import('./pages/top-destinations/top-routes/top-routes.component').then(
+      (m) => m.TopRoutesComponent
+    ),
+    title: 'Our Leading Flight Routes | Infinityfarecompare',
+          data: { 
+            metaTitle: 'Our Leading Flight Routes | Infinityfarecompare',
+            metaDescription: 'See and explore our choices! Learn more about the top flight routes reserved by passengers around the world through our platform. Click here now!'
+          }
+},
+{
+  path: 'speacial-deals',
+  loadComponent: () =>
+    import('./pages/top-destinations/special-deals/special-deals.component').then(
+      (m) => m.SpecialDealsComponent
+    ),
+    title: 'Special Deals for Your Travel | Infinityfarecompare',
+          data: { 
+            metaTitle: 'Special Deals for Your Travel | Infinityfarecompare',
+            metaDescription: 'Infinityfarecompare offers special deals on hotels, flights, and cruise bookings to fulfil your travel dreams. Call us today!'
+          }
+},
+{
+  path: 'cruise-lines',
+  loadComponent: () =>
+    import('./pages/top-destinations/cruise-lines/cruise-lines.component').then(
+      (m) => m.CruiseLinesComponent
+    ),
+    title: 'Your Guide to Cruise Booking Deals | Infinityfarecompare',
+          data: { 
+            metaTitle: 'Your Guide to Cruise Booking Deals | Infinityfarecompare',
+            metaDescription: 'Plan your perfect escape with ease and explore beautiful destinations with onboard activities and exclusive offers. Click here!'
+          }
+},
+{
+  path: 'thankyou',
+  loadComponent: () =>
+    import('./components/thankyou/thankyou.component').then(
+      (m) => m.ThankyouComponent
+    ),
+},
+{
+  path: 'thank-you',
+  loadComponent: () =>
+    import('./components/leadthankyou/leadthankyou.component').then(
+      (m) => m.LeadthankyouComponent
+    ),
+},
+{
+  path: 'private-jet',
+  loadComponent: () =>
+    import('./pages/private-jet/private-jet.component').then(
+      (m) => m.PrivateJetComponent
+    ),
+    title: ' Choose our Private Jet Services | Infinityfarecompare',
+          data: { 
+            metaTitle: ' Choose our Private Jet Services | Infinityfarecompare',
+            metaDescription: ' Experience the finest offerings of Private Jets with infinityfarecompare.us ! Travel on your terms with flexible bookings, luxurious experiences & privacy!'
+          }
+},
+{
         path: 'car',
         loadComponent: () =>
           import('./pages/car/car.component').then((m) => m.CarComponent),

@@ -13,6 +13,7 @@ export const environment = {
     CREATE_FLIGHT_BOOKING_MOBILEAPP:'api/flight/createbooking',
     GENERATE_FLIGHT_TICKET:'api/flight/generateeticketpdf',
     SEND_EMAIl:'api/v1/mondee/send-mail',
+    SEND_LEAD:'api/cruise/save_lead',
 
 
     //hotel endpoints
@@ -28,6 +29,8 @@ export const environment = {
 
     CREATE_BOOKING:'api/hotel/createbooking',
     CUSTOMER_BOOKING_DETAILS:'api/customer/booking_details',
-    GENERATE_TICKET_PDF:'api/hotel/generateeticketpdf'
+    GENERATE_TICKET_PDF:'api/hotel/generateeticketpdf',
+  CAR_BOOKING: 'https://api.theinfinitytravel.com/index.php/api/flight/lead'
+
 
 };
