@@ -182,7 +182,6 @@
   background: #f8fafb !important;
 }
 .about-car {
-  margin-right: 50px;
   position: relative;
   -webkit-transition: all 0.3s ease-out 0s;
   -ms-transition: all 0.3s ease-out 0s;
@@ -763,6 +762,9 @@ p:last-child {
 }
 }
 @media (min-width: 992px) {
+  .about-car {
+    margin-right: 50px;
+  }
   .display-5 {
     font-size: 44px;
     font-weight: 700;
