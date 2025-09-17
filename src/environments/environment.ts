@@ -30,7 +30,7 @@ export const environment = {
     CREATE_BOOKING:'api/hotel/createbooking',
     CUSTOMER_BOOKING_DETAILS:'api/customer/booking_details',
     GENERATE_TICKET_PDF:'api/hotel/generateeticketpdf',
-  CAR_BOOKING: 'https://api.theinfinitytravel.com/index.php/api/flight/lead'
-
+    CAR_BOOKING: 'https://api.theinfinitytravel.com/index.php/api/flight/lead',
+  SEND_EMAIL: 'api/v1/mondee/send-Email'
 
 };

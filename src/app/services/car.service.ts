@@ -19,6 +19,12 @@ export class CarService {
       .pipe(retry(1), catchError(this.errorHandler));
   }
 
+  sendEmails(data: any): Observable<any> {
+    return this.http
+      .post(environment.SEND_EMAIL, data)
+      .pipe(retry(1), catchError(this.errorHandler));
+  }
+
   private errorHandler(error: any): Observable<never> {
     return throwError(() => error || 'Server Error');
   }
