@@ -9,13 +9,16 @@ import { environment } from '../../../environments/environment';
 })
 export class SharedService {
   apiUrl: string = environment.API_URL;
+  MOBILE_APP_URL :string = environment.MOBILE_APP_URL;
 
   private data = {
     companyName: 'infinityfarecompare',
     phoneNumber: '(888) 230-2647',
     address: '1876 Harvest Cir Tustin, CA 92780, USA',
     email: 'info@infinityfarecompare.us',
-    sendmail: 'developer.infinityweb@gmail.com',
+    // sendmail: 'developer.infinityweb@gmail.com',
+    sendEmail:"booking@theinfinitytravel.com",
+    // sendmail: 'info@infinityfarecompare.us',
     link: 'https://infinityfarecompare.us/',
     appName: 'Infinity Travel',
   };
@@ -80,6 +83,13 @@ export class SharedService {
     this.selectedSeatTotal.set(0);
     localStorage.removeItem(this.STORAGE_KEY);
   }
+
+  sendEmail(emailData: any): Observable<any> {
+    return this.http
+      .post(`${this.MOBILE_APP_URL}${environment.SEND_LEAD}`, emailData)
+      .pipe(retry(1), catchError(this.errorHandler));
+  }
+
   private errorHandler(error: any): Observable<never> {
     return throwError(() => error || 'Server Error');
   }

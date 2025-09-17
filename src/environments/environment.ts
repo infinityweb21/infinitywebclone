@@ -13,6 +13,7 @@ export const environment = {
     CREATE_FLIGHT_BOOKING_MOBILEAPP:'api/flight/createbooking',
     GENERATE_FLIGHT_TICKET:'api/flight/generateeticketpdf',
     SEND_EMAIl:'api/v1/mondee/send-mail',
+    SEND_LEAD:'api/cruise/save_lead',
 
 
     //hotel endpoints
