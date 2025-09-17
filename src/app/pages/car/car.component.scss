@@ -88,6 +88,10 @@
 }
 .bg-dark-red {
   background-color: #cf3425 !important;
+  box-shadow: 0 4px 12px rgba(207, 52, 37, 0.5) !important;
+}
+.bg-dark-red:hover {
+  box-shadow: 0 8px 24px rgba(207, 52, 37, 0.8), 0 0 10px rgba(255, 100, 80, 0.5) !important;
 }
 .border-dark-red {
   border: 1px solid #cf3425 !important;
@@ -142,7 +146,11 @@
 .btn.btn-dark {
   background-color: #212e47;
   border: 1px solid #212e47;
+  box-shadow: 0 4px 10px rgba(17, 24, 39, 0.5);
   color: #fff;
+}
+.btn.btn-dark:hover{
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 12px rgba(100, 100, 255, 0.2);
 }
 .btn {
   border-radius: 40px;
@@ -646,7 +654,7 @@ p:last-child {
   border-radius: 10px;
   max-width: 750px;
   margin: 0 auto;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 10px rgba(17, 24, 39, 0.5);
 }
 
 .form-group {
@@ -677,7 +685,7 @@ p:last-child {
 .input-icon-group i {
   position: absolute;
   left: 12px;
-  color: #666;
+  color: #111827;
   font-size: 16px;
 }
 

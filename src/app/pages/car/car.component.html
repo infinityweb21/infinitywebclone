@@ -46,7 +46,7 @@
                   <div class="d-flex align-items-center justify-content-between mb-3">
                     <h5>Easy Booking System</h5>
                     <span class="avatar avatar-lg bg-purple rounded-circle flex-shrink-0 ms-3">
-                      <i class="fas fa-chart-bar  fs-24"></i>
+                      <i class="fa-solid fa-ticket fs-24"></i>
                     </span>
                   </div>
                   <p>
@@ -64,7 +64,7 @@
                   <div class="d-flex align-items-center justify-content-between mb-3">
                     <h5>Safe & Secure Rides</h5>
                     <span class="avatar avatar-lg bg-teal rounded-circle flex-shrink-0 ms-3">
-                      <i class="fas fa-coins fs-24"></i>
+                      <i class="fa-solid fa-car-side fs-24"></i>
                     </span>
                   </div>
                   <p>Rigorous safety measures and secure vehicles guarantee a protected, worry-free travel experience</p>
@@ -139,7 +139,7 @@
               <div class="form-group">
                 <label for="pickup-date">Pick-up Date</label>
                 <div class="input-icon-group">
-                  <i class="fas fa-calendar-alt"></i> <input type="date" (dateSelected)="onDatesSelected($event, 'pickup_date')" [appFlatpickr]="'basic'" id="pickup-date" name="pickup_date" required formControlName="pickup_date"/>
+                  <i class="fas fa-calendar-alt"></i> <input type="date" (dateSelected)="onDatesSelected($event, 'pickup_date')" [appFlatpickr]="'basic'" id="pickup-date" name="pickup_date" required formControlName="pickup_date" placeholder="Pick-up Date"/>
                 </div>
               </div>
 
@@ -155,7 +155,7 @@
               <div class="form-group">
                 <label for="dropoff-date">Drop-off Date</label>
                 <div class="input-icon-group">
-                  <i class="fas fa-calendar-alt"></i> <input type="date" [appFlatpickr]="'basic'" (dateSelected)="onDatesSelected($event, 'dropoff_date')" id="dropoff-date" name="dropoff_date" required  formControlName="dropoff_date" />
+                  <i class="fas fa-calendar-alt"></i> <input type="date" [appFlatpickr]="'basic'" (dateSelected)="onDatesSelected($event, 'dropoff_date')" id="dropoff-date" name="dropoff_date" required  formControlName="dropoff_date" placeholder="Drop-off Date" />
                 </div>
               </div>
 
