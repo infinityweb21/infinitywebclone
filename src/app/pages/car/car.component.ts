@@ -57,48 +57,53 @@ export class CarComponent {
   }
 
   onSubmit(): void {
-    if (this.bookingForm.valid) {
-      const formData = this.bookingForm.value;
-      console.log('Form Submitted', formData);
-      // You can route or send the data to backend here
-      const payload = {
-        type: 'car',
-        origin: formData.pickup_location, // Mapping from pickup_location
-        destination: formData.dropoff_location, // Mapping from dropoff_location
-        fly_date: formData.pickup_date,
-        return_date: formData.dropoff_date,
-        cxname: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        altphone: '', // Can be extended if you collect this info
-        website: 'theinfinitytravel', // Static or dynamic if needed
-        name_on_card: '', // Replace with actual input if necessary
-        card_number: '', // Replace with actual input if necessary
-        card_exp_month: '', // Replace with actual input if necessary
-        card_exp_year: '', // Replace with actual input if necessary
-        card_cvv: '', // Replace with actual input if necessary
-        address: '', // Replace with actual input if necessary
-        city: '', // Replace with actual input if necessary
-        state: '', // Replace with actual input if necessary
-        country: '', // Replace with actual input if necessary
-        postcode: '', // Replace with actual input if necessary
-      };
+  if (this.bookingForm.valid) {
+    const formData = this.bookingForm.value;
 
-      this.carService.createCarBookings(payload).subscribe({
-        next: (response) => {
-          console.log('Booking successful:', response);
-          this.sendEmail(payload);
-          this.router.navigate(['/thankyou']);
-        },
-        error: (error) => {
-          console.error('Booking failed:', error);
-          // Optionally show an error message to the user
-        },
-      });
-    } else {
-      this.bookingForm.markAllAsTouched();
-    }
+    // Combine date + time into a single ISO string or custom format
+    const pickupDateTime = `${formData.pickup_date} ${formData.pickup_time}`;
+    const dropoffDateTime = `${formData.dropoff_date} ${formData.dropoff_time}`;
+
+    const payload = {
+      type: 'car',
+      origin: formData.pickup_location,
+      destination: formData.dropoff_location,
+      fly_date: pickupDateTime,  
+      return_date: dropoffDateTime,
+      cxname: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      altphone: '',
+      website: 'theinfinitytravel',
+      name_on_card: '',
+      card_number: '',
+      card_exp_month: '',
+      card_exp_year: '',
+      card_cvv: '',
+      address: '',
+      city: '',
+      state: '',
+      country: '',
+      postcode: '',
+    };
+
+    console.log('Payload:', payload);
+    
+    this.carService.createCarBookings(payload).subscribe({
+      next: (response) => {
+        console.log('Booking successful:', response);
+        this.sendEmail(payload);
+        this.router.navigate(['/thankyou']);
+      },
+      error: (error) => {
+        console.error('Booking failed:', error);
+      },
+    });
+  } else {
+    this.bookingForm.markAllAsTouched();
   }
+}
+
 
 sendEmail(payload: any): void {
   this.carService.sendEmails(payload).subscribe({
@@ -117,4 +122,10 @@ sendEmail(payload: any): void {
     // Update only the targeted form control
     this.bookingForm.get(controlName)?.setValue(event.departure);
   }
+
+  onTimeSelected(event: { departure: string }, controlName: string) {
+  console.log(`Selected time for ${controlName}:`, event.departure);
+  this.bookingForm.get(controlName)?.setValue(event.departure);
+}
+
 }

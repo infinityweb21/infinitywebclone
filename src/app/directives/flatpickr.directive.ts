@@ -16,7 +16,7 @@ import { Instance } from 'flatpickr/dist/types/instance';
   selector: '[appFlatpickr]',
 })
 export class FlatpickrDirective implements OnDestroy, AfterViewInit, OnChanges {
-  readonly mode = input<'single' | 'range' | 'basic'>('single', {
+  readonly mode = input<'single' | 'range' | 'basic' | 'time'>('single', {
     alias: 'appFlatpickr',
   });
   @Output() dateSelected = new EventEmitter<{
@@ -43,6 +43,34 @@ export class FlatpickrDirective implements OnDestroy, AfterViewInit, OnChanges {
 
   private initFlatpickr(): void {
     const showMonths = window.innerWidth < 768 ? 1 : 2;
+
+     // TIME mode
+  if (this.mode() === 'time') {
+    this.flatpickrInstance = flatpickr(this.el.nativeElement, {
+      enableTime: true,
+      noCalendar: true,
+      dateFormat: 'H:i', // 24-hour format (HH:mm)
+      time_24hr: true,
+      disableMobile: true,
+      onChange: (selectedDates, dateStr, instance) => {
+        const [time] = selectedDates;
+        if (time) {
+          const formatted = instance.formatDate(time, 'H:i');
+          this.el.nativeElement.value = formatted;
+          this.dateSelected.emit({ departure: formatted });
+        } else {
+          this.el.nativeElement.value = '';
+          this.dateSelected.emit({ departure: '' });
+        }
+      },
+    });
+
+    this.el.nativeElement.addEventListener('click', (e) => {
+      e.preventDefault();
+      this.flatpickrInstance.open();
+    });
+    return;
+  }
 
     // BASIC mode — mimics the original script behavior
     if (this.mode() === 'basic') {

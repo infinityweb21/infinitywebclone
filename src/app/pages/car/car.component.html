@@ -146,7 +146,7 @@
               <div class="form-group">
                 <label for="pickup-time">Pick-up Time</label>
                 <div class="input-icon-group">
-                  <i class="fas fa-clock"></i> <input type="time" id="pickup-time" name="pickup_time" required formControlName="pickup_time" />
+                  <i class="fas fa-clock"></i> <input type="time" id="pickup-time" name="pickup_time" appFlatpickr="time" (dateSelected)="onTimeSelected($event, 'pickup_time')" required formControlName="pickup_time" placeholder="Pick-up Time" />
                 </div>
               </div>
             </div>
@@ -162,7 +162,7 @@
               <div class="form-group">
                 <label for="dropoff-time">Drop-off Time</label>
                 <div class="input-icon-group">
-                  <i class="fas fa-clock"></i> <input type="time" id="dropoff-time" name="dropoff_time" required formControlName="dropoff_time"  />
+                  <i class="fas fa-clock"></i> <input type="time" id="dropoff-time" name="dropoff_time" appFlatpickr="time" (dateSelected)="onTimeSelected($event, 'dropoff_time')" required formControlName="dropoff_time"  placeholder="Drop-off Time" />
                 </div>
               </div>
             </div>
