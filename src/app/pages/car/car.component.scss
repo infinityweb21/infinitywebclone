@@ -410,7 +410,7 @@ p:last-child {
   color: #212e47 !important;
 }
 .fs-14 {
-  font-size: 0.875rem !important;
+  font-size: 0.775rem !important;
 }
 .badge.badge-xs {
   font-size: 10px;
@@ -735,7 +735,7 @@ p:last-child {
 }
 .form-title {
   text-align: left;
-  font-size: 1.8rem;
+  font-size: 20px;
   margin-bottom: 1.5rem;
   color: #fff;
   font-weight: 700;
@@ -743,6 +743,9 @@ p:last-child {
 .btn.btn-small {
   padding: 5px 12px;
   font-size: 10px;
+}
+.category-link-wrap{
+  display: flex;
 }
 /* Responsive tweaks */
 @media (max-width: 600px) {
@@ -767,6 +770,9 @@ p:last-child {
 }
 }
 @media (min-width: 992px) {
+  .form-title {
+    font-size: 1.8rem;
+  }
   .plan-sec{
     padding-right: 16px;
   }
