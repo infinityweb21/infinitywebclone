@@ -3,15 +3,35 @@ import { SharedService } from '../../services/shared/shared.service';
 import { DatePickerModule } from 'primeng/datepicker';
 import { InputTextModule } from 'primeng/inputtext';
 import {
+  AbstractControl,
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { FlatpickrDirective } from '../../directives/flatpickr.directive';
 import { CarService } from '../../services/car.service';
 import { Router } from '@angular/router';
 
+export function pickupBeforeDropoffValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const pickupDate = control.get('pickup_date')?.value;
+    const pickupTime = control.get('pickup_time')?.value;
+    const dropoffDate = control.get('dropoff_date')?.value;
+    const dropoffTime = control.get('dropoff_time')?.value;
+
+    if (!pickupDate || !pickupTime || !dropoffDate || !dropoffTime) {
+      return null; // let required validators handle empties
+    }
+
+    const pickup = new Date(`${pickupDate}T${pickupTime}`);
+    const dropoff = new Date(`${dropoffDate}T${dropoffTime}`);
+
+    return dropoff > pickup ? null : { dropoffBeforePickup: true };
+  };
+}
 @Component({
   selector: 'app-car',
   imports: [
@@ -53,7 +73,8 @@ export class CarComponent {
       pickup_time: [null, Validators.required],
       dropoff_date: [null, Validators.required],
       dropoff_time: [null, Validators.required],
-    });
+    },{ validators: pickupBeforeDropoffValidator() });
+    
   }
 
   onSubmit(): void {
