@@ -13,9 +13,10 @@ import {
 } from '@angular/forms';
 import { FlatpickrDirective } from '../../directives/flatpickr.directive';
 import { CarService } from '../../services/car.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
   import { switchMap, finalize } from 'rxjs/operators';
 import { SpinnerService } from '../../services/common/spinner.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 export function pickupBeforeDropoffValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -53,7 +54,9 @@ export class CarComponent {
   private spinnerService: SpinnerService = inject(SpinnerService);
 
   private router: Router = inject(Router);
-
+  private route: ActivatedRoute = inject(ActivatedRoute);
+ private meta: Meta=inject(Meta);
+    private title: Title = inject(Title);
   companyName: string = '';
   phoneNumber: string = '';
   getData: any;
@@ -66,6 +69,47 @@ export class CarComponent {
     this.companyName = data.companyName;
     this.phoneNumber = data.phoneNumber;
 
+    const metaTitle = this.route.snapshot.data['metaTitle'];
+    const metaDescription = this.route.snapshot.data['metaDescription'];
+
+     // Set title
+    if (metaTitle) {
+      this.title.setTitle(metaTitle);
+    }
+
+    // Set meta description
+    if (metaDescription) {
+      this.meta.updateTag({ name: 'description', content: metaDescription });
+    }
+
+    // Set additional meta tags for better SEO
+    this.meta.updateTag({
+      name: 'keywords',
+      content:
+        'contact us, customer support, travel assistance, infinity travel contact, help desk, travel support',
+    });
+    this.meta.updateTag({
+      property: 'og:title',
+      content: metaTitle || 'Get the Best Deals on Car Rentals | Infinityfarecompare',
+    });
+    this.meta.updateTag({
+      property: 'og:description',
+      content:
+        metaDescription ||
+        'Infinityfarecompare offers private car rentals for every type of traveler at the most reasonable prices. Call us to book your vehicles.',
+    });
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+    this.meta.updateTag({
+      name: 'twitter:title',
+      content: metaTitle,
+    });
+    this.meta.updateTag({
+      name: 'twitter:description',
+      content:
+        metaDescription ||
+        'Infinityfarecompare offers private car rentals for every type of traveler at the most reasonable prices. Call us to book your vehicles.',
+    });
     this.bookingForm = this.fb.group(
       {
         name: ['', Validators.required],

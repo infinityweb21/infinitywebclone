@@ -588,9 +588,9 @@ export const routes: Routes = [
         path: 'car',
         loadComponent: () =>
           import('./pages/car/car.component').then((m) => m.CarComponent),
-        title: ' Choose our Private car Services | Infinityfarecompare',
+        title: 'Get the Best Deals on Car Rentals | Infinityfarecompare',
         data: {
-          metaTitle: ' Get the Best Deals on Car Rentals | Infinityfarecompare',
+          metaTitle: 'Get the Best Deals on Car Rentals | Infinityfarecompare',
           metaDescription:
             'Infinityfarecompare offers private car rentals for every type of traveler at the most reasonable prices. Call us to book your vehicles.',
         },
