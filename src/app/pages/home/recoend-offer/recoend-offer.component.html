@@ -134,7 +134,7 @@
                 <p>Get Best Deals on Every Trip you Dream of</p>
             </div>
             <div class="booking-right">
-                <a  href="javascript:void(0);" class="cmn-btn btn-orange fs-20 fw-semibold">Book Now</a>
+                <a  href="tel:{{getData?.phoneNumber}}" class="cmn-btn btn-orange fs-20 fw-semibold">Book Now</a>
             </div>
         </div>
     </div>
@@ -143,12 +143,12 @@
 <!--=========== Trip Section Start  ==============-->
 <section class="cmn-gap pb-0">
     <div class="container container-xxl">
-        <div class="cmn-heading">
+        <!-- <div class="cmn-heading">
             <div class="heading-cmn-flex">
                 <h2>Top Global Flights</h2>
                 <a  href="javascript:void(0);">See all</a>
             </div>
-        </div>
+        </div> -->
         <div class="common-slider-container">
             <swiper-container #recoendSwiperRef1 init="true">
                 <swiper-slide *ngFor="let flight of flights">

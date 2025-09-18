@@ -37,6 +37,8 @@ export class HotelComponent {
 
   protected icon = inject(SvgIcons);
 
+  phoneNumber: string='';
+
   hotelRooms = [
     {
       title: 'Budget-Friendly Hotels ',
@@ -411,7 +413,9 @@ export class HotelComponent {
 
   ngOnInit(): void {
     // Company Name Get
+    
     const data = this.shareService.getcompanyName();
+    this.phoneNumber = data.phoneNumber;
     this.companyName = data.companyName;
      const metaTitle = this.route.snapshot.data['metaTitle'];
     const metaDescription = this.route.snapshot.data['metaDescription'];

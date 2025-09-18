@@ -1,6 +1,6 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router,RouterLink } from '@angular/router';
 import { SharedService } from '../../services/shared/shared.service';
 import {
   AbstractControl,
@@ -19,7 +19,7 @@ import { CountryISO, NgxIntlTelInputModule, PhoneNumberFormat, SearchCountryFiel
 
 @Component({
   selector: 'app-contact-us',
-  imports: [ReactiveFormsModule, NgIf,NgxIntlTelInputModule],
+  imports: [ReactiveFormsModule, NgIf, NgxIntlTelInputModule, RouterLink],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.scss',
 })

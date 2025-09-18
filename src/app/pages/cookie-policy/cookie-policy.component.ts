@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cookie-policy',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './cookie-policy.component.html',
   styleUrl: './cookie-policy.component.scss'
 })

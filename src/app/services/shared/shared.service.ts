@@ -19,7 +19,7 @@ export class SharedService {
     // sendmail: 'developer.infinityweb@gmail.com',
     sendEmail:"booking@theinfinitytravel.com",
     // sendmail: 'info@infinityfarecompare.us',
-    link: 'https://infinityfarecompare.us/',
+    link: 'https://infinityfarecompare.us',
     appName: 'Infinity Travel',
   };
 
