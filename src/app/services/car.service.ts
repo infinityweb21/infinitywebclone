@@ -11,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CarService {
   apiUrl: string = environment.CAR_BOOKING;
+  mainUrl: string = environment.API_URL;
+
   private http: HttpClient = inject(HttpClient);
 
   createCarBookings(data: any): Observable<any> {
@@ -21,7 +23,7 @@ export class CarService {
 
   sendEmails(data: any): Observable<any> {
     return this.http
-      .post(environment.SEND_EMAIL, data)
+      .post(this.mainUrl + environment.SEND_EMAIL, data)
       .pipe(retry(1), catchError(this.errorHandler));
   }
 

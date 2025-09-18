@@ -14,6 +14,8 @@ import {
 import { FlatpickrDirective } from '../../directives/flatpickr.directive';
 import { CarService } from '../../services/car.service';
 import { Router } from '@angular/router';
+  import { switchMap, finalize } from 'rxjs/operators';
+import { SpinnerService } from '../../services/common/spinner.service';
 
 export function pickupBeforeDropoffValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -48,6 +50,7 @@ export class CarComponent {
   private shareService: SharedService = inject(SharedService);
   private fb: FormBuilder = inject(FormBuilder);
   private carService: CarService = inject(CarService);
+  private spinnerService: SpinnerService = inject(SpinnerService);
 
   private router: Router = inject(Router);
 
@@ -63,25 +66,28 @@ export class CarComponent {
     this.companyName = data.companyName;
     this.phoneNumber = data.phoneNumber;
 
-    this.bookingForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      pickup_location: ['', Validators.required],
-      dropoff_location: ['', Validators.required],
-      pickup_date: [null, Validators.required],
-      pickup_time: [null, Validators.required],
-      dropoff_date: [null, Validators.required],
-      dropoff_time: [null, Validators.required],
-    },{ validators: pickupBeforeDropoffValidator() });
-    
+    this.bookingForm = this.fb.group(
+      {
+        name: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        phone: ['', Validators.required],
+        pickup_location: ['', Validators.required],
+        dropoff_location: ['', Validators.required],
+        pickup_date: [null, Validators.required],
+        pickup_time: [null, Validators.required],
+        dropoff_date: [null, Validators.required],
+        dropoff_time: [null, Validators.required],
+      },
+      { validators: pickupBeforeDropoffValidator() }
+    );
   }
 
-  onSubmit(): void {
+
+
+onSubmit(): void {
   if (this.bookingForm.valid) {
     const formData = this.bookingForm.value;
 
-    // Combine date + time into a single ISO string or custom format
     const pickupDateTime = `${formData.pickup_date} ${formData.pickup_time}`;
     const dropoffDateTime = `${formData.dropoff_date} ${formData.dropoff_time}`;
 
@@ -89,7 +95,7 @@ export class CarComponent {
       type: 'car',
       origin: formData.pickup_location,
       destination: formData.dropoff_location,
-      fly_date: pickupDateTime,  
+      fly_date: pickupDateTime,
       return_date: dropoffDateTime,
       cxname: formData.name,
       email: formData.email,
@@ -108,33 +114,22 @@ export class CarComponent {
       postcode: '',
     };
 
-    console.log('Payload:', payload);
-    
-    this.carService.createCarBookings(payload).subscribe({
-      next: (response) => {
-        console.log('Booking successful:', response);
-        this.sendEmail(payload);
-        this.router.navigate(['/thankyou']);
+    this.spinnerService.show();
+
+    this.carService.createCarBookings(payload).pipe(
+      switchMap(() => this.carService.sendEmails(payload)),
+      finalize(() => this.spinnerService.hide())
+    ).subscribe({
+      next: (res) => {
+        this.router.navigate(['/thankyou']); 
       },
       error: (error) => {
-        console.error('Booking failed:', error);
-      },
+        console.error('Booking or Email failed:', error);
+      }
     });
   } else {
     this.bookingForm.markAllAsTouched();
   }
-}
-
-
-sendEmail(payload: any): void {
-  this.carService.sendEmails(payload).subscribe({
-    next: (res) => {
-      console.log('Email sent successfully:', res);
-    },
-    error: (err) => {
-      console.error('Email sending failed:', err);
-    }
-  });
 }
 
   onDatesSelected(event: any, controlName: string): void {
@@ -145,8 +140,7 @@ sendEmail(payload: any): void {
   }
 
   onTimeSelected(event: { departure: string }, controlName: string) {
-  console.log(`Selected time for ${controlName}:`, event.departure);
-  this.bookingForm.get(controlName)?.setValue(event.departure);
-}
-
+    console.log(`Selected time for ${controlName}:`, event.departure);
+    this.bookingForm.get(controlName)?.setValue(event.departure);
+  }
 }
