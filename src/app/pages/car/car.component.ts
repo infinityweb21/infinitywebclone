@@ -86,7 +86,7 @@ export class CarComponent {
     this.meta.updateTag({
       name: 'keywords',
       content:
-        'contact us, customer support, travel assistance, infinity travel contact, help desk, travel support',
+        'car, customer support, travel assistance, infinity travel contact, help desk, travel support',
     });
     this.meta.updateTag({
       property: 'og:title',
