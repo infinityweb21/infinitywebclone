@@ -683,3 +683,9 @@
   width: max-content !important;
   padding: 4px 16px;
 }
+
+@media(max-width:767px){
+  .about-thumbnail {
+    margin-top: 16px;
+}
+}

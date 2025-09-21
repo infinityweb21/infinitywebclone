@@ -866,9 +866,16 @@
      .mobsecnew {
          position: sticky;
          top: 56px;
-         z-index: 6;
+         z-index: 1;
          padding: 10px 0px;
          background: #fff;
+     }
+
+     .offer-content .input-group .btn{
+        z-index: 0;
+     }
+     .common-form-content .p-inputtext{
+        padding-left: 0px;
      }
 
      .map-card-container {

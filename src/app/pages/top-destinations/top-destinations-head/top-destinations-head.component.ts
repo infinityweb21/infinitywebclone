@@ -38,7 +38,7 @@ export class TopDestinationsHeadComponent implements OnInit {
     amsterdam: '/assets/images/destination-banner/Amsterdam.webp',
     maldives: '/assets/images/destination-banner/maldives.webp',
     bangkok: '/assets/images/destination-banner/bangkok.webp',
-    california: '/assets/images/destination-banner/California.webp',
+    california: '/assets/images/destination-banner/california.webp',
     florida: '/assets/images/destination-banner/florida.webp',
     singapore: '/assets/images/destination-banner/singapore.webp',
     sydney: '/assets/images/destination-banner/sydney.webp',

@@ -94,7 +94,9 @@
         width: 90%;
         margin-left: 5%;
         clip-path: revert;
-        height: 470px;
+        height: max-content;
+        padding-bottom: 40px;
+    
     }
 
     .thankyou_content img {
