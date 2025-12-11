@@ -855,3 +855,135 @@ p:last-child {
   flex-wrap: wrap;
 }
 }
+
+
+// ======================= //
+
+.footer-contact-fixed {
+	display: none;
+}
+
+.footer-contact-fixed {
+    background: #212e47;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    padding: 5px;
+    text-align: center;
+}
+.footer-contact-fixed a {
+    background: transparent;
+    color: #fff;
+	border: 0;
+	font-size: 20px;
+	font-weight: 700;
+}
+.footer-contact-fixed a span {
+    display: inline-block;
+    margin-right: 8px;
+    animation-name: trin;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    border: 1px solid #fff;
+    width: 40px;
+    height: 40px;
+    line-height: 35px;
+    border-radius: 50%;
+}
+@keyframes trin {
+                0% {
+                    transform: rotate3d(0,0,1,0)
+                }
+
+                20%,32%,44%,56%,68% {
+                    transform: rotate3d(0,0,1,0)
+                }
+
+                23%,35%,47%,59%,71% {
+                    transform: rotate3d(0,0,1,15deg)
+                }
+
+                26%,38%,50%,62%,74% {
+                    transform: rotate3d(0,0,1,0)
+                }
+
+                29%,41%,53%,65%,77% {
+                    transform: rotate3d(0,0,1,-15deg)
+                }
+
+                80% {
+                    transform: rotate3d(0,0,1,0)
+                }
+            }
+
+.mob-cta-top {
+	display: none;
+}
+.mob-cta-top h2 {
+    font-size: 22px;
+    margin-bottom: 0;
+	font-weight: 700;
+}
+.mob-cta-top img {
+    margin-top: 10px;
+}
+.mob-cta-top ul {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+	margin-top: 0 !important;
+	justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+.mob-cta-top ul li {
+    font-size: 11px;
+}
+.mob-cta-top ul li i{
+    margin-right: 5px;
+}
+
+.mob-cta-top a {
+padding: 2px 20px;
+    width: 100%;
+    background-color: #212e47;
+    border-color: #212e47;
+    border-radius: 0 0.25rem 0.25rem 0 !important;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px !important;
+}
+.mob-cta-top a span {
+    display: inline-block;
+    margin-right: 0;
+    border: 0;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+}
+@media (max-width:767px) {
+.mob-cta-top {
+    display: flex;
+    height: 608px;
+    align-items: center;
+}
+.footer-contact-fixed {
+	display: block;
+}
+.cookies-box {
+    bottom: 62px;
+}
+.cookies-box.cookie-position {
+    bottom: 62px;
+}
+.details-modal-popup {
+        display: none !important;
+    }
+}
