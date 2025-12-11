@@ -883,15 +883,17 @@ p:last-child {
 .footer-contact-fixed a span {
     display: inline-block;
     margin-right: 8px;
-    animation-name: trin;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
     border: 1px solid #fff;
     width: 40px;
     height: 40px;
     line-height: 35px;
     border-radius: 50%;
+}
+.footer-contact-fixed a span svg {
+    animation-name: trin;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 @keyframes trin {
                 0% {
@@ -986,4 +988,7 @@ padding: 2px 20px;
 .details-modal-popup {
         display: none !important;
     }
+    	.short-cta-popup {
+    display: none !important;
+}
 }
