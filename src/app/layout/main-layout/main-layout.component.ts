@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 import { CookiesComponent } from '../../components/cookies/cookies.component';
 import { QuickContactComponent } from '../../components/quick-contact/quick-contact.component';
 import { SharedService } from '../../services/shared/shared.service';
+import { UnderMaintenanceComponent } from "../../pages/home/under-maintenance/under-maintenance.component";
 
 @Component({
   selector: 'app-main-layout',
@@ -26,9 +27,9 @@ import { SharedService } from '../../services/shared/shared.service';
     SpinnerComponent,
     CommonModule,
     CookiesComponent,
-    QuickContactComponent
-
-  ],
+    QuickContactComponent,
+    UnderMaintenanceComponent
+],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
