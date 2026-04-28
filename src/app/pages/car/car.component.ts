@@ -17,6 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   import { switchMap, finalize } from 'rxjs/operators';
 import { SpinnerService } from '../../services/common/spinner.service';
 import { Meta, Title } from '@angular/platform-browser';
+import { GooglePlacesAutocompleteDirective } from '../../directives/google-places-autocomplete.directive';
 
 export function pickupBeforeDropoffValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -42,6 +43,7 @@ export function pickupBeforeDropoffValidator(): ValidatorFn {
     InputTextModule,
     ReactiveFormsModule,
     FlatpickrDirective,
+    GooglePlacesAutocompleteDirective
   ],
   templateUrl: './car.component.html',
   styleUrl: './car.component.scss',
@@ -126,7 +128,31 @@ export class CarComponent {
     );
   }
 
+onPlacePickupSelection(place: any) {
+  if (!place) return;
 
+  const fullAddress = place.formatted_address || place.name;
+
+  // ✅ Set pickup_location field
+  this.bookingForm.get("pickup_location")?.setValue(fullAddress);
+
+  // Mark touched for validation
+  this.bookingForm.get("pickup_location")?.markAsDirty();
+  this.bookingForm.get("pickup_location")?.markAsTouched();
+}
+onPlaceDropoffSelection(place: any) {
+  if (!place) return;
+
+  const fullAddress = place.formatted_address || place.name;
+
+  console.log("Dropoff Address:", fullAddress);
+
+  // ✅ Set dropoff_location field
+  this.bookingForm.get("dropoff_location")?.setValue(fullAddress);
+
+  this.bookingForm.get("dropoff_location")?.markAsDirty();
+  this.bookingForm.get("dropoff_location")?.markAsTouched();
+}
 
 onSubmit(): void {
   if (this.bookingForm.valid) {

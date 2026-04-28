@@ -10,6 +10,9 @@ export const spinnerInterceptor: HttpInterceptorFn = (req, next) => {
    if (url === 'https://api.theinfinitytravel.com/index.php/api/flight/lead') {
     return next(req);
   }
+    if (url === 'https://mobileapp.theinfinitytravel.com/api/flight/get_places') {
+    return next(req);
+  }
   if (url.includes('hotel')) {
     spinnerService.showLoader('hotel', req.body);
   } else if (url.includes('flight')) {

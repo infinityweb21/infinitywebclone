@@ -595,6 +595,46 @@ export const routes: Routes = [
             'Infinityfarecompare offers private car rentals for every type of traveler at the most reasonable prices. Call us to book your vehicles.',
         },
       },
+
+            {
+        path: 'australia-base-flights',
+        loadComponent: () =>
+          import('./pages/australia/flight/flight.component').then(
+            (m) => m.FlightComponent
+          ),
+        title: 'Cheap Flights & Tickets – Best Airline Deals Online',
+        data: {
+          metaTitle: 'Cheap Flights & Tickets – Best Airline Deals Online',
+          metaDescription:
+            'Discover cheap flights, plane tickets, and top airline deals online. Compare fares, grab offers, and save more on every booking.',
+        },
+      },
+      {
+        path: 'australia-base-terms-and-conditions',
+        loadComponent: () =>
+          import('./pages/australia/terms-condition/terms-condition.component').then(
+            (m) => m.TermsConditionComponent
+          ),
+        title: 'Cheap Flights & Tickets – Best Airline Deals Online',
+        data: {
+          metaTitle: 'Cheap Flights & Tickets – Best Airline Deals Online',
+          metaDescription:
+            'Discover cheap flights, plane tickets, and top airline deals online. Compare fares, grab offers, and save more on every booking.',
+        },
+      },
+      {
+        path: 'australia-base-privacy-policy',
+        loadComponent: () =>
+          import('./pages/australia/privacy-policy/privacy-policy.component').then(
+            (m) => m.PrivacyPolicyComponent
+          ),
+        title: 'Cheap Flights & Tickets – Best Airline Deals Online',
+        data: {
+          metaTitle: 'Cheap Flights & Tickets – Best Airline Deals Online',
+          metaDescription:
+            'Discover cheap flights, plane tickets, and top airline deals online. Compare fares, grab offers, and save more on every booking.',
+        },
+      },
     ],
   },
 
