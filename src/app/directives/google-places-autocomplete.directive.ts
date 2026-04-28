@@ -1,67 +1,64 @@
 import { Directive, ElementRef, EventEmitter, Input, NgZone, OnInit, Output } from '@angular/core';
 import { NgControl } from '@angular/forms';
-
-declare var google: any;
+import { fromEvent, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, map, catchError } from 'rxjs/operators';
+import { SharedService } from '../services/shared/shared.service';
 
 @Directive({
   selector: '[googlePlacesAutocomplete]',
   standalone: true
 })
 export class GooglePlacesAutocompleteDirective implements OnInit {
-  @Input() autocompleteType: 'country' | 'address' = 'address'; // NEW ✅
+  @Input() autocompleteType: 'country' | 'address' = 'address';
   @Output() placeChanged = new EventEmitter<any>();
   @Output() countryChanged = new EventEmitter<string>();
-
-  private autocomplete: any;
 
   constructor(
     private elementRef: ElementRef,
     private ngControl: NgControl,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private sharedService: SharedService
   ) {}
 
   ngOnInit() {
-    this.initAutocomplete();
-  }
-
-  private initAutocomplete() {
-    if (typeof google !== 'undefined' && google.maps && google.maps.places) {
-      setTimeout(() => {
-        const types = this.autocompleteType === 'country' ? ['(regions)'] : ['establishment'];
-
-        this.autocomplete = new google.maps.places.Autocomplete(
-          this.elementRef.nativeElement,
-          {
-            types,
-            // Use this only if you want to restrict to certain countries:
-            // componentRestrictions: { country: ['us', 'in'] }
-          }
-        );
-
-        this.autocomplete.addListener('place_changed', () => {
-          this.ngZone.run(() => {
-            const place = this.autocomplete.getPlace();
-
-            if (place?.formatted_address) {
+    // Listen to input changes
+    fromEvent(this.elementRef.nativeElement, 'input')
+      .pipe(
+        map((event: any) => event.target.value),
+        debounceTime(300),
+        distinctUntilChanged(),
+        switchMap((inputValue: string) => {
+          if (!inputValue) return of([]);
+          return this.sharedService.autoPlace({ place: inputValue }).pipe(
+            map((res: any) => res?.data ? [res.data] : []),
+            catchError(() => of([]))
+          );
+        })
+      )
+      .subscribe((places: any[]) => {
+        this.ngZone.run(() => {
+          if (places.length > 0) {
+            const place = places[0]; // Take first result
+            console.log('Selected place:', place);
+            
+            // Set formatted address
+            if (place.formatted_address) {
               this.ngControl.control?.setValue(place.formatted_address);
               this.ngControl.control?.markAsDirty();
               this.ngControl.control?.markAsTouched();
-
-              this.placeChanged.emit(place);
-
-              const countryComponent = place.address_components?.find((component: any) =>
-                component.types.includes('country')
-              );
-
-              if (countryComponent) {
-                this.countryChanged.emit(countryComponent.long_name);
-              }
             }
-          });
+
+            this.placeChanged.emit(place);
+
+            // Emit country from address_components
+            const countryComponent = place.address_components?.find((c: any) =>
+              c.types.includes('country')
+            );
+            if (countryComponent) {
+              this.countryChanged.emit(countryComponent.short_name);
+            }
+          }
         });
-      }, 100);
-    } else {
-      console.error('Google Maps API not loaded.');
-    }
+      });
   }
 }

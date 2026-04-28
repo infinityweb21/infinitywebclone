@@ -14,6 +14,7 @@ export class SharedService {
   private data = {
     companyName: 'infinityfarecompare',
     phoneNumber: '(888) 230-2647',
+    australia_phoneNumber:'61 1 800 009 384',
     address: '1876 Harvest Cir Tustin, CA 92780, USA',
     email: 'info@infinityfarecompare.us',
     // sendmail: 'developer.infinityweb@gmail.com',
@@ -55,6 +56,16 @@ export class SharedService {
       .get(`${this.apiUrl}${environment.CITY_LIST}`, { params })
       .pipe(retry(1), catchError(this.errorHandler));
   }
+ autoPlace(place: any): Observable<any> {
+  return this.http.post(
+    `${this.MOBILE_APP_URL}${environment.AUTO_PLACE}`,
+    place
+  )
+  .pipe(
+    retry(1),
+    catchError(this.errorHandler)
+  );
+}
 
   getcompanyName(): any {
     return this.data;

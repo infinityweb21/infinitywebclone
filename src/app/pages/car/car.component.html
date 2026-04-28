@@ -196,6 +196,8 @@
                     placeholder="Enter pick-up location"
                     required
                     formControlName="pickup_location"
+                     googlePlacesAutocomplete
+                          [autocompleteType]="'country'" (placeChanged)="onPlacePickupSelection($event)"
                   />
                 </div>
                 @if (bookingForm.get('pickup_location')?.touched &&
@@ -214,6 +216,8 @@
                     placeholder="Enter drop-off location"
                     required
                     formControlName="dropoff_location"
+                     googlePlacesAutocomplete
+                          [autocompleteType]="'country'" (placeChanged)="onPlaceDropoffSelection($event)"
                   />
                 </div>
                  @if (bookingForm.get('dropoff_location')?.touched &&
