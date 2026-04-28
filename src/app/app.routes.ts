@@ -597,42 +597,42 @@ export const routes: Routes = [
       },
 
             {
-        path: 'australia-base-flights',
+        path: 'flights-au',
         loadComponent: () =>
           import('./pages/australia/flight/flight.component').then(
             (m) => m.FlightComponent
           ),
-        title: 'Cheap Flights & Tickets – Best Airline Deals Online',
+        title: 'Book flights at the best deals | Infinityfarecompare',
         data: {
-          metaTitle: 'Cheap Flights & Tickets – Best Airline Deals Online',
+          metaTitle: 'Book flights at the best deals | Infinityfarecompare',
           metaDescription:
-            'Discover cheap flights, plane tickets, and top airline deals online. Compare fares, grab offers, and save more on every booking.',
+            'Discover your dream destinations with the best flight deals. Plan your journey with reliable travel support and secure booking process.',
         },
       },
       {
-        path: 'australia-base-terms-and-conditions',
+        path: 'terms-and-conditions-au',
         loadComponent: () =>
           import('./pages/australia/terms-condition/terms-condition.component').then(
             (m) => m.TermsConditionComponent
           ),
-        title: 'Cheap Flights & Tickets – Best Airline Deals Online',
+        title: 'Review our Terms and Conditions | Infinityfarecompare',
         data: {
-          metaTitle: 'Cheap Flights & Tickets – Best Airline Deals Online',
+          metaTitle: 'Review our Terms and Conditions | Infinityfarecompare',
           metaDescription:
-            'Discover cheap flights, plane tickets, and top airline deals online. Compare fares, grab offers, and save more on every booking.',
+            'Please read the Terms and Conditions carefelly before proceeding to book your flights with us. Call us for more additional information, as we are available round the clock',
         },
       },
       {
-        path: 'australia-base-privacy-policy',
+        path: 'privacy-policy-au',
         loadComponent: () =>
           import('./pages/australia/privacy-policy/privacy-policy.component').then(
             (m) => m.PrivacyPolicyComponent
           ),
-        title: 'Cheap Flights & Tickets – Best Airline Deals Online',
+        title: 'Our Privacy Promise to Travelers | Infinityfarecompare',
         data: {
-          metaTitle: 'Cheap Flights & Tickets – Best Airline Deals Online',
+          metaTitle: 'Our Privacy Promise to Travelers | Infinityfarecompare',
           metaDescription:
-            'Discover cheap flights, plane tickets, and top airline deals online. Compare fares, grab offers, and save more on every booking.',
+            'Your privacy matters. Discover how we safeguard your information for flights. We’re clear about what we gather and how we keep it secure throughout your travels',
         },
       },
     ],
