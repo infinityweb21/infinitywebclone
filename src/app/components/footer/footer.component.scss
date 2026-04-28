@@ -1,12 +1,13 @@
 /* General Footer Styling */
 .footer {
-  background: linear-gradient(180deg, #01032b 0%, #1a1c4a 100%);
+  background-color: #021526;
   /* color: #d1d1d1; */
   color: #fff;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   line-height: 1.6;
-  margin-top: 60px;
+  // margin-top: 40px;
 }
+
 
 /* Footer Top Section */
 .footer-top {
@@ -212,6 +213,15 @@
   align-items: center;
 }
 
+.iata-memeber-link{
+  display: flex;
+  width: 65px;
+}
+.american-society-member-link, .cruise-line-member-link, .pci-memeber-link{
+  display: flex;
+  width: 100px;
+}
+
 .member-list li img {
   transition: transform 0.3s ease;
 }
@@ -232,7 +242,6 @@
   gap: 15px;
   margin-top: 15px;
 }
-
 
 /* Footer Bottom */
 .footer-bottom {
@@ -260,30 +269,28 @@
   max-width: 194px;
 }
 
-
-.footer-bottom a{
+.footer-bottom a {
   color: #2db2ff;
 }
-.seller-info{
+.seller-info {
   text-align: right;
 }
-.seller-info h3{
+.seller-info h3 {
   font-size: 1rem;
   font-weight: 500;
 }
-.seller-info h3 span{
+.seller-info h3 span {
   font-size: 1rem;
   font-weight: 600;
   color: #ffc107;
 }
-.bbb-review{
+.bbb-review {
   display: flex;
   margin-top: 16px;
 }
-.bbb-review img{
+.bbb-review img {
   width: 200px;
 }
-
 
 /* Accessibility */
 .footer a:focus {
@@ -295,16 +302,15 @@
 .footer .social-links ul.d-flex li a:focus {
   outline: none;
 }
-.footer-bottom p{
+.footer-bottom p {
   margin-bottom: 0px;
- }
+}
 /* Responsive Design */
 
-@media (min-width:768px) and (max-width: 991px) {
+@media (min-width: 768px) and (max-width: 991px) {
   .footer-links .footer-title::after {
     bottom: -8px;
     left: -9px;
-    
   }
   .footer-links .footer-title {
     margin-bottom: 18px;
@@ -313,35 +319,35 @@
 @media (max-width: 991px) {
   .footer-top {
     padding: 40px 0 20px;
-}
+  }
 
-.footer-links .footer-title {
+  .footer-links .footer-title {
     font-size: 16px;
-}
+  }
 
-.links-list li a,
-.contact-list li {
+  .links-list li a,
+  .contact-list li {
     font-size: 12px;
-}
+  }
 
-.reviews-wrapper {
+  .reviews-wrapper {
     flex-direction: row;
     gap: 10px;
     justify-content: flex-start;
     align-items: flex-start;
-}
+  }
   .footer-middle,
   .footer-bottom {
-      padding: 15px 0;
+    padding: 15px 0;
   }
 
   .footer-copyright,
   .footer-logo {
-      text-align: center;
+    text-align: center;
   }
 
   .footer-logo {
-      margin-bottom: 10px;
+    margin-bottom: 10px;
   }
 
   .trustpilot-widget img {
@@ -349,81 +355,137 @@
   }
   .bbb-review img {
     width: 139px;
-}
-.bbb-review {
-  margin-top: 25px;
-}
-.footer-reviews .footer-subtitle{
-  text-align: left;
-}
-.seller-info h3{
-  text-align: left;
-  margin-bottom: 0px;
-}
-.footer-middle .links-list {
-  gap: 6px;
-}
-.product-offering-list li a {
-  font-size: 12px;
-  padding: 2px 9px;
-}
-.seller-info h3{
-  font-size: 13px;
-}
-.footer-links .footer-title{
-  margin-bottom: 8px;
-  font-size: 14px;
-}
-.footer-bottom p, .footer-bottom a{
-  font-size: 12px;
-}
-.member-list li img {
-  transition: transform 0.3s ease;
-  width: 65px;
-}
-.footer-middle .footer-subtitle{
-  margin-bottom: 8px;
-  font-size: 13px;
-}
-.footer-links-col{
-  margin-bottom: 12px;
-}
+  }
+  .bbb-review {
+    margin-top: 25px;
+  }
+  .footer-reviews .footer-subtitle {
+    text-align: left;
+  }
+  .seller-info h3 {
+    text-align: left;
+    margin-bottom: 0px;
+  }
+  .footer-middle .links-list {
+    gap: 6px;
+  }
+  .product-offering-list li a {
+    font-size: 12px;
+    padding: 2px 9px;
+  }
+  .seller-info h3 {
+    font-size: 13px;
+  }
+  .footer-links .footer-title {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .footer-bottom p,
+  .footer-bottom a {
+    font-size: 12px;
+  }
+  .member-list li img {
+    transition: transform 0.3s ease;
+    width: 65px;
+  }
+  .footer-middle .footer-subtitle {
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  .footer-links-col {
+    margin-bottom: 12px;
+  }
 
-.contact-list{
-  margin-bottom: 0px;
-
-}
-.reviews-wrapper{
-  margin-top: 0px;
-}
-  .footer-middle .payment-list{
+  .contact-list {
+    margin-bottom: 0px;
+  }
+  .reviews-wrapper {
+    margin-top: 0px;
+  }
+  .footer-middle .payment-list {
     margin-bottom: 4px;
   }
-  .footer-middle .footer-reviews{
+  .footer-middle .footer-reviews {
     margin-bottom: 14px;
   }
-  .contact-list li:first-child{
+  .contact-list li:first-child {
     padding-bottom: 0px;
   }
-  .social-links ul.social-links-list{
+  .social-links ul.social-links-list {
     margin-bottom: 0px;
   }
 }
 
-
-.bbb-review, .trustpilot-widget{
+.bbb-review,
+.trustpilot-widget {
   width: 170px;
   display: flex;
 }
 
-
-.fixed-cta-btn{
+.fixed-cta-btn {
   display: none !important;
 }
 
-@media (min-width: 992px) and (max-width:1400px) {
-  .footer-links .footer-title{
+@media (min-width: 992px) and (max-width: 1400px) {
+  .footer-links .footer-title {
     font-size: 15px;
   }
-
 }
+
+// == ====
+.footer-middle-links-content-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.travel-registration h3 {
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 0px 0px 0px 0px;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.travel-registration span {
+  color: #ffc12d;
+  font-size: 14px;
+}
+
+.footer-middle-links-content-wrap .links-list {
+  flex-direction: column;
+  gap: 0px;
+}
+
+@media(min-width:768px){
+  .footer-middle-links-content-wrap {
+    flex-direction: row;
+  }
+  .footer-middle-links-content-wrap .links-list {
+    flex-direction: row;
+    gap: 6px;
+  }
+  .footer-middle-links-content-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .travel-registration h3 {
+    margin: 36px 0px 0px 0px;
+    text-align: right;
+    line-height: 100%;
+  }
+  .footer-middle-links-content-wrap .links-list a{
+    padding: 2px 15px;
+    line-height: 100%;
+  }
+  .footer-middle-payment-member-review-content-wrap{
+    gap: 16px;
+  }
+}
+@media(min-width:992px){
+  // .footer {
+  //   margin-top: 60px;
+  // }  
+}
+// == ====

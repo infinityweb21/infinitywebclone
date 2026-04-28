@@ -12,6 +12,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ClickOutsideDirective } from '../../../directives/click-outside.directive';
 import { FlatpickrDirective } from '../../../directives/flatpickr.directive';
+import { SharedService } from '../../../services/shared/shared.service';
 
 @Component({
   selector: 'app-business-class',
@@ -56,6 +57,9 @@ export class BusinessClassComponent implements OnInit {
   infantsList = Array.from({ length: 5 }, (_, i) => i);
 
   flightForm: FormGroup;
+     private shareService: SharedService = inject(SharedService);
+    getData:any='';
+
   constructor(
     private fb: FormBuilder,
     private flightService: FlightService,
@@ -84,6 +88,8 @@ export class BusinessClassComponent implements OnInit {
   }
 
   ngOnInit(): void {
+      this.getData=this.shareService.getcompanyName();
+
     // Set meta tags
     const metaTitle = this.route.snapshot.data['metaTitle'];
     const metaDescription = this.route.snapshot.data['metaDescription'];

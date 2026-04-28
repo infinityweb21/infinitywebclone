@@ -3,7 +3,7 @@ export const environment = {
     API_URL:'https://centralapi.theinfinitytravel.com/',
     MOBILE_APP_URL:'https://mobileapp.theinfinitytravel.com/',
     CITY_LIST:'api/v1/mondee/city-list',
-    AIRPORT_LIST:'api/v1/mondee/airport-list',
+    AIRPORT_LIST:'api/v1/all/airport-list',
     FLIGHT_LIST:'api/v1/mondee/flight-list',
     FLIGHT_REPRICE:'api/v1/mondee/flight-reprice',
     FLIGTH_SEAT_AVILABILITY:'api/v1/mondee/flight-seat-availability',
@@ -12,6 +12,8 @@ export const environment = {
     FLIGHT_ORDER_TICKET:'api/v1/mondee/flight-order-ticket',
     CREATE_FLIGHT_BOOKING_MOBILEAPP:'api/flight/createbooking',
     GENERATE_FLIGHT_TICKET:'api/flight/generateeticketpdf',
+    SEND_EMAIl:'api/v1/mondee/send-mail',
+    SEND_LEAD:'api/cruise/save_lead',
 
 
     //hotel endpoints
@@ -27,6 +29,10 @@ export const environment = {
 
     CREATE_BOOKING:'api/hotel/createbooking',
     CUSTOMER_BOOKING_DETAILS:'api/customer/booking_details',
-    GENERATE_TICKET_PDF:'api/hotel/generateeticketpdf'
+    GENERATE_TICKET_PDF:'api/hotel/generateeticketpdf',
+    CAR_BOOKING: 'https://api.theinfinitytravel.com/index.php/api/flight/lead',
+  SEND_EMAIL: 'api/v1/mondee/send-Email',
+    AUTO_PLACE:'api/flight/get_places'
+
 
 };

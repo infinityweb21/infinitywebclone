@@ -37,113 +37,106 @@ export class HotelComponent {
 
   protected icon = inject(SvgIcons);
 
+  phoneNumber: string='';
+
   hotelRooms = [
     {
-      title: 'Executive Suites',
-      description: '145 Hotels Available',
+      title: 'Budget-Friendly Hotels ',
+      description: '89 Hotels Available  ',
       image: 'assets/images/hotel/rooms/executive_suites.webp',
     },
     {
-      title: 'Premium Sea View Rooms',
-      description: '98 Hotels Available',
+      title: 'Luxury Stays ',
+      description: '122 Hotels Available ',
       image: 'assets/images/hotel/rooms/premium_sea_view_rooms.webp',
     },
     {
-      title: 'Heritage Rooms',
-      description: '67 Hotels Available',
+      title: 'Family-Friendly Hotels ',
+      description: '95 Hotels Available ',
       image: 'assets/images/hotel/rooms/heritage_rooms.webp',
     },
     {
-      title: 'Luxury Villas',
-      description: '52 Hotels Available',
+      title: 'Extended Stay Hotels ',
+      description: '93 Hotels Available ',
       image: 'assets/images/hotel/rooms/luxury_villas.webp',
     },
     {
-      title: 'Family Rooms',
-      description: '184 Hotels Available',
+      title: 'Boutique Hotels ',
+      description: '114 Hotels Available ',
       image: 'assets/images/hotel/rooms/family_rooms.webp',
     },
     {
-      title: 'Standard Twin Rooms',
-      description: '213 Hotels Available',
+      title: 'Mountain View Rooms ',
+      description: '105 Hotels Available ',
       image: 'assets/images/hotel/rooms/standerd_twin_rooms.webp',
     },
     {
-      title: 'Boutique Hotels',
-      description: '76 Hotels Available',
+      title: 'Sea View Hotels ',
+      description: '108 Hotels Available ',
       image: 'assets/images/hotel/rooms/boutique_hotels.webp',
     },
     {
-      title: 'Mountain View Rooms',
-      description: '89 Hotels Available',
+      title: 'Standard Twin Rooms ',
+      description: '134 Hotels Available ',
       image: 'assets/images/hotel/rooms/mountain_view_rooms.webp',
     },
-    {
-      title: 'Business Class Rooms',
-      description: '134 Hotels Available',
-      image: 'assets/images/hotel/rooms/business_class_rooms.webp',
-    },
-    {
-      title: 'Budget-Friendly Stays',
-      description: '245 Hotels Available',
-      image: 'assets/images/hotel/rooms/budget_friendly_stay.webp',
-    },
+  
   ];
 
   accommodations = [
     {
-      title: 'The Roosevelt Inn',
+      title: 'Pod 51 Hotel ',
       image: 'assets/images/hotel/the_roosevelt_inn.webp',
       rating: 4.6,
       reviews: '100k Reviews',
-      type: 'Luxury',
-      country: 'New York',
-      seatsLeft: '18 Rooms Left',
+      type: 'Boutique ',
+      country: 'New York ',
+      seatsLeft: '19 Rooms Left ',
     },
     {
-      title: 'Crescent Bay Lodge',
+      title: 'The Langham ',
       image: 'assets/images/hotel/crescent_bay_lodge.webp',
-      rating: 4.5,
+      rating: 4.8 ,
       reviews: '85k Reviews',
-      type: 'Boutique',
-      country: 'California',
+      type: 'Luxury ',
+      country: 'Illinois',
       seatsLeft: '9 Rooms Left',
     },
     {
-      title: 'Magnolia Suites',
+      title: 'The Driskill Hotel ',
       image: 'assets/images/hotel/magnolia_suites.webp',
       rating: 4.8,
       reviews: '90k Reviews',
-      type: 'Business',
+      type: 'Luxury ',
       country: 'Texas',
-      seatsLeft: '12 Rooms Left',
+      seatsLeft: '10 Rooms Left',
     },
     {
-      title: 'Blue Ridge Retreat',
+      title: 'Super 8 by Wyndham Redding',
       image: 'assets/images/hotel/blue_ridge_retreat.webp',
       rating: 4.4,
       reviews: '95k Reviews',
-      type: 'Resort',
-      country: 'North Carolina',
+      type: 'Budget ',
+      country: 'North Carolina ',
       seatsLeft: '7 Rooms Left',
     },
     {
-      title: 'The Golden Arch Hotel',
+      title: 'Motel 6 Portland Central ',
       image: 'assets/images/hotel/the_golden_arch_hotel.webp',
       rating: 4.9,
       reviews: '85k Reviews',
-      type: 'Heritage',
-      country: 'Illinois',
-      seatsLeft: '4 Rooms Left',
+      type: 'Budget ',
+      country: 'Oregon ',
+      seatsLeft: '12 Rooms Left ',
     },
     {
-      title: 'Willow Creek Stay',
+      title: 'Fairmont Banff Springs ',
       image: 'assets/images/hotel/willow_creek_stay.webp',
       rating: 4.3,
       reviews: '75k Reviews',
-      type: 'Family',
-      country: 'Oregon',
-      seatsLeft: '15 Rooms Left',
+      type: 'Luxury ',
+      country: 'Canada ',
+      seatsLeft: '16 Rooms Left ',
     },
     // Add more entries as needed
   ];
@@ -151,19 +144,19 @@ export class HotelComponent {
   recommendedProducts = [
     {
       image: 'assets/images/hotel/parisfrance.webp',
-      title: 'Paris, France',
-      duration: '3 Days 2 Nights',
+      title: 'Venice, Italy ',
+      duration: '3 Days 2 Nights ',
       rating: 4.7,
       details: {
-        flights: 'Eiffel View',
-        hotels: 'Balcony Breakfast',
-        transfers: 'Seine Walks',
+        flights: 'Canal View',
+        hotels: 'Breakfast',
+        transfers: 'Near Vaporetto',
         activities: 'Parisian Charm',
       },
       description: [
-        'Close to Champs-Élysées',
-        'Romantic balcony view',
-        'Louvre tickets on request',
+        'Romantic gondola views ',
+        'Close to St. Mark’s Square',
+        'Doge’s Palace tickets on request',
       ],
       price: 78952,
       originalPrice: 88952,
@@ -171,19 +164,19 @@ export class HotelComponent {
     },
     {
       image: 'assets/images/hotel/bali_indonesia.webp',
-      title: 'Bali, Indonesia',
-      duration: '4 Days 3 Nights',
-      rating: 4.8,
+      title: 'Barcelona, Spain ',
+      duration: '3 Days 2 Nights ',
+      rating: 4.7,
       details: {
-        flights: 'Private Pool',
-        hotels: 'Jungle View',
-        transfers: 'Floating Breakfast',
+        flights: 'City Beach View',
+        hotels: 'Breakfast',
+        transfers: 'Near Metro',
         activities: 'Near Ubud',
       },
       description: [
-        'Tropical garden surroundings',
-        'Floating breakfast experience',
-        'Balinese massage session',
+        'Stunning Gaudí architecture',
+        ' Close to La Rambla',
+        'Sagrada Família tickets on request ',
       ],
       price: 68952,
       originalPrice: 88952,
@@ -191,19 +184,19 @@ export class HotelComponent {
     },
     {
       image: 'assets/images/hotel/zurich_switzerland.webp',
-      title: 'Zurich, Switzerland',
-      duration: '3 Days 2 Nights',
-      rating: 4.9,
+      title: 'Tokyo, Japan ',
+      duration: '4 Days 3 Nights ',
+      rating: 4.5,
       details: {
-        flights: 'Lake View',
-        hotels: 'Alpine Style',
-        transfers: 'Free Transit Pass',
+        flights: 'City Skyline View',
+        hotels: ' Breakfast',
+        transfers: 'Near Subway',
         activities: 'Old Town',
       },
       description: [
-        'Alps and lake panorama',
-        'Chocolate tasting nearby',
-        'Local tram access included',
+        'Modern skyscrapers and traditional temples',
+        'Close to Shinjuku and Shibuya',
+        'Tokyo Tower tickets on request',
       ],
       price: 85952,
       originalPrice: 88952,
@@ -211,19 +204,19 @@ export class HotelComponent {
     },
     {
       image: 'assets/images/hotel/dubai_uae.webp',
-      title: 'Dubai, UAE',
-      duration: '3 Days 2 Nights',
-      rating: 4.6,
+      title: 'Paris, France ',
+      duration: '3 Days 2 Nights ',
+      rating: 4.0,
       details: {
-        flights: 'Burj View',
-        hotels: 'Infinity Pool',
-        transfers: 'Desert Safari',
+        flights: 'Eiffel Tower View ',
+        hotels: 'Breakfast',
+        transfers: 'Near Metro',
         activities: 'Metro Access',
       },
       description: [
-        'Desert safari on request',
-        'Near Burj Khalifa and malls',
-        'Rooftop pool access',
+        'Iconic cityscape and romantic ambiance',
+        'Close to Notre Dame and the Louvre',
+        'Eiffel Tower tickets on request',
       ],
       price: 78952,
       originalPrice: 88952,
@@ -231,19 +224,19 @@ export class HotelComponent {
     },
     {
       image: 'assets/images/hotel/rome_italy.webp',
-      title: 'Rome, Italy',
-      duration: '3 Days 2 Nights',
-      rating: 4.7,
+      title: 'Sydney, Australia ',
+      duration: '4 Days 3 Nights ',
+      rating: 4.2,
       details: {
-        flights: 'Colosseum View',
-        hotels: 'Free Breakfast',
-        transfers: 'Historic Centre',
+        flights: 'Harbor View',
+        hotels: 'Breakfast',
+        transfers: 'Near Circular Quay ',
         activities: 'Metro Access',
       },
       description: [
-        'Near the Colosseum and the Vatican',
-        'Evening wine tasting',
-        'Rooftop dining views',
+        'Opera House and Harbor Bridge views',
+        'Close to Bondi Beach ',
+        'Sydney Opera House tickets on request',
       ],
       price: 78952,
       originalPrice: 88952,
@@ -251,19 +244,19 @@ export class HotelComponent {
     },
     {
       image: 'assets/images/hotel/kuala_lumpur_malaysia.webp',
-      title: 'Kuala Lumpur, Malaysia',
-      duration: '3 Days 2 Nights',
-      rating: 4.4,
+      title: 'New York City, USA ',
+      duration: '3 Days 2 Nights ',
+      rating:  4.7 ,
       details: {
-        flights: 'Petronas View',
-        hotels: 'Rooftop Pool',
-        transfers: 'Free Breakfast',
+        flights: 'Skyline View',
+        hotels: 'Breakfast',
+        transfers: 'Near Subway',
         activities: 'LRT Nearby',
       },
       description: [
-        'Steps from the shopping district',
-        'Sky bridge access',
-        'Complimentary welcome drink',
+        'Manhattan skyline and Times Square',
+        'Empire State Building tickets on request ',
+        // 'Complimentary welcome drink',
       ],
       price: 68952,
       originalPrice: 88952,
@@ -271,19 +264,19 @@ export class HotelComponent {
     },
     {
       image: 'assets/images/hotel/santorini_greece.webp',
-      title: 'Santorini, Greece',
-      duration: '4 Days 3 Nights',
-      rating: 4.9,
+      title: 'Bangkok, Thailand ',
+      duration: '4 Days 3 Nights ',
+      rating: 4.6,
       details: {
-        flights: 'Caldera View',
-        hotels: 'Cave Suite',
-        transfers: 'Sunset Spot',
+        flights: 'City Temple View',
+        hotels: 'Breakfast',
+        transfers: 'Near BTS Skytrain',
         activities: 'Infinity Pool',
       },
       description: [
-        'Famous blue dome scenery',
-        'Private terrace dining',
-        'Photo shoot experience',
+        'Grand Palace and Wat Arun views ',
+        'Close to shopping districts',
+        'Grand Palace tickets on request',
       ],
       price: 5952,
       originalPrice: 88952,
@@ -291,19 +284,19 @@ export class HotelComponent {
     },
     {
       image: 'assets/images/hotel/bangkok_thailand.webp',
-      title: 'Bangkok, Thailand',
-      duration: '3 Days 2 Nights',
+      title: 'Dubai, UAE ',
+      duration: '4 Days 3 Nights ',
       rating: 4.5,
       details: {
-        flights: 'Riverside',
-        hotels: 'Street Food',
-        transfers: 'Skytrain Nearby',
+        flights: 'Desert View',
+        hotels: 'Breakfast',
+        transfers: 'Near Dubai Mall ',
         activities: 'Night Market',
       },
       description: [
-        'Near shopping and nightlife',
-        'Thai massage offers',
-        'River cruise optional',
+        'Burj Khalifa and Dubai Fountain',
+        'Close to shopping and entertainment districts ',
+        'Burj Khalifa tickets on request',
       ],
       price: 58952,
       originalPrice: 88952,
@@ -314,55 +307,55 @@ export class HotelComponent {
   testimonials = [
     {
       id: 1,
-      title: 'Outstanding Experience',
+      title: 'Awesome Services ',
       description:
-        'Thanks to Infinity Travels, my trip to NYC was smooth. I stayed in a beautiful hotel near Times Square with impeccable service and comfortable rooms. It truly enhanced my city experience!',
-      clientName: 'Lucas Bennett, London',
+        '“I had a trip to Canada. I was looking for a budget-friendly stay. {{companyName}} helped me find the best hotels in Canada. I booked my stay with them and everything was super easy. Highly appreciate their service!” ',
+      clientName: 'Emily Johnson, Dallas ',
       // clientDesignation: 'ddd',
       clientAvatar: 'https://i.pravatar.cc/40?img=1',
     },
     {
       id: 2,
-      title: 'Absolutely Worth It',
+      title: 'Outstanding Experience ',
       description:
-        'Booking through Infinity Travels made finding the perfect hotel in LA easy. I had an amazing stay at a boutique hotel near Hollywood, with stylish decor and outstanding hospitality throughout.',
-      clientName: 'Elena García, Madrid',
+        '“Booking my hotel in California was a smooth one. As soon as I called the booking team of infinityfarecompare, the entire process was easy. The agent was very polite and helped me get the best stay. Thanks a lot!” ',
+      clientName: 'Sarah Davis, Charlotte ',
       // clientDesignation: 'Product Manager',
       clientAvatar: 'https://i.pravatar.cc/40?img=2',
     },
     {
       id: 3,
-      title: 'Smooth and Reliable',
+      title: 'Incredible Customer Support ',
       description:
-        'Our family trip to Orlando was made perfect by Infinity Travels. The hotel was minutes from Disney World, with kid-friendly amenities, spacious rooms, and a welcoming atmosphere. It genuinely felt like home, only in a different place.',
-      clientName: 'Omar Al-Farouq, Dubai',
+        '“I booked my hotel in New York with infinityfarecompare. I had some confusion regarding the check-in process. I called their customer support team after booking, and they helped me throughout the process. Their team is very efficient and helpful.” ',
+      clientName: 'Emma Wilson, Texas ',
       // clientDesignation: 'Tech Lead',
       clientAvatar: 'https://i.pravatar.cc/40?img=3',
     },
     {
       id: 4,
-      title: 'Exceptional Support',
+      title: 'Reliable and Efficient ',
       description:
-        'Using Infinity Travels, I found a fantastic hotel in downtown Houston. The affordable rates, spacious rooms, and excellent location made it a perfect choice for work and leisure.',
-      clientName: 'Chloe Martin, Toronto',
+        '“I had a trip with my family to Orlando, and it was a smooth experience with infinityfarecompare. The hotel I booked for my family was close to Disney World. The services as guaranteed at the time of booking were the same. Extremely reliable and trusted.” ',
+      clientName: 'Daniel Moore, Colorado ',
       // clientDesignation: 'Business Analyst',
       clientAvatar: 'https://i.pravatar.cc/40?img=4',
     },
     {
       id: 5,
-      title: 'Incredible Booking Experience',
+      title: 'Made Business Travel Easy ',
       description:
-        'Booking my hotel in Rome was super easy and quick. The support team was responsive, and the hotel exceeded my expectations. I’ll definitely book my next trip with Infinity Travels!',
-      clientName: 'Emily Carter, New York',
+        '“Booked a room in Dubai for my business trip with infinityfarecompare. From the very first, the company helped me a lot. They guided me in booking the best hotel with exclusive services. It was a memorable experience.” ',
+      clientName: 'James Smith, Georgia ',
       // clientDesignation: 'Marketing Director',
       clientAvatar: 'https://i.pravatar.cc/40?img=5',
     },
     {
       id: 6,
-      title: 'Perfect for Business Travel',
+      title: 'Highly Recommended ',
       description:
-        'Booked a hotel in Singapore for a conference. Everything, from location to amenities, matched perfectly as promised. Fast service, no stress, and a smooth check-in experience.',
-      clientName: 'Liam Anderson, Los Angeles',
+        '“Booking through infinityfarecompare was an amazing experience. I have reserved a hotel in Los Angeles. I got the best deal on my booking and the services provided by the hotel were superb. They made my trip more enjoyable.” ',
+      clientName: 'Michael Brown, North Carolina ',
       // clientDesignation: 'Marketing Director',
       clientAvatar: 'https://i.pravatar.cc/40?img=5',
     },
@@ -420,7 +413,9 @@ export class HotelComponent {
 
   ngOnInit(): void {
     // Company Name Get
+    
     const data = this.shareService.getcompanyName();
+    this.phoneNumber = data.phoneNumber;
     this.companyName = data.companyName;
      const metaTitle = this.route.snapshot.data['metaTitle'];
     const metaDescription = this.route.snapshot.data['metaDescription'];
@@ -434,6 +429,11 @@ export class HotelComponent {
     if (metaDescription) {
       this.meta.updateTag({ name: 'description', content: metaDescription });
     }
+    this.testimonials.forEach(testimonial => {
+    testimonial.description = testimonial.description
+      .replace('{{companyName}}', this.companyName)
+      .replace('infinityfarecompare', this.companyName);
+       });
   }
 
   ngAfterViewInit(): void {

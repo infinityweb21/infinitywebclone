@@ -18,6 +18,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ClickOutsideDirective } from '../../../directives/click-outside.directive';
 import { FlatpickrDirective } from '../../../directives/flatpickr.directive';
+import { SharedService } from '../../../services/shared/shared.service';
 
 @Component({
   selector: 'app-top-airlines-deals',
@@ -164,6 +165,8 @@ export class TopAirlinesDealsComponent implements OnInit {
         "World's Best 4-star airline <br>Discounts to: Asia, Oceania and more",
     },
   ];
+     private shareService: SharedService = inject(SharedService);
+      getData:any='';
 
   constructor(
     private fb: FormBuilder,
@@ -193,7 +196,10 @@ export class TopAirlinesDealsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+        this.getData=this.shareService.getcompanyName();
+
     // Set meta tags
+
     const metaTitle = this.route.snapshot.data['metaTitle'];
     const metaDescription = this.route.snapshot.data['metaDescription'];
 

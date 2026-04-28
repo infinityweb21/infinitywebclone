@@ -69,7 +69,7 @@
           <h5 class="mb-3 fs-18">Highlights</h5>
           @if(hotelDetails){
           <div class="highlight-box" *ngFor="let entry of entries">
-            <p class="d-flex align-items-center">
+            <p class="d-flex align-items-start gap-2">
               <i class="fa-brands fa-slack text-orange"></i>
               <strong class="me-1">{{ entry[0] | titlecase }}:</strong>
               <span [innerHTML]="entry[1]"></span>
@@ -298,7 +298,7 @@
                           <p >SELECT ROOM</p>
                         </a></div>
                     </div>
-                    <!-- <p class="font14 latoRegular appendTop15" id="loginPersuasion"><a href="#"
+                    <!-- <p class="font14 latoRegular appendTop15" id="loginPersuasion"><a  href="javascript:void(0);"
                         class="latoBold titleText"> Login Now</a> and get this for
                       <b>$14,766</b> or less
                     </p> -->
@@ -591,7 +591,7 @@
                                         <li>No meals included</li>
                                         <li class="text-success">✔ Free Cancellation before 19 Aug 05:59 PM</li>
                                     </ul>
-                                    <a href="#" class="text-primary small">More details</a>
+                                    <a  href="javascript:void(0);" class="text-primary small">More details</a>
                                     </div>
                                 </td>
                                 <td>
@@ -603,8 +603,8 @@
                                         <span class="fw-bold fs-5">$ 14,918</span><br>
                                         <small class="text-muted">+$ 2,722 taxes & fees</small>
                                     </div>
-                                    <a href="#" class="btn btn-primary btn-sm mt-2">Select Room</a><br>
-                                    <a href="#" class="text-primary small">Login now to unlock best deals and offers</a>
+                                    <a  href="javascript:void(0);" class="btn btn-primary btn-sm mt-2">Select Room</a><br>
+                                    <a  href="javascript:void(0);" class="text-primary small">Login now to unlock best deals and offers</a>
                                     </div>
                                 </td>
                             </tr>
@@ -617,7 +617,7 @@
                                         <li>Breakfast for 2</li>
                                         <li class="text-success">✔ Free Cancellation before 19 Aug 05:59 PM</li>
                                     </ul>
-                                    <a href="#" class="text-primary small">More details</a>
+                                    <a  href="javascript:void(0);" class="text-primary small">More details</a>
                                     </div>
                                 </td>
                                 <td>
@@ -629,8 +629,8 @@
                                         <span class="fw-bold fs-5">$ 15,418</span><br>
                                         <small class="text-muted">+$ 2,797 taxes & fees</small>
                                     </div>
-                                    <a href="#" class="btn btn-primary btn-sm mt-2">Select Room</a><br>
-                                    <a href="#" class="text-primary small">Login now to unlock best deals and offers</a>
+                                    <a  href="javascript:void(0);" class="btn btn-primary btn-sm mt-2">Select Room</a><br>
+                                    <a  href="javascript:void(0);" class="text-primary small">Login now to unlock best deals and offers</a>
                                     </div>
                                 </td>
                             </tr>
@@ -1208,17 +1208,17 @@
                   <i class="fas fa-envelope"></i>
                 </div>
                 <div class="sp-contact-details">
-                  Email : <a href="mailto:info@example.com">{{hotelDetails?.email}}</a>
+                  Email : <a href="mailto:{{hotelDetails?.email}}">{{hotelDetails?.email}}</a>
                 </div>
               </div>
             </div>
 
             <div class="sp-buttons-section">
-              <a href="#" class="sp-btn sp-whatsapp-button">
+              <a  href="javascript:void(0);" class="sp-btn sp-whatsapp-button">
                 <i class="fab fa-whatsapp"></i>
                 Whatsapp Us
               </a>
-              <a href="#" class="sp-btn sp-chat-button">
+              <a  href="javascript:void(0);" class="sp-btn sp-chat-button">
                 <i class="fas fa-comment"></i>
                 Chat Now
               </a>

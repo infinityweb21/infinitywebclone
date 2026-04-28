@@ -14,6 +14,21 @@
           >
             <input
               type="radio"
+              id="oneway"
+              class="oneWayInput"
+              name="tripType"
+              formControlName="tripType"
+              value="oneway"
+            />
+            <label for="oneway"
+              ><span class="radio-label-inner-text">Oneway</span></label
+            >
+          </div>
+          <div
+            class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2"
+          >
+            <input
+              type="radio"
               id="roundtrip"
               class="roundTripInput"
               name="tripType"
@@ -25,21 +40,7 @@
               ><span class="radio-label-inner-text">Round Trip</span></label
             >
           </div>
-          <div
-            class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2"
-          >
-            <input
-              type="radio"
-              id="oneway"
-              class="oneWayInput"
-              name="tripType"
-              formControlName="tripType"
-              value="oneway"
-            />
-            <label for="oneway"
-              ><span class="radio-label-inner-text">Oneway</span></label
-            >
-          </div>
+
           <div
             class="c-custom-radio d-flex align-items-center me-2 me-lg-3 mb-2"
           >
@@ -68,8 +69,7 @@
                     formControlName="departureAirport"
                     [suggestions]="departureAirports"
                     (completeMethod)="filterCountry($event)"
-                                  (onSelect)="onDepartSelected($event)"
-                                  
+                    (onSelect)="onDepartSelected($event)"
                     field="displayName"
                     [panelStyleClass]="'airport-autocomplete-panel'"
                     placeholder="Add Departure"
@@ -89,7 +89,11 @@
                         <!-- Info -->
                         <div class="airport-text">
                           <div class="city-country">
-                            {{ airport.city }}, {{ airport.country }}
+                            {{
+                              airport.city
+                                ? airport.city + ", " + airport.country
+                                : airport.country
+                            }}
                           </div>
                           <div class="airport-name">
                             {{ airport.airport_name }}
@@ -141,8 +145,8 @@
                     formControlName="arrivalAirport"
                     [suggestions]="departureAirports"
                     (completeMethod)="filterCountry($event)"
- (onSelect)="onArrivalSelected($event)"
-                     field="displayName"
+                    (onSelect)="onArrivalSelected($event)"
+                    field="displayName"
                     [panelStyleClass]="'airport-autocomplete-panel'"
                     placeholder="Add Arrival"
                     class="form-control"
@@ -161,7 +165,11 @@
                         <!-- Info -->
                         <div class="airport-text">
                           <div class="city-country">
-                            {{ airport.city }}, {{ airport.country }}
+                            {{
+                              airport.city
+                                ? airport.city + ", " + airport.country
+                                : airport.country
+                            }}
                           </div>
                           <div class="airport-name">
                             {{ airport.airport_name }}
@@ -190,7 +198,7 @@
                         [appFlatpickr]="
                           flightForm.get('tripType')?.value === 'roundtrip'
                             ? 'range'
-                            : 'single'
+                            : 'basic'
                         "
                         (dateSelected)="onDatesSelected($event)"
                         formControlName="departureDate"
@@ -241,7 +249,7 @@
                     [class.show]="showDropdown"
                     (clickOutside)="closeDropdown()"
                   >
-                    <div class="ps-adult-box">
+                    <!-- <div class="ps-adult-box">
                       <h5>Adult(s)</h5>
                       <ul class="ps-adults-list">
                         <li
@@ -278,8 +286,101 @@
                           {{ count }}
                         </li>
                       </ul>
-                    </div>
+                    </div> -->
+                    <div class="details-content">
+                      <!-- Adults -->
+                      <div class="adult-content-wrap d-flex justify-content-between align-items-center mb-2">
+                        <div class="adult-content-column">
+                          <div class="guest-label">Adults <small>(12+ years)</small></div>
+                        </div>
+                        <div class="adult-content-column">
+                          <div class="guest-control">
+                            <div class="guest-btn-wrap">
+                              <button
+                                type="button"
+                                class="guest-decrease-btn"
+                                [disabled]="selectedAdults <= 1"
+                                (click)="selectPassenger('adult', selectedAdults - 1, $event)"
+                              >
+                                <i class="fa fa-minus"></i>
+                              </button>
+                            </div>
+                            <span class="guest-count-field">{{ selectedAdults }}</span>
+                            <div class="guest-btn-wrap">
+                              <button
+                                type="button"
+                                class="guest-increase-btn"
+                                (click)="selectPassenger('adult', selectedAdults + 1, $event)"
+                              >
+                                <i class="fa fa-plus"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
+                      <!-- Children -->
+                      <div class="children-content-wrap d-flex justify-content-between align-items-center mb-2">
+                        <div class="children-content-column">
+                          <div class="guest-child-label">Children <small>(2 - 11 years)</small></div>
+                        </div>
+                        <div class="children-content-column">
+                          <div class="guest-control">
+                            <div class="child-guest-btn-wrap">
+                              <button
+                                type="button"
+                                class="child-guest-decrease-btn"
+                                [disabled]="selectedChildren <= 0"
+                                (click)="selectPassenger('child', selectedChildren - 1, $event)"
+                              >
+                                <i class="fa fa-minus"></i>
+                              </button>
+                            </div>
+                            <span class="guest-count-field">{{ selectedChildren }}</span>
+                            <div class="child-guest-btn-wrap">
+                              <button
+                                type="button"
+                                class="child-guest-increase-btn"
+                                (click)="selectPassenger('child', selectedChildren + 1, $event)"
+                              >
+                                <i class="fa fa-plus"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Infants -->
+                      <div class="infant-content-wrap d-flex justify-content-between align-items-center mb-2">
+                        <div class="infant-content-column">
+                          <div class="guest-label">Infants <small>(on lap)</small></div>
+                        </div>
+                        <div class="infant-content-column">
+                          <div class="guest-control">
+                            <div class="guest-btn-wrap">
+                              <button
+                                type="button"
+                                class="guest-decrease-btn"
+                                [disabled]="selectedInfants <= 0"
+                                (click)="selectPassenger('infant', selectedInfants - 1, $event)"
+                              >
+                                <i class="fa fa-minus"></i>
+                              </button>
+                            </div>
+                            <span class="guest-count-field">{{ selectedInfants }}</span>
+                            <div class="guest-btn-wrap">
+                              <button
+                                type="button"
+                                class="guest-increase-btn"
+                                (click)="selectPassenger('infant', selectedInfants + 1, $event)"
+                              >
+                                <i class="fa fa-plus"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <div class="ps-cabin-select-submit-bt-wrap">
                       <div class="ps-economy-box">
                         <h5>Cabin</h5>
@@ -344,7 +445,7 @@
                           formControlName="departure"
                           [suggestions]="departureAirports"
                           (completeMethod)="filterCountry($event)"
-                           (onSelect)="onDepartureSelected($event, i)"
+                          (onSelect)="onDepartureSelected($event, i)"
                           field="displayName"
                           [panelStyleClass]="'airport-autocomplete-panel'"
                           placeholder="Add Departure"
@@ -360,7 +461,11 @@
                               <!-- Info -->
                               <div class="airport-text">
                                 <div class="city-country">
-                                  {{ airport.city }}, {{ airport.country }}
+                                  {{
+                                    airport.city
+                                      ? airport.city + ", " + airport.country
+                                      : airport.country
+                                  }}
                                 </div>
                                 <div class="airport-name">
                                   {{ airport.airport_name }}
@@ -408,7 +513,7 @@
                           formControlName="arrival"
                           [suggestions]="departureAirports"
                           (completeMethod)="filterCountry($event)"
-                           (onSelect)="onArrivalSelectedMulti($event, i)"
+                          (onSelect)="onArrivalSelectedMulti($event, i)"
                           field="displayName"
                           [panelStyleClass]="'airport-autocomplete-panel'"
                           placeholder="Add Arrival"
@@ -424,7 +529,11 @@
                               <!-- Info -->
                               <div class="airport-text">
                                 <div class="city-country">
-                                  {{ airport.city }}, {{ airport.country }}
+                                  {{
+                                    airport.city
+                                      ? airport.city + ", " + airport.country
+                                      : airport.country
+                                  }}
                                 </div>
                                 <div class="airport-name">
                                   {{ airport.airport_name }}
@@ -489,10 +598,12 @@
                         type="button"
                         class="btn btn-link add-multicity-btn"
                         (click)="addSegment()"
+                        [disabled]="multiCitySegments.length >= 8"
                       >
                         <span class="me-1" [innerHTML]="icons.plusIcon"></span>
                         Add Flight
                       </button>
+
                       <button
                         type="button"
                         class="btn btn-link remove-multicity-btn text-danger"
@@ -508,23 +619,23 @@
               </div>
             </div>
           </div>
-          <div
+          <!-- <div
             class="quick-select-direct-flight-content-wrap d-none d-lg-block"
           >
             <div class="row g-3 gy-lg-0 gx-lg-3">
               <div class="col-md-12">
-                <label class="custom-checkbox">
+                <label class="custom-checkbox banner-checkbox">
                   <input type="checkbox" formControlName="directFlightsOnly" />
                   <span class="custom-checkmark"></span>
                   Direct flights only
                 </label>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </form>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-12">
         <div class="price-slider-card">
           <div class="price-slider-card-content-wrap d-flex align-items-center">
@@ -532,7 +643,7 @@
               class="price-slider-arrow price-slider-arrow-prev"
               (click)="slidePrev()"
             >
-              <!-- Prev Arrow SVG -->
+             
               <svg
                 width="10"
                 height="18"
@@ -564,7 +675,7 @@
               class="price-slider-arrow price-slider-arrow-next"
               (click)="slideNext()"
             >
-              <!-- Next Arrow SVG -->
+            
               <svg
                 width="10"
                 height="18"
@@ -618,7 +729,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </section>
 <div class="main-containt mob-main mt-0">
@@ -726,36 +837,106 @@
           <table>
             <tr>
               <th>Show All Fares</th>
-              <th *ngFor="let airline of getAllCarrierWiseFares">
+              <th
+                *ngFor="let airline of getAllCarrierWiseFares"
+                (click)="onAirlineHeaderClick(airline.ValidatingCarrierName)"
+                [class.selected]="
+                  filters.airlines.includes(airline.ValidatingCarrierName)
+                "
+                style="cursor: pointer"
+              >
                 <img [src]="airline.carrierImage" alt="logo" />
                 <p>{{ airline.ValidatingCarrierName }}</p>
               </th>
             </tr>
             <tr>
               <td>Direct</td>
-              <td *ngFor="let airline of getAllCarrierWiseFares">
-                @if (airline?.stopWiseFares["stopes_0"]!=0) { ${{
-                  airline?.stopWiseFares["stopes_0"] | number : "1.2-2"
+              <td
+                *ngFor="let airline of getAllCarrierWiseFares"
+                [ngClass]="{
+                  'clickable-fare': airline?.stopWiseFares['stopes_0'] > 0,
+                  'selected-fare':
+                    selectedFare?.price ===
+                      airline?.stopWiseFares['stopes_0'] &&
+                    selectedFare?.stopType === 0 &&
+                    selectedFare?.carrierName === airline?.ValidatingCarrierName
+                }"
+                (click)="
+                  airline?.stopWiseFares['stopes_0'] > 0 &&
+                    onFareClick(
+                      airline.stopWiseFares['stopes_0'],
+                      0,
+                      airline.ValidatingCarrierName
+                    )
+                "
+              >
+                {{
+                  airline?.stopWiseFares["stopes_0"] > 0
+                    ? ("$" +
+                      (getTotalPrice(airline.stopWiseFares["stopes_0"]) | number : '1.2-2'))
+                    : "-"
+                    
                 }}
-                }@else {-}
               </td>
             </tr>
+
             <tr>
               <td>1 Stop</td>
-              <td *ngFor="let airline of getAllCarrierWiseFares">
-                @if (airline?.stopWiseFares["stopes_1"]!=0) { ${{
-                  airline?.stopWiseFares["stopes_1"] | number : "1.2-2"
+              <td
+                *ngFor="let airline of getAllCarrierWiseFares"
+                [ngClass]="{
+                  'clickable-fare': airline?.stopWiseFares['stopes_1'] > 0,
+                  'selected-fare':
+                    selectedFare?.price ===
+                      airline?.stopWiseFares['stopes_1'] &&
+                    selectedFare?.stopType === 1 &&
+                    selectedFare?.carrierName === airline?.ValidatingCarrierName
+                }"
+                (click)="
+                  airline?.stopWiseFares['stopes_1'] > 0 &&
+                    onFareClick(
+                      airline.stopWiseFares['stopes_1'],
+                      1,
+                      airline.ValidatingCarrierName
+                    )
+                "
+              >
+                {{
+                  airline?.stopWiseFares["stopes_1"] > 0
+                    ? "$" +
+                     (getTotalPrice(airline.stopWiseFares["stopes_1"]) | number : "1.2-2")
+                    : "-"
                 }}
-                }@else {-}
               </td>
             </tr>
+
             <tr>
               <td>1+ Stop</td>
-              <td *ngFor="let airline of getAllCarrierWiseFares">
-                @if (airline?.stopWiseFares["stopes_more"]!=0) { ${{
-                  airline?.stopWiseFares["stopes_more"] | number : "1.2-2"
+              <td
+                *ngFor="let airline of getAllCarrierWiseFares"
+                [ngClass]="{
+                  'clickable-fare': airline?.stopWiseFares['stopes_more'] > 0,
+                  'selected-fare':
+                    selectedFare?.price ===
+                      airline?.stopWiseFares['stopes_more'] &&
+                    selectedFare?.stopType === 2 &&
+                    selectedFare?.carrierName === airline?.ValidatingCarrierName
+                }"
+                (click)="
+                  airline?.stopWiseFares['stopes_more'] > 0 &&
+                    onFareClick(
+                      airline.stopWiseFares['stopes_more'],
+                      2,
+                      airline.ValidatingCarrierName
+                    )
+                "
+              >
+                {{
+                  airline?.stopWiseFares["stopes_more"] > 0
+                    ? "$" +
+                      (getTotalPrice(airline.stopWiseFares["stopes_more"]) | number : "1.2-2")
+                    : "-"
                 }}
-                }@else {-}
               </td>
             </tr>
           </table>
@@ -808,7 +989,7 @@
     </div>
   </section>
 
-  <section class="three-sections">
+  <section class="three-sections pb-4">
     <div class="container container-xxl">
       <div class="main-contents">
         <div class="row">
@@ -820,22 +1001,20 @@
                   <p>{{ getFlightAllDetails.length }} results found</p>
                 </div>
                 <h3 class="commonsubtitleflight">Stops</h3>
-             @for (stop of stopOptions; track $index) {
-  <label>
-    <div class="d-flex">
-      <input
-        type="checkbox"
-        [checked]="filters.stopes.includes(stop.value)"
-        (change)="onStopChange(stop.value, $event)"
-        [disabled]="!getFlightsAdvanced?.stopWiseLowestFare?.[stop.key]"
-      />
-      {{ stop.label }}
-    </div>
-    <span>
-      ${{ getFlightsAdvanced?.stopWiseLowestFare?.[stop.key] || 0 }}
-    </span>
-  </label>
-}
+                @for (stop of stopOptions; track $index) {
+                <label>
+                  <div class="d-flex">
+                    <input
+                      type="checkbox"
+                      [checked]="filters.stopes.includes(stop.value)"
+                      (change)="onStopChange(stop.value, $event)"
+                      [disabled]="!fullStopWiseLowestFare[stop.key]"
+                    />
+                    {{ stop.label }}
+                  </div>
+                  <span> ${{ getTotalPrice(fullStopWiseLowestFare[stop.key])| number : "1.2-2" }} </span>
+                </label>
+                }
 
                 <hr />
                 <h3 class="commonsubtitleflight">Airline</h3>
@@ -858,7 +1037,7 @@
                     />
                     {{ carrier.ValidatingCarrierName }}
                   </div>
-                  <span>${{ carrier.lowestFare | number : "1.0-2" }}</span>
+                  <span>${{ getTotalPrice(carrier.lowestFare )| number : "1.0-2" }}</span>
                 </label>
                 }
 
@@ -1196,19 +1375,20 @@
                 <hr />
                 <h3>total price</h3>
                 <div class="slider-container">
-  <p-slider
-    [(ngModel)]="sliderValue"
-    [range]="true"
-    [min]="lowestPrice"
-    [max]="highestPrice"
-    (onSlideEnd)="onPriceRangeChange()"
-    styleClass="w-56"
-  ></p-slider>
-  <div class="price-range-values">
-    ${{ sliderValue[0] | number:'1.0-0' }} - ${{ sliderValue[1] | number:'1.0-0' }}
-  </div>
-</div>
-
+                  <p-slider
+                    [(ngModel)]="sliderValue"
+                    [range]="true"
+                    [min]="lowestPrice"
+                    [max]="highestPrice"
+                    (onSlideEnd)="onPriceRangeChange()"
+                    styleClass="w-56"
+                  ></p-slider>
+                  <div class="price-range-values">
+                    ${{ getTotalPrice(sliderValue[0]) | number : "1.0-0" }} - ${{
+                      getTotalPrice(sliderValue[1]) | number : "1.0-0"
+                    }}
+                  </div>
+                </div>
 
                 <button type="button" class="clear-filters" (click)="reset()">
                   clear all filters
@@ -1231,27 +1411,44 @@
                 </div>
               </div>
             </div>
-          <div class="tabs">
-  <a href="javascript:void(0)" [class.active]="selectedTab === 'all'" (click)="selectTab('all');applyFilter()">
-    <h4>All</h4>
-  </a>
-  <a href="javascript:void(0)" [class.active]="selectedTab === 'recommended'" (click)="selectTab('recommended');applyFilter()">
-    <h4>Recommended</h4>
-    <p>${{ recommendedPrice | number:'1.2-2' }}</p>
-  </a>
-  <a href="javascript:void(0)" [class.active]="selectedTab === 'cheapest'" (click)="selectTab('cheapest');applyFilter()">
-    <h4>Cheapest</h4>
-    <p>${{ cheapestPrice | number:'1.2-2' }}</p>
-  </a>
-  @if (getNearbyDetails.length!=0) {
-  <a href="javascript:void(0)" [class.active]="selectedTab === 'alternate'" (click)="selectTab('alternate');applyFilter()">
-    <h4>Alternate Dates / Nearby Airport</h4>
-    <!-- <p>Coming soon</p> -->
-  </a>}
-</div>
+            <div class="tabs">
+              <a
+                href="javascript:void(0)"
+                [class.active]="selectedTab === 'all'"
+                (click)="selectTab('all'); applyFilter()"
+              >
+                <h4>All</h4>
+              </a>
+              <a
+                href="javascript:void(0)"
+                [class.active]="selectedTab === 'recommended'"
+                (click)="selectTab('recommended'); applyFilter()"
+              >
+                <h4>Recommended</h4>
+                <p>${{ getTotalPrice(recommendedPrice) | number : "1.2-2" }}</p>
+              </a>
+              <a
+                href="javascript:void(0)"
+                [class.active]="selectedTab === 'cheapest'"
+                (click)="selectTab('cheapest'); applyFilter()"
+              >
+                <h4>Cheapest</h4>
+                <p>${{ getTotalPrice(cheapestPrice) | number : "1.2-2" }}</p>
+              </a>
+              @if (getNearbyDetails.length!=0) {
+              <a
+                href="javascript:void(0)"
+                [class.active]="selectedTab === 'alternate'"
+                (click)="selectTab('alternate'); applyFilter()"
+              >
+                <h4>Alternate Dates / Nearby Airport</h4>
+                <!-- <p>Coming soon</p> --> </a
+              >}
+            </div>
 
             <div class="tab-content">
-              @if(selectedTab === 'recommended'||selectedTab === 'cheapest'||selectedTab === 'all'||selectedTab === 'alternate'){
+              @if(selectedTab === 'recommended'||selectedTab ===
+              'cheapest'||selectedTab === 'all'||selectedTab === 'alternate'){
               <div id="recommended" class="common-class">
                 <h6>
                   Fares for our <a>carriers</a> are round trip, incl.
@@ -1262,390 +1459,418 @@
 
                 @for (flightInfo of displayedFlights; track
                 flightInfo.ItineraryId;let i = $index) {
-                  <div
-    class="flightandprice-box"
-    [class.recommended]="i === 0"
-  > @if (i === 0&&selectedTab=='recommended') {
-      <div class="recommended-header" >
-        <h3>Recommended Flight for You!</h3>
-      </div>
-    }
-                <div class="flightandprice-box">
-                  <div class="flightandprice" style="position: relative">
-                    <div class="row align-items-center">
-                      <div class="col-lg-9 col-md-9">
-                        <div
-                          class="flightandprice-row"
-                          *ngFor="
-                            let seg of flightInfo?.Citypairs;
-                            let i = index
-                          "
-                        >
-                          <div class="row align-items-center">
-                            <div class="col-md-2 text-center">
-                              <div class="mobflexsec">
-                                <div class="mobsecnewdesk">
-                                  <img
-                                    [src]="
-                                      imageUrl +
-                                      seg?.FlightSegment[0]?.FlightLogoName
-                                    "
-                                    alt="logo1"
-                                    class="img-fluid newicoimg"
-                                  />
-                                  <h6 class="text-capitalize">
-                                    {{
-                                      seg?.FlightSegment[0]
-                                        ?.MarketingAirlineName
-                                    }}
-                                  </h6>
-                                </div>
-                                <div class="mobhowonly mobnewshow">
-                                  @for (f of flightInfo.Fares; track $index) {
-                                  <h3>
-                                    @if (f?.PaxType=='ADT'){ ${{
-                                      f.CCMax | number : "1.2-2"
-                                    }}}
-                                  </h3>
-                                  }
-                                  <div class="filterbtn">
-                                    <a
-                                      (click)="
-                                        navigateFlightDetails(flightInfo.id)
+                <div class="flightandprice-box" [class.recommended]="i === 0">
+                  @if (i === 0&&selectedTab=='recommended') {
+                  <div class="recommended-header">
+                    <h3>Recommended Flight for You!</h3>
+                  </div>
+                  }
+                  <div class="flightandprice-box">
+                    <div class="flightandprice" style="position: relative">
+                      <div class="row align-items-center">
+                        <div class="col-lg-9 col-md-9">
+                          <div
+                            class="flightandprice-row"
+                            *ngFor="
+                              let seg of flightInfo?.Citypairs;
+                              let i = index
+                            "
+                          >
+                            <div class="row align-items-center">
+                              <div class="col-md-2 text-center">
+                                <div class="mobflexsec">
+                                  <div class="mobsecnewdesk">
+                                    <img
+                                      [src]="
+                                        imageUrl +
+                                        seg?.FlightSegment[0]?.FlightLogoName
                                       "
-                                      type="button"
-                                      data-bs-toggle="offcanvas"
-                                      data-bs-target="#offcanvasRight"
-                                      aria-controls="offcanvasRight"
-                                    >
-                                      <i class="fa-solid fa-angle-right"></i>
-                                    </a>
+                                      alt="logo1"
+                                      class="img-fluid newicoimg"
+                                    />
+                                    <h6 class="text-capitalize">
+                                      {{
+                                        seg?.FlightSegment[0]
+                                          ?.MarketingAirlineName
+                                      }}
+                                    </h6>
+                                  </div>
+                                  <div class="mobhowonly mobnewshow">
+                                    @for (f of flightInfo.Fares; track $index) {
+                                    <h3>
+                                      @if (f?.PaxType=='ADT'){ ${{
+                                        getTotalPrice(f?.CCMax)
+                                          | number : "1.2-2"
+                                      }}}
+                                    </h3>
+                                    }
+                                    <div class="filterbtn">
+                                      <a
+                                        (click)="
+                                          navigateFlightDetails(
+                                            flightInfo.ItineraryId
+                                          )
+                                        "
+                                        type="button"
+                                        data-bs-toggle="offcanvas"
+                                        data-bs-target="#offcanvasRight"
+                                        aria-controls="offcanvasRight"
+                                      >
+                                        <i class="fa-solid fa-angle-right"></i>
+                                      </a>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
+                              <div class="col-md-7">
+                                <div class="flight-ticket-card">
+                                  <div class="flight-ticket-section">
+                                    <div class="flight-ticket-time">
+                                      {{
+                                        seg?.FlightSegment[0]?.DepartureDateTime
+                                          | date : "HH:mm"
+                                      }}
+                                    </div>
+
+                                    <div class="flight-ticket-code">
+                                      {{
+                                        seg?.FlightSegment[0]
+                                          ?.DepartureLocationCode
+                                      }}
+                                    </div>
+                                    <div class="flight-ticket-label">
+                                      Depart
+                                    </div>
+                                    <div class="flight-ticket-name">
+                                      {{
+                                        seg?.FlightSegment[0]?.OriginAirportName
+                                      }}
+                                    </div>
+                                  </div>
+                                  <div class="flight-ticket-middle">
+                                    <img
+                                      src="assets/images/flightstartstop.png"
+                                      alt="plane route"
+                                    />
+                                    <div class="absecmiddle">
+                                      {{ seg?.NoOfStops }} stop
+                                    </div>
+                                    <div class="flight-ticket-duration">
+                                      {{ seg?.Duration }}
+                                    </div>
+                                  </div>
+                                  <div class="flight-ticket-section">
+                                    <div class="flight-ticket-time">
+                                      {{
+                                        seg?.FlightSegment[
+                                          seg?.FlightSegment.length - 1
+                                        ]?.ArrivalDateTime | date : "HH:mm"
+                                      }}
+                                    </div>
+                                    <div class="flight-ticket-code">
+                                      {{
+                                        seg?.FlightSegment[
+                                          seg?.FlightSegment.length - 1
+                                        ]?.ArrivalLocationCode
+                                      }}
+                                    </div>
+                                    <div class="flight-ticket-label">
+                                      Arrive
+                                    </div>
+                                    <div class="flight-ticket-name">
+                                      {{
+                                        seg?.FlightSegment[
+                                          seg?.FlightSegment.length - 1
+                                        ]?.DestinationAirportName
+                                      }}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3 text-center">
+                                <div class="mobbtnsecnew">
+                                  <button
+                                    type="button"
+                                    class="btn btn-outline-primary w-100 departure-btn"
+                                  >
+                                    Select
+                                    {{ i === 0 ? "Departure" : "Return" }}
+                                    {{ seg.type }}
+                                  </button>
+                                </div>
+                              </div>
                             </div>
-                            <div class="col-md-7">
+                          </div>
+                        </div>
+
+                        <!-- Right Section -->
+                        <div
+                          class="col-lg-3 col-md-3 text-center mt-4 mt-lg-0 deskshowonlynew"
+                          style="padding-left: 0"
+                        >
+                          <div class="rightformbox">
+                            @for (f of flightInfo.Fares; track $index) {
+                            <h3>
+                              @if (f?.PaxType=='ADT'){ ${{
+                                getTotalPrice(f?.CCMax) | number : "1.2-2"
+                              }}}
+                            </h3>
+                            }
+                            <p class="small text-muted">
+                              Price per person <br />(incl. taxes & fees)
+                            </p>
+                            <button
+                              type="button"
+                              class="btn btn-primary mb-4 w-100 select-button"
+                              (click)="
+                                navigateFlightDetails(flightInfo.ItineraryId)
+                              "
+                            >
+                              Select
+                            </button>
+                            <a
+                              class="abbtnhideshow"
+                              class="abbtnhideshow d-block"
+                              (click)="
+                                showFlightDetails(flightInfo.ItineraryId)
+                              "
+                              >{{
+                                showDetailsMap[flightInfo.ItineraryId]
+                                  ? "Hide"
+                                  : "Flight Details"
+                              }}
+                              <span
+                                ><img
+                                  src="assets/images/flight-details/blue-anchor.png"
+                                  alt="" /></span
+                            ></a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    @if (showDetailsMap[flightInfo.ItineraryId]) {
+                    <div class="flight-details" style="display: block">
+                      <div>
+                        @if (flightInfo?.Citypairs?.length >= 1) {
+                        <div class="flight-details-rw">
+                          <h4>
+                            Depart
+                            {{
+                              flightInfo?.Citypairs[0]?.FlightSegment[0]
+                                ?.DepartureDateTime | date : "EEE, MMM dd"
+                            }}
+                          </h4>
+                          @for (flight of
+                          flightInfo?.Citypairs[0]?.FlightSegment; track $index)
+                          { @if (flight?.LayoverTime!='') {
+                          <div class="layover-wrapper">
+                            <div class="line"></div>
+                            <div class="layover-box">
+                              <span class="is--layovertxt">Layover:</span>
+                              <b>{{ flight?.LayoverTime }}</b>
+                            </div>
+                            <div class="line"></div>
+                          </div>
+                          }
+
+                          <div class="row align-items-start mb-3">
+                            <div
+                              class="col-md-3 col-4 flight-details-first-rw d-flex align-items-center"
+                            >
+                              <img
+                                [src]="imageUrl + flight?.FlightLogoName"
+                                alt="logo1"
+                                class="img-fluid imglogoflightsec"
+                              />
+                              <div class="mx-3">
+                                <h5 class="mb-0">
+                                  {{ flight?.MarketingAirlineName }}
+                                </h5>
+                                <p class="mb-0">
+                                  {{ flight?.AirEquipmentType }}
+                                </p>
+                                <p class="mb-0">{{ flight?.Duration }}</p>
+                              </div>
+                            </div>
+                            <div class="col-md-6 flight-details-second-rw">
                               <div class="flight-ticket-card">
                                 <div class="flight-ticket-section">
                                   <div class="flight-ticket-time">
                                     {{
-                                      seg?.FlightSegment[0]?.DepartureDateTime
-                                        | date : "HH:mm"
+                                      flight?.DepartureDateTime
+                                        | date : "EEE, MMM dd"
                                     }}
                                   </div>
                                   <div class="flight-ticket-code">
                                     {{
-                                      seg?.FlightSegment[0]
-                                        ?.DepartureLocationCode
+                                      flight?.DepartureDateTime | date : "HH:mm"
                                     }}
                                   </div>
-                                  <div class="flight-ticket-label">Depart</div>
+                                  <div class="flight-ticket-label">
+                                    {{ flight?.DepartureDisplayName }},&nbsp;{{
+                                      flight?.DepartureLocationCode
+                                    }}
+                                  </div>
                                 </div>
                                 <div class="flight-ticket-middle">
                                   <img
                                     src="assets/images/flightstartstop.png"
                                     alt="plane route"
                                   />
-                                  <div class="absecmiddle">
-                                    {{ seg?.NoOfStops }} stop
-                                  </div>
-                                  <div class="flight-ticket-duration">
-                                    {{ seg?.Duration }}
-                                  </div>
                                 </div>
                                 <div class="flight-ticket-section">
                                   <div class="flight-ticket-time">
                                     {{
-                                      seg?.FlightSegment[
-                                        seg?.FlightSegment.length - 1
-                                      ]?.ArrivalDateTime | date : "HH:mm"
+                                      flight?.ArrivalDateTime
+                                        | date : "EEE, MMM dd"
                                     }}
                                   </div>
                                   <div class="flight-ticket-code">
                                     {{
-                                      seg?.FlightSegment[
-                                        seg?.FlightSegment.length - 1
-                                      ]?.ArrivalLocationCode
+                                      flight?.ArrivalDateTime | date : "HH:mm"
                                     }}
                                   </div>
-                                  <div class="flight-ticket-label">Arrive</div>
+                                  <div class="flight-ticket-label">
+                                    {{ flight?.DisplayName }},&nbsp;{{
+                                      flight?.ArrivalLocationCode
+                                    }}
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                            <div class="col-md-3 text-center">
-                              <div class="mobbtnsecnew">
-                                <button
-                                  type="button"
-                                  class="btn btn-outline-primary w-100 departure-btn"
-                                >
-                                  Select {{ i === 0 ? "Departure" : "Return" }}
-                                  {{ seg.type }}
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Right Section -->
-                      <div
-                        class="col-lg-3 col-md-3 text-center mt-4 mt-lg-0 deskshowonlynew"
-                        style="padding-left: 0"
-                      >
-                        <div class="rightformbox">
-                          @for (f of flightInfo.Fares; track $index) {
-                          <h3>
-                            @if (f?.PaxType=='ADT'){ ${{
-                              f.CCMax | number : "1.2-2"
-                            }}}
-                          </h3>
-                          }
-                          <p class="small text-muted">
-                            Price per person <br />(incl. taxes & fees)
-                          </p>
-                          <button
-                            type="button"
-                            class="btn btn-primary mb-4 w-100 select-button"
-                            (click)="
-                              navigateFlightDetails(flightInfo.ItineraryId)
-                            "
-                          >
-                            Select
-                          </button>
-                          <a
-                            class="abbtnhideshow"
-                            class="abbtnhideshow d-block"
-                            (click)="showFlightDetails(flightInfo.ItineraryId)"
-                            >{{
-                              showDetailsMap[flightInfo.ItineraryId]
-                                ? "Hide"
-                                : "Flight Details"
-                            }}
-                            <span
-                              ><img
-                                src="assets/images/flight-details/blue-anchor.png"
-                                alt="" /></span
-                          ></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  @if (showDetailsMap[flightInfo.ItineraryId]) {
-                  <div class="flight-details" style="display: block">
-                    <div>
-                      @if (flightInfo?.Citypairs?.length >= 1) {
-                      <div class="flight-details-rw">
-                        <h4>
-                          Depart
-                          {{
-                            flightInfo?.Citypairs[0]?.FlightSegment[0]
-                              ?.DepartureDateTime | date : "EEE, MMM dd"
-                          }}
-                        </h4>
-                        @for (flight of flightInfo?.Citypairs[0]?.FlightSegment;
-                        track $index) { @if (flight?.LayoverTime!='') {
-                        <div class="layover-wrapper">
-                          <div class="line"></div>
-                          <div class="layover-box">
-                            <span class="is--layovertxt">Layover:</span>
-                            <b>{{ flight?.LayoverTime }}</b>
-                          </div>
-                          <div class="line"></div>
-                        </div>
-                        }
-
-                        <div class="row align-items-start mb-3">
-                          <div
-                            class="col-md-3 col-4 flight-details-first-rw d-flex align-items-center"
-                          >
-                            <img
-                              [src]="imageUrl + flight?.FlightLogoName"
-                              alt="logo1"
-                              class="img-fluid imglogoflightsec"
-                            />
-                            <div class="mx-3">
-                              <h5 class="mb-0">
-                                {{ flight?.MarketingAirlineName }}
-                              </h5>
-                              <p class="mb-0">{{ flight?.AirEquipmentType }}</p>
-                              <p class="mb-0">{{ flight?.Duration }}</p>
-                            </div>
-                          </div>
-                          <div class="col-md-6 flight-details-second-rw">
-                            <div class="flight-ticket-card">
-                              <div class="flight-ticket-section">
-                                <div class="flight-ticket-time">
+                            <div class="col-md-3">
+                              <div class="service">
+                                <p class="mb-1">
+                                  <strong>Class Of Service:</strong>
                                   {{
-                                    flight?.DepartureDateTime
-                                      | date : "EEE, MMM dd"
+                                    classMap[flight?.CabinClass] ||
+                                      flight?.CabinClass
                                   }}
-                                </div>
-                                <div class="flight-ticket-code">
-                                  {{
-                                    flight?.DepartureDateTime | date : "HH:mm"
-                                  }}
-                                </div>
-                                <div class="flight-ticket-label">
-                                  {{ flight?.DepartureDisplayName }},&nbsp;{{
-                                    flight?.DepartureLocationCode
-                                  }}
-                                </div>
-                              </div>
-                              <div class="flight-ticket-middle">
-                                <img
-                                  src="assets/images/flightstartstop.png"
-                                  alt="plane route"
-                                />
-                              </div>
-                              <div class="flight-ticket-section">
-                                <div class="flight-ticket-time">
-                                  {{
-                                    flight?.ArrivalDateTime
-                                      | date : "EEE, MMM dd"
-                                  }}
-                                </div>
-                                <div class="flight-ticket-code">
-                                  {{ flight?.ArrivalDateTime | date : "HH:mm" }}
-                                </div>
-                                <div class="flight-ticket-label">
-                                  {{ flight?.DisplayName }},&nbsp;{{
-                                    flight?.ArrivalLocationCode
-                                  }}
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-md-3">
-                            <div class="service">
-                              <p class="mb-1">
-                                <strong>Class Of Service:</strong>
-                                {{
-                                  classMap[flight?.CabinClass] ||
-                                    flight?.CabinClass
-                                }}
-                                ({{ flight?.BookingClass }})
-                              </p>
-                              <!-- <p class="mb-1">
+                                  ({{ flight?.BookingClass }})
+                                </p>
+                                <!-- <p class="mb-1">
                                 <strong>Airbus:</strong> {{flight?.AirEquipmentType}}
                               </p> -->
-                              <p class="mb-1"><strong>Meal:</strong> Meal</p>
-                              <p class="mb-1">
-                                <strong>Seat:</strong> Check-in required
-                              </p>
-                              <div
-                                class="hover-btn-card-wrapper"
-                                style="width: max-content"
-                              >
+                                <p class="mb-1"><strong>Meal:</strong> Meal</p>
+                                <p class="mb-1">
+                                  <strong>Seat:</strong> Check-in required
+                                </p>
                                 <div
-                                  class="icolist d-inline-flex align-items-center gap-2 position-relative cardToggleBtn"
+                                  class="hover-btn-card-wrapper"
+                                  style="width: max-content"
                                 >
-                                  <a>
-                                    <svg
-                                      width="16"
-                                      height="16"
-                                      viewBox="0 0 16 16"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <g clip-path="url(#clip0_1156_1275)">
-                                        <path
-                                          d="M2 15.3334H0V8.00002C0 6.89736 0.897333 6.00002 2 6.00002V15.3334ZM14 6.00002V15.3334H16V8.00002C16 6.89736 15.1027 6.00002 14 6.00002ZM3.33333 5.33335C3.33333 2.76069 5.42667 0.666687 8 0.666687C10.5733 0.666687 12.6667 2.76069 12.6667 5.33335V15.3334H3.33333V5.33335ZM9.33333 9.33336H6.66667V10.6667H9.33333V9.33336ZM4.66667 6.00002H11.3333V5.33335C11.3333 3.49535 9.838 2.00002 8 2.00002C6.162 2.00002 4.66667 3.49535 4.66667 5.33335V6.00002Z"
-                                          fill="#0071E9"
-                                        />
-                                      </g>
-                                      <defs>
-                                        <clipPath id="clip0_1156_1275">
-                                          <rect
-                                            width="16"
-                                            height="16"
-                                            fill="white"
+                                  <div
+                                    class="icolist d-inline-flex align-items-center gap-2 position-relative cardToggleBtn"
+                                  >
+                                    <a>
+                                      <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <g clip-path="url(#clip0_1156_1275)">
+                                          <path
+                                            d="M2 15.3334H0V8.00002C0 6.89736 0.897333 6.00002 2 6.00002V15.3334ZM14 6.00002V15.3334H16V8.00002C16 6.89736 15.1027 6.00002 14 6.00002ZM3.33333 5.33335C3.33333 2.76069 5.42667 0.666687 8 0.666687C10.5733 0.666687 12.6667 2.76069 12.6667 5.33335V15.3334H3.33333V5.33335ZM9.33333 9.33336H6.66667V10.6667H9.33333V9.33336ZM4.66667 6.00002H11.3333V5.33335C11.3333 3.49535 9.838 2.00002 8 2.00002C6.162 2.00002 4.66667 3.49535 4.66667 5.33335V6.00002Z"
+                                            fill="#0071E9"
                                           />
-                                        </clipPath>
-                                      </defs>
-                                    </svg>
-                                  </a>
-                                  <a>
-                                    <svg
-                                      width="16"
-                                      height="16"
-                                      viewBox="0 0 16 16"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <g clip-path="url(#clip0_1156_1277)">
-                                        <path
-                                          d="M10.6667 16H5.33333C4.89428 15.9982 4.46802 15.852 4.12031 15.5839C3.77259 15.3159 3.52275 14.9408 3.40933 14.5167C3.60025 13.4379 4.16498 12.4608 5.00444 11.7568C5.8439 11.0529 6.90445 10.6671 8 10.6671C9.09555 10.6671 10.1561 11.0529 10.9956 11.7568C11.835 12.4608 12.3998 13.4379 12.5907 14.5167C12.4772 14.9408 12.2274 15.3159 11.8797 15.5839C11.532 15.852 11.1057 15.9982 10.6667 16ZM2 14V8.94933C1.40624 9.20847 0.900862 9.63502 0.545666 10.1768C0.19047 10.7186 0.00085225 11.3522 0 12L0 12.6667C0.0010395 13.4253 0.260836 14.1609 0.736472 14.7519C1.21211 15.343 1.87513 15.7541 2.616 15.9173C2.21603 15.358 2.00068 14.6877 2 14ZM14 8.94933V14C13.9993 14.6877 13.784 15.358 13.384 15.9173C14.1249 15.7541 14.7879 15.343 15.2635 14.7519C15.7392 14.1609 15.999 13.4253 16 12.6667V12C15.9991 11.3522 15.8095 10.7186 15.4543 10.1768C15.0991 9.63502 14.5938 9.20847 14 8.94933ZM12.6667 7.33333V11.5707C12.1058 10.8723 11.3953 10.3087 10.5877 9.92147C9.78 9.53422 8.89571 9.33319 8 9.33319C7.10429 9.33319 6.22001 9.53422 5.41233 9.92147C4.60466 10.3087 3.8942 10.8723 3.33333 11.5707V7.33333C3.3338 6.58193 3.51592 5.84178 3.86416 5.17595C4.2124 4.51012 4.71644 3.93834 5.33333 3.50933V2.66667C5.33333 1.95942 5.61428 1.28115 6.11438 0.781049C6.61448 0.280952 7.29276 0 8 0C8.70724 0 9.38552 0.280952 9.88562 0.781049C10.3857 1.28115 10.6667 1.95942 10.6667 2.66667V3.50933C11.2836 3.93834 11.7876 4.51012 12.1358 5.17595C12.4841 5.84178 12.6662 6.58193 12.6667 7.33333ZM6.66667 2.86667C7.53622 2.60444 8.46378 2.60444 9.33333 2.86667V2.66667C9.33333 2.31304 9.19286 1.97391 8.94281 1.72386C8.69276 1.47381 8.35362 1.33333 8 1.33333C7.64638 1.33333 7.30724 1.47381 7.05719 1.72386C6.80714 1.97391 6.66667 2.31304 6.66667 2.66667V2.86667ZM10 6.66667C10 6.48986 9.92976 6.32029 9.80474 6.19526C9.67971 6.07024 9.51014 6 9.33333 6H6.66667C6.48986 6 6.32029 6.07024 6.19526 6.19526C6.07024 6.32029 6 6.48986 6 6.66667C6 6.84348 6.07024 7.01305 6.19526 7.13807C6.32029 7.2631 6.48986 7.33333 6.66667 7.33333H9.33333C9.51014 7.33333 9.67971 7.2631 9.80474 7.13807C9.92976 7.01305 10 6.84348 10 6.66667Z"
-                                          fill="#0071E9"
-                                        />
-                                      </g>
-                                      <defs>
-                                        <clipPath id="clip0_1156_1277">
-                                          <rect
-                                            width="16"
-                                            height="16"
-                                            fill="white"
+                                        </g>
+                                        <defs>
+                                          <clipPath id="clip0_1156_1275">
+                                            <rect
+                                              width="16"
+                                              height="16"
+                                              fill="white"
+                                            />
+                                          </clipPath>
+                                        </defs>
+                                      </svg>
+                                    </a>
+                                    <a>
+                                      <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <g clip-path="url(#clip0_1156_1277)">
+                                          <path
+                                            d="M10.6667 16H5.33333C4.89428 15.9982 4.46802 15.852 4.12031 15.5839C3.77259 15.3159 3.52275 14.9408 3.40933 14.5167C3.60025 13.4379 4.16498 12.4608 5.00444 11.7568C5.8439 11.0529 6.90445 10.6671 8 10.6671C9.09555 10.6671 10.1561 11.0529 10.9956 11.7568C11.835 12.4608 12.3998 13.4379 12.5907 14.5167C12.4772 14.9408 12.2274 15.3159 11.8797 15.5839C11.532 15.852 11.1057 15.9982 10.6667 16ZM2 14V8.94933C1.40624 9.20847 0.900862 9.63502 0.545666 10.1768C0.19047 10.7186 0.00085225 11.3522 0 12L0 12.6667C0.0010395 13.4253 0.260836 14.1609 0.736472 14.7519C1.21211 15.343 1.87513 15.7541 2.616 15.9173C2.21603 15.358 2.00068 14.6877 2 14ZM14 8.94933V14C13.9993 14.6877 13.784 15.358 13.384 15.9173C14.1249 15.7541 14.7879 15.343 15.2635 14.7519C15.7392 14.1609 15.999 13.4253 16 12.6667V12C15.9991 11.3522 15.8095 10.7186 15.4543 10.1768C15.0991 9.63502 14.5938 9.20847 14 8.94933ZM12.6667 7.33333V11.5707C12.1058 10.8723 11.3953 10.3087 10.5877 9.92147C9.78 9.53422 8.89571 9.33319 8 9.33319C7.10429 9.33319 6.22001 9.53422 5.41233 9.92147C4.60466 10.3087 3.8942 10.8723 3.33333 11.5707V7.33333C3.3338 6.58193 3.51592 5.84178 3.86416 5.17595C4.2124 4.51012 4.71644 3.93834 5.33333 3.50933V2.66667C5.33333 1.95942 5.61428 1.28115 6.11438 0.781049C6.61448 0.280952 7.29276 0 8 0C8.70724 0 9.38552 0.280952 9.88562 0.781049C10.3857 1.28115 10.6667 1.95942 10.6667 2.66667V3.50933C11.2836 3.93834 11.7876 4.51012 12.1358 5.17595C12.4841 5.84178 12.6662 6.58193 12.6667 7.33333ZM6.66667 2.86667C7.53622 2.60444 8.46378 2.60444 9.33333 2.86667V2.66667C9.33333 2.31304 9.19286 1.97391 8.94281 1.72386C8.69276 1.47381 8.35362 1.33333 8 1.33333C7.64638 1.33333 7.30724 1.47381 7.05719 1.72386C6.80714 1.97391 6.66667 2.31304 6.66667 2.66667V2.86667ZM10 6.66667C10 6.48986 9.92976 6.32029 9.80474 6.19526C9.67971 6.07024 9.51014 6 9.33333 6H6.66667C6.48986 6 6.32029 6.07024 6.19526 6.19526C6.07024 6.32029 6 6.48986 6 6.66667C6 6.84348 6.07024 7.01305 6.19526 7.13807C6.32029 7.2631 6.48986 7.33333 6.66667 7.33333H9.33333C9.51014 7.33333 9.67971 7.2631 9.80474 7.13807C9.92976 7.01305 10 6.84348 10 6.66667Z"
+                                            fill="#0071E9"
                                           />
-                                        </clipPath>
-                                      </defs>
-                                    </svg>
-                                  </a>
-                                  <a>
-                                    <svg
-                                      width="16"
-                                      height="16"
-                                      viewBox="0 0 16 16"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <g clip-path="url(#clip0_1156_1279)">
-                                        <path
-                                          d="M12.6667 2.66667H11.9327C11.6227 1.14733 10.276 0 8.66667 0H7.33333C5.724 0 4.37667 1.14733 4.06733 2.66667H3.33333C1.49533 2.66667 0 4.162 0 6V12.6667C0 14.5047 1.49533 16 3.33333 16H4V6C4 5.63133 4.29867 5.33333 4.66667 5.33333C5.03467 5.33333 5.33333 5.63133 5.33333 6V16H10.6667V6C10.6667 5.63133 10.9647 5.33333 11.3333 5.33333C11.702 5.33333 12 5.63133 12 6V16H12.6667C14.5047 16 16 14.5047 16 12.6667V6C16 4.162 14.5047 2.66667 12.6667 2.66667ZM5.448 2.66667C5.72333 1.89067 6.464 1.33333 7.33333 1.33333H8.66667C9.536 1.33333 10.2767 1.89067 10.552 2.66667H5.448Z"
-                                          fill="#0071E9"
-                                        />
-                                      </g>
-                                      <defs>
-                                        <clipPath id="clip0_1156_1279">
-                                          <rect
-                                            width="16"
-                                            height="16"
-                                            fill="white"
+                                        </g>
+                                        <defs>
+                                          <clipPath id="clip0_1156_1277">
+                                            <rect
+                                              width="16"
+                                              height="16"
+                                              fill="white"
+                                            />
+                                          </clipPath>
+                                        </defs>
+                                      </svg>
+                                    </a>
+                                    <a>
+                                      <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <g clip-path="url(#clip0_1156_1279)">
+                                          <path
+                                            d="M12.6667 2.66667H11.9327C11.6227 1.14733 10.276 0 8.66667 0H7.33333C5.724 0 4.37667 1.14733 4.06733 2.66667H3.33333C1.49533 2.66667 0 4.162 0 6V12.6667C0 14.5047 1.49533 16 3.33333 16H4V6C4 5.63133 4.29867 5.33333 4.66667 5.33333C5.03467 5.33333 5.33333 5.63133 5.33333 6V16H10.6667V6C10.6667 5.63133 10.9647 5.33333 11.3333 5.33333C11.702 5.33333 12 5.63133 12 6V16H12.6667C14.5047 16 16 14.5047 16 12.6667V6C16 4.162 14.5047 2.66667 12.6667 2.66667ZM5.448 2.66667C5.72333 1.89067 6.464 1.33333 7.33333 1.33333H8.66667C9.536 1.33333 10.2767 1.89067 10.552 2.66667H5.448Z"
+                                            fill="#0071E9"
                                           />
-                                        </clipPath>
-                                      </defs>
-                                    </svg>
-                                  </a>
-                                  <div class="hover-card">
-                                    <div class="hover-card-row">
-                                      <div class="label">
-                                        <i class="fas fa-briefcase"></i>
-                                        Personal Item
+                                        </g>
+                                        <defs>
+                                          <clipPath id="clip0_1156_1279">
+                                            <rect
+                                              width="16"
+                                              height="16"
+                                              fill="white"
+                                            />
+                                          </clipPath>
+                                        </defs>
+                                      </svg>
+                                    </a>
+                                    <div class="hover-card">
+                                      <div class="hover-card-row">
+                                        <div class="label">
+                                          <i class="fas fa-briefcase"></i>
+                                          Personal Item
+                                        </div>
+                                        <div class="value">Included</div>
                                       </div>
-                                      <div class="value">Included</div>
-                                    </div>
-                                    <div class="hover-card-row">
-                                      <div class="label">
-                                        <i class="fas fa-suitcase-rolling"></i>
-                                        Carry-on Bag
+                                      <div class="hover-card-row">
+                                        <div class="label">
+                                          <i
+                                            class="fas fa-suitcase-rolling"
+                                          ></i>
+                                          Carry-on Bag
+                                        </div>
+                                        <div class="value">Chargeable</div>
                                       </div>
-                                      <div class="value">Chargeable</div>
-                                    </div>
-                                    <div class="hover-card-row">
-                                      <div class="label">
-                                        <i class="fas fa-suitcase"></i>
-                                        Checked Bag
+                                      <div class="hover-card-row">
+                                        <div class="label">
+                                          <i class="fas fa-suitcase"></i>
+                                          Checked Bag
+                                        </div>
+                                        <div class="value">Chargeable</div>
                                       </div>
-                                      <div class="value">Chargeable</div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
 
-                        }
+                          }
 
-                        <!-- <div class="row align-items-start mb-3">
+                          <!-- <div class="row align-items-start mb-3">
                           <div
                             class="col-md-3 col-4 flight-details-first-rw d-flex align-items-center"
                           >
@@ -1810,221 +2035,227 @@
                             </div>
                           </div>
                         </div> -->
-                      </div>
-                      } @if (flightInfo?.Citypairs?.length===2) {
-                      <hr />
-                      <div class="flight-details-rw">
-                        <h4>
-                          Return
-                          {{
-                            flightInfo?.Citypairs[1]?.FlightSegment[0]
-                              ?.DepartureDateTime | date : "EEE, MMM dd"
-                          }}
-                        </h4>
-                        @for (flight of flightInfo?.Citypairs[1]?.FlightSegment;
-                        track $index) { @if (flight?.LayoverTime!='') {
-                        <div class="layover-wrapper">
-                          <div class="line"></div>
-                          <div class="layover-box">
-                            <span class="is--layovertxt">Layover:</span>
-                            <b>{{ flight?.LayoverTime }}</b>
-                          </div>
-                          <div class="line"></div>
                         </div>
-                        }
+                        } @if (flightInfo?.Citypairs?.length===2) {
+                        <hr />
+                        <div class="flight-details-rw">
+                          <h4>
+                            Return
+                            {{
+                              flightInfo?.Citypairs[1]?.FlightSegment[0]
+                                ?.DepartureDateTime | date : "EEE, MMM dd"
+                            }}
+                          </h4>
+                          @for (flight of
+                          flightInfo?.Citypairs[1]?.FlightSegment; track $index)
+                          { @if (flight?.LayoverTime!='') {
+                          <div class="layover-wrapper">
+                            <div class="line"></div>
+                            <div class="layover-box">
+                              <span class="is--layovertxt">Layover:</span>
+                              <b>{{ flight?.LayoverTime }}</b>
+                            </div>
+                            <div class="line"></div>
+                          </div>
+                          }
 
-                        <div class="row align-items-start mb-3">
-                          <div
-                            class="col-md-3 col-4 flight-details-first-rw d-flex align-items-center"
-                          >
-                            <img
-                              [src]="imageUrl + flight?.FlightLogoName"
-                              alt="logo1"
-                              class="img-fluid imglogoflightsec"
-                            />
-                            <div class="mx-3">
-                              <h5 class="mb-0">
-                                {{ flight?.MarketingAirlineName }}
-                              </h5>
-                              <p class="mb-0">{{ flight?.AirEquipmentType }}</p>
-                              <p class="mb-0">{{ flight?.Duration }}</p>
-                            </div>
-                          </div>
-                          <div class="col-md-6 flight-details-second-rw">
-                            <div class="flight-ticket-card">
-                              <div class="flight-ticket-section">
-                                <div class="flight-ticket-time">
-                                  {{
-                                    flight?.DepartureDateTime
-                                      | date : "EEE, MMM dd"
-                                  }}
-                                </div>
-                                <div class="flight-ticket-code">
-                                  {{
-                                    flight?.DepartureDateTime | date : "HH:mm"
-                                  }}
-                                </div>
-                                <div class="flight-ticket-label">
-                                  {{ flight?.DepartureDisplayName }},&nbsp;{{
-                                    flight?.DepartureLocationCode
-                                  }}
-                                </div>
-                              </div>
-                              <div class="flight-ticket-middle">
-                                <img
-                                  src="assets/images/flightstartstop.png"
-                                  alt="plane route"
-                                />
-                              </div>
-                              <div class="flight-ticket-section">
-                                <div class="flight-ticket-time">
-                                  {{
-                                    flight?.ArrivalDateTime
-                                      | date : "EEE, MMM dd"
-                                  }}
-                                </div>
-                                <div class="flight-ticket-code">
-                                  {{ flight?.ArrivalDateTime | date : "HH:mm" }}
-                                </div>
-                                <div class="flight-ticket-label">
-                                  {{ flight?.DisplayName }},&nbsp;{{
-                                    flight?.ArrivalLocationCode
-                                  }}
-                                </div>
+                          <div class="row align-items-start mb-3">
+                            <div
+                              class="col-md-3 col-4 flight-details-first-rw d-flex align-items-center"
+                            >
+                              <img
+                                [src]="imageUrl + flight?.FlightLogoName"
+                                alt="logo1"
+                                class="img-fluid imglogoflightsec"
+                              />
+                              <div class="mx-3">
+                                <h5 class="mb-0">
+                                  {{ flight?.MarketingAirlineName }}
+                                </h5>
+                                <p class="mb-0">
+                                  {{ flight?.AirEquipmentType }}
+                                </p>
+                                <p class="mb-0">{{ flight?.Duration }}</p>
                               </div>
                             </div>
-                          </div>
-                          <div class="col-md-3">
-                            <div class="service">
-                              <p class="mb-1">
-                                <strong>Class Of Service:</strong>
-                                {{
-                                  classMap[flight?.CabinClass] ||
-                                    flight?.CabinClass
-                                }}
-                                ({{ flight?.BookingClass }})
-                              </p>
-                              <p class="mb-1">
-                                <strong>Airbus:</strong> A350-900
-                              </p>
-                              <p class="mb-1"><strong>Meal:</strong> Meal</p>
-                              <p class="mb-1">
-                                <strong>Seat:</strong> Check-in required
-                              </p>
-                              <div
-                                class="hover-btn-card-wrapper"
-                                style="width: max-content"
-                              >
+                            <div class="col-md-6 flight-details-second-rw">
+                              <div class="flight-ticket-card">
+                                <div class="flight-ticket-section">
+                                  <div class="flight-ticket-time">
+                                    {{
+                                      flight?.DepartureDateTime
+                                        | date : "EEE, MMM dd"
+                                    }}
+                                  </div>
+                                  <div class="flight-ticket-code">
+                                    {{
+                                      flight?.DepartureDateTime | date : "HH:mm"
+                                    }}
+                                  </div>
+                                  <div class="flight-ticket-label">
+                                    {{ flight?.DepartureDisplayName }},&nbsp;{{
+                                      flight?.DepartureLocationCode
+                                    }}
+                                  </div>
+                                </div>
+                                <div class="flight-ticket-middle">
+                                  <img
+                                    src="assets/images/flightstartstop.png"
+                                    alt="plane route"
+                                  />
+                                </div>
+                                <div class="flight-ticket-section">
+                                  <div class="flight-ticket-time">
+                                    {{
+                                      flight?.ArrivalDateTime
+                                        | date : "EEE, MMM dd"
+                                    }}
+                                  </div>
+                                  <div class="flight-ticket-code">
+                                    {{
+                                      flight?.ArrivalDateTime | date : "HH:mm"
+                                    }}
+                                  </div>
+                                  <div class="flight-ticket-label">
+                                    {{ flight?.DisplayName }},&nbsp;{{
+                                      flight?.ArrivalLocationCode
+                                    }}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="service">
+                                <p class="mb-1">
+                                  <strong>Class Of Service:</strong>
+                                  {{
+                                    classMap[flight?.CabinClass] ||
+                                      flight?.CabinClass
+                                  }}
+                                  ({{ flight?.BookingClass }})
+                                </p>
+                                <p class="mb-1">
+                                  <strong>Airbus:</strong> A350-900
+                                </p>
+                                <p class="mb-1"><strong>Meal:</strong> Meal</p>
+                                <p class="mb-1">
+                                  <strong>Seat:</strong> Check-in required
+                                </p>
                                 <div
-                                  class="icolist d-inline-flex align-items-center gap-2 position-relative cardToggleBtn"
+                                  class="hover-btn-card-wrapper"
+                                  style="width: max-content"
                                 >
-                                  <a>
-                                    <svg
-                                      width="16"
-                                      height="16"
-                                      viewBox="0 0 16 16"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <g clip-path="url(#clip0_1156_1275)">
-                                        <path
-                                          d="M2 15.3334H0V8.00002C0 6.89736 0.897333 6.00002 2 6.00002V15.3334ZM14 6.00002V15.3334H16V8.00002C16 6.89736 15.1027 6.00002 14 6.00002ZM3.33333 5.33335C3.33333 2.76069 5.42667 0.666687 8 0.666687C10.5733 0.666687 12.6667 2.76069 12.6667 5.33335V15.3334H3.33333V5.33335ZM9.33333 9.33336H6.66667V10.6667H9.33333V9.33336ZM4.66667 6.00002H11.3333V5.33335C11.3333 3.49535 9.838 2.00002 8 2.00002C6.162 2.00002 4.66667 3.49535 4.66667 5.33335V6.00002Z"
-                                          fill="#0071E9"
-                                        />
-                                      </g>
-                                      <defs>
-                                        <clipPath id="clip0_1156_1275">
-                                          <rect
-                                            width="16"
-                                            height="16"
-                                            fill="white"
+                                  <div
+                                    class="icolist d-inline-flex align-items-center gap-2 position-relative cardToggleBtn"
+                                  >
+                                    <a>
+                                      <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <g clip-path="url(#clip0_1156_1275)">
+                                          <path
+                                            d="M2 15.3334H0V8.00002C0 6.89736 0.897333 6.00002 2 6.00002V15.3334ZM14 6.00002V15.3334H16V8.00002C16 6.89736 15.1027 6.00002 14 6.00002ZM3.33333 5.33335C3.33333 2.76069 5.42667 0.666687 8 0.666687C10.5733 0.666687 12.6667 2.76069 12.6667 5.33335V15.3334H3.33333V5.33335ZM9.33333 9.33336H6.66667V10.6667H9.33333V9.33336ZM4.66667 6.00002H11.3333V5.33335C11.3333 3.49535 9.838 2.00002 8 2.00002C6.162 2.00002 4.66667 3.49535 4.66667 5.33335V6.00002Z"
+                                            fill="#0071E9"
                                           />
-                                        </clipPath>
-                                      </defs>
-                                    </svg>
-                                  </a>
-                                  <a>
-                                    <svg
-                                      width="16"
-                                      height="16"
-                                      viewBox="0 0 16 16"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <g clip-path="url(#clip0_1156_1277)">
-                                        <path
-                                          d="M10.6667 16H5.33333C4.89428 15.9982 4.46802 15.852 4.12031 15.5839C3.77259 15.3159 3.52275 14.9408 3.40933 14.5167C3.60025 13.4379 4.16498 12.4608 5.00444 11.7568C5.8439 11.0529 6.90445 10.6671 8 10.6671C9.09555 10.6671 10.1561 11.0529 10.9956 11.7568C11.835 12.4608 12.3998 13.4379 12.5907 14.5167C12.4772 14.9408 12.2274 15.3159 11.8797 15.5839C11.532 15.852 11.1057 15.9982 10.6667 16ZM2 14V8.94933C1.40624 9.20847 0.900862 9.63502 0.545666 10.1768C0.19047 10.7186 0.00085225 11.3522 0 12L0 12.6667C0.0010395 13.4253 0.260836 14.1609 0.736472 14.7519C1.21211 15.343 1.87513 15.7541 2.616 15.9173C2.21603 15.358 2.00068 14.6877 2 14ZM14 8.94933V14C13.9993 14.6877 13.784 15.358 13.384 15.9173C14.1249 15.7541 14.7879 15.343 15.2635 14.7519C15.7392 14.1609 15.999 13.4253 16 12.6667V12C15.9991 11.3522 15.8095 10.7186 15.4543 10.1768C15.0991 9.63502 14.5938 9.20847 14 8.94933ZM12.6667 7.33333V11.5707C12.1058 10.8723 11.3953 10.3087 10.5877 9.92147C9.78 9.53422 8.89571 9.33319 8 9.33319C7.10429 9.33319 6.22001 9.53422 5.41233 9.92147C4.60466 10.3087 3.8942 10.8723 3.33333 11.5707V7.33333C3.3338 6.58193 3.51592 5.84178 3.86416 5.17595C4.2124 4.51012 4.71644 3.93834 5.33333 3.50933V2.66667C5.33333 1.95942 5.61428 1.28115 6.11438 0.781049C6.61448 0.280952 7.29276 0 8 0C8.70724 0 9.38552 0.280952 9.88562 0.781049C10.3857 1.28115 10.6667 1.95942 10.6667 2.66667V3.50933C11.2836 3.93834 11.7876 4.51012 12.1358 5.17595C12.4841 5.84178 12.6662 6.58193 12.6667 7.33333ZM6.66667 2.86667C7.53622 2.60444 8.46378 2.60444 9.33333 2.86667V2.66667C9.33333 2.31304 9.19286 1.97391 8.94281 1.72386C8.69276 1.47381 8.35362 1.33333 8 1.33333C7.64638 1.33333 7.30724 1.47381 7.05719 1.72386C6.80714 1.97391 6.66667 2.31304 6.66667 2.66667V2.86667ZM10 6.66667C10 6.48986 9.92976 6.32029 9.80474 6.19526C9.67971 6.07024 9.51014 6 9.33333 6H6.66667C6.48986 6 6.32029 6.07024 6.19526 6.19526C6.07024 6.32029 6 6.48986 6 6.66667C6 6.84348 6.07024 7.01305 6.19526 7.13807C6.32029 7.2631 6.48986 7.33333 6.66667 7.33333H9.33333C9.51014 7.33333 9.67971 7.2631 9.80474 7.13807C9.92976 7.01305 10 6.84348 10 6.66667Z"
-                                          fill="#0071E9"
-                                        />
-                                      </g>
-                                      <defs>
-                                        <clipPath id="clip0_1156_1277">
-                                          <rect
-                                            width="16"
-                                            height="16"
-                                            fill="white"
+                                        </g>
+                                        <defs>
+                                          <clipPath id="clip0_1156_1275">
+                                            <rect
+                                              width="16"
+                                              height="16"
+                                              fill="white"
+                                            />
+                                          </clipPath>
+                                        </defs>
+                                      </svg>
+                                    </a>
+                                    <a>
+                                      <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <g clip-path="url(#clip0_1156_1277)">
+                                          <path
+                                            d="M10.6667 16H5.33333C4.89428 15.9982 4.46802 15.852 4.12031 15.5839C3.77259 15.3159 3.52275 14.9408 3.40933 14.5167C3.60025 13.4379 4.16498 12.4608 5.00444 11.7568C5.8439 11.0529 6.90445 10.6671 8 10.6671C9.09555 10.6671 10.1561 11.0529 10.9956 11.7568C11.835 12.4608 12.3998 13.4379 12.5907 14.5167C12.4772 14.9408 12.2274 15.3159 11.8797 15.5839C11.532 15.852 11.1057 15.9982 10.6667 16ZM2 14V8.94933C1.40624 9.20847 0.900862 9.63502 0.545666 10.1768C0.19047 10.7186 0.00085225 11.3522 0 12L0 12.6667C0.0010395 13.4253 0.260836 14.1609 0.736472 14.7519C1.21211 15.343 1.87513 15.7541 2.616 15.9173C2.21603 15.358 2.00068 14.6877 2 14ZM14 8.94933V14C13.9993 14.6877 13.784 15.358 13.384 15.9173C14.1249 15.7541 14.7879 15.343 15.2635 14.7519C15.7392 14.1609 15.999 13.4253 16 12.6667V12C15.9991 11.3522 15.8095 10.7186 15.4543 10.1768C15.0991 9.63502 14.5938 9.20847 14 8.94933ZM12.6667 7.33333V11.5707C12.1058 10.8723 11.3953 10.3087 10.5877 9.92147C9.78 9.53422 8.89571 9.33319 8 9.33319C7.10429 9.33319 6.22001 9.53422 5.41233 9.92147C4.60466 10.3087 3.8942 10.8723 3.33333 11.5707V7.33333C3.3338 6.58193 3.51592 5.84178 3.86416 5.17595C4.2124 4.51012 4.71644 3.93834 5.33333 3.50933V2.66667C5.33333 1.95942 5.61428 1.28115 6.11438 0.781049C6.61448 0.280952 7.29276 0 8 0C8.70724 0 9.38552 0.280952 9.88562 0.781049C10.3857 1.28115 10.6667 1.95942 10.6667 2.66667V3.50933C11.2836 3.93834 11.7876 4.51012 12.1358 5.17595C12.4841 5.84178 12.6662 6.58193 12.6667 7.33333ZM6.66667 2.86667C7.53622 2.60444 8.46378 2.60444 9.33333 2.86667V2.66667C9.33333 2.31304 9.19286 1.97391 8.94281 1.72386C8.69276 1.47381 8.35362 1.33333 8 1.33333C7.64638 1.33333 7.30724 1.47381 7.05719 1.72386C6.80714 1.97391 6.66667 2.31304 6.66667 2.66667V2.86667ZM10 6.66667C10 6.48986 9.92976 6.32029 9.80474 6.19526C9.67971 6.07024 9.51014 6 9.33333 6H6.66667C6.48986 6 6.32029 6.07024 6.19526 6.19526C6.07024 6.32029 6 6.48986 6 6.66667C6 6.84348 6.07024 7.01305 6.19526 7.13807C6.32029 7.2631 6.48986 7.33333 6.66667 7.33333H9.33333C9.51014 7.33333 9.67971 7.2631 9.80474 7.13807C9.92976 7.01305 10 6.84348 10 6.66667Z"
+                                            fill="#0071E9"
                                           />
-                                        </clipPath>
-                                      </defs>
-                                    </svg>
-                                  </a>
-                                  <a>
-                                    <svg
-                                      width="16"
-                                      height="16"
-                                      viewBox="0 0 16 16"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <g clip-path="url(#clip0_1156_1279)">
-                                        <path
-                                          d="M12.6667 2.66667H11.9327C11.6227 1.14733 10.276 0 8.66667 0H7.33333C5.724 0 4.37667 1.14733 4.06733 2.66667H3.33333C1.49533 2.66667 0 4.162 0 6V12.6667C0 14.5047 1.49533 16 3.33333 16H4V6C4 5.63133 4.29867 5.33333 4.66667 5.33333C5.03467 5.33333 5.33333 5.63133 5.33333 6V16H10.6667V6C10.6667 5.63133 10.9647 5.33333 11.3333 5.33333C11.702 5.33333 12 5.63133 12 6V16H12.6667C14.5047 16 16 14.5047 16 12.6667V6C16 4.162 14.5047 2.66667 12.6667 2.66667ZM5.448 2.66667C5.72333 1.89067 6.464 1.33333 7.33333 1.33333H8.66667C9.536 1.33333 10.2767 1.89067 10.552 2.66667H5.448Z"
-                                          fill="#0071E9"
-                                        />
-                                      </g>
-                                      <defs>
-                                        <clipPath id="clip0_1156_1279">
-                                          <rect
-                                            width="16"
-                                            height="16"
-                                            fill="white"
+                                        </g>
+                                        <defs>
+                                          <clipPath id="clip0_1156_1277">
+                                            <rect
+                                              width="16"
+                                              height="16"
+                                              fill="white"
+                                            />
+                                          </clipPath>
+                                        </defs>
+                                      </svg>
+                                    </a>
+                                    <a>
+                                      <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 16 16"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <g clip-path="url(#clip0_1156_1279)">
+                                          <path
+                                            d="M12.6667 2.66667H11.9327C11.6227 1.14733 10.276 0 8.66667 0H7.33333C5.724 0 4.37667 1.14733 4.06733 2.66667H3.33333C1.49533 2.66667 0 4.162 0 6V12.6667C0 14.5047 1.49533 16 3.33333 16H4V6C4 5.63133 4.29867 5.33333 4.66667 5.33333C5.03467 5.33333 5.33333 5.63133 5.33333 6V16H10.6667V6C10.6667 5.63133 10.9647 5.33333 11.3333 5.33333C11.702 5.33333 12 5.63133 12 6V16H12.6667C14.5047 16 16 14.5047 16 12.6667V6C16 4.162 14.5047 2.66667 12.6667 2.66667ZM5.448 2.66667C5.72333 1.89067 6.464 1.33333 7.33333 1.33333H8.66667C9.536 1.33333 10.2767 1.89067 10.552 2.66667H5.448Z"
+                                            fill="#0071E9"
                                           />
-                                        </clipPath>
-                                      </defs>
-                                    </svg>
-                                  </a>
-                                  <div class="hover-card">
-                                    <div class="hover-card-row">
-                                      <div class="label">
-                                        <i class="fas fa-briefcase"></i>
-                                        Personal Item
+                                        </g>
+                                        <defs>
+                                          <clipPath id="clip0_1156_1279">
+                                            <rect
+                                              width="16"
+                                              height="16"
+                                              fill="white"
+                                            />
+                                          </clipPath>
+                                        </defs>
+                                      </svg>
+                                    </a>
+                                    <div class="hover-card">
+                                      <div class="hover-card-row">
+                                        <div class="label">
+                                          <i class="fas fa-briefcase"></i>
+                                          Personal Item
+                                        </div>
+                                        <div class="value">Included</div>
                                       </div>
-                                      <div class="value">Included</div>
-                                    </div>
-                                    <div class="hover-card-row">
-                                      <div class="label">
-                                        <i class="fas fa-suitcase-rolling"></i>
-                                        Carry-on Bag
+                                      <div class="hover-card-row">
+                                        <div class="label">
+                                          <i
+                                            class="fas fa-suitcase-rolling"
+                                          ></i>
+                                          Carry-on Bag
+                                        </div>
+                                        <div class="value">Chargeable</div>
                                       </div>
-                                      <div class="value">Chargeable</div>
-                                    </div>
-                                    <div class="hover-card-row">
-                                      <div class="label">
-                                        <i class="fas fa-suitcase"></i>
-                                        Checked Bag
+                                      <div class="hover-card-row">
+                                        <div class="label">
+                                          <i class="fas fa-suitcase"></i>
+                                          Checked Bag
+                                        </div>
+                                        <div class="value">Chargeable</div>
                                       </div>
-                                      <div class="value">Chargeable</div>
                                     </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
+                          }
 
-                        }
-
-                        <!-- <div class="row align-items-start mb-3">
+                          <!-- <div class="row align-items-start mb-3">
                           <div
                             class="col-md-3 col-4 flight-details-first-rw d-flex align-items-center"
                           >
@@ -2189,14 +2420,89 @@
                             </div>
                           </div>
                         </div> -->
+                        </div>
+                        }
                       </div>
-                      }
+                    </div>
+                    }
+                  </div>
+                </div>
+                @if (randomInsertIndexes.includes(i)) {
+
+                <div
+                  class="agent-benefits-box border rounded-3 p-3 mt-3 bg-white"
+                >
+                  <div class="row align-items-end g-3">
+                    <div class="col-xl-1 col-lg-12 col-md-12">
+                      <div
+                        class="agent-img position-relative rounded-circle overflow-hidden"
+                        style="width: 64px; height: 64px"
+                      >
+                        <img
+                          src="assets/images/flag-icons/call-phone.webp"
+                          alt="Agent"
+                          class="w-100 h-100 object-fit-cover"
+                        />
+                        <i
+                          class="bi bi-telephone-fill text-success position-absolute bottom-0 end-0 bg-white rounded-circle p-1"
+                          style="font-size: 12px"
+                        ></i>
+                      </div>
+                    </div>
+
+                    <!-- Benefits Text -->
+                    <div class="col-xl-7 col-lg-12 col-md-12 agent-left">
+                      <h6 class="fw-bold mb-2">
+                        Benefits of booking with an agent
+                      </h6>
+                      <ul
+                        class="row row-cols-2 list-unstyled mb-0 small text-dark"
+                      >
+                        <li class="col-lg-6 col-12 mb-1">
+                          <span
+                            ><i
+                              class="fa-solid fa-circle-check fw-bold text-success"
+                            ></i></span
+                          >Phone-only deals available
+                        </li>
+                        <li class="col-lg-6 col-12 mb-1">
+                          <span
+                            ><i
+                              class="fa-solid fa-circle-check fw-bold text-success"
+                            ></i></span
+                          >Personalized travel assistance
+                        </li>
+                        <li class="col-lg-6 col-12 mb-1">
+                          <span
+                            ><i
+                              class="fa-solid fa-circle-check fw-bold text-success"
+                            ></i></span
+                          >24-hour cancellation
+                        </li>
+                        <li class="col-lg-6 col-12 mb-1">
+                          <span
+                            ><i
+                              class="fa-solid fa-circle-check fw-bold text-success"
+                            ></i></span
+                          >2X ClubMiles reward points
+                        </li>
+                      </ul>
+                    </div>
+
+                    <!-- Call Button -->
+                    <div class="col-xl-4 col-lg-12 agent-right text-center">
+                      <a
+                        href="tel:+18882302647"
+                        class="call-button btn border border-success rounded-pill px-4 py-2"
+                      >
+                        <div class="fw-bold text-success">
+                          Book Now - Call us 24/7
+                        </div>
+                      </a>
                     </div>
                   </div>
-                  }
                 </div>
-                </div>
-                }
+                } }
                 <!-- <div class="explore-chepear">
                   <div class="exp-plun">
                     <div class="header-box">
@@ -2346,7 +2652,7 @@
                     </div>
                   </div>
                 </div> -->
-                <div class="explore-chepear">
+                <!-- <div class="explore-chepear">
                   <div class="exp-plun">
                     <div class="header-box">
                       <h2>
@@ -2618,9 +2924,8 @@
                       </div>
                     </div>
                   </div>
-                </div>
-
-                <div class="offer-box shadow rounded">
+                </div> -->
+                <!-- <div class="offer-box shadow rounded">
                   <div class="offer-image">
                     <img
                       src="assets/images/flight-details/export.png"
@@ -2640,7 +2945,7 @@
                       />
                       <button class="btn btn-primary">Send</button>
                     </div>
-                    <div class="small-text">Lorem Ipsum has been</div>
+                    <div class="small-text">Enter your email to get exclusive flight deals and travel offers</div>
                   </div>
                 </div>
 
@@ -2655,10 +2960,11 @@
                     <div class="col-md-8 d-flex align-items-center">
                       <div class="card-body-custom">
                         <h5 class="fw-semibold mb-2">
-                          Lorem Ipsum has been the industry's standard
+                          Bundle Your Trip and Save More
+
                         </h5>
                         <p class="mb-3">
-                          Lorem Ipsum has been the industry's standard
+                          Book flights and hotels together for exclusive discounts
                         </p>
                         <a class="btn btn-primary-custom"
                           >Search Flight + Hotel</a
@@ -2693,48 +2999,54 @@
                   </div>
                   <button class="btn btn-primary book-btn">Book Now</button>
                   <div class="discount-badge">-25%</div>
-                </div>
+                </div> -->
               </div>
               } @if(selectedTab === 'cheapest'){
-              <div id="cheapest" class="common-class">cheapest</div>
+              <!-- <div id="cheapest" class="common-class">cheapest</div> -->
               } @if(selectedTab === 'alternate'){
-              <div id="alternate" class="common-class">alternate</div>
+              <!-- <div id="alternate" class="common-class">alternate</div> -->
               }
             </div>
           </div>
           <div class="col-xxl-2 col-xl-2 col-lg-12 third-section">
-            <div class="advertisement">
+            <!-- <div class="advertisement">
               <div class="ad-banner">
                 <div class="ad-content">
-                  <h3>Lorem Ipsum is simply</h3>
-                  <p>Lorem Ipsum is simply Lorem Ipsum is simply</p>
+                  <h3>Need a Stay? We’ve Got You Covered</h3>
+                  <p>Book top-rated hotels at prices that make sense</p>
+                  <p>From cozy to classy, we’ve got your match</p>
                   <img
                     src="assets/images/flight-details/woman.png"
                     alt="Contact"
                     class="contact-img"
                   />
-                  <a class="phone">(000) 000-0000</a>
+                  <a class="phone">(888) 230-2647</a>
                   <small>Available 24/7</small>
                   <br />
                   <button class="btn btn-custom mt-3">Search for Hotel</button>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="advertisement advertisement-cruise mt-4">
               <div class="ad-banner">
-                <div class="ad-content">
-                  <h3>Lorem Ipsum is simply</h3>
-                  <p>Lorem Ipsum is simply Lorem Ipsum is simply</p>
-                  <img
-                    src="assets/images/flight-details/woman.png"
-                    alt="Contact"
-                    class="contact-img"
-                  />
-                  <a class="phone">(000) 000-0000</a>
-                  <small>Available 24/7</small>
-                  <br />
-                  <button class="btn btn-custom mt-3">Search for Cruise</button>
-                </div>
+                <a href="tel:+18882302647">
+                  <div class="ad-content">
+                    <h3>Fly Smart, Land Happy</h3>
+                    <p>
+                      Find unbeatable deals on domestic and international
+                      flights Fast, flexible, and fare-friendly
+                    </p>
+                    <img
+                      src="assets/images/flight-details/woman.png"
+                      alt="Contact"
+                      class="contact-img"
+                    />
+                    <a href="tel:+18882302647" class="phone">{{ getData?.phoneNumber }}</a>
+                    <small>Available 24/7</small>
+                    <br />
+                    <button class="btn btn-custom mt-3">Click to Call</button>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -2952,7 +3264,7 @@
                   {{ stop.label }}
                 </div>
                 <span
-                  >${{ getFlightsAdvanced?.stopWiseLowestFare?.[stop.key] || 0 }}</span
+                  >${{ getTotalPrice(getFlightsAdvanced?.stopWiseLowestFare?.[stop.key]) |number:'1.0-2' }}</span
                 > </label
               >}
               <hr />
@@ -2977,7 +3289,7 @@
                   {{ carrier.ValidatingCarrierName }}
                 </div>
 
-                <span>${{ carrier.lowestFare | number : "1.0-2" }}</span>
+                <span>${{ getTotalPrice(carrier.lowestFare) | number : "1.0-2" }}</span>
               </label>
               }
 
@@ -3283,25 +3595,26 @@
               <a class="show-less">hide arrival time </a>
               }
               <hr />
-       <h3>total price</h3>
-                <div class="slider-container">
-  <p-slider
-    [(ngModel)]="sliderValue"
-    [range]="true"
-    [min]="lowestPrice"
-    [max]="highestPrice"
-    (onSlideEnd)="onPriceRangeChange()"
-    styleClass="w-56"
-  ></p-slider>
-  <div class="price-range-values">
-    ${{ sliderValue[0] | number:'1.0-0' }} - ${{ sliderValue[1] | number:'1.0-0' }}
-  </div>
-</div>
+              <h3>total price</h3>
+              <div class="slider-container">
+                <p-slider
+                  [(ngModel)]="sliderValue"
+                  [range]="true"
+                  [min]="lowestPrice"
+                  [max]="highestPrice"
+                  (onSlideEnd)="onPriceRangeChange()"
+                  styleClass="w-56"
+                ></p-slider>
+                <div class="price-range-values">
+                  ${{ getTotalPrice(sliderValue[0]) | number : "1.0-0" }} - ${{
+                    getTotalPrice(sliderValue[1]) | number : "1.0-0"
+                  }}
+                </div>
+              </div>
 
-
-                <button type="button" class="clear-filters" (click)="reset()">
-                  clear all filters
-                </button>
+              <button type="button" class="clear-filters" (click)="reset()">
+                clear all filters
+              </button>
             </div>
           </div>
         </div>

@@ -1,0 +1,1204 @@
+    <section class="mob-cta-top">
+        <div class="container mt-5 pt-5 pb-4 text-center">
+        <h2>Reliable Car Rentals for Every Journey</h2>
+        <img src="assets/images/car_three.png" class="img-fluid mt-3 mb-3">
+        <ul class="topserv py-4">
+            <li><i class="fa fa-check-square" aria-hidden="true"></i> Affordable rates for all vehicle types</li>
+            <li><i class="fa fa-check-square" aria-hidden="true"></i> Clean, safe, and well-maintained cars</li>
+        </ul>
+
+        <a class="btn btn-primary" href="tel:+18882302647"><span><i class="fas fa-phone-volume"></i></span>{{ phoneNumber }}</a>
+    </div>
+    </section>
+
+
+<!-- == Hero Section Start == -->
+<section class="hero-section-three">
+  <div class="container">
+    <div class="hero-content">
+      <div class="row align-items-center">
+        <div class="col-md-12">
+          <div class="banner-content">
+            <h1 class="text-white display-5">
+              Exclusive Car Rentals Just for You
+            </h1>
+            <p class="text-white">
+              Experience convenience, luxury, and reliability with
+              {{ companyName }}'s professional private car services now
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- == Hero Section End == -->
+<!-- == Category & Form Section Start == -->
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center g-4">
+      <div class="col-lg-5 d-flex order-2 order-lg-0">
+        <div class="row g-3 g-lg-4">
+          <div class="col-12 d-flex">
+            <a href="tel:{{ phoneNumber }}" class="category-link-wrap">
+              <div
+                class="card border-0 shadow-none pickup-card bg-secondary-100 flex-fill"
+              >
+                <div class="card-body">
+                  <div
+                    class="d-flex align-items-center justify-content-between mb-3"
+                  >
+                    <h5>Affordable Pricing</h5>
+                    <span
+                      class="avatar avatar-lg bg-secondary rounded-circle flex-shrink-0 ms-3"
+                    >
+                      <i class="fas fa-money-check-alt fs-24"></i>
+                    </span>
+                  </div>
+                  <p>
+                    Competitive rates without compromising quality, offering
+                    excellent value for premium private transportation
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 d-flex">
+            <a href="tel:{{ phoneNumber }}" class="category-link-wrap">
+              <div
+                class="card border-0 shadow-none pickup-card bg-purple-100 flex-fill"
+              >
+                <div class="card-body">
+                  <div
+                    class="d-flex align-items-center justify-content-between mb-3"
+                  >
+                    <h5>Easy Booking System</h5>
+                    <span
+                      class="avatar avatar-lg bg-purple rounded-circle flex-shrink-0 ms-3"
+                    >
+                      <i class="fa-solid fa-ticket fs-24"></i>
+                    </span>
+                  </div>
+                  <p>
+                    Simple, user-friendly platform for quick reservations, confirmations, and ride management anytime 
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-12 d-flex">
+            <a href="tel:{{ phoneNumber }}" class="category-link-wrap">
+              <div
+                class="card border-0 shadow-none pickup-card bg-teal-100 flex-fill"
+              >
+                <div class="card-body">
+                  <div
+                    class="d-flex align-items-center justify-content-between mb-3"
+                  >
+                    <h5>Safe & Secure Rides</h5>
+                    <span
+                      class="avatar avatar-lg bg-teal rounded-circle flex-shrink-0 ms-3"
+                    >
+                      <i class="fa-solid fa-car-side fs-24"></i>
+                    </span>
+                  </div>
+                  <p>
+                    Rigorous safety measures and secure vehicles guarantee a
+                    protected, worry-free travel experience
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-7 d-flex">
+        <div class="booking-form-wrap">
+          <!-- Booking Form -->
+          <form
+            id="booking-form"
+            [formGroup]="bookingForm"
+            (ngSubmit)="onSubmit()"
+            class="booking-form"
+            action="/search"
+            method="get"
+          >
+            <h2 class="form-title">Enquiry Now</h2>
+            <!-- Contact Info Section -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <div class="input-icon-group">
+                  <i class="fas fa-user"></i>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    formControlName="name"
+                    placeholder="Enter your full name"
+                    required
+                    class="form-control"
+                  />
+                </div>
+                @if (bookingForm.get('name')?.touched &&
+                bookingForm.get('name')?.hasError('required')) {
+                <div class="text-danger">Name is required.</div>
+                } 
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <div class="input-icon-group">
+                  <i class="fas fa-envelope"></i>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    formControlName="email"
+                    placeholder="Enter your email"
+                    required
+                    class="form-control"
+                  />
+                </div>
+                @if (bookingForm.get('email')?.touched &&
+                bookingForm.get('email')?.hasError('required')) {
+                <div class="text-danger">Email is required.</div>
+                } 
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <div class="input-icon-group">
+                  <i class="fas fa-phone"></i>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    formControlName="phone"
+                    placeholder="Enter your phone number"
+                    required
+                  />
+                </div>
+                @if (bookingForm.get('phone')?.touched &&
+                bookingForm.get('phone')?.hasError('required')) {
+                <div class="text-danger">Phone number is required.</div>
+                } 
+              </div>
+              <div class="form-group">
+                <label for="pickup-location">Pick-up Location</label>
+                <div class="input-icon-group">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <input
+                    type="text"
+                    id="pickup-location"
+                    name="pickup_location"
+                    placeholder="Enter pick-up location"
+                    required
+                    formControlName="pickup_location"
+                     googlePlacesAutocomplete
+                          [autocompleteType]="'country'" (placeChanged)="onPlacePickupSelection($event)"
+                  />
+                </div>
+                @if (bookingForm.get('pickup_location')?.touched &&
+                bookingForm.get('pickup_location')?.hasError('required')) {
+                <div class="text-danger">Pick-up Location is required.</div>
+                } 
+              </div>
+              <div class="form-group">
+                <label for="dropoff-location">Drop-off Location</label>
+                <div class="input-icon-group">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <input
+                    type="text"
+                    id="dropoff-location"
+                    name="dropoff_location"
+                    placeholder="Enter drop-off location"
+                    required
+                    formControlName="dropoff_location"
+                     googlePlacesAutocomplete
+                          [autocompleteType]="'country'" (placeChanged)="onPlaceDropoffSelection($event)"
+                  />
+                </div>
+                 @if (bookingForm.get('dropoff_location')?.touched &&
+                bookingForm.get('dropoff_location')?.hasError('required')) {
+                <div class="text-danger">Drop-off Location is required.</div>
+                } 
+              </div>
+            </div>
+            <!-- Date & Time Info -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="pickup-date">Pick-up Date</label>
+                <div class="input-icon-group">
+                  <i class="fas fa-calendar-alt"></i>
+                  <input
+                    type="date"
+                    (dateSelected)="onDatesSelected($event, 'pickup_date')"
+                    [appFlatpickr]="'basic'"
+                    id="pickup-date"
+                    name="pickup_date"
+                    required
+                    formControlName="pickup_date"
+                    placeholder="Pick-up Date"
+                  />
+                </div>
+                @if (bookingForm.get('pickup_date')?.touched &&
+                bookingForm.get('pickup_date')?.hasError('required')) {
+                <div class="text-danger">Pick-up date is required.</div>
+                }
+              </div>
+
+              <div class="form-group">
+                <label for="pickup-time">Pick-up Time</label>
+                <div class="input-icon-group">
+                  <i class="fas fa-clock"></i>
+                  <input
+                    type="time"
+                    id="pickup-time"
+                    name="pickup_time"
+                    appFlatpickr="time"
+                    (dateSelected)="onTimeSelected($event, 'pickup_time')"
+                    required
+                    formControlName="pickup_time"
+                    placeholder="Pick-up Time"
+                  />
+                </div>
+                @if (bookingForm.get('pickup_time')?.touched &&
+                bookingForm.get('pickup_time')?.hasError('required')) {
+                <div class="text-danger">Pick-up time is required.</div>
+                }
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="dropoff-date">Drop-off Date</label>
+                <div class="input-icon-group">
+                  <i class="fas fa-calendar-alt"></i>
+                  <input
+                    type="date"
+                    [appFlatpickr]="'basic'"
+                    (dateSelected)="onDatesSelected($event, 'dropoff_date')"
+                    id="dropoff-date"
+                    name="dropoff_date"
+                    required
+                    formControlName="dropoff_date"
+                    placeholder="Drop-off Date"
+                  />
+                </div>
+                @if (bookingForm.get('dropoff_date')?.touched &&
+                bookingForm.get('dropoff_date')?.hasError('required')) {
+                <div class="text-danger">Drop-off date is required.</div>
+                }
+              </div>
+
+              <div class="form-group">
+                <label for="dropoff-time">Drop-off Time</label>
+                <div class="input-icon-group">
+                  <i class="fas fa-clock"></i>
+                  <input
+                    type="time"
+                    id="dropoff-time"
+                    name="dropoff_time"
+                    appFlatpickr="time"
+                    (dateSelected)="onTimeSelected($event, 'dropoff_time')"
+                    required
+                    formControlName="dropoff_time"
+                    placeholder="Drop-off Time"
+                  />
+                </div>
+                @if (bookingForm.get('dropoff_time')?.touched &&
+                bookingForm.get('dropoff_time')?.hasError('required')) {
+                <div class="text-danger">Drop-off time is required.</div>
+                } @if (bookingForm.errors?.['dropoffBeforePickup'] &&
+                bookingForm.touched) {
+                <div class="text-danger">
+                  Drop-off date & time must be after pick-up date & time.
+                </div>
+                }
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+              <button
+                type="submit"
+                class="btn btn-dark bg-dark-red border-dark-red d-inline-flex align-items-center gap-2"
+              >
+                <i class="fas fa-envelope"></i> Get Started Now
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-wrapper">
+      <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-10 text-center">
+          <div class="section-header text-center">
+            <span class="car-icon mb-1">
+              <img src="assets/images/car/car-icon.svg" alt="img" />
+            </span>
+            <h2 class="mb-2 sec-title">Find Your Perfect Car Now</h2>
+            <p class="sub-title">
+              Discover popular cars suited for every lifestyle and budget today
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="row row-cols-3 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 justify-content-center"
+      >
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="category-wrap">
+              <div class="category-img">
+                <img
+                  src="assets/images/car/car-category/sedan.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+              </div>
+              <h6 class="category-title fw-medium">Sedan</h6>
+              <button
+                type="button"
+                class="btn btn-dark d-inline-flex align-items-center btn-small"
+              >
+                Book Now
+              </button>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="category-wrap">
+              <div class="category-img">
+                <img
+                  src="assets/images/car/car-category/hatchback.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+              </div>
+              <h6 class="category-title fw-medium">Hatchback</h6>
+              <button
+                type="button"
+                class="btn btn-dark d-inline-flex align-items-center btn-small"
+              >
+                Book Now
+              </button>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="category-wrap">
+              <div class="category-img">
+                <img
+                  src="assets/images/car/car-category/suv-cars.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+              </div>
+              <h6 class="category-title fw-medium">SUV</h6>
+              <button
+                type="button"
+                class="btn btn-dark d-inline-flex align-items-center btn-small"
+              >
+                Book Now
+              </button>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="category-wrap">
+              <div class="category-img">
+                <img
+                  src="assets/images/car/car-category/crossover.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+              </div>
+              <h6 class="category-title fw-medium">Crossover</h6>
+              <button
+                type="button"
+                class="btn btn-dark d-inline-flex align-items-center btn-small"
+              >
+                Book Now
+              </button>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="category-wrap">
+              <div class="category-img">
+                <img
+                  src="assets/images/car/car-category/coupe.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+              </div>
+              <h6 class="category-title fw-medium">Coupe</h6>
+              <button
+                type="button"
+                class="btn btn-dark d-inline-flex align-items-center btn-small"
+              >
+                Book Now
+              </button>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="category-wrap">
+              <div class="category-img">
+                <img
+                  src="assets/images/car/car-category/convertible.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+              </div>
+              <h6 class="category-title fw-medium">Convertible</h6>
+              <button
+                type="button"
+                class="btn btn-dark d-inline-flex align-items-center btn-small"
+              >
+                Book Now
+              </button>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="category-wrap">
+              <div class="category-img">
+                <img
+                  src="assets/images/car/car-category/wagon.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+              </div>
+              <h6 class="category-title fw-medium">Wagon</h6>
+              <button
+                type="button"
+                class="btn btn-dark d-inline-flex align-items-center btn-small"
+              >
+                Book Now
+              </button>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="category-wrap">
+              <div class="category-img">
+                <img
+                  src="assets/images/car/car-category/mpv.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+              </div>
+              <h6 class="category-title fw-medium">MPV</h6>
+              <button
+                type="button"
+                class="btn btn-dark d-inline-flex align-items-center btn-small"
+              >
+                Book Now
+              </button>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="category-wrap">
+              <div class="category-img">
+                <img
+                  src="assets/images/car/car-category/pickup-truck.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+              </div>
+              <h6 class="category-title fw-medium">Pickup Truck</h6>
+              <button
+                type="button"
+                class="btn btn-dark d-inline-flex align-items-center btn-small"
+              >
+                Book Now
+              </button>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="category-wrap">
+              <div class="category-img">
+                <img
+                  src="assets/images/car/car-category/sports-car.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+              </div>
+              <h6 class="category-title fw-medium">Sports Car</h6>
+              <button
+                type="button"
+                class="btn btn-dark d-inline-flex align-items-center btn-small"
+              >
+                Book Now
+              </button>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- == Category & Form Section End == -->
+<!-- == About Section Start === -->
+<section class="section about-section-three bg-light-200">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <div class="about-car mb-4 mb-lg-0">
+          <div class="row align-items-center gx-0">
+            <div class="col-6">
+              <div class="about-img-01">
+                <img
+                  src="assets/images/car/about-01.webp"
+                  alt="img"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="about-img-03">
+                <img
+                  src="assets/images/car/about-02.webp"
+                  alt="img"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="about-img-02">
+                <img
+                  src="assets/images/car/about-03.webp"
+                  alt="img"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="about-img-04">
+                <img
+                  src="assets/images/car/about-04.webp"
+                  alt="img"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="about-exp"><p>Trusted by Millions</p></div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="section-header mb-4">
+          <h6
+            class="fs-14 fw-medium text-primary d-flex align-items-center mb-2"
+          >
+            <span class="trend-up-icon-box">
+              <i class="fa-solid fa-arrow-trend-up"></i>
+            </span>
+            Ride in style, travel with ease
+          </h6>
+          <h2 class="about-heading mb-2">
+            Begin Your Journey Where Style Meets Reliability on Every Road
+          </h2>
+          <p class="sub-title">
+            We provide a wide selection of vehicles, from small, city-friendly
+            cars to roomy SUVs perfect for family outings, as well as luxury
+            models for special occasions. Every vehicle is meticulously
+            maintained and regularly serviced to guarantee top performance
+          </p>
+        </div>
+        <div class="mb-3 border-bottom">
+          <div class="mb-3">
+            <h6 class="list-title d-flex align-items-center">
+              <i class="fa-solid fa-circle-check text-teal fs-24 me-2"></i> A
+              Car for Every Dream
+            </h6>
+            <p class="list-desc">
+              From urban sleekness to rugged adventures, explore our diverse
+              range
+            </p>
+          </div>
+          <div class="mb-3">
+            <h6 class="list-title d-flex align-items-center">
+              <i class="fa-solid fa-circle-check text-orange fs-24 me-2"></i>
+              Effortless Journeys
+            </h6>
+            <p class="list-desc">
+              Easy booking, flexible locations, and personalized support just
+              for you
+            </p>
+          </div>
+          <div class="mb-3">
+            <h6 class="list-title d-flex align-items-center">
+              <i class="fa-solid fa-circle-check text-purple fs-24 me-2"></i>
+              Drive Safe, Drive Confident
+            </h6>
+            <p class="list-desc">
+              Top-tier maintenance and cleanliness ensure your peace of mind
+            </p>
+          </div>
+        </div>
+        <div
+          class="d-flex align-items-center flex-wrap gap-3 mb-0 mb-md-4 mb-lg-0"
+        >
+          <a
+            href="tel:{{ phoneNumber }}"
+            class="btn btn-dark d-inline-flex align-items-center"
+            ><i class="isax isax-add-circle5 me-2"></i>Book Your Car</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- == About Section End === -->
+
+<!-- === Place Section Start === -->
+<section class="section">
+  <div class="container">
+    <div class="category-wrapper category-wrapper-popular-car">
+      <div class="row justify-content-center">
+        <div class="col-xl-6 col-lg-10 text-center">
+          <div class="section-header text-center">
+            <span class="car-icon mb-1">
+              <img src="assets/images/car/car-icon.svg" alt="img" />
+            </span>
+            <h2 class="mb-2 sec-title">Travel with Our Best Vehicles </h2>
+            <p class="sub-title">
+              Explore our diverse range of cars with detailed features, specifications, and unique styles for every need 
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 justify-content-center"
+      >
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="place-item mb-4 flex-fill">
+              <div class="place-img">
+                <img
+                  src="assets/images/car/place/honda-civic-lx.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+                <div class="fav-item">
+                  <span class="badge bg-info d-inline-flex align-items-center"
+                    ><i class="fa-solid fa-fire me-1"></i>Trending</span
+                  >
+                </div>
+              </div>
+              <div class="place-content">
+                <div
+                  class="d-flex align-items-center justify-content-between mb-1"
+                >
+                  <div class="d-flex flex-wrap align-items-center">
+                    <span class="badge badge-secondary fs-10 fw-medium me-1"
+                      >Sedan</span
+                    >
+                  </div>
+                </div>
+                <h5 class="mb-1 text-truncate">Honda Civic LX</h5>
+                <p class="d-flex align-items-center mb-3">
+                  <i class="fa-solid fa-location-dot me-2"></i>Downtown, New
+                  York City
+                </p>
+                <div
+                  class="mb-3 p-2 border rounded d-flex align-items-center justify-content-between"
+                >
+                  <div class="pe-4 border-end">
+                    <span
+                      class="place-span-content fs-14 d-flex align-items-center text-dark"
+                      ><i class="fa-solid fa-gas-pump me-1"></i>Fuel</span
+                    >
+                    <p class="text-dark fs-14">Petrol</p>
+                  </div>
+                  <div class="pe-4 border-end">
+                    <span
+                      class="place-span-content fs-14 d-flex align-items-center text-dark"
+                      ><i class="fa-solid fa-gears me-1"></i>Gear</span
+                    >
+                    <p class="text-dark fs-14">Automatic</p>
+                  </div>
+                  <div>
+                    <span
+                      class="place-span-content fs-14 d-flex align-items-center text-dark"
+                      ><i class="fa-solid fa-route me-1"></i>Travelled</span
+                    >
+                    <p class="text-dark fs-14">13,000 KM</p>
+                  </div>
+                </div>
+                <div
+                  class="d-flex align-items-center justify-content-between border-top pt-3"
+                >
+                  <div class="ms-2 d-flex align-items-center">
+                    <div class="d-flex align-items-center flex-wrap">
+                      <span
+                        class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-1"
+                        >4.9</span
+                      >
+                      <p class="fs-14">(160 Reviews)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="place-item mb-4 flex-fill">
+              <div class="place-img">
+                <img
+                  src="assets/images/car/place/bmw-z4-roadster.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+                <div class="fav-item">
+                  <span class="badge bg-info d-inline-flex align-items-center"
+                    ><i class="fa-solid fa-fire me-1"></i>Trending</span
+                  >
+                </div>
+              </div>
+              <div class="place-content">
+                <div
+                  class="d-flex align-items-center justify-content-between mb-1"
+                >
+                  <div class="d-flex flex-wrap align-items-center">
+                    <span
+                      class="badge badge-secondary bg-teal fs-10 fw-medium me-1"
+                      >Convertible</span
+                    >
+                  </div>
+                </div>
+                <h5 class="mb-1 text-truncate">BMW Z4 Roadster</h5>
+                <p class="d-flex align-items-center mb-3">
+                  <i class="fa-solid fa-location-dot me-2"></i>Los Angeles, CA
+                </p>
+                <div
+                  class="mb-3 p-2 border rounded d-flex align-items-center justify-content-between"
+                >
+                  <div class="pe-4 border-end">
+                    <span
+                      class="place-span-content fs-14 d-flex align-items-center text-dark"
+                      ><i class="fa-solid fa-gas-pump me-1"></i>Fuel</span
+                    >
+                    <p class="text-dark fs-14">Petrol</p>
+                  </div>
+                  <div class="pe-4 border-end">
+                    <span
+                      class="place-span-content fs-14 d-flex align-items-center text-dark"
+                      ><i class="fa-solid fa-gears me-1"></i>Gear</span
+                    >
+                    <p class="text-dark fs-14">Automatic</p>
+                  </div>
+                  <div>
+                    <span
+                      class="place-span-content fs-14 d-flex align-items-center text-dark"
+                      ><i class="fa-solid fa-route me-1"></i>Travelled</span
+                    >
+                    <p class="text-dark fs-14">14,500 KM</p>
+                  </div>
+                </div>
+                <div
+                  class="d-flex align-items-center justify-content-between border-top pt-3"
+                >
+                  <div class="ms-2 d-flex align-items-center">
+                    <div class="d-flex align-items-center flex-wrap">
+                      <span
+                        class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-1"
+                        >4.9</span
+                      >
+                      <p class="fs-14">(180 Reviews)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="place-item mb-4 flex-fill">
+              <div class="place-img">
+                <img
+                  src="assets/images/car/place/ford-fiesta-se.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+                <div class="fav-item">
+                  <span class="badge bg-info d-inline-flex align-items-center"
+                    ><i class="fa-solid fa-fire me-1"></i>Trending</span
+                  >
+                </div>
+              </div>
+              <div class="place-content">
+                <div
+                  class="d-flex align-items-center justify-content-between mb-1"
+                >
+                  <div class="d-flex flex-wrap align-items-center">
+                    <span
+                      class="badge badge-secondary bg-purple fs-10 fw-medium me-1"
+                      >Hatchback</span
+                    >
+                  </div>
+                </div>
+                <h5 class="mb-1 text-truncate">Ford Fiesta SE</h5>
+                <p class="d-flex align-items-center mb-3">
+                  <i class="fa-solid fa-location-dot me-2"></i>Chicago, IL
+                </p>
+                <div
+                  class="mb-3 p-2 border rounded d-flex align-items-center justify-content-between"
+                >
+                  <div class="pe-4 border-end">
+                    <span
+                      class="place-span-content fs-14 d-flex align-items-center text-dark"
+                      ><i class="fa-solid fa-gas-pump me-1"></i>Fuel</span
+                    >
+                    <p class="text-dark fs-14">Petrol</p>
+                  </div>
+                  <div class="pe-4 border-end">
+                    <span
+                      class="place-span-content fs-14 d-flex align-items-center text-dark"
+                      ><i class="fa-solid fa-gears me-1"></i>Gear</span
+                    >
+                    <p class="text-dark fs-14">Manual</p>
+                  </div>
+                  <div>
+                    <span
+                      class="place-span-content fs-14 d-flex align-items-center text-dark"
+                      ><i class="fa-solid fa-route me-1"></i>Travelled</span
+                    >
+                    <p class="text-dark fs-14">12.300 KM</p>
+                  </div>
+                </div>
+                <div
+                  class="d-flex align-items-center justify-content-between border-top pt-3"
+                >
+                  <div class="ms-2 d-flex align-items-center">
+                    <div class="d-flex align-items-center flex-wrap">
+                      <span
+                        class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-1"
+                        >4.8</span
+                      >
+                      <p class="fs-14">(340 Reviews)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col">
+          <a href="tel:{{ phoneNumber }}">
+            <div class="place-item mb-4 flex-fill">
+              <div class="place-img">
+                <img
+                  src="assets/images/car/place/toyota-rav4-adventure.webp"
+                  class="img-fluid"
+                  alt="img"
+                />
+                <div class="fav-item">
+                  <span class="badge bg-info d-inline-flex align-items-center"
+                    ><i class="fa-solid fa-fire me-1"></i>Trending</span
+                  >
+                </div>
+              </div>
+              <div class="place-content">
+                <div
+                  class="d-flex align-items-center justify-content-between mb-1"
+                >
+                  <div class="d-flex flex-wrap align-items-center">
+                    <span
+                      class="badge badge-secondary bg-dark-red fs-10 fw-medium me-1"
+                      >SUV</span
+                    >
+                  </div>
+                </div>
+                <h5 class="mb-1 text-truncate">Toyota RAV4 Adventure</h5>
+                <p class="d-flex align-items-center mb-3">
+                  <i class="fa-solid fa-location-dot me-2"></i>San Francisco, CA
+                </p>
+                <div
+                  class="mb-3 p-2 border rounded d-flex align-items-center justify-content-between"
+                >
+                  <div class="pe-4 border-end">
+                    <span
+                      class="place-span-content fs-14 d-flex align-items-center text-dark"
+                      ><i class="fa-solid fa-gas-pump me-1"></i>Fuel</span
+                    >
+                    <p class="text-dark fs-14">Hybrid</p>
+                  </div>
+                  <div class="pe-4 border-end">
+                    <span
+                      class="place-span-content fs-14 d-flex align-items-center text-dark"
+                      ><i class="fa-solid fa-gears me-1"></i>Gear</span
+                    >
+                    <p class="text-dark fs-14">Automatic</p>
+                  </div>
+                  <div>
+                    <span
+                      class="place-span-content fs-14 d-flex align-items-center text-dark"
+                      ><i class="fa-solid fa-route me-1"></i>Travelled</span
+                    >
+                    <p class="text-dark fs-14">15,500 KM</p>
+                  </div>
+                </div>
+                <div
+                  class="d-flex align-items-center justify-content-between border-top pt-3"
+                >
+                  <div class="ms-2 d-flex align-items-center">
+                    <div class="d-flex align-items-center flex-wrap">
+                      <span
+                        class="badge badge-warning badge-xs text-gray-9 fs-13 fw-medium me-1"
+                        >4.7</span
+                      >
+                      <p class="fs-14">(185 Reviews)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- === Place Section End === -->
+
+<!-- === Testimonial Section Start === -->
+<section class="faq-section-three section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="plan-sec mb-4 mb-lg-0">
+          <div class="plan-card">
+            <div class="d-flex align-items-center justify-content-between">
+              <h2 class="text-primary mb-2">Economy Car</h2>
+              <a href="tel:{{ phoneNumber }}" class="btn btn-dark mb-2"
+                >Book Now</a
+              >
+            </div>
+            <h5>Save more fuel</h5>
+            <p>
+              Fuel-efficient, compact vehicle perfect for city driving and daily
+              commutes
+            </p>
+          </div>
+          <div class="plan-card active">
+            <div class="d-flex align-items-center justify-content-between">
+              <h2 class="text-white mb-2">Electric Vehicles (EVs)</h2>
+              <a href="tel:{{ phoneNumber }}" class="btn btn-dark mb-2"
+                >Book Now</a
+              >
+            </div>
+            <h5>Drive green</h5>
+            <p>
+              Environmentally friendly, quiet, and cost-efficient with modern
+              technology
+            </p>
+          </div>
+          <div class="plan-card bg-white">
+            <div class="d-flex align-items-center justify-content-between">
+              <h2 class="text-primary mb-2">Convertible Vehicles</h2>
+              <a href="tel:{{ phoneNumber }}" class="btn btn-dark mb-2"
+                >Book Now</a
+              >
+            </div>
+            <h5>Feel the breeze</h5>
+            <p>
+              Stylish cars with retractable roofs for open-air driving
+              experiences
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="section-header faq-hader mb-4">
+          <h2 class="text-white mb-2">
+            Easy Vehicle Rental: Reserve & Explore Flexible Options
+          </h2>
+          <p class="text-light sub-title">
+            See how simple it is to book your vehicle and choose from our
+            customizable rental solutions
+          </p>
+        </div>
+        <div class="accordion accordion-flush faq-three" id="accordionFaq">
+          <div class="accordion-item show mb-2">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq-collapseOne"
+                aria-expanded="false"
+                aria-controls="faq-collapseOne"
+              >
+                How to reserve a vehicle with {{ companyName }}?
+              </button>
+            </h2>
+            <div
+              id="faq-collapseOne"
+              class="accordion-collapse collapse show"
+              data-bs-parent="#accordionFaq"
+            >
+              <div class="accordion-body">
+                <p class="mb-0">
+                  You can reserve a vehicle online through our website or call
+                  us directly at {{ phoneNumber }}. Our team will guide you
+                  through the process and help you choose the best flexible
+                  options designed to your needs
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq-collapsetwo"
+                aria-expanded="false"
+                aria-controls="faq-collapsetwo"
+              >
+                Can I modify or cancel my reservation?
+              </button>
+            </h2>
+            <div
+              id="faq-collapsetwo"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionFaq"
+            >
+              <div class="accordion-body">
+                <p>
+                  Yes, {{ companyName }} offers flexible options for modifying
+                  or canceling your reservation. Please contact us at
+                  {{ phoneNumber }} within our cancellation policy window to
+                  make changes
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq-collapsthree"
+                aria-expanded="false"
+                aria-controls="faq-collapsthree"
+              >
+                What are the payment options available?
+              </button>
+            </h2>
+            <div
+              id="faq-collapsthree"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionFaq"
+            >
+              <div class="accordion-body">
+                <p>
+                  {{ companyName }} accepts various payment methods including
+                  credit/debit cards, online payments, and sometimes cash,
+                  depending on the location. Contact us at {{ phoneNumber }} for
+                  specific payment options available to you
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item mb-2">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq-collapsefour"
+                aria-expanded="false"
+                aria-controls="faq-collapsefour"
+              >
+                Are pets allowed in the rental vehicles?
+              </button>
+            </h2>
+            <div
+              id="faq-collapsefour"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionFaq"
+            >
+              <div class="accordion-body">
+                <p>
+                  Pet policies vary; some vehicles may allow pets with prior
+                  notification. Call {{ companyName }} at {{ phoneNumber }} to
+                  check availability and any additional cleaning fees
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#faq-collapsefive"
+                aria-expanded="false"
+                aria-controls="faq-collapsefive"
+              >
+                How do I extend my rental period?
+              </button>
+            </h2>
+            <div
+              id="faq-collapsefive"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionFaq"
+            >
+              <div class="accordion-body">
+                <p>
+                  To extend your rental, contact {{ companyName }} at
+                  {{ phoneNumber }} as early as possible. Extensions are subject
+                  to vehicle availability and may incur extra charges
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="faq-bg">
+    <img src="assets/images/car/circle-shape.svg" alt="img" class="faq-shape" />
+  </div>
+</section>
+<!-- === Testimonial Section End === -->
+
+<!-- Footer Contact Fixed -->
+ <div class="footer-contact-fixed">
+    <div class="d-grid d-block d-sm-none">
+         <a class="btn btn-dark bottbut" href="tel:+18882302647"><span><svg _ngcontent-ng-c3291411718="" xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none"><path _ngcontent-ng-c3291411718="" d="M13.0786 14.7644C12.8891 14.5648 12.6266 14.4552 12.3378 14.4552C12.0337 14.4552 11.7406 14.5806 11.5336 14.7998L10.2242 16.1864L9.87034 15.9785C9.09196 15.5216 8.02527 14.8949 6.89924 13.7011C5.76862 12.5055 5.17626 11.3738 4.74316 10.5463L4.54974 10.1822L5.86141 8.7937C6.29526 8.33279 6.3104 7.59932 5.89416 7.15803L3.47073 4.59281C3.28239 4.39337 3.01948 4.28329 2.73116 4.28329C2.42739 4.28329 2.13453 4.40933 1.92684 4.62874L1.33173 5.26238L1.27655 5.35976C1.05487 5.66059 0.873501 5.9986 0.738017 6.36706C0.611935 6.718 0.533574 7.05156 0.497095 7.3862C0.184783 10.1355 1.38204 12.6594 4.63092 16.0981C8.48128 20.1736 11.6989 20.4907 12.5935 20.4907C12.747 20.4907 12.8395 20.4818 12.8651 20.4791C13.1958 20.4365 13.5119 20.3523 13.8308 20.2217C14.1752 20.0798 14.4938 19.8892 14.7775 19.6545L14.9125 19.5415L15.4697 18.9629C15.9029 18.504 15.9168 17.7715 15.5008 17.3307L13.0786 14.7644Z" fill="currentColor"></path><path _ngcontent-ng-c3291411718="" d="M10.5135 10.0194C9.98613 9.46141 9.32379 9.05995 8.6 8.85953L8.26704 8.76627L8.1716 9.1143C8.13577 9.24332 8.09356 9.36547 8.04568 9.4752L7.86523 9.88216L8.27866 9.99521C8.82562 10.1416 9.32406 10.4398 9.71981 10.8596C10.0981 11.2592 10.3745 11.7604 10.5193 12.308L10.589 12.5718L11.1095 12.6031C11.1621 12.6096 11.2147 12.6159 11.265 12.6207L11.7544 12.6695L11.6408 12.163C11.4584 11.3484 11.069 10.6072 10.5135 10.0194Z" fill="currentColor"></path><path _ngcontent-ng-c3291411718="" d="M12.2135 8.21818C11.2345 7.18153 9.98327 6.5051 8.59697 6.26251L8.11475 6.17675L8.19051 6.68709C8.21278 6.83842 8.2324 6.98907 8.24877 7.14125L8.27958 7.40976L8.53482 7.46319C9.63977 7.67929 10.6373 8.23157 11.4194 9.05905C12.3174 10.01 12.8662 11.2231 13.005 12.5691L13.0346 12.854L13.4425 12.9162C13.508 12.9217 13.5746 12.921 13.6684 12.9217L14.1597 12.9395L14.1207 12.5149C13.9678 10.8628 13.3077 9.37738 12.2135 8.21818Z" fill="currentColor"></path><path _ngcontent-ng-c3291411718="" d="M14.062 6.26255C12.4556 4.56228 10.3159 3.54949 8.03702 3.41155L7.59436 3.38231L7.66818 3.84385C7.69072 3.99415 7.71833 4.14789 7.74752 4.30803L7.8014 4.58803L8.06896 4.60553C10.0355 4.74811 11.8819 5.63503 13.2685 7.10267C14.6328 8.54714 15.4665 10.4796 15.6157 12.5416L15.6414 12.9085L15.9877 12.8869C16.0697 12.8824 16.1505 12.8749 16.2687 12.8639L16.7642 12.8226L16.7369 12.4509C16.5675 10.1071 15.6177 7.90932 14.062 6.26255Z" fill="currentColor"></path><path _ngcontent-ng-c3291411718="" d="M19.3476 12.1878C19.1211 9.21244 17.9006 6.41254 15.9104 4.30514C13.7868 2.05677 10.9599 0.753161 7.95264 0.633413L7.61174 0.618252L7.5858 0.981042C7.5798 1.08237 7.57575 1.18255 7.57218 1.28319L7.55127 1.80989L7.90482 1.82328C10.6319 1.93015 13.1929 3.11041 15.116 5.14635C16.9174 7.05344 18.0227 9.58919 18.2291 12.2854L18.258 12.664L18.6178 12.6269C18.7399 12.6131 18.8635 12.6032 18.9881 12.5929L19.3763 12.5613L19.3476 12.1878Z" fill="currentColor"></path></svg></span>{{ phoneNumber }}</a>
+    </div>
+</div>
+<!-- Footer Contact Fixed -->

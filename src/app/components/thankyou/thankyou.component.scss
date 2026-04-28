@@ -1,0 +1,128 @@
+.thankyou_section {
+    height: 100vh;
+    background: url('../../../../public/assets/images/thank-you.webp');
+    background-position: center;
+    background-size: cover;
+}
+
+.thankyou_container {
+    width: 100%;
+    height: 100%;
+}
+
+.thankyou_row {
+    height: 100%;
+}
+
+.thankyou_flex {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+.thankyou_content {
+    padding: 10px;
+    background: #00000085;
+    text-align: center;
+    width: 52%;
+    height: 100vh;
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+    position: absolute;
+    left: 0;
+}
+
+.thankyou_content img {
+    padding-top: 26%;
+}
+
+.thankyou_content h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 65px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+.thankyou_divider {
+    width: 200px;
+    height: 5px;
+    background: #edb83a;
+    margin: 0 auto 20px;
+    border-radius: 20px 0;
+}
+
+.thankyou_content p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #fff;
+    font-size: 20px;
+    padding: 12px 160px 0;
+    text-transform: capitalize;
+}
+
+.thankyou_call-link {
+    padding: 0;
+    background: transparent;
+    color: #edb83a;
+    font-size: 25px;
+    display: block;
+}
+
+.thankyou_backhome {
+    padding: 10px 15px;
+    background: #edb83a;
+    text-decoration: none;
+    color: #000;
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 21px;
+    margin-top: 20px;
+}
+
+.contact-widget {
+    display: none;
+}
+.thankyou-logo{
+    width: 150px;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+    .thankyou_content {
+        position: revert;
+        width: 90%;
+        margin-left: 5%;
+        clip-path: revert;
+        height: max-content;
+        padding-bottom: 40px;
+    
+    }
+
+    .thankyou_content img {
+        padding-top: 25px;
+        margin-bottom: 11px;
+    }
+
+    .thankyou_content h1 {
+        font-size: 35px;
+    }
+
+    .thankyou_divider {
+        width: 140px;
+        margin-bottom: 0;
+    }
+
+    .thankyou_content p {
+        padding: 0 10px;
+        font-size: 14px;
+    }
+
+    .thankyou_call-link {
+        font-size: 17px;
+    }
+
+    .thankyou_backhome {
+        font-size: 16px;
+    }
+}

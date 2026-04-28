@@ -3,17 +3,17 @@
 <!--=========== Banner Section End  ==============-->
 
 <!--=========== Banner Bottom Section Start  ==============-->
-<section class="destinations pb-0 cmn-gap">
+<section class="destinations cmn-gap">
   <div class="container container-xxl">
     <div class="cmn-heading">
       <div class="heading-cmn-flex">
-        <h2>Global Vacation Hotspots</h2>
-        <a href="#">See all</a>
+        <h2>Top Global Destinations </h2>
+        <a href="/top-destinations">See all</a>
       </div>
     </div>
     <swiper-container #swiperRef >
       <swiper-slide *ngFor="let destination of destinations">
-        <div class="destination-slider mx-2">
+        <div class="destination-slider mx-2" routerLink="{{destination?.route}}">
           <div class="destination-item">
             <img [src]="destination.image" [alt]="destination.name" class="w-100" />
             <div class="destination-info text-center">

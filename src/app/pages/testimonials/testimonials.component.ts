@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
   selector: 'app-testimonials',
@@ -9,6 +10,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './testimonials.component.scss'
 })
 export class TestimonialsComponent implements OnInit {
+  // Company Name Get
+  private shareService: SharedService = inject(SharedService);
+  companyName: string = '';
 
   constructor(
     private meta: Meta,
@@ -17,6 +21,10 @@ export class TestimonialsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Company Name Get
+    const data = this.shareService.getcompanyName();
+    this.companyName = data.companyName;
+
     // Set meta tags
     const metaTitle = this.route.snapshot.data['metaTitle'];
     const metaDescription = this.route.snapshot.data['metaDescription'];

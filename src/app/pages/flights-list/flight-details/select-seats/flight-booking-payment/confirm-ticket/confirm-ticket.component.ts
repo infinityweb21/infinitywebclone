@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 export class ConfirmTicketComponent {
   protected icons = inject(SvgIcons);
   private searchService: SearchService = inject(SearchService);
-
+  pnr:any='';
   flightTickets = [
     {
       airline: 'Air India',
@@ -90,7 +90,6 @@ flight = {
   baseFare: 187.00,
   taxes: 261.70,
   total: 493.57,
-  airlineContact: '1-760-999-7119',
   passenger: {
     name: 'Mrs. Tugba Demirtas',
     dob: '1989-03-04',
@@ -137,6 +136,8 @@ constructor(
     private router: Router,
     private destroyRef:DestroyRef
   ) {
+    const pnr=localStorage.getItem('pnr');
+    this.pnr=pnr;
     this.route.queryParams.subscribe(({ id }) => {
       if (id) {
         this.bookingId = id;

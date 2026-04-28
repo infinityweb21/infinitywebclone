@@ -1,6 +1,14 @@
 <app-header />
-<main>
+<main class="main-wrapper">
   <app-spinner />
   <router-outlet />
+
+  @if (showCookies) {
+    <app-cookies></app-cookies>
+  }
+
+  <app-quick-contact></app-quick-contact>
 </main>
 <app-footer />
+
+<!-- <app-under-maintenance></app-under-maintenance> -->

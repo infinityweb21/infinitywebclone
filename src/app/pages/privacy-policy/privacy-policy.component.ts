@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,RouterLink } from '@angular/router';
+import { SharedService } from '../../services/shared/shared.service';
 
 @Component({
   selector: 'app-privacy-policy',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './privacy-policy.component.html',
   styleUrl: './privacy-policy.component.scss'
 })
 export class PrivacyPolicyComponent implements OnInit {
+  private shareService: SharedService = inject(SharedService);
+    getData:any='';
 
   constructor(
     private meta: Meta,
@@ -17,6 +20,7 @@ export class PrivacyPolicyComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+        this.getData=this.shareService.getcompanyName();
     // Set meta tags
     const metaTitle = this.route.snapshot.data['metaTitle'];
     const metaDescription = this.route.snapshot.data['metaDescription'];

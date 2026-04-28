@@ -8,7 +8,7 @@
         <div class="u-side-card">
           <div class="u-side-card-body">
             <div class="card-title-wrap">
-              <h3 class="card-title-text u-space-bottom">Select Seats</h3>
+              <h3 class="card-title-text u-space-bottom mb-3">Select Seats</h3>
             </div>
             <div class="flight-seat-info">
               <ul class="flight-seat-info-list">
@@ -98,15 +98,14 @@
                       role="presentation"
                       *ngFor="let segment of segmentSeatMaps; let i = index"
                     >
+                    @if (segment.origin && segment.destination) {
                       <button
                         class="nav-link"
                         [class.active]="activeSegment === segment"
                         [id]="'flight-select-seat-tab' + (i + 1)"
-                        data-bs-toggle="tab"
-                        [attr.data-bs-target]="'#tab' + (i + 1) + 'Content'"
+                        
                         type="button"
-                        role="tab"
-                        [attr.aria-controls]="'tab' + (i + 1) + 'Content'"
+                       
                         [attr.aria-selected]="activeSegment === segment"
                         (click)="setActiveSegment(segment)"
                       >
@@ -131,6 +130,7 @@
                           segment.destination
                         }}</span>
                       </button>
+                    }
                     </li>
                   </ul>
                 </div>
@@ -166,6 +166,7 @@
                     [attr.aria-labelledby]="'flight-select-seat-tab' + (i + 1)"
             
                   >
+                 
                     <div class="flight-select-seat-tab1-content-wrap">
                           <div class="tab-inner-depart-flight-details">
                                 
@@ -640,7 +641,7 @@
     <span>${{ serviceTaxAmount | number: '1.2-2' }}</span>
   </div> -->
 
-  <div class="d-flex justify-content-between mb-1" *ngIf="travelProtectionAdded">
+  <!-- <div class="d-flex justify-content-between mb-1" *ngIf="travelProtectionAdded">
     <span>
       Travel Protection
       <button class="btn btn-link text-danger p-0" (click)="toggleTravelProtection()">
@@ -648,7 +649,7 @@
       </button>
     </span>
     <span>${{ travelProtectionAmount | number: '1.2-2' }}</span>
-  </div>
+  </div> -->
 
   <hr />
   <div class="d-flex justify-content-between fw-semibold text-primary mb-1">
@@ -659,7 +660,7 @@
 
 
               <!-- Travel Protection -->
-      <div *ngIf="!travelProtectionAdded" class="travel-protection d-flex align-items-center justify-content-between mb-2">
+      <!-- <div *ngIf="!travelProtectionAdded" class="travel-protection d-flex align-items-center justify-content-between mb-2">
   <div class="d-flex align-items-center gap-2">
     <img src="assets/images/flight-details/plane-up.png" alt="Travel Icon" />
     <div class="travel-protection-txt">
@@ -670,11 +671,11 @@
   <button (click)="toggleTravelProtection()" class="btn btn-link btn-sm text-primary text-decoration-none p-0 sidebar-btn-add-new-link">
     + Add Now
   </button>
-</div>
+</div> -->
 
 
             <!-- Note -->
-            <small class="text-muted d-block mb-2 note-text">
+            <!-- <small class="text-muted d-block mb-2 note-text">
               Note: Your Card will be charged in
               <strong>United States Dollars</strong> for a total amount of USD
               176.88, the INR amount of
@@ -691,7 +692,7 @@
               <br />
 
               ClubMiles P
-            </small>
+            </small> -->
 
             <!-- Payment Methods -->
             <div class="mb-2 payment-methods">
@@ -704,42 +705,42 @@
               </p>
               <ul>
                 <li>
-                  <a href="#"
+                  <a  href="javascript:void(0);"
                     ><img
                       src="assets/images/flight-details/paymnt-icon1.png"
                       alt=""
                   /></a>
                 </li>
                 <li>
-                  <a href="#"
+                  <a  href="javascript:void(0);"
                     ><img
                       src="assets/images/flight-details/paymnt-icon2.png"
                       alt=""
                   /></a>
                 </li>
                 <li>
-                  <a href="#"
+                  <a  href="javascript:void(0);"
                     ><img
                       src="assets/images/flight-details/paymnt-icon3.png"
                       alt=""
                   /></a>
                 </li>
                 <li>
-                  <a href="#"
+                  <a  href="javascript:void(0);"
                     ><img
                       src="assets/images/flight-details/paymnt-icon4.png"
                       alt=""
                   /></a>
                 </li>
                 <li>
-                  <a href="#"
+                  <a  href="javascript:void(0);"
                     ><img
                       src="assets/images/flight-details/paymnt-icon5.png"
                       alt=""
                   /></a>
                 </li>
                 <li>
-                  <a href="#"
+                  <a  href="javascript:void(0);"
                     ><img
                       src="assets/images/flight-details/paymnt-icon6.png"
                       alt=""
@@ -804,7 +805,7 @@
               </div>
               <div class="call-text">
                 <small>CALL US NOW</small>
-                <h3>1-760-999-7119</h3>
+                <h3><a href="tel:+18882302647">{{getData?.phoneNumber}}</a></h3>
               </div>
             </div>
           </div>

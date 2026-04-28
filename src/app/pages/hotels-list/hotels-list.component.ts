@@ -74,7 +74,11 @@ export class HotelsListComponent {
     starRatings: [] as number[],
     amenities:[]
   };
-
+ private shareService: SharedService = inject(SharedService);
+    getData:any='';
+    ngOnInit(){
+      this.getData=this.shareService.getcompanyName();
+    }
   constructor() {
     this.hotelForm = new FormGroup({
       destination: new FormControl('',[Validators.required]),

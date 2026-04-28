@@ -1,11 +1,13 @@
 import { Component, DestroyRef, inject } from '@angular/core';
 import { SvgIcons } from '../../../../../shared/svg-icons';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { CommonModule, NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
@@ -16,10 +18,12 @@ import { FlightFilterService } from '../../../../../services/flight/flight-filte
 import { SearchService } from '../../../../../services/search.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { GooglePlacesAutocompleteDirective } from '../../../../../directives/google-places-autocomplete.directive';
+import { SharedService } from '../../../../../services/shared/shared.service';
+import { SearchCountryField, CountryISO, PhoneNumberFormat, NgxIntlTelInputComponent, NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-flight-booking-payment',
-  imports: [FormsModule, ReactiveFormsModule,CommonModule,GooglePlacesAutocompleteDirective],
+  imports: [FormsModule, ReactiveFormsModule,CommonModule,GooglePlacesAutocompleteDirective,NgxIntlTelInputModule],
   templateUrl: './flight-booking-payment.component.html',
   styleUrl: './flight-booking-payment.component.scss',
 })
@@ -31,7 +35,12 @@ export class FlightBookingPaymentComponent {
   selectedInfants: number = 0;
   selectedCabin = 'E';
   checkoutForm!: FormGroup;
-
+separateDialCode = false;
+	SearchCountryField = SearchCountryField;
+	CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+  loading = false;
+	preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
   paymentMethods = [
     {
       value: 'VI',
@@ -129,7 +138,8 @@ flightDetails:any[]=[];
 getFlights: any='';
 pnr:any='';
 flightBookingResponse: any;
-
+    private shareService: SharedService = inject(SharedService);
+    getData:any='';
   constructor(
     private fb: FormBuilder,
     private flightService: FlightService,
@@ -155,10 +165,13 @@ flightBookingResponse: any;
     ZipCode: ['', Validators.required],
     State: ['', Validators.required],
     Country: ['', Validators.required],
-    BillingPhoneNum: ['', [Validators.required, Validators.pattern(/^\d{10,15}$/)]],
+    BillingPhoneNum:  [undefined, [Validators.required,this.phoneLengthValidator]]
   });
   }
   ngOnInit() {
+    this.selectedSeatTotal = this.shareService.seatTotalSignal()();
+
+    this.getData=this.shareService.getcompanyName();
        this.searchService.searchData$.subscribe((searchData) => {
       console.log('Received Flight Data:', searchData);
       if (searchData) {
@@ -225,6 +238,21 @@ this.flattenedSeatData = allSeatSegments;
   }
 
   }
+     phoneLengthValidator(control: AbstractControl): ValidationErrors | null {
+  const value = control.value;
+
+  // Ensure value is an object and has nationalNumber
+  if (value && typeof value === 'object' && value.number) {
+    const digits = value.number.replace(/\D/g, ''); // remove non-digits
+    const length = digits.length;
+
+    if (length < 6 || length > 15) {
+      return { invalidPhoneLength: true };
+    }
+  }
+
+  return null;
+}
     getFlightsByItinerary() {
             const res = this.flightService.getRepriceData();
             console.log(res,"res");
@@ -468,7 +496,7 @@ formatDate(dateStr: string): string {
     
     if (this.checkoutForm.valid) {
       console.log('Form submitted:', this.checkoutForm.value);
-      
+      this.loading = true; 
         const BookItineraryPaxDetail = this.travelData?.travelers?.map((traveler: any) => {
   return {
     PaxType: traveler.PaxType,
@@ -495,15 +523,15 @@ const paymentPayload = {
   ItineraryId: this.itnearyId,
     "AgentMarkup":this.discountAmount,
     "BookItineraryPaxDetail":BookItineraryPaxDetail,
-  PhoneNumber: contactInfo.phoneNumber || '',
+  PhoneNumber: contactInfo.phoneNumber.number || '',
   AlternatePhoneNumber: '',
   Email: contactInfo.email || '',
   PaymentType: 'CC',
   CardType: this.getCardBrand(formValue.CardNumber),
-  CardNumber: formValue.CardNumber,
-  CVV: formValue.CVV,
+  CardNumber: formValue.CardNumber.toString(),
+  CVV: formValue.CVV.toString(),
   ExpiryDate: formValue.ExpiryDate,
-  BillingPhoneNum: formValue.BillingPhoneNum,
+  BillingPhoneNum: formValue.BillingPhoneNum.number,
   Name: contactInfo.firstName || '', // You can also combine first/last if needed
   Address1: formValue.street,
   Address2: '',
@@ -517,15 +545,15 @@ const confirmPayload = {
   ItineraryId: this.itnearyId,
     "AgentMarkup":this.discountAmount,
     "BookItineraryPaxDetail":BookItineraryPaxDetail,
-  PhoneNumber: contactInfo.phoneNumber || '',
+  PhoneNumber: contactInfo.phoneNumber.number || '',
   AlternatePhoneNumber: '',
   Email: contactInfo.email || '',
   PaymentType: 'CC',
   CardType: this.getCardBrand(formValue.CardNumber), // fallback to 'CA' if needed
-  CardNumber: formValue.CardNumber,
-  CVV: formValue.CVV,
+  CardNumber: formValue.CardNumber.toString(),
+  CVV: formValue.CVV.toString(),
   ExpiryDate: formValue.ExpiryDate,
-  BillingPhoneNum: formValue.BillingPhoneNum,
+  BillingPhoneNum: formValue.BillingPhoneNum.number,
   Name: contactInfo.firstName || '', // You can also combine first/last if needed
   Address1: formValue.street,
   Address2: '',
@@ -543,16 +571,19 @@ if(this.flattenedSeatData.length!=0){
           this.flightBookingResponse = res?.data;
 
       // Show toast
-      this.toasterService.showSuccess(
-        res?.data?.bookingStatus === 'Success'
-          ? 'Booking flight successful'
-          : 'Booking failed'
-      );
+      if (res?.data?.bookingStatus === 'Success') {
+        this.toasterService.showSuccess('Booking flight successful');
+      }
+
+      if (res?.data?.bookingStatus === 'Failed') {
+        this.toasterService.showError(res.data?.errorsList.tperror[0]?.errorText);
+      }
 
       // Continue booking creation if successful
       if (res?.data?.bookingStatus === 'Success') {
         this.createBooking();
       }
+      this.loading = false; 
               
         },
         error: (err) => {
@@ -560,6 +591,7 @@ if(this.flattenedSeatData.length!=0){
             err.error.message ||
               'Something went wrong while fetching vendor list!'
           );
+          this.loading = false; 
         },
       });
 }else{
@@ -940,7 +972,7 @@ const mainPayload={
     "bookingId": bookingId,
     "customer_name": contactInfo.firstName || '',
     "customer_email":contactInfo.email || '',
-    "customer_phone":  contactInfo.phoneNumber || '',
+    "customer_phone":  contactInfo.phoneNumber.number || '',
     "customer_alt_phone": "",
     "customer_id":customerId,
     "password": password,
@@ -959,10 +991,10 @@ const mainPayload={
     "airline3pnr": "",
     "card_type": this.getCardBrand(formValue.CardNumber),
     "name_oncard": formValue.cardHolder,
-    "cardno":  formValue.CardNumber,
+    "cardno":  formValue.CardNumber.toString(),
     "exp_month": exp_month,
     "exp_year":exp_year,
-    "cvv":formValue.CVV,
+    "cvv":formValue.CVV.toString(),
     "billing_address":formValue.street,
     "street_number": "",
     "locality": "",
@@ -1011,7 +1043,7 @@ const mainPayload={
           console.log('res', res);
           if(res.status===1){
           this.toasterService.showSuccess(res?.message);
-         
+           localStorage.setItem("pnr",this.flightBookingResponse.PNR );
                this._route.navigate(['/flight-booking-confirmation'],{
                 queryParams:{
                   id:res?.booking?.booking_details?.bookingId

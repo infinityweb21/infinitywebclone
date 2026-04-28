@@ -3,14 +3,14 @@
     <div class="container container-xxl">
         <div class="cmn-heading">
             <div class="section-title-wrap">
-                <h2 class="section-title">Trending Escapes You’ll Love</h2>
-                <a href="#" class="link-text-small">See all</a>
+                <h2 class="section-title">Tourist-Favorite Spot You’ll Love </h2>
+                <a href="/top-destinations" class="link-text-small">See all</a>
             </div>
         </div>
         <div class="common-slider-container">
             <swiper-container #recoendSwiperRef>
                 <swiper-slide *ngFor="let product of recommendedProducts">
-                    <div class="swiper-slide mx-2">
+                    <div class="swiper-slide mx-2" routerLink="{{product?.link}}">
                         <div class="package-card">
                             <div class="package-card-img">
                                 <img [src]="product.image" alt="" class="img-fluid w-100" />
@@ -106,13 +106,13 @@
                             </ul>
 
                             <div class="package-price">
-                                <div class="package-price-left">
+                                <!-- <div class="package-price-left">
                                     <h2 class="package-price-value">
                                         ${{ product.price }}
                                         <span class="package-price-text">Per person</span>
                                     </h2>
                                     <del class="package-price-value-strike">${{ product.originalPrice }}</del>
-                                </div>
+                                </div> -->
                                 <div class="package-price-right">
                                     <a [href]="product.link" class="cmn-btn">Reserve Now</a>
                                 </div>
@@ -130,11 +130,11 @@
     <div class="container container-xxl">
         <div class="booking-parent" style="background: url('./assets/images/booking-background.png')">
             <div class="booking-left">
-                <h2>Start Your Travel Story Now</h2>
-                <p>Find great savings on all your favorite destinations</p>
+                <h2>Start Planning for your Next Gateway</h2>
+                <p>Get Best Deals on Every Trip you Dream of</p>
             </div>
             <div class="booking-right">
-                <a href="#" class="cmn-btn btn-orange fs-20 fw-semibold">Book Now</a>
+                <a  href="tel:{{getData?.phoneNumber}}" class="cmn-btn btn-orange fs-20 fw-semibold">Book Now</a>
             </div>
         </div>
     </div>
@@ -143,12 +143,12 @@
 <!--=========== Trip Section Start  ==============-->
 <section class="cmn-gap pb-0">
     <div class="container container-xxl">
-        <div class="cmn-heading">
+        <!-- <div class="cmn-heading">
             <div class="heading-cmn-flex">
-                <h2>Most Popular Flights Worldwide</h2>
-                <a href="#">See all</a>
+                <h2>Top Global Flights</h2>
+                <a  href="javascript:void(0);">See all</a>
             </div>
-        </div>
+        </div> -->
         <div class="common-slider-container">
             <swiper-container #recoendSwiperRef1 init="true">
                 <swiper-slide *ngFor="let flight of flights">
@@ -178,7 +178,7 @@
                                     </div>
                                     <div class="trip-card-dates-price">
                                         <span class="trip-card-dates">{{ flight.dateRange }}</span>
-                                        <span class="trip-card-price">${{ flight.price }} <span class="price-unit">Per person</span></span>
+                                        <!-- <span class="trip-card-price">${{ flight.price }} <span class="price-unit">Per person</span></span> -->
                                     </div>
                                 </div>
                             </div>
@@ -217,7 +217,7 @@
     <div class="container container-xxl">
         <div class="cmn-heading">
             <div class="heading-cmn-flex">
-                <h2>Special Deals Just for You</h2>
+                <h2>Best Deals — Just for You </h2>
             </div>
         </div>
         <swiper-container #offerSwiperRef>
@@ -231,7 +231,7 @@
                             <h6 class="offer-card-flight-category">{{ offer.category }}</h6>
                             <h5 class="offer-card-flight-caption">{{ offer.title }}</h5>
                             <p class="offer-card-flight-price-text">{{ offer.description }}</p>
-                            <a [href]="offer.link" class="offer-card-book-now-btn">Book Now</a>
+                            <a href="tel:{{getData?.phoneNumber}}" class="offer-card-book-now-btn">Book Now</a>
                         </div>
                     </div>
                 </div>

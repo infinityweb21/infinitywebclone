@@ -7,6 +7,7 @@ import {
   ElementRef,
   HostListener,
   inject,
+  NO_ERRORS_SCHEMA,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -27,6 +28,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import { FlightFilters, FlightFilterService } from '../../services/flight/flight-filter.service';
 import { Subscription } from 'rxjs';
 import { Meta, Title } from '@angular/platform-browser';
+import { SharedService } from '../../services/shared/shared.service';
 
 Swiper.use([Navigation]);
 
@@ -38,8 +40,6 @@ Swiper.use([Navigation]);
 })
 export class FlightsListComponent implements OnInit, AfterViewInit {
   @ViewChild('swiperContainer', { static: false }) swiperContainer!: ElementRef;
-
-
   @ViewChild('tableWrapper') tableWrapper!: ElementRef<HTMLDivElement>;
   @ViewChild('drawerRef') drawerRef!: Drawer;
   private destroyRef: DestroyRef = inject(DestroyRef);
@@ -47,9 +47,9 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
   private searchService: SearchService = inject(SearchService);
   protected icons: SvgIcons = inject(SvgIcons);
   private router: Router = inject(Router);
-
+fullStopWiseLowestFare: Record<string, number> = {};
   selectedTab: string = 'all';
-  scrollAmount: number = 200;
+  scrollAmount: number = 150;
   isScrollLeftDisabled: boolean = true;
   isScrollRightDisabled: boolean = false;
   showDetailsMap: { [key: string]: boolean } = {};
@@ -64,10 +64,16 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
   selectedAdults: number = 1;
   selectedChildren: number = 0;
   selectedInfants: number = 0;
+selectedFare: {
+  price: number;
+  stopType: number;
+  carrierName: string;
+} | null = null;
 
   selectedCabin = { name: 'Economy', value: 'E' };
   filters!: FlightFilters;
   private filterSub!: Subscription;
+  getData: any = '';
   stopOptions = [
     { value: 0, key: 'stopes_0', label: 'Direct' },
     { value: 1, key: 'stopes_1', label: '1 stop' },
@@ -149,574 +155,13 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
     },
     // Add more cards as needed
   ];
-  flights = [
-    {
-      id: 1,
-      price: 13676.45,
-      segments: [
-        {
-          type: 'Departure',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-        {
-          type: 'Return',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-      ],
-      details: [
-        {
-          type: 'Depart',
-          date: 'Mon, May 26',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-        {
-          type: 'Return',
-          date: 'Mon, Jun 02',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-      ],
-    },
-    {
-      id: 2,
-      price: 14676.45,
-      segments: [
-        {
-          type: 'Departure',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-        {
-          type: 'Return',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-      ],
-      details: [
-        {
-          type: 'Depart',
-          date: 'Mon, May 26',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-        {
-          type: 'Return',
-          date: 'Mon, Jun 02',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-      ],
-    },
-    {
-      id: 3,
-      price: 15676.45,
-      segments: [
-        {
-          type: 'Departure',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-        {
-          type: 'Return',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-      ],
-      details: [
-        {
-          type: 'Depart',
-          date: 'Mon, May 26',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-        {
-          type: 'Return',
-          date: 'Mon, Jun 02',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-      ],
-    },
-    {
-      id: 4,
-      price: 16676.45,
-      segments: [
-        {
-          type: 'Departure',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-        {
-          type: 'Return',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-      ],
-      details: [
-        {
-          type: 'Depart',
-          date: 'Mon, May 26',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-        {
-          type: 'Return',
-          date: 'Mon, Jun 02',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-      ],
-    },
-    {
-      id: 5,
-      price: 17676.45,
-      segments: [
-        {
-          type: 'Departure',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-        {
-          type: 'Return',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-      ],
-      details: [
-        {
-          type: 'Depart',
-          date: 'Mon, May 26',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-        {
-          type: 'Return',
-          date: 'Mon, Jun 02',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-      ],
-    },
-    {
-      id: 6,
-      price: 18676.45,
-      segments: [
-        {
-          type: 'Departure',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-        {
-          type: 'Return',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-      ],
-      details: [
-        {
-          type: 'Depart',
-          date: 'Mon, May 26',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-        {
-          type: 'Return',
-          date: 'Mon, Jun 02',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-      ],
-    },
-    {
-      id: 7,
-      price: 19676.45,
-      segments: [
-        {
-          type: 'Departure',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-        {
-          type: 'Return',
-          airline: 'Air India',
-          logo: 'assets/images/flight-details/logo1.png',
-          departTime: '12:00pm',
-          departCode: 'DEL',
-          arriveTime: '2:40pm',
-          arriveCode: 'CCU',
-          duration: '2h35m',
-          stops: '1 stop',
-        },
-      ],
-      details: [
-        {
-          type: 'Depart',
-          date: 'Mon, May 26',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-        {
-          type: 'Return',
-          date: 'Mon, Jun 02',
-          airline: 'Air India',
-          flightNo: 'Flight 2727',
-          aircraft: '32N',
-          stops: '1 stop',
-          duration: '2h 35m',
-          depart: {
-            date: 'Mon, May 26',
-            time: '12:00 PM',
-            airport: 'New Delhi IGI, DEL',
-          },
-          arrive: {
-            date: 'Tue, May 27',
-            time: '02:40 PM',
-            airport: 'Kolkata, CCU',
-          },
-          service: {
-            class: 'Economy (H)',
-            airbus: 'A350-900',
-            meal: 'Meal',
-            seat: 'Check-in required',
-          },
-        },
-      ],
-    },
-  ];
+  
   visibleAirlineCount = 5;
   getFlightsAdvanced: any = '';
   getFlightAllDetails: any[] = [];
   getMainDetails: any[] = [];
   getNearbyDetails: any[] = [];
-
+  randomInsertIndexes: number[] = [];
   adultsList = Array.from({ length: 9 }, (_, i) => i + 1);
   childrenList = Array.from({ length: 8 }, (_, i) => i + 1);
   infantsList = Array.from({ length: 5 }, (_, i) => i);
@@ -749,7 +194,8 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
   constructor(private fb: FormBuilder, private flightService: FlightService, private toasterService: TosterService, private filterService: FlightFilterService,
         private meta: Meta,
     private title: Title,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private sharedService: SharedService
   ) {
     this.flightForm = this.fb.group({
       tripType: ['roundtrip'],
@@ -771,7 +217,8 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.updateScrollButtons();
+  //   this.updateScrollButtons();
+
 
     this.swiper = new Swiper('.priceMonthCardSlider', {
       slidesPerView: 1,
@@ -797,6 +244,9 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
+ 
+  
+    this.getData = this.sharedService.getcompanyName();
 
      const metaTitle = this.route.snapshot.data['metaTitle'];
     const metaDescription = this.route.snapshot.data['metaDescription'];
@@ -876,10 +326,13 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
       next: (res) => {
         console.log("res", res);
         this.getMainDetails = res?.data?.FlightItinerary || [];
+        this.fullStopWiseLowestFare = this.calculateStopWiseLowestFare(this.getMainDetails || []);
+
         this.getNearbyDetails = res?.data?.NearLocationItinerary || [];
         this.getAllCarrierWiseFares = this.buildCarrierWiseFares(res?.data?.FlightItinerary);
         console.log("✅ Carrier-wise Fare Output:", this.getAllCarrierWiseFares);
         this.applyFilter();
+        
       },
       error: (err) => {
          this.getMainDetails=[];
@@ -890,6 +343,27 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
     })
   }
 
+calculateStopWiseLowestFare(itineraries: any[]) {
+  const stopWiseLowestFareMap = new Map<number, number>();
+
+  for (const itinerary of itineraries) {
+    const baseFare = itinerary.Fares?.[0]?.CCMax ?? 0;
+    const noOfStops = itinerary.Citypairs?.[0]?.NoOfStops ?? 0;
+
+    const existingFare = stopWiseLowestFareMap.get(noOfStops);
+    if (existingFare === undefined || baseFare < existingFare) {
+      stopWiseLowestFareMap.set(noOfStops, baseFare);
+    }
+  }
+
+  return {
+    stopes_0: stopWiseLowestFareMap.get(0) ?? 0,
+    stopes_1: stopWiseLowestFareMap.get(1) ?? 0,
+    stopes_more: Array.from(stopWiseLowestFareMap.entries())
+      .filter(([stops]) => stops > 1)
+      .reduce((min, [_, fare]) => (min === 0 || fare < min ? fare : min), 0)
+  };
+}
 
   buildCarrierWiseFares(itineraries: any[]): any[] {
     const carriersMap = new Map<string, {
@@ -1093,17 +567,35 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
     } else {
       this.displayedFlights = filtered;
     }
-
+  this.generateInsertIndexes()
     this.processFlightsAdvanced(this.displayedFlights)
   }
 
+generateInsertIndexes() {
+    const minGap = 4;
+    const total = this.displayedFlights.length;
+    const indexes: number[] = [];
 
+    let i = Math.floor(Math.random() * minGap); // random start (0 to 3)
+    while (i < total) {
+      indexes.push(i);
+      i += minGap + Math.floor(Math.random() * (minGap + 2)); // min gap + random 0-1-2
+    }
+
+    this.randomInsertIndexes = indexes;
+    console.log("randomInsertIndexes",this.randomInsertIndexes);
+    
+  }
   onStopChange(value: number, event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
     const index = this.filters.stopes.indexOf(value);
 
     if (checked && index === -1) {
       this.filters.stopes.push(value);
+      if (checked) {
+    // Select only this stopValue (single-select)
+    this.filters.stopes = [value];
+  } 
     } else if (!checked && index !== -1) {
       this.filters.stopes.splice(index, 1);
     }
@@ -1177,17 +669,22 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
   }
 
   // Fallback parser if DurationInMinutes is missing
-  parseDuration(durationStr: string): number {
-    const match = durationStr.match(/(\d+)D\s*(\d+)H\s*(\d+)M/);
-    if (!match) return 0;
-    const [, d, h, m] = match.map(Number);
-    return (d || 0) * 1440 + (h || 0) * 60 + (m || 0);
-  }
+parseDuration(durationStr: string | null): number | null {
+  if (!durationStr) return null;
+
+  const match = durationStr.match(/(\d+)D\s*(\d+)H\s*(\d+)M/);
+  if (!match) return null;
+
+  const [, d, h, m] = match.map(Number);
+  return (d || 0) * 1440 + (h || 0) * 60 + (m || 0);
+}
   getTotalStops(itinerary: any): number {
     return itinerary.Citypairs?.reduce((acc: number, cp: any) => acc + (cp.NoOfStops || 0), 0);
   }
   processFlightsAdvanced(filtered: any) {
     const itineraries = filtered || [];
+    console.log("itineraries", itineraries);
+    
     // Show all by default
     this.displayedFlights = [...itineraries];
     console.log("displayedFlights", this.displayedFlights)
@@ -1228,9 +725,12 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
 
       // Track lowest stop-wise fare globally
       const existingGlobalFare = stopWiseLowestFareMap.get(noOfStops);
+      console.log("existingGlobalFare", existingGlobalFare);
+      
       if (existingGlobalFare === undefined || baseFare < existingGlobalFare) {
         stopWiseLowestFareMap.set(noOfStops, baseFare);
       }
+      console.log("existingGlobalFare", existingGlobalFare);
 
       // Initialize carrier data if not exists
       if (!carriersMap.has(carrierName)) {
@@ -1288,6 +788,7 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
         .filter(([stops]) => stops > 1)
         .reduce((min, [_, fare]) => (min === 0 || fare < min ? fare : min), 0)
     };
+    console.log("stopWiseLowestFare", stopWiseLowestFare)
 
 
 
@@ -1314,7 +815,9 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
     return result;
   }
 
-
+getTotalPrice(ccMax: number, markup: number = 10): number {
+  return ccMax + (ccMax * markup / 100);
+}
 
   filterCountry(event: any): void {
     const query = event.query.toLowerCase();
@@ -1331,6 +834,7 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
         }));
       },
       error: (err) => {
+      this.departureAirports=[];
         this.toasterService.showError(err.error.message || 'Something went wrong while fetching vendor list!')
       }
     })
@@ -1409,7 +913,23 @@ export class FlightsListComponent implements OnInit, AfterViewInit {
     segmentGroup.get('departureDate')?.setValue(event.departure);
   }
 
+// addSegment(): void {
+//   const segmentGroup = new FormGroup({
+//     departure: new FormControl(''),
+//     arrival: new FormControl(''),
+//     departureDate: new FormControl(''),
+//   });
+
+//   this.multiCitySegments.push(segmentGroup);
+
+//   // Optional: force validation re-evaluation
+//   this.multiCitySegments.updateValueAndValidity({ emitEvent: true });
+// }
 addSegment(): void {
+  if (this.multiCitySegments.length >= 8) {
+    return;
+  }
+
   const segmentGroup = new FormGroup({
     departure: new FormControl(''),
     arrival: new FormControl(''),
@@ -1417,10 +937,9 @@ addSegment(): void {
   });
 
   this.multiCitySegments.push(segmentGroup);
-
-  // Optional: force validation re-evaluation
   this.multiCitySegments.updateValueAndValidity({ emitEvent: true });
 }
+
 
   removeSegment(index: number): void {
     this.multiCitySegments.removeAt(index);
@@ -1740,7 +1259,7 @@ checkIfAllDomestic(): boolean {
     this.isScrollRightDisabled = scrollLeft + clientWidth >= scrollWidth - 1;
   }
 
-  // Optional: Listen to scroll events
+ 
   @HostListener('window:resize')
   onResize(): void {
     this.updateScrollButtons();
@@ -1798,5 +1317,45 @@ checkIfAllDomestic(): boolean {
       this.swiper.destroy();
     }
   }
+onAirlineHeaderClick(airlineName: string): void {
+  const isSelected = this.filters.airlines.includes(airlineName);
+  const fakeEvent = { target: { checked: !isSelected } } as unknown as Event;
+  this.toggleAirlineSelection(airlineName, fakeEvent);
+}
+
+onFareClick(price: number, stopType: number, carrierName: string): void {
+  // If the same cell is clicked again, toggle off the selection
+  const isSameSelection =
+    this.selectedFare &&
+    this.selectedFare.price === price &&
+    this.selectedFare.stopType === stopType &&
+    this.selectedFare.carrierName === carrierName;
+
+  if (isSameSelection) {
+    // Clear selection and reset filters to full range and all stops
+    this.selectedFare = null;
+    this.sliderValue = [this.lowestPrice, this.highestPrice];
+    this.filters.rangeValues = [...this.sliderValue];
+    this.filters.stopes = []; // Reset stop filter
+  } else {
+    // New selection
+    const min = Math.max(price, this.lowestPrice);
+    const max = this.highestPrice;
+
+    this.sliderValue = [min, max];
+    this.filters.rangeValues = [min, max];
+    this.filters.stopes = [stopType];
+
+    this.selectedFare = { price, stopType, carrierName };
+  }
+
+  this.onPriceRangeChange();
+}
+
+
+
+
+
+
 
 }

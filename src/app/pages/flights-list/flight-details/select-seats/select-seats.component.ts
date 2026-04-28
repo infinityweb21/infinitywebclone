@@ -17,6 +17,7 @@ import { FlightFilterService } from '../../../../services/flight/flight-filter.s
 import { TosterService } from '../../../../services/common/toaster.service';
 import { SearchService } from '../../../../services/search.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { SharedService } from '../../../../services/shared/shared.service';
 
 interface Seat {
   id: string;
@@ -85,7 +86,6 @@ export class SelectSeatsComponent implements OnInit {
   scrollContainer!: ElementRef<HTMLDivElement>;
   private _router = inject(Router);
   private destroyRef: DestroyRef = inject(DestroyRef);
-
   rangeValue = 0;
   seatPrice = 0; // This will now be dynamic based on selected seat
   seatAssignmentFee = 0;
@@ -109,6 +109,9 @@ SeatAssignmentFee:number=0;
   selectedAdults: number = 0;
   selectedChildren: number = 0;
   selectedInfants: number = 0;
+       private shareService: SharedService = inject(SharedService);
+        getData:any='';
+ 
   constructor(
     private fb: FormBuilder,
     private flightService: FlightService,
@@ -127,6 +130,7 @@ SeatAssignmentFee:number=0;
   }
 
   ngOnInit(): void {
+      this.getData=this.shareService.getcompanyName();
    const summary = this.flightService.getFareSummary();
   if (summary) {
     this.fareSummary = summary;
@@ -151,8 +155,17 @@ SeatAssignmentFee:number=0;
     });
     this.getAvailableSeatByItinerary();
     this.calculateTotalSeatPriceFromAllSegments()
-
+    
   }
+
+setFirstValidSegment() {
+  const firstValid = this.segmentSeatMaps.find(
+    seg => seg.origin && seg.destination
+  );
+  if (firstValid) {
+    this.setActiveSegment(firstValid);
+  }
+}
 
 
 restoreSelectedSeats(): void {
@@ -208,7 +221,7 @@ calculateTotalSeatPriceFromAllSegments(): void {
       )
     );
   }, 0);
-
+   this.shareService.setSeatTotal(this.selectedSeatTotal);
   this.updateTotalWithSeatAndServiceTax();
 }
 
@@ -320,6 +333,20 @@ onSeatClick(seat: Seat): void {
 }
 
 
+getAllSelectedSeats(): any[] {
+  const seatData = this.flightService.getseatData();
+  const seatRequest = seatData?.SeatRequest || [];
+
+  let selectedSeats: any[] = [];
+
+  seatRequest.forEach((segmentGroup: any) => {
+    const segmentKey = Object.keys(segmentGroup)[0];
+    const seats = segmentGroup[segmentKey] || [];
+    selectedSeats = selectedSeats.concat(seats);
+  });
+
+  return selectedSeats;
+}
 
 
   getSubtotal(): number {
@@ -348,6 +375,8 @@ onSeatClick(seat: Seat): void {
           // Set the first segment as active by default
           if (this.segmentSeatMaps.length > 0) {
             this.setActiveSegment(this.segmentSeatMaps[0]);
+            this.setFirstValidSegment();
+            
           }
         },
         error: (err) => {
@@ -541,7 +570,7 @@ get hasMiddleSeats(): boolean {
 
 
   continueToSeats() {
-    this._router.navigate(['/payment'],{
+    this._router.navigate(['/flight/payment'],{
       queryParams:{
         id:this.itnearyId
       }

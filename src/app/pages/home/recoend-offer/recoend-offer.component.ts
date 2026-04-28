@@ -1,10 +1,12 @@
 import { NgFor } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { SharedService } from '../../../services/shared/shared.service';
 // import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   selector: 'app-recoend-offer',
-  imports: [ NgFor],
+  imports: [NgFor, RouterLink],
   templateUrl: './recoend-offer.component.html',
   styleUrl: './recoend-offer.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -33,9 +35,7 @@ export class RecoendOfferComponent implements OnInit {
         'Local village walk',
         'Glacier excursion',
       ],
-      price: 80000,
-      originalPrice: 88952,
-      link: '#',
+      link: '/top-destinations/swis-alps',
     },
     {
       image: 'assets/images/home/paries_getaway.webp',
@@ -48,14 +48,9 @@ export class RecoendOfferComponent implements OnInit {
         transfers: '2 Transfers',
         activities: '4 Activities',
       },
-      description: [
-        'Seine River Cruise',
-        'Guided city walk',
-        'Louvre access',
-      ],
-      price: 86952,
-      originalPrice: 88952,
-      link: '#',
+      description: ['Seine River Cruise', 'Guided city walk', 'Louvre access'],
+
+      link: '/top-destinations/paris',
     },
     {
       image: 'assets/images/home/california_dreaming.webp',
@@ -73,9 +68,7 @@ export class RecoendOfferComponent implements OnInit {
         'Santa Monica Beach Day',
         'Universal Studios Entry',
       ],
-      price: 87952,
-      originalPrice: 88952,
-      link: '#',
+      link: '/top-destinations/california',
     },
     {
       image: 'assets/images/home/florida_escape.webp',
@@ -93,9 +86,7 @@ export class RecoendOfferComponent implements OnInit {
         'Everglades Airboat Tour',
         'Miami Beach Day Trip',
       ],
-      price: 85952,
-      originalPrice: 88952,
-      link: '#',
+      link: '/top-destinations/florida',
     },
     {
       image: 'assets/images/home/tokyo_tour.webp',
@@ -113,9 +104,7 @@ export class RecoendOfferComponent implements OnInit {
         'Sushi-making class',
         'City walking tour',
       ],
-      price: 84952,
-      originalPrice: 88952,
-      link: '#',
+      link: '/top-destinations/tokyo',
     },
     {
       image: 'assets/images/home/rome_journey.webp',
@@ -133,9 +122,7 @@ export class RecoendOfferComponent implements OnInit {
         'Vatican City visit',
         'Trevi Fountain stop',
       ],
-      price: 82952,
-      originalPrice: 88952,
-      link: '#',
+      link: '/top-destinations/rome',
     },
     {
       image: 'assets/images/home/singapore_city_fun.webp',
@@ -153,9 +140,7 @@ export class RecoendOfferComponent implements OnInit {
         'Sentosa Island Entry',
         'Night Safari Ride',
       ],
-      price: 84952,
-      originalPrice: 88952,
-      link: '#',
+      link: '/top-destinations/singapore',
     },
     {
       image: 'assets/images/home/london_getaway.webp',
@@ -173,123 +158,151 @@ export class RecoendOfferComponent implements OnInit {
         'Tower of London entry',
         'Thames River cruise',
       ],
-      price: 90952,
-      originalPrice: 88952,
-      link: '#',
-    }
+      // price: 90952,
+      // originalPrice: 88952,
+      link: '/top-destinations/london',
+    },
   ];
+  generateDateRange(): string {
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
 
+    const today = new Date();
+    const start = new Date(today);
+    start.setDate(today.getDate() + 15);
+
+    const end = new Date(start);
+    end.setDate(start.getDate() + 7);
+
+    return `${months[start.getMonth()]} ${String(start.getDate()).padStart(
+      2,
+      '0'
+    )} - ${months[end.getMonth()]} ${String(end.getDate()).padStart(2, '0')}`;
+  }
   flights = [
     {
       image: 'assets/images/home/paris.webp',
       destination: 'Paris',
       route: 'NYC - CDG',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.8,
-      price: 80952,
+      // price: 80952,
       link: '#',
     },
     {
-   image: 'assets/images/home/rome.webp',
+      image: 'assets/images/home/rome.webp',
       destination: 'Rome',
       route: 'LHR - FCO',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.6,
-      price: 81952,
+
       link: '#',
     },
     {
-   image: 'assets/images/home/tokyo1.webp',
+      image: 'assets/images/home/tokyo1.webp',
       destination: 'Tokyo',
       route: 'LAX - HND',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.9,
-      price: 82952,
+
       link: '#',
     },
     {
-   image: 'assets/images/home/singapore1.webp',
+      image: 'assets/images/home/singapore1.webp',
       destination: 'Singapore',
       route: 'LAX - SIN',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.7,
-      price: 83952,
+
       link: '#',
     },
     {
-   image: 'assets/images/home/barcelona.webp',
+      image: 'assets/images/home/barcelona.webp',
       destination: 'Barcelona',
       route: 'JFK - BCN',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.5,
-      price: 84952,
+
       link: '#',
     },
     {
-   image: 'assets/images/home/zurich.webp',
+      image: 'assets/images/home/zurich.webp',
       destination: 'Zurich',
       route: 'ORD - ZRH',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.5,
-      price: 84952,
+
       link: '#',
     },
     {
-   image: 'assets/images/home/london.webp',
+      image: 'assets/images/home/london.webp',
       destination: 'London',
       route: 'BOS - LHR',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.9,
-      price: 84952,
+
       link: '#',
     },
     {
-   image: 'assets/images/home/newyork1.webp',
+      image: 'assets/images/home/newyork1.webp',
       destination: 'New York',
       route: 'DEL - JFK',
-      dateRange: 'Sep 12 - Oct 10',
+      dateRange: this.generateDateRange(),
       rating: 4.8,
-      price: 84952,
+
       link: '#',
-    }
+    },
     // Add more flight objects if needed
   ];
   offers = [
     {
       image: 'assets/images/home/offer-img-1.webp',
-      category: 'Flight Fest',
-      title: 'Fly more, spend less on top domestic and global routes',
-      description: 'Grab the Best Flight Deals Now',
+      category: 'Flight Specials',
+      title: 'Get low fares on top domestic & international flights',
+      description: 'Save Big with Smart Booking Options',
       link: '#',
     },
     {
-         image: 'assets/images/home/cruise_server.webp',
-      category: 'Cruise Saver',
-      title: 'Sail away with exclusive deals on luxury cruise packages',
-      description: 'Get Great Cruise Discounts Today',
+      image: 'assets/images/home/cruise_server.webp',
+      category: 'Cruise Escapes',
+      title: 'Experience the sea with exclusive cruise deals',
+      description: 'Limited-Time Offers on Luxury Voyages',
       link: '#',
     },
     {
-         image: 'assets/images/home/hotel_deals.webp',
-      category: 'Hotel Deals',
-      title: 'Top-rated stays at truly pocket-friendly hotel prices',
-      description: 'Find Amazing Hotel Offers Near You',
+      image: 'assets/images/home/hotel_deals.webp',
+      category: 'Hotel Steals',
+      title: 'Stay in style without stretching your budget',
+      description: 'Browse Affordable Hotels with High Ratings',
       link: '#',
     },
     {
-         image: 'assets/images/home/customizable_deals.webp',
-      category: 'Customizable Deals',
-      title: 'Create your own offer with flexible travel options ',
-      description: 'Design Your Perfect Travel Package',
+      image: 'assets/images/home/customizable_deals.webp',
+      category: 'Build Your Trip',
+      title: 'Plan it your way with fully customizable packages',
+      description: 'Tailor-Made Travel for Every Type of Explorer',
       link: '#',
-    }
+    },
     // Add more offer objects here as needed
   ];
 
+  private shareService: SharedService = inject(SharedService);
+  getData: any = '';
   ngOnInit() {
-   
+    this.getData = this.shareService.getcompanyName();
   }
-
   ngAfterViewInit(): void {
     const swiperEl: any = this.recoendSwiperRef.nativeElement;
     const swiperEl1: any = this.recoendSwiperRef1.nativeElement;

@@ -2,19 +2,19 @@
 <app-main-filter />
 <!--=========== Banner Section End  ==============-->
 <!--=========== Unique Experiences Start  ==============-->
-<section class="unique-experiences pb-0 cmn-gap">
+<!-- <section class="unique-experiences pb-0 cmn-gap">
   <div class="container container-xxl">
     <div class="cmn-heading">
       <div class="heading-cmn-flex">
-        <h2>Celebrating What Makes Travel Special</h2>
+        <h2>Choose Your Preferred Airline</h2>
       </div>
 
       <div class="common-slider-container">
-        <!-- <div class="swiper commonSlider8"> -->
-          <!-- <div class="swiper-wrapper"> -->
+      
             <swiper-container #flightsSwiperRef>
               @for (flight of flights; track $index) {
               <swiper-slide>
+                <a href="tel:+18882302647">
                 <div class="swiper-slide">
                   <div class="uxf-card">
                     <div class="uxf-card-image-box">
@@ -105,52 +105,145 @@
                     </div>
                     <div class="uxf-price-section">
                       <div class="uxf-price-left">
-                        <h2 class="uxf-actual-price m-0">From <span class="uxf-actual-price-highlight">${{ flight.price
-                            }}</span></h2>
+                       
                         <span class="uxf-flight-reamain-seat">{{ flight.seatsLeft }} Seats Left</span>
                       </div>
-                      <div class="uxf-price-right">
-                        <a href="javascript:void(0);" class="uxf-btn-view-nore">View Now</a>
-                      </div>
+                     
                     </div>
                   </div>
                 </div>
+                </a>
               </swiper-slide>
               }
             </swiper-container>
-          <!-- </div> -->
-        <!-- </div> -->
+
+      </div>
+    </div>
+  </div>
+</section> -->
+<!--=========== Unique Experiences End  ==============-->
+<section class="unique-experiences pb-0 cmn-gap">
+  <div class="container container-xxl">
+    <div class="cmn-heading">
+      <div class="headingtitle">
+        <h2>Filter, Search and Book your Flights with InfinityFareCompare </h2>
+      </div>
+      <div class="common-para">
+        <p>
+          Traveling is made easy for your convenience! Flying for leisure? Work? Or just to Explore with your friends
+          and family, we are here to unite you with your destination at affordable prices that stand out!
+        </p>
+      </div>
+      <div class="headingtitle">
+        <h2>Experience the Ways of a Hassle-Free Booking </h2>
+      </div>
+      <div class="common-para">
+        <p>
+          Our user interface is designed to provide you with accessible travel solutions on all devices, whether you are
+          on your laptop, android or apple devices, we are here to offer you flights which fit your descriptions and
+          requirements.
+        </p>
+      </div>
+      <div class="common-para">
+        <p>
+          <strong>Searching for last minute flights? We are here! Book your tickets with us today! </strong>
+          <br>
+          <span>Ring <a href="tel:{{getData?.phoneNumber}}">{{getData?.phoneNumber}}</a> Today!</span>
+        </p>
       </div>
     </div>
   </div>
 </section>
-<!--=========== Unique Experiences End  ==============-->
+
 <!--=========== Booking Section Start  ==============-->
 <section class="booking cmn-gap pb-0">
   <div class="container container-xxl">
     <div class="booking-parent" style="background: url('./assets/images/booking-background.png')">
       <div class="booking-left">
-        <h2 class="banner-add-caption">Get a Discount on Your First Reservation</h2>
-        <p class="banner-add-subtext">Offer Ends Soon!</p>
+        <h2 class="banner-add-caption">Don't Miss Out on Great Flight Deals</h2>
+        <p class="banner-add-subtext">Limited time offers available</p>
       </div>
       <div class="booking-right">
-        <a href="#" class="cmn-btn btn-orange fs-20 fw-semibold cta-add-btn cta-add-btn-reserve">Reserve Now!</a>
+        <a href="tel:{{getData?.phoneNumber}}"
+          class="cmn-btn btn-orange fs-20 fw-semibold cta-add-btn cta-add-btn-reserve">Reserve Now!</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="unique-experiences pb-0 cmn-gap">
+  <div class="container container-xxl">
+    <div class="cmn-heading">
+      <div class="headingtitle">
+        <h2>The Best Days are Here! Fly to your Destination with Unbelievable Rates!</h2>
+      </div>
+      <div class="common-para">
+        <p>
+          Use InfinityFareCompare for your next holiday flight bookings, as Airlines tend to charge more when demand is
+          high, but we are here to offer you deals which may make up your mind!
+        </p>
+        <p>
+          Try to book your flights during the weekday, as days like Fridays and weekends are usually the priciest for
+          customers.
+        </p>
+        <p>
+          Try Midweek flights (Monday to Thursday) for a chance to have much lower fares thanks to lighter demand.
+          Seasonality also plays a role like holidays and peak travel months usually drive prices up.
+        </p>
+      </div>
+      <div class="headingtitle">
+        <h2>Budget-Friendly Months to Book Your Next Flight</h2>
+      </div>
+      <div class="common-para">
+        <p>
+          The cheapest months vary by destination. Travel off-seasons to save the most of your money! Just make sure the
+          weather conditions are still favorable enough for your trip.
+        </p>
+      </div>
+      <div class="headingtitle">
+        <h2>When to Book for Best Prices</h2>
+      </div>
+      <div class="common-para">
+        <p>
+          Generally, booking about a month before departure works for most trips. Try 6–8 weeks ahead, especially if you
+          are trying to visit during peak seasons. If you wait too long, then you are paying higher prices for your
+          bookings.
+        </p>
+      </div>
+      <!-- <div class="headingtitle">
+        <h2>Affordable Travel Spots for 2025 </h2>
+      </div>
+      <div class="common-para">
+        <ul class="tips-list">
+          <li>
+            <strong>Las Vegas, Nevada </strong>
+          </li>
+          <li> <strong>New Orleans, Louisiana</strong> </li>
+          <li> <strong>Austin, Texas </strong></li>
+          <li> <strong>Nashville, Tennessee </strong></li>
+          <li> <strong>Denver, Colorado </strong></li>
+          <li> <strong>Salt Lake City, Utah</strong> </li>
+          <li> <strong>Albuquerque, New Mexico </strong></li>
+          <li> <strong>Tampa, Florida </strong></li>
+          <li> <strong>Portland, Oregon </strong></li>
+          <li> <strong>San Antonio, Texas </strong></li>
+          <li> <strong>Savannah, Georgia </strong> </li>
+          <li> <strong>San Diego, California </strong></li>
+        </ul>
+      </div> -->
     </div>
   </div>
 </section>
 <!--=========== Booking Section End  ==============-->
 <!-- ==== Top Rate Provider Start ==== -->
-<section class="unique-experiences pb-0 cmn-gap">
+<!-- <section class="unique-experiences pb-0 cmn-gap">
   <div class="container container-xxl">
     <div class="cmn-heading">
       <div class="heading-cmn-flex">
-        <h2>Trusted by Thousands</h2>
+        <h2>More Airlines to Choose</h2>
       </div>
     </div>
     <div class="common-slider-container">
-      <!-- <div class="swiper commonSlider9">
-            <div class="swiper-wrapper"> -->
       <swiper-container #providersSwiperRef>
         @for (provider of providers; track $index) {
         <swiper-slide>
@@ -195,15 +288,14 @@
         </swiper-slide>
         }
       </swiper-container>
-      <!-- </div>
-          </div> -->
+      
     </div>
   </div>
-</section>
+</section> -->
 <!-- ==== Top Rate Provider End ==== -->
 
 <!--=========== Trending Section Start  ==============-->
-<section class="unique-experiences cmn-gap">
+<!-- <section class="unique-experiences cmn-gap">
   <div class="container container-xxl">
     <div class="cmn-heading">
       <div class="sec-title-wrap">
@@ -294,7 +386,6 @@
                 </div>
               </div>
             </div>
-            <!-- COLLAPSE SECTION -->
             <div class="col-md-12">
               <div class="collapse ftd-inner-card-wrap w-100 mt-2" [id]="'collapse' + flight.id"
                 [collapse]="flight.isCollapsed">
@@ -353,7 +444,6 @@
                                 <ul class="flight-btn-icon-list flight-btn-icon-list-ul">
                                   <li *ngFor="let info of flight.miscInfo">
                                     <i class="fa-regular" [ngClass]="info.icon + ' align-middle me-2'"></i>
-                                    <!-- {{ info.text }} -->
                                   </li>
                                 </ul>
                               </div>
@@ -366,37 +456,38 @@
                             </div>
                           </div>
                         </div>
-                      </div><!-- /row -->
-                    </div><!-- /flight-segment -->
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div><!-- /collapse -->
-          </div><!-- /row -->
-        </div><!-- /card -->
-      </div><!-- /col -->
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</section>
+</section> -->
 <!--=========== Trending Section End  ==============-->
 <!--=========== Quick Book Flight Section Start  ==============-->
-<div class="qb-section-wrap">
+<div class="qb-section-wrap cmn-gap">
   <div class="container container-xxl">
     <div class="qb-section-content">
       <div class="qb-section-content-box position-relative">
-        <h1 class="qb-heading">Luxury in Every Detail, Comfort in Every Moment</h1>
+        <h1 class="qb-heading">Premium Travel Booking Solutions, Personalized for You</h1>
         <p class="qb-subheading">
-          Our goal is to offer more than just a place to stay—we offer an experience. No matter the reason for your travel, we make sure it feels like home every time.
+          Your journey deserves exceptional service and attention to detail. We go beyond simple bookings to create
+          travel experiences that exceed expectations and deliver lasting memories.
         </p>
 
         <div class="qb-stats">
-          <div class="qb-stat-item">19+<span>Unique Destinations</span></div>
-          <div class="qb-stat-item">300+<span>Accommodations Available</span></div>
-          <div class="qb-stat-item">38k<span>Happy Travelers</span></div>
-          <div class="qb-stat-item">25+<span>International Locations</span></div>
+          <div class="qb-stat-item">50+<span>Partner Airlines</span></div>
+          <div class="qb-stat-item">150+<span>Global Cities</span></div>
+          <div class="qb-stat-item">95%<span>Customer Satisfaction</span></div>
+          <div class="qb-stat-item">24/7<span>Expert Support</span></div>
         </div>
 
-        <button class="qb-book-btn">Book a Flight</button>
+        <a href="tel:{{getData?.phoneNumber}}" class="qb-book-btn">Book a Flight</a>
       </div>
     </div>
   </div>

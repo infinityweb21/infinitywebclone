@@ -1,0 +1,374 @@
+<!--=========== Banner Section Start  ==============-->
+<app-main-filter />
+
+<section class="unique-experiences pb-0 cmn-gap">
+  <div class="container container-xxl">
+    <div class="cmn-heading">
+      <div class="headingtitle">
+        <h2>Filter, Search and Book your Flights with InfinityFareCompare </h2>
+      </div>
+      <div class="common-para">
+        <p>
+          Traveling is made easy for your convenience! Flying for leisure? Work? Or just to Explore with your friends
+          and family, we are here to unite you with your destination at affordable prices that stand out!
+        </p>
+      </div>
+      <div class="headingtitle">
+        <h2>Experience the Ways of a Hassle-Free Booking </h2>
+      </div>
+      <div class="common-para">
+        <p>
+          Our user interface is designed to provide you with accessible travel solutions on all devices, whether you are
+          on your laptop, android or apple devices, we are here to offer you flights which fit your descriptions and
+          requirements.
+        </p>
+      </div>
+      <div class="common-para">
+        <p>
+          <strong>Searching for last minute flights? We are here! Book your tickets with us today! </strong>
+          <br>
+          <span>Ring <a href="tel:{{getData?.australia_phoneNumber}}">+{{getData?.australia_phoneNumber}}</a> Today!</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--=========== Booking Section Start  ==============-->
+<section class="booking cmn-gap pb-0">
+  <div class="container container-xxl">
+    <div class="booking-parent" style="background: url('./assets/images/booking-background.png')">
+      <div class="booking-left">
+        <h2 class="banner-add-caption">Don't Miss Out on Great Flight Deals</h2>
+        <p class="banner-add-subtext">Limited time offers available</p>
+      </div>
+      <div class="booking-right">
+        <a href="tel:{{getData?.phoneNumber}}"
+          class="cmn-btn btn-orange fs-20 fw-semibold cta-add-btn cta-add-btn-reserve">Reserve Now!</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="unique-experiences pb-0 cmn-gap">
+  <div class="container container-xxl">
+    <div class="cmn-heading">
+      <div class="headingtitle">
+        <h2>The Best Days are Here! Fly to your Destination with Unbelievable Rates!</h2>
+      </div>
+      <div class="common-para">
+        <p>
+          Use InfinityFareCompare for your next holiday flight bookings, as Airlines tend to charge more when demand is
+          high, but we are here to offer you deals which may make up your mind!
+        </p>
+        <p>
+          Try to book your flights during the weekday, as days like Fridays and weekends are usually the priciest for
+          customers.
+        </p>
+        <p>
+          Try Midweek flights (Monday to Thursday) for a chance to have much lower fares thanks to lighter demand.
+          Seasonality also plays a role like holidays and peak travel months usually drive prices up.
+        </p>
+      </div>
+      <div class="headingtitle">
+        <h2>Budget-Friendly Months to Book Your Next Flight</h2>
+      </div>
+      <div class="common-para">
+        <p>
+          The cheapest months vary by destination. Travel off-seasons to save the most of your money! Just make sure the
+          weather conditions are still favorable enough for your trip.
+        </p>
+      </div>
+      <div class="headingtitle">
+        <h2>When to Book for Best Prices</h2>
+      </div>
+      <div class="common-para">
+        <p>
+          Generally, booking about a month before departure works for most trips. Try 6–8 weeks ahead, especially if you
+          are trying to visit during peak seasons. If you wait too long, then you are paying higher prices for your
+          bookings.
+        </p>
+      </div>
+      <!-- <div class="headingtitle">
+        <h2>Affordable Travel Spots for 2025 </h2>
+      </div>
+      <div class="common-para">
+        <ul class="tips-list">
+          <li>
+            <strong>Las Vegas, Nevada </strong>
+          </li>
+          <li> <strong>New Orleans, Louisiana</strong> </li>
+          <li> <strong>Austin, Texas </strong></li>
+          <li> <strong>Nashville, Tennessee </strong></li>
+          <li> <strong>Denver, Colorado </strong></li>
+          <li> <strong>Salt Lake City, Utah</strong> </li>
+          <li> <strong>Albuquerque, New Mexico </strong></li>
+          <li> <strong>Tampa, Florida </strong></li>
+          <li> <strong>Portland, Oregon </strong></li>
+          <li> <strong>San Antonio, Texas </strong></li>
+          <li> <strong>Savannah, Georgia </strong> </li>
+          <li> <strong>San Diego, California </strong></li>
+        </ul>
+      </div> -->
+    </div>
+  </div>
+</section>
+<!--=========== Booking Section End  ==============-->
+<!-- ==== Top Rate Provider Start ==== -->
+<!-- <section class="unique-experiences pb-0 cmn-gap">
+  <div class="container container-xxl">
+    <div class="cmn-heading">
+      <div class="heading-cmn-flex">
+        <h2>More Airlines to Choose</h2>
+      </div>
+    </div>
+    <div class="common-slider-container">
+      <swiper-container #providersSwiperRef>
+        @for (provider of providers; track $index) {
+        <swiper-slide>
+          <div class="swiper-slide">
+            <div class="etd-provider-card">
+              <div class="etd-card-header"></div>
+    
+              <div class="etd-image-wrapper">
+                <img class="etd-image" [src]="provider.image" [alt]="provider.name + ' Logo'" />
+              </div>
+    
+              <h5 class="etd-provider-name">{{ provider.name }}</h5>
+    
+              <div class="etd-rating-section d-flex justify-content-center">
+                <div class="etd-rating-badge">
+                  <span class="etd-star-icon">
+                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M11.2052 4.69253L8.19799 4.25549L6.85369 1.53016C6.81697 1.45555 6.75657 1.39514 6.68195 1.35843C6.49481 1.26604 6.2674 1.34303 6.17384 1.53016L4.82953 4.25549L1.82232 4.69253C1.73941 4.70438 1.66361 4.74346 1.60557 4.80268C1.53541 4.8748 1.49675 4.97182 1.49808 5.07242C1.49941 5.17303 1.54063 5.26899 1.61268 5.33922L3.78844 7.4605L3.2744 10.4559C3.26235 10.5255 3.27006 10.5972 3.29666 10.6627C3.32326 10.7282 3.36769 10.785 3.42491 10.8266C3.48212 10.8681 3.54983 10.8928 3.62037 10.8978C3.6909 10.9029 3.76144 10.888 3.82397 10.855L6.51376 9.44083L9.20355 10.855C9.27699 10.8941 9.36226 10.9071 9.44399 10.8929C9.65007 10.8574 9.78865 10.662 9.75312 10.4559L9.23909 7.4605L11.4148 5.33922C11.4741 5.28119 11.5131 5.20538 11.525 5.12247C11.557 4.9152 11.4125 4.72333 11.2052 4.69253Z"
+                        fill="#fff" />
+                    </svg>
+                  </span>
+                  {{ provider.rating }}
+                </div>
+                <p class="etd-review-count">{{ provider.reviews }}</p>
+              </div>
+    
+              <hr class="etd-provider-card-devider">
+    
+              <div class="etd-provider-details">
+                <div class="etd-detail-item">
+                  <span class="etd-detail-number">{{ provider.flights }}</span>
+                  <p class="etd-detail-label">Flights</p>
+                </div>
+                <div class="etd-detail-item">
+                  <span class="etd-detail-number">{{ provider.locations }}</span>
+                  <p class="etd-detail-label">Locations</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </swiper-slide>
+        }
+      </swiper-container>
+      
+    </div>
+  </div>
+</section> -->
+<!-- ==== Top Rate Provider End ==== -->
+
+<!--=========== Trending Section Start  ==============-->
+<!-- <section class="unique-experiences cmn-gap">
+  <div class="container container-xxl">
+    <div class="cmn-heading">
+      <div class="sec-title-wrap">
+        <h2>Today’s Top Picks</h2>
+      </div>
+    </div>
+    <div class="row g-2 g-md-3">
+      <div class="col-xxl-6" *ngFor="let flight of trendingFlights; let i = index">
+        <div class="card tdc-card">
+          <div class="row g-0">
+            <div class="col-md-3 d-none d-md-flex">
+              <div class="tdc-card-image-box">
+                <img [src]="flight.thumbnail" alt="Trending Thumb">
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="card-body">
+                <div class="row row-cols-md-3 g-0 g-md-3">
+                  <div class="col-12 d-md-none">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="flight-icon">
+                        <img [src]="flight.airlineLogo" alt="airline">
+                      </div>
+                      <div class="flight-price-destination-wrap d-flex align-items-center">
+                        <div class="d-flex align-items-center">
+                          <div class="trend-value-box py-0">
+                            <span class="trend-value">{{ flight.price }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="trend-card-content-wrap">
+                      <div class="destination-start-end-box">
+                        <span class="destination-start-end-text d-none d-md-flex">From</span>
+                        <span class="destination-start-end-text-dark">{{ flight.fromCity }}</span>
+                      </div>
+                      <div class="time-single-content-wrap">
+                        <span class="time-content-start">{{ flight.fromTime }}</span>
+                        <span class="time-content-median">{{ flight.fromPeriod }}</span>
+                      </div>
+                      <div class="trend-value-box d-none d-md-flex">
+                        <span class="trend-value">{{ flight.price }}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="trend-card-content-wrap">
+                      <div class="trend-flight-trip-content-box">
+                        <span class="trend-flight-trip-icon">
+                          <img src="assets/images/flight/icons/flight-route-icon.svg" alt="Destination Icon">
+                        </span>
+                        <span class="trend-flight-trip-duration d-none d-lg-flex">
+                          <span class="ms-1">Trip Duration</span> : <span class="ms-1">{{ flight.tripDuration }}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="trend-card-content-wrap">
+                      <div class="destination-start-end-box justify-content-end">
+                        <span class="destination-start-end-text d-none d-md-flex">To</span>
+                        <span class="destination-start-end-text-dark">{{ flight.toCity }}</span>
+                      </div>
+                      <div class="time-single-content-wrap justify-content-end">
+                        <span class="time-content-start">{{ flight.toTime }}</span>
+                        <span class="time-content-median">{{ flight.toPeriod }}</span>
+                      </div>
+                      <div class="view-detail-btn-wrap">
+                        <button class="view-detail-btn trending-details-btn">View Detail</button>
+                      </div>
+                      <div class="ftd-detail-btn-wrap d-none d-md-flex">
+                        <button class="btn btn-flight-details" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#ftd-inner-card" (click)="toggleDetails(i)"
+                          [attr.aria-expanded]="!flight.isCollapsed" [attr.aria-controls]="'collapse' + flight.id">
+                          Flight Details
+                          <span class="flight-details-btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                              <path fill="currentColor"
+                                d="m12.37 15.835l6.43-6.63C19.201 8.79 18.958 8 18.43 8H5.57c-.528 0-.771.79-.37 1.205l6.43 6.63c.213.22.527.22.74 0" />
+                            </svg>
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="collapse ftd-inner-card-wrap w-100 mt-2" [id]="'collapse' + flight.id"
+                [collapse]="flight.isCollapsed">
+                <div class="card card-body border-0">
+                  <div class="segment-flight-container">
+                    <div class="flight-header">
+                      <span class="flight-depart-schedule">Depart - {{ flight.departureDate }}</span>
+                      <span class="flight-duration"> {{ flight.duration }}</span>
+                    </div>
+                    <div class="flight-segment">
+                      <div class="row">
+                        <div class="col-md-7">
+                          <div class="segment-carrier">
+                            <img [src]="flight.airlineLogo" width="50" alt="airline">
+                            <span class="segment-content ms-2">{{ flight.flightNumber }}</span>
+                          </div>
+                          <div class="segment-body my-3">
+                            <div class="d-flex justify-content-start">
+                              <div class="ms-3 departure-airport-time-content-wrap">
+                                <span class="departure-time">{{ flight.departureTime }}</span>
+                                <span class="separator-dash">-</span>
+                                <span class="departure-date">{{ flight.departureDate }}</span>
+                                <span class="departure-airport">{{ flight.departureAirport }}</span>
+                                <span class="separator-dash">-</span>
+                                <span class="departure-airport-name d-none d-lg-flex">{{ flight.departureAirportFull
+                                  }}</span>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                              <div class="depart-arrival-time-line">
+                                <span class="fw-light fight-duration depart-arrival-time">{{ flight.duration }}</span>
+                              </div>
+                            </div>
+                            <div class="d-flex justify-content-start">
+                              <div class="ms-3 arrival-airport-time-content-wrap">
+                                <span class="arrival-time">{{ flight.arrivalTime }}</span>
+                                <span class="separator-dash">-</span>
+                                <span class="arrival-date">{{ flight.arrivalDate }}</span>
+                                <span class="arrival-airport">{{ flight.arrivalAirport }}</span>
+                                <span class="separator-dash">-</span>
+                                <span class="arrival-airport-name d-none d-lg-flex">{{ flight.arrivalAirportFull
+                                  }}</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-5 d-none d-md-block">
+                          <div class="flight-misc">
+                            <div class="mb-2">
+                              <strong><span class="class-label">Class:</span></strong>
+                              <span class="class-status">{{ flight.flightClass }}</span>
+                            </div>
+                            <div>
+                              <div class="flight-misc-toggle">
+                                B6 1524 <i class="fa fa-caret-down"></i>
+                                <ul class="flight-btn-icon-list flight-btn-icon-list-ul">
+                                  <li *ngFor="let info of flight.miscInfo">
+                                    <i class="fa-regular" [ngClass]="info.icon + ' align-middle me-2'"></i>
+                                  </li>
+                                </ul>
+                              </div>
+                              <ul class="flight-misc-list">
+                                <li *ngFor="let info of flight.miscInfo">
+                                  <i class="fa-regular" [ngClass]="info.icon + ' align-middle me-2'"></i>
+                                  {{ info.text }}
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<!--=========== Trending Section End  ==============-->
+<!--=========== Quick Book Flight Section Start  ==============-->
+<div class="qb-section-wrap cmn-gap">
+  <div class="container container-xxl">
+    <div class="qb-section-content">
+      <div class="qb-section-content-box position-relative">
+        <h1 class="qb-heading">Premium Travel Booking Solutions, Personalized for You</h1>
+        <p class="qb-subheading">
+          Your journey deserves exceptional service and attention to detail. We go beyond simple bookings to create
+          travel experiences that exceed expectations and deliver lasting memories.
+        </p>
+
+        <div class="qb-stats">
+          <div class="qb-stat-item">50+<span>Partner Airlines</span></div>
+          <div class="qb-stat-item">150+<span>Global Cities</span></div>
+          <div class="qb-stat-item">95%<span>Customer Satisfaction</span></div>
+          <div class="qb-stat-item">24/7<span>Expert Support</span></div>
+        </div>
+
+        <a href="tel:{{getData?.phoneNumber}}" class="qb-book-btn">Book a Flight</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!--=========== Quick Book Flight Section End  ==============-->
